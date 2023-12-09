@@ -1,0 +1,26 @@
+<div class="container vh-100">
+  <div class="container text-center mt-2 ">
+    <div class="h1">Users</div>
+  </div>
+  <table class="table table-dark">
+    <thead class="thead-dark text-center">
+    <tr class="table-header">
+      <th>Avatar</th>
+      <th>Role</th>
+      <th>Email</th>
+      <th>Password
+      <span (click)="handlePassword()" class="btn btn-secondary small"></span></th>
+      <th class="text-center">EDIT</th>
+    </tr>
+    </thead>
+    <tbody class="table-tabs text-center">
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.role}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.password}}</td>
+      <td><button class="btn btn-success justify-content-center" (click)="updateUser(user.id)">Update</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

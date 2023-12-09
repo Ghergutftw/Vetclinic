@@ -1,0 +1,52 @@
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {DataService} from "../../service/data.service";
+import {Roles, User} from "../users.component";
+
+@Component({
+  selector: 'app-update-user',
+  templateUrl: './update-user.component.html',
+  styleUrls: ['./update-user.component.css']
+})
+export class UpdateUserComponent implements OnInit{
+
+  id!: number
+
+  decodedPassword!:string;
+
+  user!: User
+  constructor(
+    public route: ActivatedRoute,
+    public service:DataService,
+    public router:Router
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.user = new User("" , "","", Roles.DOCTOR)
+    this.id = this.route.snapshot.params["id"]
+    this.service.retrieveUserById(this.id).subscribe(
+      response=>{
+        console.log(response)
+        this.user = response;
+        this.service.getDecodedString(this.user.password).subscribe(
+          responseDecoded=>{
+            console.log(responseDecoded);
+            this.user.password = responseDecoded
+          }
+        )
+      }
+    )
+
+  }
+
+  updateUser(id:number) {
+    console.log("updating")
+    this.service.updateUserById(id,this.user).subscribe(
+      response=>{
+        this.router.navigate(["/users-list"])
+      }
+    )
+  }
+
+}

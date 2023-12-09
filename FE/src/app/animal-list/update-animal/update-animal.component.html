@@ -1,0 +1,41 @@
+<h1 class="h1 text-center mt-3">
+  UPDATE ANIMAL INFO
+</h1>
+<div class="container w-75 h-75">
+  <form (ngSubmit)="!updateCreateForm.invalid && updateAnimal(id)" #updateCreateForm="ngForm">
+    <fieldset class="form-group justify-content-center text-center">
+      <label>Nickname</label>
+      <input type="text" [(ngModel)]="animal.nickname" class="form-control text-center" name="nickname" required = "required" >
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label for="inputState">Animal Type</label>
+      <select id="inputState" class="form-control text-center" name="animalType" [(ngModel)]="animal.animalType" required="required" #animalType= "ngModel">
+        <option>Cat</option>
+        <option>Dog</option>
+        <option>Hamster</option>
+        <option>Rabbit</option>
+      </select>
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label>Specie</label>
+      <input type="text" [(ngModel)]="animal.specie" class="form-control text-center" name="specie" required = "required"  #specie = "ngModel">
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label>Age</label>
+      <input type="number" [(ngModel)]="animal.age" class="form-control text-center" name="age" required = "required"  #age = "ngModel">
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label>Weight</label>
+      <input type="number" [(ngModel)]="animal.weight" class="form-control text-center" name="weight" required = "required"  #weight = "ngModel">
+    </fieldset>
+    <br>
+    <div class="btn-group">
+      <button class="btn btn-success " type="submit"> UPDATE </button>
+      <button class="btn btn-warning" type="reset"> RESET </button>
+    </div>
+  </form>
+</div>

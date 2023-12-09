@@ -1,0 +1,47 @@
+<div class="container vh-100">
+  <div class="container text-center mt-2 ">
+    <div class="h1">Doctors</div>
+  </div>
+  <table class="table table-dark">
+    <thead class="thead-dark text-center">
+    <tr class="table-header">
+      <th (click)="sort('id')">Avatar</th>
+      <th (click)="sort('firstName')">First Name</th>
+      <th (click)="sort('lastName')">Last Name</th>
+      <th (click)="sort('speciality')">Speciality</th>
+      <th (click)="sort('age')">Age</th>
+      <th (click)="sort('yearsOfExperience')">Years Of Experience</th>
+      <th (click)="sort('user.role')">Role</th>
+      <th colspan="2" class="text-center">EDIT</th>
+
+    </tr>
+    </thead>
+    <tbody class="table-tabs text-center">
+    <tr *ngFor="let doctor of doctors">
+      <td>{{ doctor.id }}</td>
+      <td>{{ doctor.firstName }}</td>
+      <td>{{ doctor.lastName }}</td>
+      <td>{{ doctor.speciality }}</td>
+      <td>{{ doctor.age }}</td>
+      <td>{{ doctor.yearsOfExperience }}</td>
+      <td>{{ doctor.user.role }}</td>
+      <td>
+        <button class="btn btn-success justify-content-center" (click)="updateDoctor(doctor.id)">Update</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteDoctor(doctor.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+
+    <div class="col-1 mt-2">
+      <button (click)="createDoctor()" routerLink="/create-doctor" class="btn btn-dark">Create</button>
+    </div>
+  </table>
+  <div class="container">
+    <div class="alert alert-success text-center " *ngIf="deleteMessage!=''">
+      Deleted Successfully!
+    </div>
+  </div>
+
+</div>

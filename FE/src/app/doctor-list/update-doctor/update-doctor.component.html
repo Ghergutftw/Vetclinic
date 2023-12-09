@@ -1,0 +1,53 @@
+<h1 class="h1 text-center">
+  UPDATE DOCTOR INFO
+</h1>
+<div class="container w-75 h-75">
+  <form (ngSubmit)="!doctorCreateForm.invalid && updateDoctor(id)" #doctorCreateForm="ngForm">
+    <fieldset class="form-group justify-content-center text-center">
+      <label>First Name </label>
+      <input type="text" [(ngModel)]="doctor.firstName" class="form-control text-center" name="firstName" required = "required" >
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label>Last Name</label>
+      <input type="text" [(ngModel)]="doctor.lastName" class="form-control text-center" name="lastName"  required = "required"  #lastName = "ngModel">
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label>Speciality</label>
+      <input type="text" [(ngModel)]="doctor.speciality" class="form-control text-center" name="speciality" required = "required"  #speciality = "ngModel">
+    </fieldset>
+    <fieldset class="form-group text-center">
+      <label>Age</label>
+      <input type="number" [(ngModel)]="doctor.age" class="form-control text-center" name="age" required = "required"  #age = "ngModel">
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label>Years Of Experience</label>
+      <input type="number" [(ngModel)]="doctor.yearsOfExperience" class="form-control text-center" name="yearsOfExperience" required = "required"  #yearsOfExperience = "ngModel">
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label>Email</label>
+      <input type="text" [(ngModel)]="doctor.user.email" class="form-control text-center" name="email" required = "required"  #email = "ngModel">
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label>Password</label>
+      <input type="text" [(ngModel)]="doctor.user.password" class="form-control text-center" name="password" required = "required"  #password = "ngModel">
+    </fieldset>
+    <br>
+    <fieldset class="form-group text-center">
+      <label for="inputState">Role</label>
+      <select id="inputState" class="form-control text-center" name="role" [(ngModel)]="doctor.user.role" required="required" #role= "ngModel">
+        <option>ADMIN</option>
+        <option>DEV</option>
+      </select>
+    </fieldset>
+    <br>
+    <div class="btn-group">
+      <button class="btn btn-success " type="submit"> UPDATE </button>
+      <button class="btn btn-warning" type="reset"> RESET </button>
+    </div>
+  </form>
+</div>
