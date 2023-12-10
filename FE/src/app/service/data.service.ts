@@ -59,7 +59,7 @@ export class DataService {
     return this.httpClient.get<Animal>(`${this.ANIMAL_API}/get/${id}`)
   }
 
-  createAnimal(animal:Animal){
+  createAnimal(animal: FormData){
     return this.httpClient.post<Animal>(`${this.ANIMAL_API}/create` , animal)
   }
 
@@ -70,6 +70,14 @@ export class DataService {
 
   getAllUsers(){
     return this.httpClient.get<User[]>(`${this.USER_API}/get-all`)
+  }
+
+  login(user : LoginModel){
+    return this.httpClient.post<LoginResponse>(`${this.USER_API}/login`,user)
+  }
+
+  logout(){
+    return this.httpClient.get(`${this.USER_API}/logout`)
   }
 
   updateUserById(id: number , user:User){
@@ -87,7 +95,4 @@ export class DataService {
     return this.httpClient.get<string>(`http://localhost:8080/getEncoded/${decodedPassword}`);
   }
 
-  login(user : LoginModel){
-    return this.httpClient.post<LoginResponse>(`http://localhost:8081/user/login`,user)
-  }
 }

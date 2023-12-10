@@ -35,6 +35,11 @@ export class AuthentificationService {
 
   logOut() {
     sessionStorage.removeItem("Authenticated User")
+    this.service.logout().subscribe(
+      value => {
+        console.log(value)
+      }
+    )
   }
 
 }
