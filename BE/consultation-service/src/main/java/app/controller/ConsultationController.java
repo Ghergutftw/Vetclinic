@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/consultations")
+@RequestMapping("/consultation-service")
 @Slf4j
 public class ConsultationController {
 
     private final ConsultationService consultationService;
+
 
     public ConsultationController(ConsultationService consultationService) {
         this.consultationService = consultationService;

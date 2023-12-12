@@ -1,9 +1,12 @@
 package app.service;
 
+import app.DTO.DoctorDTO;
+import app.feign.ConsultationInterface;
 import app.entity.Consultation;
 import app.repository.ConsultationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.Optional;
 public class ConsultationService {
 
     private final ConsultationRepository consultationRepository;
+
+    ConsultationInterface consultationInterface;
 
     public List<Consultation> getAllConsultations() {
         log.info("Fetching all consultations");
@@ -28,6 +33,8 @@ public class ConsultationService {
     }
 
     public Consultation addConsultation(Consultation consultation) {
+//        consultationInterface.getDoctor(consultation.getDoctorId());
+        DoctorDTO doctor = consultationInterface.getDoctor(1);
         log.info("Adding new consultation: {}", consultation);
         return consultationRepository.save(consultation);
     }
@@ -56,4 +63,5 @@ public class ConsultationService {
         log.info("Deleting consultation with ID: {}", id);
         consultationRepository.deleteById(id);
     }
+
 }
