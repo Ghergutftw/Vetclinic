@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./consultations.component.css']
 })
 export class ConsultationsComponent {
+  deleteMessage: string = '';
 
+  createConsultation() {
+
+  }
 }

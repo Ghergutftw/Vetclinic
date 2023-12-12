@@ -1,7 +1,7 @@
 services:
   mysql:
     image: mysql:latest
-    container_name: vetclinic-mysql
+    container_name: vetclinic-db
     environment:
       - MYSQL_DATABASE=mydatabase
       - MYSQL_PASSWORD=secret

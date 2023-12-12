@@ -59,7 +59,7 @@ export class DataService {
     return this.httpClient.get<Animal>(`${this.ANIMAL_API}/get/${id}`)
   }
 
-  createAnimal(animal: FormData){
+  createAnimal(animal: Animal){
     return this.httpClient.post<Animal>(`${this.ANIMAL_API}/create` , animal)
   }
 

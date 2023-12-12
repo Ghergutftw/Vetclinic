@@ -12,6 +12,7 @@
         <module>animal-service</module>
         <module>doctor-service</module>
         <module>discovery-server</module>
+        <module>consultation-service</module>
     </modules>
 
 </project>

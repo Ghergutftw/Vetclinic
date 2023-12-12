@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="App" type="CompoundRunConfigurationType">
+    <toRun name="AnimalServiceApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="ConsultationServiceApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="DiscoveryServerApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="DoctorServiceApplication" type="SpringBootApplicationConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
