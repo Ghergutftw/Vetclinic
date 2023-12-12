@@ -1,12 +1,12 @@
 package app.service;
 
-import app.DTO.DoctorDTO;
-import app.feign.ConsultationInterface;
+import app.dto.AnimalDTO;
+import app.dto.DoctorResponse;
+import app.feign.AnimalInterface;
 import app.entity.Consultation;
+import app.feign.DoctorInterface;
 import app.repository.ConsultationRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +14,19 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class ConsultationService {
 
     private final ConsultationRepository consultationRepository;
 
-    ConsultationInterface consultationInterface;
+    DoctorInterface doctorInterface;
+
+    AnimalInterface animalInterface;
+
+    public ConsultationService(ConsultationRepository consultationRepository, DoctorInterface doctorInterface, AnimalInterface animalInterface) {
+        this.consultationRepository = consultationRepository;
+        this.doctorInterface = doctorInterface;
+        this.animalInterface = animalInterface;
+    }
 
     public List<Consultation> getAllConsultations() {
         log.info("Fetching all consultations");
@@ -33,8 +40,8 @@ public class ConsultationService {
     }
 
     public Consultation addConsultation(Consultation consultation) {
-//        consultationInterface.getDoctor(consultation.getDoctorId());
-        DoctorDTO doctor = consultationInterface.getDoctor(1);
+        DoctorResponse doctor = doctorInterface.getDoctor(consultation.getDoctorId());
+        AnimalDTO animal = animalInterface.getAnimalById(consultation.getAnimalId());
         log.info("Adding new consultation: {}", consultation);
         return consultationRepository.save(consultation);
     }

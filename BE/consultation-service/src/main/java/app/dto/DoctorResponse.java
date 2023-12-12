@@ -1,4 +1,4 @@
-package app.DTO;
+package app.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorDTO {
+public class DoctorResponse {
+    private String id;
+
     private String firstName;
 
     private String lastName;
 
-    private UserDTO user;
+    private UserResponse user;
 
     private String speciality;
 

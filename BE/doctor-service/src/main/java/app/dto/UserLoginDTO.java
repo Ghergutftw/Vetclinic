@@ -1,7 +1,5 @@
-package app.DTO;
+package app.dto;
 
-
-import app.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,14 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
-    private int id;
-
-    private String username;
+public class UserLoginDTO {
 
     private String email;
-
     private String password;
 
-    private Roles role;
 }

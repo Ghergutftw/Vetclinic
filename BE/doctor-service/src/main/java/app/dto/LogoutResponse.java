@@ -1,4 +1,4 @@
-package app.DTO;
+package app.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLoginDTO {
+public class LogoutResponse {
 
-    private String email;
-    private String password;
+    String status;
+    String message;
 
 }

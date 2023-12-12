@@ -1,7 +1,7 @@
 package app.controller;
 
-import app.DTO.LoginResponse;
-import app.DTO.UserLoginDTO;
+import app.dto.LoginResponse;
+import app.dto.UserLoginDTO;
 import app.entity.User;
 import app.service.UserService;
 import lombok.RequiredArgsConstructor;

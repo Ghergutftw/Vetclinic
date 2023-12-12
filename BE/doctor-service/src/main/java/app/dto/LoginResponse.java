@@ -1,4 +1,4 @@
-package app.DTO;
+package app.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LogoutResponse {
+public class LoginResponse {
 
     String status;
     String message;
