@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "ANIMAL-SERVICE" , url = "http://localhost:8080/animal-service" )
 public interface AnimalInterface {
 
+//    Api-urile de la animal-service
     @PostMapping("/create")
     AnimalDTO addAnimal(@RequestBody AnimalDTO animal);
 

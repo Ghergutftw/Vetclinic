@@ -6,6 +6,7 @@ import app.feign.AnimalInterface;
 import app.entity.Consultation;
 import app.feign.DoctorInterface;
 import app.repository.ConsultationRepository;
+import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -48,22 +49,23 @@ public class ConsultationService {
 
     public Consultation updateConsultation(int id, Consultation updatedConsultation) {
         log.info("Updating consultation with ID {}: {}", id, updatedConsultation);
-        Optional<Consultation> existingConsultationOptional = consultationRepository.findById(id);
-        if (existingConsultationOptional.isPresent()) {
-            Consultation existingConsultation = existingConsultationOptional.get();
-            existingConsultation.setDate(updatedConsultation.getDate());
-            existingConsultation.setDoctorId(updatedConsultation.getDoctorId());
-            existingConsultation.setAnimalId(updatedConsultation.getAnimalId());
-            existingConsultation.setDiagnostic(updatedConsultation.getDiagnostic());
-            existingConsultation.setTreatment(updatedConsultation.getTreatment());
-            existingConsultation.setRecommendations(updatedConsultation.getRecommendations());
-            existingConsultation.setStatus(updatedConsultation.getStatus());
-            log.info("Consultation updated successfully");
-            return consultationRepository.save(existingConsultationOptional.get());
-        } else {
-            log.warn("Consultation with ID {} not found", id);
-            return null; // Handle not found case
-        }
+
+        Consultation existingConsultation = consultationRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Consultation with ID " + id + " not found"));
+
+        Consultation updatedConsultationEntity = Consultation.builder()
+                .id(existingConsultation.getId())
+                .date(updatedConsultation.getDate())
+                .doctorId(updatedConsultation.getDoctorId())
+                .animalId(updatedConsultation.getAnimalId())
+                .diagnostic(updatedConsultation.getDiagnostic())
+                .treatment(updatedConsultation.getTreatment())
+                .recommendations(updatedConsultation.getRecommendations())
+                .status(updatedConsultation.getStatus())
+                .build();
+
+        log.info("Consultation updated successfully");
+        return consultationRepository.save(updatedConsultationEntity);
     }
 
     public void deleteConsultation(int id) {
