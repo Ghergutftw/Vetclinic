@@ -34,7 +34,7 @@ public class ConsultationService {
     public List<ConsultationDTO> getAllConsultations() {
         log.info("Fetching all consultations");
         List<Consultation> allConsultations = consultationRepository.findAll();
-        List<ConsultationDTO> allConsultationsDTO = new ArrayList<>();
+        List<ConsultationDTO> consultations = new ArrayList<>();
         allConsultations.forEach(consultation -> {
             DoctorResponse doctor = doctorInterface.getDoctor(consultation.getDoctorId());
             AnimalDTO animal = animalInterface.getAnimalById(consultation.getAnimalId());
@@ -42,15 +42,16 @@ public class ConsultationService {
                     .id(consultation.getId())
                     .date(consultation.getDate())
                     .doctorLastName(doctor.getLastName())
+                    .animalCode(animal.getAnimalCode())
                     .animal(animal)
                     .diagnostic(consultation.getDiagnostic())
                     .treatment(consultation.getTreatment())
                     .recommendations(consultation.getRecommendations())
                     .build();
-            allConsultationsDTO.add(consultationDTO);
+            consultations.add(consultationDTO);
         });
 
-        return allConsultationsDTO;
+        return consultations;
     }
 
     public Consultation getConsultationById(int id) {

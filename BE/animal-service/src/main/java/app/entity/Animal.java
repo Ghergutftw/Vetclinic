@@ -28,4 +28,7 @@ public class Animal {
 
     private double weight;
 
+    @Column(unique = true)
+    private String animalCode;
+
 }

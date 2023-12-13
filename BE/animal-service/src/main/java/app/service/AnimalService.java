@@ -1,46 +1,19 @@
+// AnimalService.java
 package app.service;
 
-
 import app.entity.Animal;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import app.repository.AnimalRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-@Slf4j
-public class AnimalService {
+public interface AnimalService {
 
-    private final AnimalRepository animalRepository;
+    Animal addAnimal(Animal animal);
 
-    public AnimalService(AnimalRepository animalRepository) {
-        this.animalRepository = animalRepository;
-    }
+    List<Animal> getAllAnimals();
 
-    public Animal addAnimal(Animal animal) {
-        animalRepository.save(animal);
-        return animal;
-    }
+    void deleteAnimal(int id);
 
-    public List<Animal> getAllAnimals() {
-        return animalRepository.findAll();
-    }
+    void updateAnimal(Animal animal, int id);
 
-     
-    public void deleteAnimal(int id) {
-        animalRepository.deleteById(id);
-    }
-
-     
-    public void updateAnimal(Animal animal, int id) {
-        animal.setId(id);
-        animalRepository.save(animal);
-    }
-
-    public Animal getAnimalById(int id) {
-        return animalRepository.findById(id).orElseThrow();
-    }
+    Animal getAnimalById(int id);
 }
-

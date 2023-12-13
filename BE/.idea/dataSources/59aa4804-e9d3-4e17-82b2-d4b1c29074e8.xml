@@ -931,7 +931,7 @@ mydatabase|schema||myuser||UPDATE|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="290" parent="1" name="mydatabase">
-      <LastIntrospectionLocalTimestamp>2023-12-13.20:08:50</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2023-12-13.21:18:47</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="291" parent="1" name="myuser"/>
@@ -953,7 +953,7 @@ mydatabase|schema||myuser||UPDATE|G</Grants>
     </table>
     <view id="296" parent="290" name="cda">
       <Definer>myuser@%</Definer>
-      <SourceTextLength>836</SourceTextLength>
+      <SourceTextLength>871</SourceTextLength>
     </view>
     <column id="297" parent="292" name="age">
       <DasType>int|0s</DasType>
@@ -961,7 +961,7 @@ mydatabase|schema||myuser||UPDATE|G</Grants>
       <Position>1</Position>
     </column>
     <column id="298" parent="292" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>2</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
@@ -971,235 +971,251 @@ mydatabase|schema||myuser||UPDATE|G</Grants>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="300" parent="292" name="animal_type">
+    <column id="300" parent="292" name="animal_code">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="301" parent="292" name="nickname">
+    <column id="301" parent="292" name="animal_type">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="302" parent="292" name="specie">
+    <column id="302" parent="292" name="nickname">
       <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
     </column>
-    <index id="303" parent="292" name="PRIMARY">
+    <column id="303" parent="292" name="specie">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <index id="304" parent="292" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="304" parent="292" name="PRIMARY">
+    <index id="305" parent="292" name="UK_dgjnnbgttaanriay0y87swnh">
+      <ColNames>animal_code</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="306" parent="292" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="305" parent="293" name="animal_id">
+    <key id="307" parent="292" name="UK_dgjnnbgttaanriay0y87swnh">
+      <UnderlyingIndexName>UK_dgjnnbgttaanriay0y87swnh</UnderlyingIndexName>
+    </key>
+    <column id="308" parent="293" name="animal_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="306" parent="293" name="doctor_id">
+    <column id="309" parent="293" name="doctor_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="307" parent="293" name="id">
-      <AutoIncrement>1</AutoIncrement>
+    <column id="310" parent="293" name="id">
+      <AutoIncrement>2</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="308" parent="293" name="date">
+    <column id="311" parent="293" name="date">
       <DasType>datetime(6)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="309" parent="293" name="diagnostic">
+    <column id="312" parent="293" name="diagnostic">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="310" parent="293" name="recommendations">
+    <column id="313" parent="293" name="recommendations">
       <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="311" parent="293" name="treatment">
+    <column id="314" parent="293" name="treatment">
       <DasType>varchar(255)|0s</DasType>
       <Position>7</Position>
     </column>
-    <index id="312" parent="293" name="PRIMARY">
+    <index id="315" parent="293" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="313" parent="293" name="PRIMARY">
+    <key id="316" parent="293" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="314" parent="294" name="age">
+    <column id="317" parent="294" name="age">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="315" parent="294" name="id">
-      <AutoIncrement>1</AutoIncrement>
+    <column id="318" parent="294" name="id">
+      <AutoIncrement>2</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="316" parent="294" name="user_id">
+    <column id="319" parent="294" name="user_id">
       <DasType>int|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="317" parent="294" name="years_of_experience">
+    <column id="320" parent="294" name="years_of_experience">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="318" parent="294" name="first_name">
+    <column id="321" parent="294" name="first_name">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="319" parent="294" name="last_name">
+    <column id="322" parent="294" name="last_name">
       <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="320" parent="294" name="speciality">
+    <column id="323" parent="294" name="speciality">
       <DasType>varchar(255)|0s</DasType>
       <Position>7</Position>
     </column>
-    <foreign-key id="321" parent="294" name="FK9roto9ydtnjfkixvexq5vxyl5">
+    <foreign-key id="324" parent="294" name="FK9roto9ydtnjfkixvexq5vxyl5">
       <ColNames>user_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <index id="322" parent="294" name="PRIMARY">
+    <index id="325" parent="294" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="323" parent="294" name="UK_3q0j5r6i4e9k3afhypo6uljph">
+    <index id="326" parent="294" name="UK_3q0j5r6i4e9k3afhypo6uljph">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="324" parent="294" name="PRIMARY">
+    <key id="327" parent="294" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="325" parent="294" name="UK_3q0j5r6i4e9k3afhypo6uljph">
+    <key id="328" parent="294" name="UK_3q0j5r6i4e9k3afhypo6uljph">
       <UnderlyingIndexName>UK_3q0j5r6i4e9k3afhypo6uljph</UnderlyingIndexName>
     </key>
-    <column id="326" parent="295" name="id">
+    <column id="329" parent="295" name="id">
       <AutoIncrement>2</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="327" parent="295" name="role">
+    <column id="330" parent="295" name="role">
       <DasType>tinyint|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="328" parent="295" name="email">
+    <column id="331" parent="295" name="email">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="329" parent="295" name="password">
+    <column id="332" parent="295" name="password">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="330" parent="295" name="username">
+    <column id="333" parent="295" name="username">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="331" parent="295" name="PRIMARY">
+    <index id="334" parent="295" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="332" parent="295" name="PRIMARY">
+    <key id="335" parent="295" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="333" parent="296" name="consultation_id">
+    <column id="336" parent="296" name="consultation_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="334" parent="296" name="consultation_date">
+    <column id="337" parent="296" name="consultation_date">
       <DasType>datetime(6)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="335" parent="296" name="doctor_id">
+    <column id="338" parent="296" name="doctor_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="336" parent="296" name="animal_id">
+    <column id="339" parent="296" name="animal_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="337" parent="296" name="diagnostic">
+    <column id="340" parent="296" name="diagnostic">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="338" parent="296" name="treatment">
+    <column id="341" parent="296" name="treatment">
       <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="339" parent="296" name="recommendations">
+    <column id="342" parent="296" name="recommendations">
       <DasType>varchar(255)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="340" parent="296" name="doctor_id_d">
+    <column id="343" parent="296" name="doctor_id_d">
       <DasType>int|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="341" parent="296" name="doctor_firstName">
+    <column id="344" parent="296" name="doctor_firstName">
       <DasType>varchar(255)|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="342" parent="296" name="doctor_lastName">
+    <column id="345" parent="296" name="doctor_lastName">
       <DasType>varchar(255)|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="343" parent="296" name="doctor_speciality">
+    <column id="346" parent="296" name="doctor_speciality">
       <DasType>varchar(255)|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="344" parent="296" name="doctor_age">
+    <column id="347" parent="296" name="doctor_age">
       <DasType>int|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="345" parent="296" name="doctor_yearsOfExperience">
+    <column id="348" parent="296" name="doctor_yearsOfExperience">
       <DasType>int|0s</DasType>
       <Position>13</Position>
     </column>
-    <column id="346" parent="296" name="animal_id_a">
+    <column id="349" parent="296" name="animal_id_a">
       <DasType>int|0s</DasType>
       <Position>14</Position>
     </column>
-    <column id="347" parent="296" name="animal_nickname">
+    <column id="350" parent="296" name="animal_nickname">
       <DasType>varchar(255)|0s</DasType>
       <Position>15</Position>
     </column>
-    <column id="348" parent="296" name="animal_animalType">
+    <column id="351" parent="296" name="animal_animalType">
       <DasType>varchar(255)|0s</DasType>
       <Position>16</Position>
     </column>
-    <column id="349" parent="296" name="animal_specie">
+    <column id="352" parent="296" name="animal_specie">
       <DasType>varchar(255)|0s</DasType>
       <Position>17</Position>
     </column>
-    <column id="350" parent="296" name="animal_age">
+    <column id="353" parent="296" name="animal_age">
       <DasType>int|0s</DasType>
       <Position>18</Position>
     </column>
-    <column id="351" parent="296" name="animal_weight">
+    <column id="354" parent="296" name="animal_weight">
       <DasType>double|0s</DasType>
       <Position>19</Position>
+    </column>
+    <column id="355" parent="296" name="animal_code">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>20</Position>
     </column>
   </database-model>
 </dataSource>

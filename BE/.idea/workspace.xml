@@ -5,17 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="541cceab-bacd-48fc-9801-70bea0702dab" name="Changes" comment="Creating an animal through Consultation as it should">
-      <change afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FE/src/app/models/Models.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/animal-service/src/main/java/app/service/AnimalServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/animal-service/src/main/java/app/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-service/src/main/java/app/entity/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/controller/ConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/controller/ConsultationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animal-service/src/main/java/app/service/AnimalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-service/src/main/java/app/service/AnimalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animal-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/animal-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/AnimalDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/AnimalDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/ConsultationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/ConsultationDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/src/test/java/app/controller/ConsultationControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/doctor-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/menu/menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/menu/menu.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/service/data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/service/data.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/models/Models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/models/Models.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +302,7 @@
       <workItem from="1702399750279" duration="10811000" />
       <workItem from="1702413256241" duration="1147000" />
       <workItem from="1702449373582" duration="207000" />
-      <workItem from="1702483809154" duration="7265000" />
+      <workItem from="1702483809154" duration="8781000" />
     </task>
     <task id="LOCAL-00001" summary="Discovery Server - Eureka">
       <option name="closed" value="true" />
@@ -351,7 +352,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702498458379</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Creating an animal through Consultation as it should">
+      <option name="closed" value="true" />
+      <created>1702501674850</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702501674850</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

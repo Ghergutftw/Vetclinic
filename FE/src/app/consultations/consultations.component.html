@@ -13,10 +13,10 @@
     </tr>
     </thead>
     <tbody class="table-tabs text-center">
-    <tr *ngFor="let consultation of consultations">
+    <tr *ngFor="let consultation  of consultations">
       <td>{{consultation.id}}</td>
-      <td>{{consultation.date | date: 'M/d/yy, h:mm a'}}</td>
-      <td>{{consultation.pacientCode}}</td>
+      <td>{{consultation.date | date: 'M/d/yyyy, h:mm a'}}</td>
+      <td>{{consultation.animalCode}}</td>
       <td>Dr. {{consultation.doctorLastName}}</td>
       <td><button (click)="deleteConsultation(consultation.id)" class="btn btn-danger">Delete</button></td>
       <td><button (click)="updateConsultation(consultation.id)" class="btn btn-info">Update</button></td>

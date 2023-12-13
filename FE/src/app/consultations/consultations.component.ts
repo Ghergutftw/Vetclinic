@@ -44,4 +44,5 @@ export class ConsultationsComponent implements OnInit {
   }
 
   protected readonly formatDate = formatDate;
+  protected readonly Consultation = Consultation;
 }

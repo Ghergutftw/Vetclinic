@@ -23,4 +23,6 @@ public class AnimalDTO {
 
     private double weight;
 
+    private String animalCode;
+
 }

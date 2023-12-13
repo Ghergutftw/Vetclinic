@@ -126,3 +126,5 @@ Y
 )docker/volume_mysql/mydatabase/doctor.ibd,a\9\a9acd403c8f66b474c0a1a0569fe61d8272dd47e
 m
 =consultation-service/src/main/java/app/config/CorsConfig.java,6\b\6b0a4ed4ee250401f384b9e72959c616cf058941
+o
+?animal-service/src/main/java/app/service/AnimalServiceImpl.java,4\b\4b96eda140aa3d578d04e917612e09defe08c844

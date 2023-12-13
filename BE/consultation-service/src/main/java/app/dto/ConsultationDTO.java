@@ -16,6 +16,8 @@ public class ConsultationDTO {
 
     private String doctorLastName;
 
+    private String animalCode;
+
     private String diagnostic;
 
     private String treatment;
