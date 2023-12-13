@@ -5,6 +5,7 @@ import {Animal} from "../animal-list/animal-list.component";
 import {User} from "../users/users.component";
 import {LoginModel} from "../models/LoginModel";
 import {LoginResponse} from "../models/LoginResponse";
+import {Consultation} from "../models/Models";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,9 @@ export class DataService {
   ) { }
 
   DOCTOR_API : string = "http://localhost:8081/doctor-service"
+  ANIMAL_API : string = "http://localhost:8080/animal-service"
+  USER_API : string = "http://localhost:8081/user-service"
+  CONSULTATION_API : string = "http://localhost:8082/consultation-service"
 
   //DOCTORS API
   getAllDoctors(){
@@ -41,7 +45,6 @@ export class DataService {
   // DOCTORS API
   // ANIMALS API
 
-  ANIMAL_API : string = "http://localhost:8080/animal-service"
 
   getAllAnimals(){
     return this.httpClient.get<Animal[]>(`${this.ANIMAL_API}/get-all`)
@@ -66,7 +69,6 @@ export class DataService {
  // ANIMALS API
  //USERS API
 
-  USER_API : string = "http://localhost:8081/user-service"
 
   getAllUsers(){
     return this.httpClient.get<User[]>(`${this.USER_API}/get-all`)
@@ -95,4 +97,10 @@ export class DataService {
     return this.httpClient.get<string>(`http://localhost:8080/getEncoded/${decodedPassword}`);
   }
 
+
+  //Consultations API
+
+  getAllConsultations(){
+    return this.httpClient.get<Consultation[]>(`${this.CONSULTATION_API}/get-all`)
+  }
 }

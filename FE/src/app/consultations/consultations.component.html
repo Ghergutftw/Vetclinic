@@ -5,16 +5,21 @@
   <table class="table table-dark">
     <thead class="thead-dark text-center">
     <tr class="table-header">
-      <th>Avatar</th>
-      <th>Nickname</th>
-      <th>Animal Type</th>
-      <th>Specie</th>
-      <th>Age</th>
-      <th>Weight(kg)</th>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Pacient Code</th>
+      <th>Doctor's Name</th>
       <th colspan="2" class="text-center">EDIT</th>
     </tr>
     </thead>
     <tbody class="table-tabs text-center">
+    <tr *ngFor="let consultation of consultations">
+      <td>{{consultation.id}}</td>
+      <td>{{consultation.date | date: 'M/d/yy, h:mm a'}}</td>
+      <td>{{consultation.pacientCode}}</td>
+      <td>Dr. {{consultation.doctorLastName}}</td>
+      <td><button (click)="deleteConsultation(consultation.id)" class="btn btn-danger">Delete</button></td>
+      <td><button (click)="updateConsultation(consultation.id)" class="btn btn-info">Update</button></td>
     <tr >
     </tr>
     </tbody>

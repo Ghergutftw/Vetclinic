@@ -23,8 +23,8 @@ public class ConsultationController {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<Consultation>> getAllConsultations() {
-        List<Consultation> consultations = consultationService.getAllConsultations();
+    public ResponseEntity<List<ConsultationDTO>> getAllConsultations() {
+        List<ConsultationDTO> consultations = consultationService.getAllConsultations();
         return new ResponseEntity<>(consultations, HttpStatus.OK);
     }
 

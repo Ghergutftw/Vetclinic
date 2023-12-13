@@ -11,6 +11,7 @@ import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +31,26 @@ public class ConsultationService {
         this.animalInterface = animalInterface;
     }
 
-    public List<Consultation> getAllConsultations() {
+    public List<ConsultationDTO> getAllConsultations() {
         log.info("Fetching all consultations");
-        return consultationRepository.findAll();
+        List<Consultation> allConsultations = consultationRepository.findAll();
+        List<ConsultationDTO> allConsultationsDTO = new ArrayList<>();
+        allConsultations.forEach(consultation -> {
+            DoctorResponse doctor = doctorInterface.getDoctor(consultation.getDoctorId());
+            AnimalDTO animal = animalInterface.getAnimalById(consultation.getAnimalId());
+            ConsultationDTO consultationDTO = ConsultationDTO.builder()
+                    .id(consultation.getId())
+                    .date(consultation.getDate())
+                    .doctorLastName(doctor.getLastName())
+                    .animal(animal)
+                    .diagnostic(consultation.getDiagnostic())
+                    .treatment(consultation.getTreatment())
+                    .recommendations(consultation.getRecommendations())
+                    .build();
+            allConsultationsDTO.add(consultationDTO);
+        });
+
+        return allConsultationsDTO;
     }
 
     public Consultation getConsultationById(int id) {

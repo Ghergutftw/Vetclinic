@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="541cceab-bacd-48fc-9801-70bea0702dab" name="Changes" comment="" />
+    <list default="true" id="541cceab-bacd-48fc-9801-70bea0702dab" name="Changes" comment="Creating an animal through Consultation as it should">
+      <change afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/config/CorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FE/src/app/models/Models.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animal-service/src/main/java/app/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-service/src/main/java/app/entity/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/controller/ConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/controller/ConsultationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/ConsultationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/ConsultationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/test/java/app/controller/ConsultationControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/menu/menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/menu/menu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/service/data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/service/data.service.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +26,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -38,70 +51,109 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2ZIlcNEY423tZLZjoof7ObAZlNZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.compose.yaml: Compose Deployment.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.AnimalServiceApplication.executor": "Debug",
-    "Spring Boot.DoctorServiceApplication.executor": "Debug",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "openjdk-21",
-    "last_opened_file_path": "C:/Users/madal/Desktop/Files/Vetclinic",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/madal/Desktop/Files/Vetclinic/BE/doctor-service/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "editor.preferences.tabs"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ConsultationControllerTest.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.BE [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.discovery-server [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AnimalServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.ConsultationServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DiscoveryServerApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DoctorServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/madal/Desktop/Files/Vetclinic/BE/consultation-service/src/main/java/app&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/madal/Desktop/Files/Vetclinic/BE/doctor-service/src/main/java/org/example/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\madal\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="app.dto" />
+      <recent name="app.DTO" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\consultation-service\src\main\java\app" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service\src\main\java\app" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service\src\main\java\app\Entity" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\doctor-service\src\main\java" />
-      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\doctor-service\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\doctor-service\src\main\java\app" />
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service\src\main\java\app\service" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service\src\main\java\app\repository" />
-      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="app.controller" />
     </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
   </component>
   <component name="RunManager" selected="Compound.App">
-    <configuration name="App" type="CompoundRunConfigurationType">
-      <toRun name="AnimalServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="DoctorServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <method v="2" />
+    <configuration name="ConsultationControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="consultation-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.feign.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.controller" />
+      <option name="MAIN_CLASS_NAME" value="app.controller.ConsultationControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="AnimalServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
@@ -115,6 +167,27 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConsultationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="consultation-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="app.ConsultationServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiscoveryServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="discovery-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="discoveryserver.DiscoveryServerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -178,12 +251,16 @@
       <item itemvalue="Docker.compose.yaml.mysql2: Compose Deployment" />
       <item itemvalue="Docker.compose.yaml.mysql: Compose Deployment" />
       <item itemvalue="Docker.compose.yaml: Compose Deployment" />
+      <item itemvalue="JUnit.ConsultationControllerTest" />
+      <item itemvalue="Spring Boot.DiscoveryServerApplication" />
       <item itemvalue="Spring Boot.AnimalServiceApplication" />
       <item itemvalue="Spring Boot.DoctorServiceApplication" />
+      <item itemvalue="Spring Boot.ConsultationServiceApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.compose.yaml: Compose Deployment" />
+        <item itemvalue="JUnit.ConsultationControllerTest" />
         <item itemvalue="Docker.compose.yaml.mysql: Compose Deployment" />
         <item itemvalue="Docker.compose.yaml.mysql2: Compose Deployment" />
       </list>
@@ -217,11 +294,89 @@
       <workItem from="1702143329061" duration="180000" />
       <workItem from="1702143522540" duration="6356000" />
       <workItem from="1702158944419" duration="4657000" />
+      <workItem from="1702246628463" duration="2113000" />
+      <workItem from="1702392796223" duration="18000" />
+      <workItem from="1702392824250" duration="616000" />
+      <workItem from="1702396687068" duration="2890000" />
+      <workItem from="1702399750279" duration="10811000" />
+      <workItem from="1702413256241" duration="1147000" />
+      <workItem from="1702449373582" duration="207000" />
+      <workItem from="1702483809154" duration="7265000" />
     </task>
+    <task id="LOCAL-00001" summary="Discovery Server - Eureka">
+      <option name="closed" value="true" />
+      <created>1702237446381</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702237446381</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Consulation Started Done, Starting Feign For inter-comunication">
+      <option name="closed" value="true" />
+      <created>1702404930055</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702404930055</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Consultation &lt;-&gt; Doctor">
+      <option name="closed" value="true" />
+      <created>1702411779309</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702411779309</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Consultation &lt;-&gt; Animal">
+      <option name="closed" value="true" />
+      <created>1702413171529</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702413171529</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Man Java is Fun">
+      <option name="closed" value="true" />
+      <created>1702414379220</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702414379220</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Creating an animal through Consultation as it should">
+      <option name="closed" value="true" />
+      <created>1702498458379</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702498458379</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Discovery Server - Eureka" />
+    <MESSAGE value="Consulation Started Done, Starting Feign For inter-comunication" />
+    <MESSAGE value="Consultation &lt;-&gt; Doctor" />
+    <MESSAGE value="Consultation &lt;-&gt; Animal&#10;//    NEED TO BE AUTOWIRED !!!!!!" />
+    <MESSAGE value="Consultation &lt;-&gt; Animal" />
+    <MESSAGE value="Man Java is Fun" />
+    <MESSAGE value="Creating an animal through Consultation as it should" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating an animal through Consultation as it should" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

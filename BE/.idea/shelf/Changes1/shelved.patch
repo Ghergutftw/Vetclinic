@@ -1,0 +1,25 @@
+Index: ../FE/src/app/animal-list/create-animal/create-animal.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><h1 class=\"h1 text-center mt-3\">\r\n  REGISTER ANIMAL\r\n</h1>\r\n<div class=\"container w-75 h-75\">\r\n  <form (ngSubmit)=\"!animalCreateForm.invalid && createAnimal(createdAnimal)\" #animalCreateForm=\"ngForm\">\r\n    <fieldset class=\"form-group justify-content-center text-center\">\r\n      <label>Nickname</label>\r\n      <input type=\"text\" [(ngModel)]=\"createdAnimal.nickname\" class=\"form-control text-center\" name=\"nickname\" required=\"required\">\r\n    </fieldset>\r\n    <br>\r\n    <fieldset class=\"form-group text-center\">\r\n      <label for=\"inputState\">Animal Type</label>\r\n      <select id=\"inputState\" class=\"form-control text-center\" name=\"animalType\" [(ngModel)]=\"createdAnimal.animalType\" required=\"required\" (change)=\"updateSpecies()\">\r\n        <option>Cat</option>\r\n        <option>Dog</option>\r\n        <option>Hamster</option>\r\n        <option>Rabbit</option>\r\n      </select>\r\n    </fieldset>\r\n    <br>\r\n    <fieldset class=\"form-group text-center\">\r\n      <label>Species</label>\r\n      <select [(ngModel)]=\"createdAnimal.specie\" class=\"form-control text-center\" name=\"specie\" required=\"required\">\r\n        <option *ngFor=\"let species of speciesOptions\" [value]=\"species\">{{ species }}</option>\r\n      </select>\r\n    </fieldset>\r\n    <br>\r\n    <fieldset class=\"form-group text-center\">\r\n      <label>Age</label>\r\n      <input type=\"number\" [(ngModel)]=\"createdAnimal.age\" class=\"form-control text-center\" name=\"age\" required=\"required\">\r\n    </fieldset>\r\n    <br>\r\n    <fieldset class=\"form-group text-center\">\r\n      <label>Weight(kg)</label>\r\n      <input type=\"number\" [(ngModel)]=\"createdAnimal.weight\" class=\"form-control text-center\" name=\"weight\" required=\"required\">\r\n    </fieldset>\r\n    <br>\r\n    <div class=\"btn-group\">\r\n      <button class=\"btn btn-success\" type=\"submit\"> SAVE </button>\r\n      <button class=\"btn btn-warning\" type=\"reset\"> RESET </button>\r\n    </div>\r\n  </form>\r\n</div>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../FE/src/app/animal-list/create-animal/create-animal.component.html b/../FE/src/app/animal-list/create-animal/create-animal.component.html
+--- a/../FE/src/app/animal-list/create-animal/create-animal.component.html	(revision ffe779c81ba3dc713e8ee883f6dfb008e945d689)
++++ b/../FE/src/app/animal-list/create-animal/create-animal.component.html	(date 1702222861395)
+@@ -35,6 +35,14 @@
+       <input type="number" [(ngModel)]="createdAnimal.weight" class="form-control text-center" name="weight" required="required">
+     </fieldset>
+     <br>
++    <fieldset class="form-group text-center">
++      <label>Picture</label>
++      <input type="file" (change)="onFileSelected($event)" [(ngModel)]="createdAnimal.image" accept="image/*" class="form-control text-center" name="image" required="required">
++      <div *ngIf="selectedImage" class="mt-2">
++        <img [src]="imagePreview" [(ngModel)]="createdAnimal.image" alt="Preview" class="img-thumbnail" style="max-width: 250px; max-height: 250px;">
++      </div>
++    </fieldset>
++    <br>
+     <div class="btn-group">
+       <button class="btn btn-success" type="submit"> SAVE </button>
+       <button class="btn btn-warning" type="reset"> RESET </button>
