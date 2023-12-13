@@ -52,4 +52,10 @@ public class DoctorServiceImpl implements DoctorService {
         Optional<Doctor> doctor = doctorRepository.findById(id);
         return doctor.orElse(null);
     }
+
+    @Override
+    public Doctor getDoctorByLastName(String lastName) {
+        Optional<Doctor> doctor = doctorRepository.findByLastName(lastName);
+        return doctor.orElse(null);
+    }
 }

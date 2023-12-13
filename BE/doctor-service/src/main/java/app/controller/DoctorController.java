@@ -42,4 +42,9 @@ public class DoctorController {
     public Doctor getDoctor(@PathVariable int id){
         return doctorService.getDoctorById(id);
     }
+
+    @GetMapping("/get-by-last-name/{lastName}")
+    public Doctor getDoctorByLastName(@PathVariable String lastName){
+        return doctorService.getDoctorByLastName(lastName);
+    }
 }

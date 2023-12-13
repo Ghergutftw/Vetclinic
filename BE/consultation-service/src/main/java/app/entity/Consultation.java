@@ -32,7 +32,6 @@ public class Consultation {
 
     private String recommendations;
 
-    private String status;
 
 
 }

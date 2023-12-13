@@ -11,4 +11,7 @@ public interface DoctorInterface{
     @GetMapping("/get/{id}")
     DoctorResponse getDoctor(@PathVariable int id);
 
+    @GetMapping("/get-by-last-name/{lastName}")
+    DoctorResponse getDoctorByLastName(@PathVariable String lastName);
+
 }

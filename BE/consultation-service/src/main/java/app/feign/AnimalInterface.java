@@ -15,4 +15,5 @@ public interface AnimalInterface {
     AnimalDTO getAnimalById(@PathVariable int id);
 
 
+
 }

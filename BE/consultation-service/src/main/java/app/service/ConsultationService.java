@@ -1,6 +1,7 @@
 package app.service;
 
 import app.dto.AnimalDTO;
+import app.dto.ConsultationDTO;
 import app.dto.DoctorResponse;
 import app.feign.AnimalInterface;
 import app.entity.Consultation;
@@ -40,11 +41,22 @@ public class ConsultationService {
         return consultation.orElse(null);
     }
 
-    public Consultation addConsultation(Consultation consultation) {
-        DoctorResponse doctor = doctorInterface.getDoctor(consultation.getDoctorId());
-        AnimalDTO animal = animalInterface.getAnimalById(consultation.getAnimalId());
-        log.info("Adding new consultation: {}", consultation);
-        return consultationRepository.save(consultation);
+    public Consultation addConsultation(ConsultationDTO consultation) {
+        DoctorResponse doctor = doctorInterface.getDoctorByLastName(consultation.getDoctorLastName());
+
+        AnimalDTO animalCreated = animalInterface.addAnimal(consultation.getAnimal());
+        log.info("Adding new consultation: {}", consultation.getId());
+
+//        Extrage Consultation din ConsultationDTO
+        Consultation toAddConsultation = Consultation.builder()
+                .date(consultation.getDate())
+                .doctorId(doctor.getId())
+                .animalId(animalCreated.getId())
+                .diagnostic(consultation.getDiagnostic())
+                .treatment(consultation.getTreatment())
+                .recommendations(consultation.getRecommendations())
+                .build();
+        return consultationRepository.save(toAddConsultation);
     }
 
     public Consultation updateConsultation(int id, Consultation updatedConsultation) {
@@ -61,7 +73,6 @@ public class ConsultationService {
                 .diagnostic(updatedConsultation.getDiagnostic())
                 .treatment(updatedConsultation.getTreatment())
                 .recommendations(updatedConsultation.getRecommendations())
-                .status(updatedConsultation.getStatus())
                 .build();
 
         log.info("Consultation updated successfully");

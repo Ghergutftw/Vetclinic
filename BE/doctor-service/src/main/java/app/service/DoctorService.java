@@ -18,4 +18,6 @@ public interface DoctorService {
     void updateDoctor(Doctor doctor, int id);
 
     Doctor getDoctorById(int id);
+
+    Doctor getDoctorByLastName(String lastName);
 }

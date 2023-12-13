@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dto.ConsultationDTO;
 import app.entity.Consultation;
 import app.service.ConsultationService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,8 +39,8 @@ public class ConsultationController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Consultation> addConsultation(@RequestBody Consultation consultation) {
-        Consultation addedConsultation = consultationService.addConsultation(consultation);
+    public ResponseEntity<Consultation> addConsultation(@RequestBody ConsultationDTO consultationDTO) {
+        Consultation addedConsultation = consultationService.addConsultation(consultationDTO);
         return new ResponseEntity<>(addedConsultation, HttpStatus.CREATED);
     }
 
