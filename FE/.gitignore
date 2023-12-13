@@ -6,6 +6,8 @@
 /out-tsc
 /bazel-out
 
+BE/.idea/shelf/
+BE/.idea/sonarlint/issuestore/
 # Node
 /node_modules
 npm-debug.log
