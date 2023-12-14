@@ -30,7 +30,6 @@ export class CreateDoctorComponent {
 
 
   createDoctor(doctor : Doctor) {
-    console.log(`Creating Doctor !`)
     this.createdDoctor.firstName = doctor.firstName
     this.createdDoctor.lastName = doctor.lastName
     this.createdDoctor.speciality = doctor.speciality
@@ -41,11 +40,7 @@ export class CreateDoctorComponent {
     this.createdDoctor.user.role = doctor.user.role;
     this.createdDoctor.user.username = doctor.user.username;
 
-    console.log(this.createdDoctor)
     this.service.createDoctor(this.createdDoctor).subscribe(response =>{
-      console.log("DIN CREATE")
-      console.log(this.createdDoctor)
-      console.log(response)
       this.alertService.created("CREATED")
       this.router.navigate(["/doctors-list"])
     })

@@ -23,14 +23,10 @@ export class ConsultationsComponent implements OnInit {
     this.getAllConsultations();
   }
 
-  createConsultation() {
-
-  }
 
   private getAllConsultations() {
     this.service.getAllConsultations().subscribe(
       response => {
-        console.log(response)
         this.consultations = response
       })
   }

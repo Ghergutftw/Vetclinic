@@ -27,6 +27,7 @@ import { UpdateUserComponent } from './users/update-user/update-user.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
+import { CreateConsultationComponent } from './consultations/create/create-consultation/create-consultation.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MatInputModule} from "@angular/material/input";
     UpdateDoctorComponent,
     CreateAnimalComponent,
     UpdateAnimalComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    CreateConsultationComponent
   ],
     imports: [
         BrowserModule,

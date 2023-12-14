@@ -34,7 +34,6 @@ export class LoginComponent {
       this.loginModel = new LoginModel(this.username, this.password)
       this.service.login(this.loginModel);
 
-
       if (this.hardcodedAuthentificationService.authenticate(this.loginModel)) {
         this.invalidLogin = false;
         this.router.navigate(['/welcome'])

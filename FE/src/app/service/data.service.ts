@@ -103,4 +103,8 @@ export class DataService {
   getAllConsultations(){
     return this.httpClient.get<Consultation[]>(`${this.CONSULTATION_API}/get-all`)
   }
+
+  createConsultation(consultation: Consultation) {
+    return this.httpClient.post<Consultation>(`${this.CONSULTATION_API}/create`, consultation);
+  }
 }
