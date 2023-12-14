@@ -32,6 +32,7 @@ public class Consultation {
 
     private String recommendations;
 
+    private int price;
 
 
 }

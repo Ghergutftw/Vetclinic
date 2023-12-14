@@ -24,5 +24,7 @@ public class ConsultationDTO {
 
     private String recommendations;
 
-    private AnimalDTO animal;
+    private AnimalDTO consultatedAnimal;
+
+    private int price;
 }

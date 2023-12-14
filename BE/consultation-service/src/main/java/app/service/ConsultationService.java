@@ -43,7 +43,7 @@ public class ConsultationService {
                     .date(consultation.getDate())
                     .doctorLastName(doctor.getLastName())
                     .animalCode(animal.getAnimalCode())
-                    .animal(animal)
+                    .consultatedAnimal(animal)
                     .diagnostic(consultation.getDiagnostic())
                     .treatment(consultation.getTreatment())
                     .recommendations(consultation.getRecommendations())
@@ -63,8 +63,8 @@ public class ConsultationService {
     public Consultation addConsultation(ConsultationDTO consultation) {
         DoctorResponse doctor = doctorInterface.getDoctorByLastName(consultation.getDoctorLastName());
 
-        AnimalDTO animalCreated = animalInterface.addAnimal(consultation.getAnimal());
-        log.info("Adding new consultation: {}", consultation.getId());
+        AnimalDTO animalCreated = animalInterface.addAnimal(consultation.getConsultatedAnimal());
+        log.info("Adding new consultation: {}", consultation);
 
 //        Extrage Consultation din ConsultationDTO
         Consultation toAddConsultation = Consultation.builder()
@@ -74,6 +74,7 @@ public class ConsultationService {
                 .diagnostic(consultation.getDiagnostic())
                 .treatment(consultation.getTreatment())
                 .recommendations(consultation.getRecommendations())
+                .price(consultation.getPrice())
                 .build();
         return consultationRepository.save(toAddConsultation);
     }
