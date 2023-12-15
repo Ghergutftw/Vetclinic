@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,14 @@ export class DocsService {
     public http:HttpClient
   ) { }
 
-  exportToWord(): Observable<Blob> {
-    return this.http.get(`${this.CONSULTATION_API}/export`, { responseType: 'blob' });
-  }
+  exportToExcel(): Observable<Blob> {
+    return this.http.get(`${this.CONSULTATION_API}/export`, { responseType: 'arraybuffer' })
+      .pipe(
+        map((data: ArrayBuffer) => {
+          const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+          return blob;
+        })
+      );  }
 }
 
 

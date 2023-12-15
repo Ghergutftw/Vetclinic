@@ -9,11 +9,15 @@ import app.feign.DoctorInterface;
 import app.repository.ConsultationRepository;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.*;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,23 +111,17 @@ public class ConsultationService {
         log.info("Deleting consultation with ID: {}", id);
         consultationRepository.deleteById(id);
     }
-    public byte[] generateWordReport() {
+
+    public byte[] generateExcelReport() {
         List<Consultation> consultations = consultationRepository.findAll();
 
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-             XWPFDocument document = new XWPFDocument()) {
+             Workbook workbook = new XSSFWorkbook()) {
 
-            XWPFParagraph titleParagraph = document.createParagraph();
-            XWPFRun titleRun = titleParagraph.createRun();
-            titleRun.setText("Consultation Report");
-            titleRun.setFontSize(16);
-            titleRun.setBold(true);
-
-            // Create a table
-            XWPFTable table = document.createTable();
+            Sheet sheet = workbook.createSheet("Consultation Report");
 
             // Create the header row
-            XWPFTableRow headerRow = table.getRow(0);
+            Row headerRow = sheet.createRow(0);
             createCell(headerRow, 0, "Date");
             createCell(headerRow, 1, "Doctor ID");
             createCell(headerRow, 2, "Animal ID");
@@ -134,9 +132,10 @@ public class ConsultationService {
 
             int totalPrice = 0;
 
-            // Populate the table with consultation data
+            // Populate the sheet with consultation data
+            int rowNum = 1;
             for (Consultation consultation : consultations) {
-                XWPFTableRow row = table.createRow();
+                Row row = sheet.createRow(rowNum++);
                 createCell(row, 0, consultation.getDate().toString());
                 createCell(row, 1, String.valueOf(consultation.getDoctorId()));
                 createCell(row, 2, String.valueOf(consultation.getAnimalId()));
@@ -148,11 +147,11 @@ public class ConsultationService {
             }
 
             // Add a row for the total price at the bottom
-            XWPFTableRow totalRow = table.createRow();
+            Row totalRow = sheet.createRow(rowNum);
             createCell(totalRow, 5, "Total Price");
             createCell(totalRow, 6, String.valueOf(totalPrice));
 
-            document.write(outputStream);
+            workbook.write(outputStream);
             return outputStream.toByteArray();
 
         } catch (IOException e) {
@@ -160,14 +159,12 @@ public class ConsultationService {
             e.printStackTrace();
             return new byte[0];
         }
+
     }
 
-    private void createCell(XWPFTableRow row, int cellIndex, String text) {
-        XWPFTableCell cell = row.getCell(cellIndex);
-        if (cell == null) {
-            cell = row.createCell();
-        }
-        cell.setText(text);
+    private void createCell(Row row, int cellIndex, String text) {
+        Cell cell = row.createCell(cellIndex);
+        cell.setCellValue(text);
     }
 
 }

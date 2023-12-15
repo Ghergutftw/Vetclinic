@@ -4,6 +4,7 @@ import {DataService} from "../service/data.service";
 import {Consultation} from "../models/Models";
 import {formatDate} from "@angular/common";
 import {DocsService} from "../service/docs.service";
+import {saveAs} from "file-saver";
 
 
 @Component({
@@ -43,12 +44,23 @@ export class ConsultationsComponent implements OnInit {
 
   protected readonly formatDate = formatDate;
   protected readonly Consultation = Consultation;
-  downloadConsultations() {
-    this.docsService.exportToWord().subscribe((data: Blob) => {
-      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
-    });
 
+  downloadConsultations() {
+    this.docsService.exportToExcel().subscribe((blob: Blob) => {
+      // Dynamically set the filename
+      const fileName = 'Consultation_' + this.getCurrentDate() + '.xlsx';
+
+      // Use the FileSaver library or other methods to trigger the download
+      saveAs(blob, fileName);
+    });
+  }
+
+  private getCurrentDate(): string {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    const day = ('0' + currentDate.getDate()).slice(-2);
+
+    return `${year}-${month}-${day}`;
   }
 }
