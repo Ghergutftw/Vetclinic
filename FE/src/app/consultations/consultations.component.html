@@ -23,11 +23,11 @@
     <tr >
     </tr>
     </tbody>
-
-    <div class="col-1 mt-2">
-      <button routerLink="/create-consultation" class="btn btn-dark" >Create</button>
-    </div>
   </table>
+  <div class="col-1 mt-2">
+    <button routerLink="/create-consultation" class="btn btn-dark" >Create</button>
+    <button (click)="downloadConsultations()" class="btn btn-dark mt-2 " >Export</button>
+  </div>
   <div class="container">
     <div class="alert alert-success text-center " *ngIf="deleteMessage!=''">
       Deleted Successfully!

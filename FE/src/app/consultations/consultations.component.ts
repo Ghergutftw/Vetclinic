@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {DataService} from "../service/data.service";
 import {Consultation} from "../models/Models";
 import {formatDate} from "@angular/common";
+import {DocsService} from "../service/docs.service";
 
 
 @Component({
@@ -15,7 +16,8 @@ export class ConsultationsComponent implements OnInit {
   consultations: Consultation[] | any;
 
   constructor(
-    public service: DataService,
+    public dataService: DataService,
+    public docsService : DocsService
   ) {
   }
 
@@ -25,7 +27,7 @@ export class ConsultationsComponent implements OnInit {
 
 
   private getAllConsultations() {
-    this.service.getAllConsultations().subscribe(
+    this.dataService.getAllConsultations().subscribe(
       response => {
         this.consultations = response
       })
@@ -41,4 +43,12 @@ export class ConsultationsComponent implements OnInit {
 
   protected readonly formatDate = formatDate;
   protected readonly Consultation = Consultation;
+  downloadConsultations() {
+    this.docsService.exportToWord().subscribe((data: Blob) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+
+  }
 }
