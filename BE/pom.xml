@@ -15,4 +15,13 @@
         <module>consultation-service</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+    </dependencies>
+
+
 </project>

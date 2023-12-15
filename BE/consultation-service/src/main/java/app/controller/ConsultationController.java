@@ -4,11 +4,17 @@ import app.dto.ConsultationDTO;
 import app.entity.Consultation;
 import app.service.ConsultationService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import static org.apache.tomcat.util.http.FastHttpDateFormat.getCurrentDate;
 
 @RestController
 @RequestMapping("/consultation-service")
@@ -26,6 +32,18 @@ public class ConsultationController {
     public ResponseEntity<List<ConsultationDTO>> getAllConsultations() {
         List<ConsultationDTO> consultations = consultationService.getAllConsultations();
         return new ResponseEntity<>(consultations, HttpStatus.OK);
+    }
+
+    @GetMapping("/export")
+    public ResponseEntity<byte[]> exportToWord() {
+        byte[] wordDocument = consultationService.generateWordReport();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        String fileName = "Consultation_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".docx";
+        headers.setContentDispositionFormData("attachment", fileName);
+
+        return new ResponseEntity<>(wordDocument, headers, HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
