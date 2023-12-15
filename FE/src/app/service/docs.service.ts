@@ -18,7 +18,7 @@ export class DocsService {
   }
 
   exportToExcel(): Observable<Blob> {
-    return this.http.get(`${this.CONSULTATION_API}/export-to-excel`, {responseType: 'arraybuffer'})
+    return this.http.get(`${this.CONSULTATION_API}/download-excel`, {responseType: 'arraybuffer'})
       .pipe(
         map((data: ArrayBuffer) => {
           const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
@@ -26,6 +26,10 @@ export class DocsService {
         })
       );
   }
+  exportToWord(): Observable<ArrayBuffer> {
+    return this.http.get(`${this.CONSULTATION_API}/download-word`, { responseType: 'arraybuffer' });
+  }
+
 }
 
 

@@ -45,10 +45,22 @@ export class ConsultationsComponent implements OnInit {
   protected readonly formatDate = formatDate;
   protected readonly Consultation = Consultation;
 
-  downloadConsultations() {
+  downloadConsultationsExcel() {
     this.docsService.exportToExcel().subscribe((blob: Blob) => {
       // Dynamically set the filename
       const fileName = 'Consultation_' + this.getCurrentDate() + '.xlsx';
+
+      // Use the FileSaver library or other methods to trigger the download
+      saveAs(blob, fileName);
+    });
+  }
+
+  downloadConsultationsWord() {
+    this.docsService.exportToWord().subscribe((data: ArrayBuffer) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+
+      // Dynamically set the filename
+      const fileName = 'Consultation_' + this.getCurrentDate() + '.docx';
 
       // Use the FileSaver library or other methods to trigger the download
       saveAs(blob, fileName);

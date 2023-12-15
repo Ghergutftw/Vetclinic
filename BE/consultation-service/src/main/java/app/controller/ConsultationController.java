@@ -14,8 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static org.apache.tomcat.util.http.FastHttpDateFormat.getCurrentDate;
-
 @RestController
 @RequestMapping("/consultation-service")
 @Slf4j
@@ -34,7 +32,7 @@ public class ConsultationController {
         return new ResponseEntity<>(consultations, HttpStatus.OK);
     }
 
-    @GetMapping("/export-to-excel")
+    @GetMapping("/download-excel")
     public ResponseEntity<byte[]> exportToExcel() {
         byte[] excelDocument = consultationService.generateExcelReport();
 
@@ -45,7 +43,7 @@ public class ConsultationController {
         return new ResponseEntity<>(excelDocument, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/export")
+    @GetMapping("/download-word")
     public ResponseEntity<byte[]> exportToWord() {
         byte[] wordDocument = consultationService.generateWordReport();
 
