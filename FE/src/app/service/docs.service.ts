@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 
@@ -7,23 +7,25 @@ import {map, Observable} from "rxjs";
 })
 export class DocsService {
 
-  DOCTOR_API : string = "http://localhost:8081/doctor-service"
-  ANIMAL_API : string = "http://localhost:8080/animal-service"
-  USER_API : string = "http://localhost:8081/user-service"
-  CONSULTATION_API : string = "http://localhost:8082/consultation-service"
+  DOCTOR_API: string = "http://localhost:8081/doctor-service"
+  ANIMAL_API: string = "http://localhost:8080/animal-service"
+  USER_API: string = "http://localhost:8081/user-service"
+  CONSULTATION_API: string = "http://localhost:8082/consultation-service"
 
   constructor(
-    public http:HttpClient
-  ) { }
+    public http: HttpClient
+  ) {
+  }
 
   exportToExcel(): Observable<Blob> {
-    return this.http.get(`${this.CONSULTATION_API}/export`, { responseType: 'arraybuffer' })
+    return this.http.get(`${this.CONSULTATION_API}/export-to-excel`, {responseType: 'arraybuffer'})
       .pipe(
         map((data: ArrayBuffer) => {
-          const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+          const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
           return blob;
         })
-      );  }
+      );
+  }
 }
 
 

@@ -34,8 +34,8 @@ public class ConsultationController {
         return new ResponseEntity<>(consultations, HttpStatus.OK);
     }
 
-    @GetMapping("/export")
-    public ResponseEntity<byte[]> exportToWord() {
+    @GetMapping("/export-to-excel")
+    public ResponseEntity<byte[]> exportToExcel() {
         byte[] excelDocument = consultationService.generateExcelReport();
 
         HttpHeaders headers = new HttpHeaders();
@@ -43,6 +43,18 @@ public class ConsultationController {
         headers.setContentDispositionFormData("attachment", "consultations.xlsx");
         log.info("Exporting all consultations to Excel");
         return new ResponseEntity<>(excelDocument, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/export")
+    public ResponseEntity<byte[]> exportToWord() {
+        byte[] wordDocument = consultationService.generateWordReport();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        String fileName = "Consultation_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".docx";
+        headers.setContentDispositionFormData("attachment", fileName);
+
+        return new ResponseEntity<>(wordDocument, headers, HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")

@@ -122,13 +122,13 @@ public class ConsultationService {
 
             // Create the header row
             Row headerRow = sheet.createRow(0);
-            createCell(headerRow, 0, "Date");
-            createCell(headerRow, 1, "Doctor ID");
-            createCell(headerRow, 2, "Animal ID");
-            createCell(headerRow, 3, "Diagnostic");
-            createCell(headerRow, 4, "Treatment");
-            createCell(headerRow, 5, "Recommendations");
-            createCell(headerRow, 6, "Price");
+            createExcelCell(headerRow, 0, "Date");
+            createExcelCell(headerRow, 1, "Doctor ID");
+            createExcelCell(headerRow, 2, "Animal ID");
+            createExcelCell(headerRow, 3, "Diagnostic");
+            createExcelCell(headerRow, 4, "Treatment");
+            createExcelCell(headerRow, 5, "Recommendations");
+            createExcelCell(headerRow, 6, "Price");
 
             int totalPrice = 0;
 
@@ -136,20 +136,20 @@ public class ConsultationService {
             int rowNum = 1;
             for (Consultation consultation : consultations) {
                 Row row = sheet.createRow(rowNum++);
-                createCell(row, 0, consultation.getDate().toString());
-                createCell(row, 1, String.valueOf(consultation.getDoctorId()));
-                createCell(row, 2, String.valueOf(consultation.getAnimalId()));
-                createCell(row, 3, consultation.getDiagnostic());
-                createCell(row, 4, consultation.getTreatment());
-                createCell(row, 5, consultation.getRecommendations());
-                createCell(row, 6, String.valueOf(consultation.getPrice()));
+                createExcelCell(row, 0, consultation.getDate().toString());
+                createExcelCell(row, 1, String.valueOf(consultation.getDoctorId()));
+                createExcelCell(row, 2, String.valueOf(consultation.getAnimalId()));
+                createExcelCell(row, 3, consultation.getDiagnostic());
+                createExcelCell(row, 4, consultation.getTreatment());
+                createExcelCell(row, 5, consultation.getRecommendations());
+                createExcelCell(row, 6, String.valueOf(consultation.getPrice()));
                 totalPrice += consultation.getPrice();
             }
 
             // Add a row for the total price at the bottom
             Row totalRow = sheet.createRow(rowNum);
-            createCell(totalRow, 5, "Total Price");
-            createCell(totalRow, 6, String.valueOf(totalPrice));
+            createExcelCell(totalRow, 5, "Total Price");
+            createExcelCell(totalRow, 6, String.valueOf(totalPrice));
 
             workbook.write(outputStream);
             return outputStream.toByteArray();
@@ -162,7 +162,70 @@ public class ConsultationService {
 
     }
 
-    private void createCell(Row row, int cellIndex, String text) {
+    public byte[] generateWordReport() {
+        List<Consultation> consultations = consultationRepository.findAll();
+
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+             XWPFDocument document = new XWPFDocument()) {
+
+            XWPFParagraph titleParagraph = document.createParagraph();
+            XWPFRun titleRun = titleParagraph.createRun();
+            titleRun.setText("Consultation Report");
+            titleRun.setFontSize(16);
+            titleRun.setBold(true);
+
+            // Create a table
+            XWPFTable table = document.createTable();
+
+            // Create the header row
+            XWPFTableRow headerRow = table.getRow(0);
+            createCell(headerRow, 0, "Date");
+            createCell(headerRow, 1, "Doctor ID");
+            createCell(headerRow, 2, "Animal ID");
+            createCell(headerRow, 3, "Diagnostic");
+            createCell(headerRow, 4, "Treatment");
+            createCell(headerRow, 5, "Recommendations");
+            createCell(headerRow, 6, "Price");
+
+            int totalPrice = 0;
+
+            // Populate the table with consultation data
+            for (Consultation consultation : consultations) {
+                XWPFTableRow row = table.createRow();
+                createCell(row, 0, consultation.getDate().toString());
+                createCell(row, 1, String.valueOf(consultation.getDoctorId()));
+                createCell(row, 2, String.valueOf(consultation.getAnimalId()));
+                createCell(row, 3, consultation.getDiagnostic());
+                createCell(row, 4, consultation.getTreatment());
+                createCell(row, 5, consultation.getRecommendations());
+                createCell(row, 6, String.valueOf(consultation.getPrice()));
+                totalPrice += consultation.getPrice();
+            }
+
+            // Add a row for the total price at the bottom
+            XWPFTableRow totalRow = table.createRow();
+            createCell(totalRow, 5, "Total Price");
+            createCell(totalRow, 6, String.valueOf(totalPrice));
+
+            document.write(outputStream);
+            return outputStream.toByteArray();
+
+        } catch (IOException e) {
+            // Handle exception appropriately
+            e.printStackTrace();
+            return new byte[0];
+        }
+    }
+
+    private void createCell(XWPFTableRow row, int cellIndex, String text) {
+        XWPFTableCell cell = row.getCell(cellIndex);
+        if (cell == null) {
+            cell = row.createCell();
+        }
+        cell.setText(text);
+    }
+
+    private void createExcelCell(Row row, int cellIndex, String text) {
         Cell cell = row.createCell(cellIndex);
         cell.setCellValue(text);
     }
