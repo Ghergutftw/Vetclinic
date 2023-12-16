@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +34,7 @@ public class ConsultationController {
     }
 
     @GetMapping("/download-excel")
-    public ResponseEntity<byte[]> exportToExcel() {
+    public ResponseEntity<byte[]> exportToExcel() throws IOException {
         byte[] excelDocument = consultationService.generateExcelReport();
 
         HttpHeaders headers = new HttpHeaders();

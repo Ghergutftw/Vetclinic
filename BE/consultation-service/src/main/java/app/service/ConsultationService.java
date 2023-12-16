@@ -9,16 +9,16 @@ import app.feign.DoctorInterface;
 import app.repository.ConsultationRepository;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.*;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,50 +113,49 @@ public class ConsultationService {
         consultationRepository.deleteById(id);
     }
 
-    private static final String EXCEL_TEMPLATE_PATH = "path/to/excel_template.xlsx";
-    private static final String WORD_TEMPLATE_PATH = "path/to/word_template.docx";
+    private static final String EXCEL_TEMPLATE_PATH = "templates/Raport_Consultari.xlsx";
+    private static final String WORD_TEMPLATE_PATH = "templates/Raport_Consultari.docx";
 
 
-    public byte[] generateExcelReport() {
+    public byte[] generateExcelReport() throws IOException {
         List<Consultation> consultations = consultationRepository.findAll();
 
-        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-             Workbook workbook = new XSSFWorkbook()) {
+        try (InputStream templateStream = new ClassPathResource(EXCEL_TEMPLATE_PATH).getInputStream();
+             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+             Workbook workbook = new XSSFWorkbook(templateStream)) {
 
-            Sheet sheet = workbook.createSheet("Consultation Report");
+            // Assuming there is only one sheet in the workbook
+            Sheet sheet = workbook.getSheetAt(0);
 
-            // Create the header row
-            Row headerRow = sheet.createRow(0);
-            createExcelCell(headerRow, 0, "Date");
-            createExcelCell(headerRow, 1, "Doctor ID");
-            createExcelCell(headerRow, 2, "Animal ID");
-            createExcelCell(headerRow, 3, "Diagnostic");
-            createExcelCell(headerRow, 4, "Treatment");
-            createExcelCell(headerRow, 5, "Recommendations");
-            createExcelCell(headerRow, 6, "Price");
+            // Header row
+            Row headerRow = sheet.createRow(1);
+            createStyledExcelCell(headerRow, 0, "Date");
+            createStyledExcelCell(headerRow, 1, "Doctor ID");
+            createStyledExcelCell(headerRow, 2, "Animal ID");
+            createStyledExcelCell(headerRow, 3, "Diagnostic");
+            createStyledExcelCell(headerRow, 4, "Treatment");
+            createStyledExcelCell(headerRow, 5, "Recommendations");
+            createStyledExcelCell(headerRow, 6, "Price");
 
-            int totalPrice = 0;
+            // Bold the entire header row
+            boldRow(headerRow);
 
-            // Populate the sheet with consultation data
-            int rowNum = 1;
+            int rowNum = 2; // Start populating data from the second row
+
+            // Data rows
             for (Consultation consultation : consultations) {
                 Row row = sheet.createRow(rowNum++);
-                createExcelCell(row, 0, consultation.getDate().toString());
-                createExcelCell(row, 1, String.valueOf(consultation.getDoctorId()));
-                createExcelCell(row, 2, String.valueOf(consultation.getAnimalId()));
-                createExcelCell(row, 3, consultation.getDiagnostic());
-                createExcelCell(row, 4, consultation.getTreatment());
-                createExcelCell(row, 5, consultation.getRecommendations());
-                createExcelCell(row, 6, String.valueOf(consultation.getPrice()));
-                totalPrice += consultation.getPrice();
+                createStyledExcelCell(row, 0, consultation.getDate().toString().substring(0,19));
+                createStyledExcelCell(row, 1, String.valueOf(consultation.getDoctorId()));
+                createStyledExcelCell(row, 2, String.valueOf(consultation.getAnimalId()));
+                createStyledExcelCell(row, 3, consultation.getDiagnostic());
+                createStyledExcelCell(row, 4, consultation.getTreatment());
+                createStyledExcelCell(row, 5, consultation.getRecommendations());
+                createStyledExcelCell(row, 6, String.valueOf(consultation.getPrice()));
             }
 
-            // Add a row for the total price at the bottom
-            Row totalRow = sheet.createRow(rowNum);
-            createExcelCell(totalRow, 5, "Total Price");
-            createExcelCell(totalRow, 6, String.valueOf(totalPrice));
-
-            for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+            // Auto-size columns
+            for (int i = 0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++) {
                 sheet.autoSizeColumn(i);
             }
 
@@ -168,9 +167,7 @@ public class ConsultationService {
             e.printStackTrace();
             return new byte[0];
         }
-
     }
-
     public byte[] generateWordReport() {
         List<Consultation> consultations = consultationRepository.findAll();
 
@@ -226,6 +223,39 @@ public class ConsultationService {
             // Handle exception appropriately
             e.printStackTrace();
             return new byte[0];
+        }
+    }
+
+    //UTILS
+    private void createStyledExcelCell(Row row, int cellIndex, String text) {
+        Cell cell = row.createCell(cellIndex);
+        cell.setCellValue(text);
+
+        // Create cell style
+        CellStyle style = row.getSheet().getWorkbook().createCellStyle();
+        style.setAlignment(HorizontalAlignment.CENTER);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+
+        // Create font
+        Font font = row.getSheet().getWorkbook().createFont();
+        font.setFontName("Calibri");
+        font.setFontHeightInPoints((short) 14);
+
+        style.setFont(font);
+
+        // Apply the style to the cell
+        cell.setCellStyle(style);
+
+    }
+
+    private void boldRow(Row row) {
+        for (Cell cell : row) {
+            CellStyle style = cell.getCellStyle();
+            Font font = row.getSheet().getWorkbook().createFont();
+            font.setBold(true);
+            font.setFontHeightInPoints((short) 16);
+            style.setFont(font);
+            cell.setCellStyle(style);
         }
     }
 
