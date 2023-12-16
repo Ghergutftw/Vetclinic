@@ -48,7 +48,7 @@ export class ConsultationsComponent implements OnInit {
   downloadConsultationsExcel() {
     this.docsService.exportToExcel().subscribe((blob: Blob) => {
       // Dynamically set the filename
-      const fileName = 'Consultation_' + this.getCurrentDate() + '.xlsx';
+      const fileName = 'Consultation_' + this.getCurrentDateTime() + '.xlsx';
 
       // Use the FileSaver library or other methods to trigger the download
       saveAs(blob, fileName);
@@ -60,7 +60,7 @@ export class ConsultationsComponent implements OnInit {
       const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
 
       // Dynamically set the filename
-      const fileName = 'Consultation_' + this.getCurrentDate() + '.docx';
+      const fileName = 'Consultation_' + this.getCurrentDateTime() + '.docx';
 
       // Use the FileSaver library or other methods to trigger the download
       saveAs(blob, fileName);
@@ -74,5 +74,17 @@ export class ConsultationsComponent implements OnInit {
     const day = ('0' + currentDate.getDate()).slice(-2);
 
     return `${year}-${month}-${day}`;
+  }
+
+  private getCurrentDateTime(): string {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    const day = ('0' + currentDate.getDate()).slice(-2);
+    const hours = ('0' + currentDate.getHours()).slice(-2);
+    const minutes = ('0' + currentDate.getMinutes()).slice(-2);
+    const seconds = ('0' + currentDate.getSeconds()).slice(-2);
+
+    return `${year}-${month}-${day}_${hours}:${minutes}:${seconds}`;
   }
 }

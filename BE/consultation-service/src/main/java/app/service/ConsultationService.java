@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -112,6 +113,10 @@ public class ConsultationService {
         consultationRepository.deleteById(id);
     }
 
+    private static final String EXCEL_TEMPLATE_PATH = "path/to/excel_template.xlsx";
+    private static final String WORD_TEMPLATE_PATH = "path/to/word_template.docx";
+
+
     public byte[] generateExcelReport() {
         List<Consultation> consultations = consultationRepository.findAll();
 
@@ -150,6 +155,10 @@ public class ConsultationService {
             Row totalRow = sheet.createRow(rowNum);
             createExcelCell(totalRow, 5, "Total Price");
             createExcelCell(totalRow, 6, String.valueOf(totalPrice));
+
+            for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+                sheet.autoSizeColumn(i);
+            }
 
             workbook.write(outputStream);
             return outputStream.toByteArray();
@@ -207,6 +216,9 @@ public class ConsultationService {
             createCell(totalRow, 5, "Total Price");
             createCell(totalRow, 6, String.valueOf(totalPrice));
 
+            // Auto-size columns
+            setColumnWidths(table);
+
             document.write(outputStream);
             return outputStream.toByteArray();
 
@@ -230,4 +242,14 @@ public class ConsultationService {
         cell.setCellValue(text);
     }
 
+    private void setColumnWidths(XWPFTable table) {
+        int numColumns = table.getRow(0).getTableCells().size();
+
+        // Set a default width or adjust based on your estimation
+        int defaultColumnWidth = 2000; // Set to a value that suits your needs
+
+        for (int col = 0; col < numColumns; col++) {
+            table.getRow(0).getCell(col).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(defaultColumnWidth));
+        }
+    }
 }

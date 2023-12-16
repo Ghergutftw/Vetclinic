@@ -16,6 +16,9 @@
             "outputPath": "dist/fe-vet-clinic",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "polyfills": [
               "zone.js"
             ],

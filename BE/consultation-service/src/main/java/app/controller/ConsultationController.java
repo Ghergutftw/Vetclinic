@@ -38,7 +38,8 @@ public class ConsultationController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        headers.setContentDispositionFormData("attachment", "consultations.xlsx");
+        String fileName = "Consultations_" + new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date()) + ".xlsx";
+        headers.setContentDispositionFormData("attachment", fileName);
         log.info("Exporting all consultations to Excel");
         return new ResponseEntity<>(excelDocument, headers, HttpStatus.OK);
     }
@@ -49,8 +50,9 @@ public class ConsultationController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        String fileName = "Consultation_" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ".docx";
+        String fileName = "Consultations_" + new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date()) + ".docx";
         headers.setContentDispositionFormData("attachment", fileName);
+        log.info("Exporting all consultations to Word");
 
         return new ResponseEntity<>(wordDocument, headers, HttpStatus.OK);
     }

@@ -30,21 +30,22 @@
   </table>
   <div class="col-1 mt-2">
     <button routerLink="/create-consultation" class="btn btn-dark">Create</button>
-    <div class="dropdown">
-      <br>
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Export
-      </button>
-      <ul class="dropdown-menu dropdown-menu-dark">
-        <li>
-          <button (click)="downloadConsultationsExcel()" class="btn btn-dark mt-2 ">Excel</button>
-        </li>
-        <li>
-          <button (click)="downloadConsultationsWord()" class="btn btn-dark mt-2 ">Word</button>
-        </li>
-      </ul>
-    </div>
   </div>
+  <div class="dropdown">
+    <br>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Export
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li class="text-center">
+        <button (click)="downloadConsultationsExcel()" class="btn btn-dark mt-2 ">Excel</button>
+      </li>
+      <li class="text-center">
+        <button (click)="downloadConsultationsWord()" class="btn btn-dark mt-2 ">Word</button>
+      </li>
+    </ul>
+  </div>
+
 
   <div class="container">
     <div class="alert alert-success text-center " *ngIf="deleteMessage!=''">
