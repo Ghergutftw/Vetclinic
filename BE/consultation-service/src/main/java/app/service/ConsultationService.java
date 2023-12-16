@@ -154,6 +154,10 @@ public class ConsultationService {
                 createStyledExcelCell(row, 6, String.valueOf(consultation.getPrice()));
             }
 
+            Row totalRow = sheet.createRow(rowNum);
+            createStyledExcelCell(totalRow, 5, "Total Price");
+            createStyledExcelCell(totalRow, 6, calculateTotalPrice(consultations));
+
             // Auto-size columns
             for (int i = 0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++) {
                 sheet.autoSizeColumn(i);
@@ -281,5 +285,10 @@ public class ConsultationService {
         for (int col = 0; col < numColumns; col++) {
             table.getRow(0).getCell(col).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(defaultColumnWidth));
         }
+    }
+
+    private String calculateTotalPrice(List<Consultation> consultations) {
+        int totalPrice = consultations.stream().mapToInt(Consultation::getPrice).sum();
+        return String.valueOf(totalPrice);
     }
 }
