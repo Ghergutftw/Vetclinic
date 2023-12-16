@@ -46,7 +46,7 @@ public class ConsultationController {
     }
 
     @GetMapping("/download-word")
-    public ResponseEntity<byte[]> exportToWord() {
+    public ResponseEntity<byte[]> exportToWord() throws IOException {
         byte[] wordDocument = consultationService.generateWordReport();
 
         HttpHeaders headers = new HttpHeaders();

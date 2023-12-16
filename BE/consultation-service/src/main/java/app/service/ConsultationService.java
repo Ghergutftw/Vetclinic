@@ -12,17 +12,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.*;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTcPr;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTVerticalJc;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STVerticalJc;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static org.apache.poi.xwpf.usermodel.XWPFTableCell.*;
 
 @Service
 @Slf4j
@@ -167,58 +172,57 @@ public class ConsultationService {
             return outputStream.toByteArray();
 
         } catch (IOException e) {
-            // Handle exception appropriately
             e.printStackTrace();
             return new byte[0];
         }
     }
-    public byte[] generateWordReport() {
+    public byte[] generateWordReport() throws IOException, RuntimeException {
         List<Consultation> consultations = consultationRepository.findAll();
 
-        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-             XWPFDocument document = new XWPFDocument()) {
+        try (InputStream templateStream = new ClassPathResource(WORD_TEMPLATE_PATH).getInputStream();
+             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+             XWPFDocument document = new XWPFDocument(templateStream)) {
 
-            XWPFParagraph titleParagraph = document.createParagraph();
-            XWPFRun titleRun = titleParagraph.createRun();
-            titleRun.setText("Consultation Report");
-            titleRun.setFontSize(16);
-            titleRun.setBold(true);
+            // Check if there is at least one table in the document
+            if (document.getTables().isEmpty())
+                throw new RuntimeException("No tables found in the Word document template.");
 
-            // Create a table
-            XWPFTable table = document.createTable();
+            // Retrieve the first table in the document
+            XWPFTable table = document.getTables().get(0);
 
-            // Create the header row
+            // Header row
             XWPFTableRow headerRow = table.getRow(0);
-            createCell(headerRow, 0, "Date");
-            createCell(headerRow, 1, "Doctor ID");
-            createCell(headerRow, 2, "Animal ID");
-            createCell(headerRow, 3, "Diagnostic");
-            createCell(headerRow, 4, "Treatment");
-            createCell(headerRow, 5, "Recommendations");
-            createCell(headerRow, 6, "Price");
+            createStyledCellWord(headerRow, 0, "Date", true);
+            createStyledCellWord(headerRow, 1, "Doctor ID", true);
+            createStyledCellWord(headerRow, 2, "Animal ID", true);
+            createStyledCellWord(headerRow, 3, "Diagnostic", true);
+            createStyledCellWord(headerRow, 4, "Treatment", true);
+            createStyledCellWord(headerRow, 5, "Recommendations", true);
+            createStyledCellWord(headerRow, 6, "Price", true);
 
-            int totalPrice = 0;
+            // Bold the entire header row
+            boldRowWord(headerRow);
 
-            // Populate the table with consultation data
+            // Data rows
             for (Consultation consultation : consultations) {
                 XWPFTableRow row = table.createRow();
-                createCell(row, 0, consultation.getDate().toString());
-                createCell(row, 1, String.valueOf(consultation.getDoctorId()));
-                createCell(row, 2, String.valueOf(consultation.getAnimalId()));
-                createCell(row, 3, consultation.getDiagnostic());
-                createCell(row, 4, consultation.getTreatment());
-                createCell(row, 5, consultation.getRecommendations());
-                createCell(row, 6, String.valueOf(consultation.getPrice()));
-                totalPrice += consultation.getPrice();
+                // Format the Date column
+                createStyledCellWord(row, 0, consultation.getDate(), false);
+                createStyledCellWord(row, 1, String.valueOf(consultation.getDoctorId()), false);
+                createStyledCellWord(row, 2, String.valueOf(consultation.getAnimalId()), false);
+                createStyledCellWord(row, 3, consultation.getDiagnostic(), false);
+                createStyledCellWord(row, 4, consultation.getTreatment(), false);
+                createStyledCellWord(row, 5, consultation.getRecommendations(), false);
+                createStyledCellWord(row, 6, String.valueOf(consultation.getPrice()), false);
             }
 
             // Add a row for the total price at the bottom
             XWPFTableRow totalRow = table.createRow();
-            createCell(totalRow, 5, "Total Price");
-            createCell(totalRow, 6, String.valueOf(totalPrice));
+            createStyledCellWord(totalRow, 5, "Total Price", true);
+            createStyledCellWord(totalRow, 6, calculateTotalPrice(consultations), true);
 
-            // Auto-size columns
-            setColumnWidths(table);
+            // Auto-adjust column width
+            setColumnWidthsWord(table);
 
             document.write(outputStream);
             return outputStream.toByteArray();
@@ -229,7 +233,6 @@ public class ConsultationService {
             return new byte[0];
         }
     }
-
     //UTILS
     private void createStyledExcelCell(Row row, int cellIndex, String text) {
         Cell cell = row.createCell(cellIndex);
@@ -252,6 +255,47 @@ public class ConsultationService {
 
     }
 
+    private void boldRowWord(XWPFTableRow row) {
+        for (XWPFTableCell cell : row.getTableCells()) {
+            XWPFParagraph paragraph = cell.getParagraphArray(0);
+            XWPFRun run = paragraph.getRuns().get(0);
+            run.setBold(true);
+        }
+    }
+
+    private void setColumnWidthsWord(XWPFTable table) {
+        int numColumns = table.getRow(0).getTableCells().size();
+
+        // Set a default width or adjust based on your estimation
+        int defaultColumnWidth = 2000; // Set to a value that suits your needs
+
+        for (int col = 0; col < numColumns; col++) {
+            table.getRow(0).getCell(col).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(defaultColumnWidth));
+        }
+    }
+    private void createStyledCellWord(XWPFTableRow row, int cellIndex, Object value, boolean isHeader) {
+        XWPFTableCell cell = row.getCell(cellIndex);
+
+        // Create cell style
+        CTTcPr tcPr = cell.getCTTc().isSetTcPr() ? cell.getCTTc().getTcPr() : cell.getCTTc().addNewTcPr();
+        CTVerticalJc valign = tcPr.isSetVAlign() ? tcPr.getVAlign() : tcPr.addNewVAlign();
+        valign.setVal(STVerticalJc.CENTER); // Set vertical alignment to CENTER
+
+        // Create paragraph and run for the cell
+        XWPFParagraph paragraph = cell.getParagraphArray(0);
+        XWPFRun run = !paragraph.getRuns().isEmpty() ? paragraph.getRuns().get(0) : paragraph.createRun();
+
+        // Create font
+        if (isHeader) {
+            run.setBold(true);
+            run.setFontSize(16);
+        }
+
+        // Apply the style to the cell
+        if (value != null) {
+            run.setText(value.toString());
+        }
+    }
     private void boldRow(Row row) {
         for (Cell cell : row) {
             CellStyle style = cell.getCellStyle();
@@ -262,6 +306,8 @@ public class ConsultationService {
             cell.setCellStyle(style);
         }
     }
+
+
 
     private void createCell(XWPFTableRow row, int cellIndex, String text) {
         XWPFTableCell cell = row.getCell(cellIndex);
