@@ -28,12 +28,13 @@ public class ConsultationController {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<ConsultationDTO>> getAllConsultations() {
-        List<ConsultationDTO> consultations = consultationService.getAllConsultations();
-        return new ResponseEntity<>(consultations, HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public List<ConsultationDTO> getAllConsultations() {
+        return consultationService.getAllConsultations();
     }
 
     @GetMapping("/download-excel")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<byte[]> exportToExcel() throws IOException {
         byte[] excelDocument = consultationService.generateExcelReport();
 
@@ -46,6 +47,7 @@ public class ConsultationController {
     }
 
     @GetMapping("/download-word")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<byte[]> exportToWord() throws IOException {
         byte[] wordDocument = consultationService.generateWordReport();
 
@@ -69,9 +71,9 @@ public class ConsultationController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Consultation> addConsultation(@RequestBody ConsultationDTO consultationDTO) {
-        Consultation addedConsultation = consultationService.addConsultation(consultationDTO);
-        return new ResponseEntity<>(addedConsultation, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Consultation addConsultation(@RequestBody ConsultationDTO consultationDTO) {
+        return consultationService.addConsultation(consultationDTO);
     }
 
     @PutMapping("/update/{id}")
@@ -85,8 +87,8 @@ public class ConsultationController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteConsultation(@PathVariable int id) {
-        consultationService.deleteConsultation(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteConsultation(@PathVariable int id) {
+       consultationService.deleteConsultation(id);
     }
 }

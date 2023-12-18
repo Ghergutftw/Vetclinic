@@ -18,6 +18,7 @@ public class DoctorController {
     private final DoctorService doctorService;
 
     @GetMapping("/get-all")
+    @ResponseStatus(HttpStatus.OK)
     public List<Doctor> getDoctors(){
         return doctorService.getDoctors();
     }
@@ -29,21 +30,25 @@ public class DoctorController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteDoctor(@PathVariable int id){
         doctorService.deleteDoctor(id);
     }
 
     @PutMapping( "/update/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateDoctor(@RequestBody Doctor doctor,@PathVariable int id) {
         doctorService.updateDoctor(doctor,id);
     }
 
     @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Doctor getDoctor(@PathVariable int id){
         return doctorService.getDoctorById(id);
     }
 
     @GetMapping("/get-by-last-name/{lastName}")
+    @ResponseStatus(HttpStatus.OK)
     public Doctor getDoctorByLastName(@PathVariable String lastName){
         return doctorService.getDoctorByLastName(lastName);
     }

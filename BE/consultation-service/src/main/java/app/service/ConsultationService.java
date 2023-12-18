@@ -8,6 +8,7 @@ import app.entity.Consultation;
 import app.feign.DoctorInterface;
 import app.repository.ConsultationRepository;
 import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.core.NoContentException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -22,16 +23,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.apache.poi.xwpf.usermodel.XWPFTableCell.*;
-
 @Service
 @Slf4j
 public class ConsultationService {
+
+    private static final String EXCEL_TEMPLATE_PATH = "templates/Raport_Consultari.xlsx";
+    private static final String WORD_TEMPLATE_PATH = "templates/Raport_Consultari.docx";
 
     private final ConsultationRepository consultationRepository;
 
@@ -118,11 +119,7 @@ public class ConsultationService {
         consultationRepository.deleteById(id);
     }
 
-    private static final String EXCEL_TEMPLATE_PATH = "templates/Raport_Consultari.xlsx";
-    private static final String WORD_TEMPLATE_PATH = "templates/Raport_Consultari.docx";
-
-
-    public byte[] generateExcelReport() throws IOException {
+    public byte[] generateExcelReport() {
         List<Consultation> consultations = consultationRepository.findAll();
 
         try (InputStream templateStream = new ClassPathResource(EXCEL_TEMPLATE_PATH).getInputStream();
@@ -176,7 +173,7 @@ public class ConsultationService {
             return new byte[0];
         }
     }
-    public byte[] generateWordReport() throws IOException, RuntimeException {
+    public byte[] generateWordReport() {
         List<Consultation> consultations = consultationRepository.findAll();
 
         try (InputStream templateStream = new ClassPathResource(WORD_TEMPLATE_PATH).getInputStream();
@@ -185,10 +182,10 @@ public class ConsultationService {
 
             // Check if there is at least one table in the document
             if (document.getTables().isEmpty())
-                throw new RuntimeException("No tables found in the Word document template.");
+                throw new NoContentException("No tables found in the Word document template.");
 
             // Retrieve the first table in the document
-            XWPFTable table = document.getTables().get(0);
+            XWPFTable table = document.getTables().getFirst();
 
             // Header row
             XWPFTableRow headerRow = table.getRow(0);
@@ -258,7 +255,7 @@ public class ConsultationService {
     private void boldRowWord(XWPFTableRow row) {
         for (XWPFTableCell cell : row.getTableCells()) {
             XWPFParagraph paragraph = cell.getParagraphArray(0);
-            XWPFRun run = paragraph.getRuns().get(0);
+            XWPFRun run = paragraph.getRuns().getFirst();
             run.setBold(true);
         }
     }
@@ -283,7 +280,7 @@ public class ConsultationService {
 
         // Create paragraph and run for the cell
         XWPFParagraph paragraph = cell.getParagraphArray(0);
-        XWPFRun run = !paragraph.getRuns().isEmpty() ? paragraph.getRuns().get(0) : paragraph.createRun();
+        XWPFRun run = !paragraph.getRuns().isEmpty() ? paragraph.getRuns().getFirst() : paragraph.createRun();
 
         // Create font
         if (isHeader) {
@@ -307,31 +304,6 @@ public class ConsultationService {
         }
     }
 
-
-
-    private void createCell(XWPFTableRow row, int cellIndex, String text) {
-        XWPFTableCell cell = row.getCell(cellIndex);
-        if (cell == null) {
-            cell = row.createCell();
-        }
-        cell.setText(text);
-    }
-
-    private void createExcelCell(Row row, int cellIndex, String text) {
-        Cell cell = row.createCell(cellIndex);
-        cell.setCellValue(text);
-    }
-
-    private void setColumnWidths(XWPFTable table) {
-        int numColumns = table.getRow(0).getTableCells().size();
-
-        // Set a default width or adjust based on your estimation
-        int defaultColumnWidth = 2000; // Set to a value that suits your needs
-
-        for (int col = 0; col < numColumns; col++) {
-            table.getRow(0).getCell(col).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(defaultColumnWidth));
-        }
-    }
 
     private String calculateTotalPrice(List<Consultation> consultations) {
         int totalPrice = consultations.stream().mapToInt(Consultation::getPrice).sum();

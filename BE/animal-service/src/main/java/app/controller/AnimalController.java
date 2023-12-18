@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dto.Response;
 import app.entity.Animal;
 import app.service.AnimalService;
 import lombok.RequiredArgsConstructor;
@@ -18,27 +19,30 @@ public class AnimalController {
     private final AnimalService animalService;
 
     @GetMapping("/get-all")
+    @ResponseStatus(HttpStatus.OK)
     public List<Animal> get(){
         return animalService.getAllAnimals();
     }
 
-    @PostMapping("/create")
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public Animal addAnimal(@RequestBody Animal animal){
         return animalService.addAnimal(animal);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteAnimal(@PathVariable int id){
-        animalService.deleteAnimal(id);
+    @ResponseStatus(HttpStatus.OK)
+    public Response deleteAnimal(@PathVariable int id){
+        return animalService.deleteAnimal(id);
     }
 
     @PutMapping( "/update/{id}")
-    public void updateAnimal(@RequestBody Animal animal, @PathVariable int id) {
-        animalService.updateAnimal(animal,id);
+    public Animal updateAnimal(@RequestBody Animal animal, @PathVariable int id) {
+        return animalService.updateAnimal(animal,id);
     }
 
     @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Animal getAnimalById(@PathVariable int id){
         return animalService.getAnimalById(id);
     }

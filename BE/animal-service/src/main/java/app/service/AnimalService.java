@@ -1,6 +1,7 @@
 // AnimalService.java
 package app.service;
 
+import app.dto.Response;
 import app.entity.Animal;
 
 import java.util.List;
@@ -11,9 +12,9 @@ public interface AnimalService {
 
     List<Animal> getAllAnimals();
 
-    void deleteAnimal(int id);
+    Response deleteAnimal(int id);
 
-    void updateAnimal(Animal animal, int id);
+    Animal updateAnimal(Animal animal, int id);
 
     Animal getAnimalById(int id);
 }
