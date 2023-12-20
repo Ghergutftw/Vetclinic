@@ -17,7 +17,7 @@ export class DataService {
   ) { }
 
   DOCTOR_API : string = "http://localhost:8081/doctor-service"
-  ANIMAL_API : string = "http://localhost:8080/animal-service"
+  ANIMAL_API : string = "http://localhost:8083/animal-service"
   USER_API : string = "http://localhost:8081/user-service"
   CONSULTATION_API : string = "http://localhost:8082/consultation-service"
 

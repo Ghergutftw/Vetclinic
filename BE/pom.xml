@@ -13,6 +13,8 @@
         <module>doctor-service</module>
         <module>discovery-server</module>
         <module>consultation-service</module>
+        <module>appointment-service</module>
+        <module>api-gateway</module>
     </modules>
 
     <dependencies>
