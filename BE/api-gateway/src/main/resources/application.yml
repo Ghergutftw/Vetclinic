@@ -14,10 +14,6 @@ spring:
     name: ${services.api-gateway.name}
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
       routes:
         - id: ${services.animal.name}
           uri: ${services.animal.uri}
@@ -35,3 +31,7 @@ spring:
           uri: ${services.doctor.uri}
           predicates:
             - Path=/${services.doctor.name}/**
+        - id: ${services.user.name}
+          uri: ${services.user.uri}
+          predicates:
+            - Path=/${services.user.name}/**
