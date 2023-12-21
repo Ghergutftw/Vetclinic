@@ -1,0 +1,18 @@
+eureka:
+  client:
+    fetch-registry: 'false'
+    register-with-eureka: 'false'
+logging:
+  level:
+    com:
+      netflix:
+        discovery: 'OFF'
+        eureka: 'OFF'
+server:
+  port: ${services.discovery-server.port}
+
+spring:
+  profiles:
+    active: development
+  application:
+    name: ${services.discovery-server.name}

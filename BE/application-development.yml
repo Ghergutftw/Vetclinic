@@ -1,0 +1,45 @@
+services:
+  animal:
+    port: 8081
+    name: animal-service
+    url: http://localhost:${services.animal.port}/${services.animal.name}
+    uri : http://localhost:${services.animal.port}/
+  consultation:
+    port: 8082
+    name: consultation-service
+    url: http://localhost:${services.consultation.port}/${services.consultation.name}
+    uri: http://localhost:${services.consultation.port}/
+  appointment:
+    port: 8083
+    name: appointment-service
+    url: http://localhost:${services.appointment.port}/${services.appointment.name}
+    uri: http://localhost:${services.consultation.port}/
+  doctor:
+    port: 8084
+    name: doctor-service
+    url: http://localhost:${services.doctor.port}/${services.doctor.name}
+    uri: http://localhost:${services.consultation.port}/
+  api-gateway:
+    port: 8765
+    name: api-gateway
+  discovery-server:
+    port: 8761
+    name: discovery-server
+
+front-end:
+  port: 4200
+  name: front-end
+  url: http://localhost:${front-end.port}/${front-end.name}
+  uri: http://localhost:${front-end.port}
+
+database:
+  hostPort: 3306
+  containerPort: 3306
+  ip: 127.0.0.1
+  name: vetclinic-db
+  MYSQL_DATABASE: mydatabase
+  MYSQL_PASSWORD: secret
+  MYSQL_ROOT_PASSWORD: verysecret
+  MYSQL_USER: myuser
+  url: jdbc:mysql://${database.ip}:${database.hostPort}/${database.name}
+

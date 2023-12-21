@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: development
+  datasource:
+    url: ${database.url}
+    driverClassName: com.mysql.cj.jdbc.Driver
+  application:
+    name: ${services.appointment.name}
+  data:
+    rest:
+      default-page-size: '20'
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create-drop
+server:
+  port: ${services.appointment.port}

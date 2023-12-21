@@ -1,0 +1,37 @@
+server:
+  port: ${services.api-gateway.port}
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+
+spring:
+  profiles:
+    active: development
+  application:
+    name: ${services.api-gateway.name}
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: ${services.animal.name}
+          uri: ${services.animal.uri}
+          predicates:
+            - Path=/${services.animal.name}/**
+        - id: ${services.consultation.name}
+          uri: ${services.consultation.uri}
+          predicates:
+            - Path=/${services.consultation.name}/**
+        - id: ${services.appointment.name}
+          uri: ${services.appointment.uri}
+          predicates:
+            - Path=/${services.appointment.name}/**
+        - id: ${services.doctor.name}
+          uri: ${services.doctor.uri}
+          predicates:
+            - Path=/${services.doctor.name}/**

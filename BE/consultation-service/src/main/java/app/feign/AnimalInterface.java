@@ -4,7 +4,7 @@ import app.dto.AnimalDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "ANIMAL-SERVICE" , url = "http://localhost:8083/animal-service" )
+@FeignClient(name = "${services.animal.name}" , url = "${services.animal.url}" )
 public interface AnimalInterface {
 
 //    Api-urile de la animal-service
