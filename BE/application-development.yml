@@ -19,6 +19,11 @@ services:
     name: doctor-service
     url: http://localhost:${services.doctor.port}/${services.doctor.name}
     uri: http://localhost:${services.consultation.port}/
+  user:
+    port: ${services.doctor.port}
+    name: user-service
+    url: http://localhost:${services.user.port}/${services.user.name}
+    uri: http://localhost:${services.user.port}/
   api-gateway:
     port: 8765
     name: api-gateway
@@ -33,13 +38,14 @@ front-end:
   uri: http://localhost:${front-end.port}
 
 database:
-  hostPort: 3306
-  containerPort: 3306
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  host-port: 3306
+  container-port: 3306
   ip: 127.0.0.1
   name: vetclinic-db
   MYSQL_DATABASE: mydatabase
   MYSQL_PASSWORD: secret
   MYSQL_ROOT_PASSWORD: verysecret
   MYSQL_USER: myuser
-  url: jdbc:mysql://${database.ip}:${database.hostPort}/${database.name}
+  url: jdbc:mysql://${database.ip}:${database.host-port}/${database.name}
 

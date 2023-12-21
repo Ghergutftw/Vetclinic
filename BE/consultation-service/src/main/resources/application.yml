@@ -3,7 +3,7 @@ spring:
     active: development
   datasource:
     url: ${database.url}
-    driverClassName: com.mysql.cj.jdbc.Driver
+    driverClassName: ${database.driverClassName}
   application:
     name: ${services.consultation.name}
   data:

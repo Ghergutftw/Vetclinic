@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/consultation-service")
+@RequestMapping("/${services.consultation.name}")
 @Slf4j
 public class ConsultationController {
 
