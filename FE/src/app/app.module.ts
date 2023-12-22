@@ -16,7 +16,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ConsultationsComponent } from './consultations/consultations.component';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 import { WorkingHoursComponent } from './working-hours/working-hours.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { CreateDoctorComponent } from './doctor-list/create-doctor/create-doctor.component';
 import { UsersComponent } from './users/users.component';
 import { UpdateDoctorComponent } from './doctor-list/update-doctor/update-doctor.component';
@@ -28,6 +28,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
 import { CreateConsultationComponent } from './consultations/create/create-consultation/create-consultation.component';
+import {CorsInterceptor} from "./cors-interceptor.interceptor";
 
 @NgModule({
   declarations: [
@@ -62,7 +63,12 @@ import { CreateConsultationComponent } from './consultations/create/create-consu
         BrowserAnimationsModule,
         MatInputModule
     ],
-  providers: [HttpClient],
+  providers: [HttpClient ,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CorsInterceptor,
+      multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
