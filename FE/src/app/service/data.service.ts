@@ -18,12 +18,13 @@ export class DataService {
 
   DOCTOR_API : string = "http://localhost:8081/doctor-service"
   ANIMAL_API : string = "http://localhost:8083/animal-service"
-  USER_API : string = "http://localhost:8081/user-service"
+  USER_API : string = "http://localhost:8765/user-service"
   CONSULTATION_API : string = "http://localhost:8082/consultation-service"
+  BACKEND_API : string = "http://localhost:8765"
 
   //DOCTORS API
   getAllDoctors(){
-    return this.httpClient.get<Doctor[]>(`${this.DOCTOR_API}/get-all`)
+    return this.httpClient.get<Doctor[]>("http://localhost:8765/doctor-service/get-all")
   }
 
   deleteDoctorById(id : number){
@@ -47,7 +48,7 @@ export class DataService {
 
 
   getAllAnimals(){
-    return this.httpClient.get<Animal[]>(`${this.ANIMAL_API}/get-all`)
+    return this.httpClient.get<Animal[]>(`${this.BACKEND_API}/get-all`)
   }
 
   deleteAnimal(id:number){

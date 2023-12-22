@@ -5,7 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
-
+.idea/
 BE/.idea/shelf/
 BE/.idea/sonarlint/issuestore/
 # Node

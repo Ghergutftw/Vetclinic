@@ -53,4 +53,13 @@ export class LoginComponent {
       this.invalidLogin = false;
     },0)
   }
+
+  testDoctorApi() {
+    this.service.getAllDoctors()
+      .subscribe(
+        response => {
+          console.log(response)
+        }
+      )
+  }
 }
