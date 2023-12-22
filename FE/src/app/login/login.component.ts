@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {Data, Router} from "@angular/router";
-import {delay, timeout} from "rxjs";
 import {AuthentificationService} from "../service/authentification.service";
 import {DataService} from "../service/data.service";
 import {User} from "../users/users.component";
@@ -54,12 +53,4 @@ export class LoginComponent {
     },0)
   }
 
-  testDoctorApi() {
-    this.service.getAllDoctors()
-      .subscribe(
-        response => {
-          console.log(response)
-        }
-      )
-  }
 }

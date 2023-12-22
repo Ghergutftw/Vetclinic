@@ -10,7 +10,9 @@ export class DocsService {
   DOCTOR_API: string = "http://localhost:8081/doctor-service"
   ANIMAL_API: string = "http://localhost:8080/animal-service"
   USER_API: string = "http://localhost:8081/user-service"
-  CONSULTATION_API: string = "http://localhost:8082/consultation-service"
+
+  CONSULTATION_API : string = "consultation-service"
+  BACKEND_API : string = "http://localhost:8765"
 
   constructor(
     public http: HttpClient
@@ -18,7 +20,7 @@ export class DocsService {
   }
 
   exportToExcel(): Observable<Blob> {
-    return this.http.get(`${this.CONSULTATION_API}/download-excel`, {responseType: 'arraybuffer'})
+    return this.http.get(`${this.BACKEND_API}/${this.CONSULTATION_API}/download-excel`, {responseType: 'arraybuffer'})
       .pipe(
         map((data: ArrayBuffer) => {
           const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
@@ -27,7 +29,7 @@ export class DocsService {
       );
   }
   exportToWord(): Observable<ArrayBuffer> {
-    return this.http.get(`${this.CONSULTATION_API}/download-word`, { responseType: 'arraybuffer' });
+    return this.http.get(`${this.BACKEND_API}/${this.CONSULTATION_API}/download-word`, { responseType: 'arraybuffer' });
   }
 
 }

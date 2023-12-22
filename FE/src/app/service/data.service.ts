@@ -6,6 +6,7 @@ import {User} from "../users/users.component";
 import {LoginModel} from "../models/LoginModel";
 import {LoginResponse} from "../models/LoginResponse";
 import {Consultation} from "../models/Models";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -16,31 +17,31 @@ export class DataService {
     public httpClient:HttpClient
   ) { }
 
-  DOCTOR_API : string = "http://localhost:8081/doctor-service"
-  ANIMAL_API : string = "http://localhost:8083/animal-service"
-  USER_API : string = "http://localhost:8765/user-service"
-  CONSULTATION_API : string = "http://localhost:8082/consultation-service"
-  BACKEND_API : string = "http://localhost:8765"
+  BACKEND_API: string = environment.backendApi;
+  DOCTOR_API: string = environment.doctorServiceName;
+  ANIMAL_API: string = environment.animalServiceName;
+  USER_API: string = environment.userServiceName;
+  CONSULTATION_API: string = environment.consultationServiceName;
 
   //DOCTORS API
   getAllDoctors(){
-    return this.httpClient.get<Doctor[]>("http://localhost:8765/doctor-service/get-all")
+    return this.httpClient.get<Doctor[]>(`${this.BACKEND_API}/${this.DOCTOR_API}/get-all`)
   }
 
   deleteDoctorById(id : number){
-    return this.httpClient.delete(`${this.DOCTOR_API}/delete/${id}`)
+    return this.httpClient.delete(`${this.BACKEND_API}/${this.DOCTOR_API}/delete/${id}`)
   }
 
   updateDoctorById(id:number , doctor:Doctor){
-    return this.httpClient.put(`${this.DOCTOR_API}/update/${id}`,doctor)
+    return this.httpClient.put(`${this.BACKEND_API}/${this.DOCTOR_API}/update/${id}`,doctor)
   }
 
   createDoctor(doctor:Doctor){
-    return this.httpClient.post<Doctor>(`${this.DOCTOR_API}/add`,doctor)
+    return this.httpClient.post<Doctor>(`${this.BACKEND_API}/${this.DOCTOR_API}/add`,doctor)
   }
 
   retrieveDoctorById(id:number){
-    return this.httpClient.get<Doctor>(`${this.DOCTOR_API}/get/${id}`)
+    return this.httpClient.get<Doctor>(`${this.BACKEND_API}/${this.DOCTOR_API}/get/${id}`)
   }
 
   // DOCTORS API
@@ -48,23 +49,23 @@ export class DataService {
 
 
   getAllAnimals(){
-    return this.httpClient.get<Animal[]>(`${this.BACKEND_API}/get-all`)
+    return this.httpClient.get<Animal[]>(`${this.BACKEND_API}/${this.ANIMAL_API}/get-all`)
   }
 
   deleteAnimal(id:number){
-    return this.httpClient.delete(`${this.ANIMAL_API}/delete/${id}`)
+    return this.httpClient.delete(`${this.BACKEND_API}/${this.ANIMAL_API}/delete/${id}`)
   }
 
   updateAnimal(id:number, animal:Animal){
-    return this.httpClient.put(`${this.ANIMAL_API}/update/${id}` , animal)
+    return this.httpClient.put(`${this.BACKEND_API}/${this.ANIMAL_API}/update/${id}` , animal)
   }
 
   retrieveAnimalById(id:number){
-    return this.httpClient.get<Animal>(`${this.ANIMAL_API}/get/${id}`)
+    return this.httpClient.get<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/get/${id}`)
   }
 
   createAnimal(animal: Animal){
-    return this.httpClient.post<Animal>(`${this.ANIMAL_API}/create` , animal)
+    return this.httpClient.post<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/create` , animal)
   }
 
  // ANIMALS API
@@ -72,40 +73,40 @@ export class DataService {
 
 
   getAllUsers(){
-    return this.httpClient.get<User[]>(`${this.USER_API}/get-all`)
+    return this.httpClient.get<User[]>(`${this.BACKEND_API}/${this.USER_API}/get-all`)
   }
 
   login(user : LoginModel){
-    return this.httpClient.post<LoginResponse>(`${this.USER_API}/login`,user)
+    return this.httpClient.post<LoginResponse>(`${this.BACKEND_API}/${this.USER_API}/login`,user)
   }
 
   logout(){
-    return this.httpClient.get(`${this.USER_API}/logout`)
+    return this.httpClient.get(`${this.BACKEND_API}/${this.USER_API}/logout`)
   }
 
   updateUserById(id: number , user:User){
-    return this.httpClient.put(`http://localhost:8080/user/${id}`,user)
+    return this.httpClient.put(`${this.BACKEND_API}/${this.USER_API}/${id}`,user)
   }
 
   retrieveUserById(id:number){
-    return this.httpClient.get<User>(`http://localhost:8080/user/${id}`)
+    return this.httpClient.get<User>(`${this.BACKEND_API}/${this.USER_API}/${id}`)
   }
 
   getDecodedString(encodedPassword : string){
-    return this.httpClient.get<string>(`http://localhost:8080/getDecoded/${encodedPassword}`);
+    return this.httpClient.get<string>(`${this.BACKEND_API}/${this.USER_API}/${encodedPassword}`);
   }
   getEncodedString(decodedPassword : string){
-    return this.httpClient.get<string>(`http://localhost:8080/getEncoded/${decodedPassword}`);
+    return this.httpClient.get<string>(`${this.BACKEND_API}/${this.USER_API}/${decodedPassword}`);
   }
 
 
   //Consultations API
 
   getAllConsultations(){
-    return this.httpClient.get<Consultation[]>(`${this.CONSULTATION_API}/get-all`)
+    return this.httpClient.get<Consultation[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/get-all`)
   }
 
   createConsultation(consultation: Consultation) {
-    return this.httpClient.post<Consultation>(`${this.CONSULTATION_API}/create`, consultation);
+    return this.httpClient.post<Consultation>(`${this.BACKEND_API}/${this.CONSULTATION_API}/create`, consultation);
   }
 }
