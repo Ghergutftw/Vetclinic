@@ -49,7 +49,6 @@ export class UsersComponent {
   }
 
   updateUser(id : number) {
-    console.log("UPDATING USER")
     this.router.navigate(["update-user" , id])
   }
 
@@ -75,7 +74,6 @@ export class UsersComponent {
     }
   }
   encrypt() {
-    console.log("Encrypting password");
     for (let i = 0; i < this.users.length; i++) {
       this.dataService.getEncodedString(this.users[i].password).subscribe(
         value => {

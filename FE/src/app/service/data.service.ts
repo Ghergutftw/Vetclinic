@@ -109,4 +109,17 @@ export class DataService {
   createConsultation(consultation: Consultation) {
     return this.httpClient.post<Consultation>(`${this.BACKEND_API}/${this.CONSULTATION_API}/create`, consultation);
   }
+
+  getConsultationById(id: number) {
+    return this.httpClient.get<Consultation>(`${this.BACKEND_API}/${this.CONSULTATION_API}/get/${id}`);
+  }
+
+  deleteConsultationById(id: number) {
+    return this.httpClient.delete(`${this.BACKEND_API}/${this.CONSULTATION_API}/delete/${id}`);
+  }
+
+  updateConsultationById(id: number, consultation: Consultation) {
+    return this.httpClient.put(`${this.BACKEND_API}/${this.CONSULTATION_API}/update/${id}`, consultation);
+  }
+
 }

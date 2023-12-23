@@ -87,12 +87,11 @@ export class DoctorListComponent {
   }
 
   updateDoctor(id : number) {
-    console.log(`Update Doctor id : ${id}`)
     this.router.navigate(['update-doctor',id])
   }
 
   createDoctor() {
-    console.log("Create Doctor")
+    this.router.navigate(['create-doctor'])
   }
 
   changeDeleteMessageInstantly(){

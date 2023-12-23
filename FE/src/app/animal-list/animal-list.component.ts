@@ -64,4 +64,8 @@ export class AnimalListComponent {
       this.deleteMessage = '';
     },2000)
   }
+
+  createAnimal() {
+    this.router.navigate(["create-animal"])
+  }
 }

@@ -1,8 +1,8 @@
 import {Component, NgIterable, OnInit} from '@angular/core';
-import {Doctor} from "../../../doctor-list/doctor-list.component";
-import {DataService} from "../../../service/data.service";
-import {Animal} from "../../../animal-list/animal-list.component";
-import {Consultation} from "../../../models/Models";
+import {Doctor} from "../../doctor-list/doctor-list.component";
+import {DataService} from "../../service/data.service";
+import {Animal} from "../../animal-list/animal-list.component";
+import {Consultation} from "../../models/Models";
 import {formatDate} from "@angular/common";
 import {Router} from "@angular/router";
 
@@ -63,10 +63,9 @@ export class CreateConsultationComponent implements OnInit{
   createConsultation() {
     this.service.createConsultation(this.consultation).subscribe(
       value => {
-        console.log(value)
+        this.router.navigate(["/consultations"])
       }
     );
-    this.router.navigate(["/consultations"])
 
   }
 }

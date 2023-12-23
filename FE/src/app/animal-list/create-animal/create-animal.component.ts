@@ -45,12 +45,7 @@ export class CreateAnimalComponent {
     }
   }
 
-  createAnimal(animal: Animal) {
-    this.createdAnimal.nickname = animal.nickname
-    this.createdAnimal.animalType=animal.animalType
-    this.createdAnimal.specie=animal.specie
-    this.createdAnimal.age=animal.age
-    this.createdAnimal.weight=animal.weight
+  createAnimal() {
     this.service.createAnimal(this.createdAnimal).subscribe(
       response =>{
         this.router.navigate(["/animals-list"])

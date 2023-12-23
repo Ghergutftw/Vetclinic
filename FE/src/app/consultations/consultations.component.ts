@@ -35,7 +35,12 @@ export class ConsultationsComponent implements OnInit {
   }
 
   deleteConsultation(id: number) {
-
+    this.dataService.deleteConsultationById(id).subscribe(
+      response => {
+        this.deleteMessage = 'Consultation deleted successfully!';
+        this.getAllConsultations();
+      }
+    )
   }
 
   updateConsultation(id: number) {

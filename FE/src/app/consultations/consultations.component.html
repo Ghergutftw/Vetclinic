@@ -2,6 +2,11 @@
   <div class="container text-center mt-2 ">
     <div class="h1">Consultations</div>
   </div>
+  <div class="container">
+    <div class="alert alert-danger text-center " *ngIf="deleteMessage!=''">
+      Deleted Successfully!
+    </div>
+  </div>
   <table class="table table-dark">
     <thead class="thead-dark text-center">
     <tr class="table-header">
@@ -44,13 +49,6 @@
         <button (click)="downloadConsultationsWord()" class="btn btn-dark mt-2 ">Word</button>
       </li>
     </ul>
-  </div>
-
-
-  <div class="container">
-    <div class="alert alert-success text-center " *ngIf="deleteMessage!=''">
-      Deleted Successfully!
-    </div>
   </div>
 
 </div>

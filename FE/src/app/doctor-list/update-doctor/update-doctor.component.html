@@ -1,7 +1,7 @@
 <h1 class="h1 text-center">
   UPDATE DOCTOR INFO
 </h1>
-<div class="container w-75 h-75">
+<div class="container w-50 h-75">
   <form (ngSubmit)="!doctorCreateForm.invalid && updateDoctor(id)" #doctorCreateForm="ngForm">
     <fieldset class="form-group justify-content-center text-center">
       <label>First Name </label>
@@ -17,6 +17,7 @@
       <label>Speciality</label>
       <input type="text" [(ngModel)]="doctor.speciality" class="form-control text-center" name="speciality" required = "required"  #speciality = "ngModel">
     </fieldset>
+    <br>
     <fieldset class="form-group text-center">
       <label>Age</label>
       <input type="number" [(ngModel)]="doctor.age" class="form-control text-center" name="age" required = "required"  #age = "ngModel">

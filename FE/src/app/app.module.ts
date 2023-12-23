@@ -27,8 +27,9 @@ import { UpdateUserComponent } from './users/update-user/update-user.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
-import { CreateConsultationComponent } from './consultations/create/create-consultation/create-consultation.component';
-import {CorsInterceptor} from "./cors-interceptor.interceptor";
+import { CreateConsultationComponent } from './consultations/create/create-consultation.component';
+import {CorsInterceptor} from "./interceptors/cors-interceptor.interceptor";
+import { AdoptionsComponent } from './adoptions/adoptions.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {CorsInterceptor} from "./cors-interceptor.interceptor";
     CreateAnimalComponent,
     UpdateAnimalComponent,
     UpdateUserComponent,
-    CreateConsultationComponent
+    CreateConsultationComponent,
+    AdoptionsComponent
   ],
     imports: [
         BrowserModule,

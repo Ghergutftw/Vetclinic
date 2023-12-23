@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public interface AnimalInterface {
 
 //    Api-urile de la animal-service
-    @PostMapping("/add")
+    @PostMapping("/create")
     AnimalDTO addAnimal(@RequestBody AnimalDTO animal);
 
     @GetMapping("/get/{id}")

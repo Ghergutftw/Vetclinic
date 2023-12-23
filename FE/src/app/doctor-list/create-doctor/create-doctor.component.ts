@@ -24,7 +24,7 @@ export class CreateDoctorComponent {
   }
 
   ngOnInit(){
-    this.user = new User("" , "" ,"" , Roles.DOCTOR)
+    this.user = new User("" , "" ,"" , Roles.DEFAULT)
     this.createdDoctor = new Doctor(0, "", "", "", 0, 0, this.user )
   }
 

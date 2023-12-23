@@ -2,7 +2,7 @@
   <div class="text-center">
     <h1>REGISTER DOCTOR</h1>
   </div>
-  <div class="container w-75 h-75">
+  <div class="container w-50 h-75">
     <form (ngSubmit)="!doctorCreateForm.invalid && createDoctor(createdDoctor)" #doctorCreateForm="ngForm">
       <fieldset class="form-group justify-content-center text-center">
         <label>First Name </label>
@@ -21,6 +21,7 @@
         <input type="text" [(ngModel)]="createdDoctor.speciality" class="form-control text-center" name="speciality"
                required="required" #speciality="ngModel">
       </fieldset>
+      <br>
       <fieldset class="form-group text-center">
         <label>Age</label>
         <input type="number" [(ngModel)]="createdDoctor.age" class="form-control text-center" name="age"

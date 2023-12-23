@@ -1,8 +1,8 @@
 <h1 class="h1 text-center mt-3">
   REGISTER ANIMAL
 </h1>
-<div class="container w-75 h-75">
-  <form (ngSubmit)="!animalCreateForm.invalid && createAnimal(createdAnimal)" #animalCreateForm="ngForm">
+<div class="container w-50 h-75">
+  <form (ngSubmit)="!animalCreateForm.invalid && createAnimal()" #animalCreateForm="ngForm">
     <fieldset class="form-group justify-content-center text-center">
       <label>Nickname</label>
       <input type="text" [(ngModel)]="createdAnimal.nickname" class="form-control text-center" name="nickname" required="required">
@@ -31,7 +31,7 @@
     </fieldset>
     <br>
     <fieldset class="form-group text-center">
-      <label>Weight(kg)</label>
+      <label>Weight(g)</label>
       <input type="number" [(ngModel)]="createdAnimal.weight" class="form-control text-center" name="weight" required="required">
     </fieldset>
     <br>

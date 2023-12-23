@@ -43,21 +43,7 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            exposed-headers:
-              - Authorization
-              - Link
-              - X-Total-Count
-              - X-Total-Pages
-              - X-Page-Size
-              - X-Page-Number
-              - Content-Disposition
-              - Content-Type
-              - Access-Control-Allow-Origin
+            exposed-headers: "*"
             allowedHeaders : "*"
             allowedOrigins: "http://localhost:4200"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
+            allowedMethods: "*"

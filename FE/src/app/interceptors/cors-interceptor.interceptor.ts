@@ -19,7 +19,6 @@ export class CorsInterceptor implements HttpInterceptor {
         'Access-Control-Allow-Origin': 'http://localhost:4200',
       },
     });
-
     return next.handle(modifiedRequest);
   }
 }

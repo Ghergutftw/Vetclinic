@@ -24,7 +24,7 @@ public class AnimalController {
         return animalService.getAllAnimals();
     }
 
-    @PostMapping("/add")
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Animal addAnimal(@RequestBody Animal animal){
         return animalService.addAnimal(animal);

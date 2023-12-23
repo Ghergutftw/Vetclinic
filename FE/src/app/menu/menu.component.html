@@ -1,18 +1,20 @@
 <header>
   <nav class = "navbar navbar-expand-md navbar-dark bg-dark" >
-    <div><a href="https://www.linkedin.com/in/gherguț-mădălin-740999237/" class="navbar-brand logo"> Connect with me </a></div>
+    <div class="navbar-brand logo">
+      <img ngSrc="favicon.ico" alt="logo" width="50px" />
+    </div>
     <ul class="navbar-nav">
-      <li><a *ngIf="hardcodedAuthentificationService.isUserLoggedIn()" class="nav-link" routerLink="/doctors-list">DOCTORS</a></li>
-      <li><a *ngIf="hardcodedAuthentificationService.isUserLoggedIn()" class="nav-link" routerLink="/animals-list">ANIMALS</a></li>
-      <li><a *ngIf="hardcodedAuthentificationService.isUserLoggedIn()" class="nav-link" routerLink="/consultations">CONSULTATIONS</a></li>
-      <li><a *ngIf="hardcodedAuthentificationService.isUserLoggedIn()" class="nav-link" routerLink="/prescriptions">PRESCRIPTIONS</a></li>
-      <li><a *ngIf="hardcodedAuthentificationService.isUserLoggedIn()" class="nav-link" routerLink="/workingHours">WORKING HOURS</a></li>
-      <li><a *ngIf="hardcodedAuthentificationService.isUserLoggedIn()" class="nav-link" routerLink="/workingHours">ADOPTION</a></li>
-      <li><a *ngIf="hardcodedAuthentificationService.isUserLoggedIn()" class="nav-link" routerLink="/users-list">USERS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/workingHours">APPOINTMENTS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/doctors-list">DOCTORS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/animals-list">ANIMALS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/consultations">CONSULTATIONS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/prescriptions">PRESCRIPTIONS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/adoptions">ADOPTION</a></li>
     </ul>
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li><a class="nav-link" *ngIf="!hardcodedAuthentificationService.isUserLoggedIn()"  routerLink="/login" >LOGIN</a></li>
-      <li><a class="nav-link" *ngIf="hardcodedAuthentificationService.isUserLoggedIn()"  routerLink="/logout">LOGOUT</a></li>
+      <li class="nav-link fw-bold fst-italic ">Welcome {{currentUser}}</li>
+      <li><a class="nav-link" *ngIf="!authService.isUserLoggedIn()"  routerLink="/login" >LOGIN</a></li>
+      <li><a class="nav-link" *ngIf="authService.isUserLoggedIn()"  routerLink="/logout" >LOGOUT</a></li>
     </ul>
   </nav>
 </header>
