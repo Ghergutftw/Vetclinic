@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dto.DoctorDTO;
 import app.entity.Doctor;
 import app.service.DoctorService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class DoctorController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doctor addDoctor(@RequestBody Doctor doctor){
+    public Doctor addDoctor(@RequestBody DoctorDTO doctor){
        return doctorService.addDoctor(doctor);
     }
 
@@ -37,8 +38,8 @@ public class DoctorController {
 
     @PutMapping( "/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateDoctor(@RequestBody Doctor doctor,@PathVariable int id) {
-        doctorService.updateDoctor(doctor,id);
+    public void updateDoctor(@RequestBody DoctorDTO doctorDTO,@PathVariable int id) {
+        doctorService.updateDoctor(doctorDTO,id);
     }
 
     @GetMapping("/get/{id}")

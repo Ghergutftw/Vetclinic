@@ -3,7 +3,7 @@ spring:
     active: development
   datasource:
     url: ${database.url}
-    driverClassName: ${database.driverClassName}
+    driverClassName: ${database.driver-class-name}
   application:
     name: ${services.animal.name}
   data:

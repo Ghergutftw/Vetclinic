@@ -37,8 +37,8 @@ public class AnimalController {
     }
 
     @PutMapping( "/update/{id}")
-    public Animal updateAnimal(@RequestBody Animal animal, @PathVariable int id) {
-        return animalService.updateAnimal(animal,id);
+    public Animal updateAnimal(@PathVariable int id,  @RequestBody Animal animal) {
+        return animalService.updateAnimal(id,animal);
     }
 
     @GetMapping("/get/{id}")

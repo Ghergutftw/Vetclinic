@@ -5,7 +5,7 @@ spring:
     url: ${database.url}
     driverClassName: ${database.driver-class-name}
   application:
-    name: ${services.consultation.name}
+    name: ${services.user.name}
   data:
     rest:
       default-page-size: '20'
@@ -14,4 +14,4 @@ spring:
     hibernate:
       ddl-auto: create-drop
 server:
-  port: ${services.consultation.port}
+  port: ${services.user.port}

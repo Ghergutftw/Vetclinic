@@ -1,5 +1,6 @@
 package app.service;
 
+import app.dto.DoctorDTO;
 import app.entity.Doctor;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,11 @@ public interface DoctorService {
 
     List<Doctor> getDoctors();
 
-    Doctor addDoctor(Doctor doctor);
+    Doctor addDoctor(DoctorDTO doctor);
 
     void deleteDoctor(int id);
 
-    void updateDoctor(Doctor doctor, int id);
+    void updateDoctor(DoctorDTO doctorDTO, int id);
 
     Doctor getDoctorById(int id);
 

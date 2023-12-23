@@ -46,7 +46,7 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Animal updateAnimal(Animal animal, int id) {
+    public Animal updateAnimal( int id ,Animal animal) {
         log.info("Updating animal with id: {}", id);
         animal.setId(id);
         animalRepository.save(animal);

@@ -22,7 +22,6 @@ public class ConsultationController {
 
     private final ConsultationService consultationService;
 
-
     public ConsultationController(ConsultationService consultationService) {
         this.consultationService = consultationService;
     }

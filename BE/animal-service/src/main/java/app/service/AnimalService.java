@@ -14,7 +14,7 @@ public interface AnimalService {
 
     Response deleteAnimal(int id);
 
-    Animal updateAnimal(Animal animal, int id);
+    Animal updateAnimal(int id, Animal animal);
 
     Animal getAnimalById(int id);
 }

@@ -6,6 +6,7 @@ import lombok.*;
 @Table(name="doctor")
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Doctor {
@@ -18,9 +19,7 @@ public class Doctor {
 
     private String lastName;
 
-    @OneToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    private int userId;
 
     private String speciality;
 
