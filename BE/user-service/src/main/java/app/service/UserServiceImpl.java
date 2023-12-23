@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public Response login(UserLoginDTO userToCheck) {
         List<User> users = userRepository.findAll();
 
-        // Check if the user only logged in with the username if not check if he logged in with the email
+        // Check if the user only logged in with the username if not check is he logged in with the email
         if (!userToCheck.getEmail().contains("@")) {
             for (User user : users) {
                 if (user.getUsername().equals(userToCheck.getEmail()) && user.getPassword().equals(userToCheck.getPassword())) {
