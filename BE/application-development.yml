@@ -13,7 +13,7 @@ services:
     port: 8083
     name: appointment-service
     url: http://localhost:${services.appointment.port}/${services.appointment.name}
-    uri: http://localhost:${services.consultation.port}/
+    uri: http://localhost:${services.appointment.port}/
   doctor:
     port: 8084
     name: doctor-service

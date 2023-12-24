@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,14 +26,13 @@ public class ConsultationController {
     }
 
     @GetMapping("/get-all")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<ConsultationDTO> getAllConsultations() {
         return consultationService.getAllConsultations();
     }
 
     @GetMapping("/download-excel")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<byte[]> exportToExcel() throws IOException {
+    public ResponseEntity<byte[]> exportToExcel() {
         byte[] excelDocument = consultationService.generateExcelReport();
 
         HttpHeaders headers = new HttpHeaders();
@@ -42,12 +40,11 @@ public class ConsultationController {
         String fileName = "Consultations_" + new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date()) + ".xlsx";
         headers.setContentDispositionFormData("attachment", fileName);
         log.info("Exporting all consultations to Excel");
-        return new ResponseEntity<>(excelDocument, headers, HttpStatus.OK);
+        return new ResponseEntity<>(excelDocument, headers, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/download-word")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<byte[]> exportToWord() throws IOException {
+    public ResponseEntity<byte[]> exportToWord(){
         byte[] wordDocument = consultationService.generateWordReport();
 
         HttpHeaders headers = new HttpHeaders();
@@ -56,7 +53,7 @@ public class ConsultationController {
         headers.setContentDispositionFormData("attachment", fileName);
         log.info("Exporting all consultations to Word");
 
-        return new ResponseEntity<>(wordDocument, headers, HttpStatus.OK);
+        return new ResponseEntity<>(wordDocument, headers, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/get/{id}")

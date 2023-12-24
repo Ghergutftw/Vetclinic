@@ -2,6 +2,7 @@ package app.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 @Table(name="doctor")
 @Entity
@@ -26,4 +27,7 @@ public class Doctor {
     private int age;
 
     private int yearsOfExperience;
+
+    @Formula("(SELECT COUNT(*) FROM appointments a WHERE a.doctor_id = id)")
+    private int numberOfAppointments;
 }

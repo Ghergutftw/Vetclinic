@@ -31,15 +31,15 @@ spring:
           uri: ${services.doctor.uri}
           predicates:
             - Path=/${services.doctor.name}/**
+        - id: ${services.user.name}
+          uri: ${services.user.uri}
+          predicates:
+            - Path=/${services.user.name}/**
           metadata:
             cors:
               allowedOrigins: '*'
               allowedMethods: '*'
               allowedHeaders: '*'
-        - id: ${services.user.name}
-          uri: ${services.user.uri}
-          predicates:
-            - Path=/${services.user.name}/**
       globalcors:
         cors-configurations:
           '[/**]':

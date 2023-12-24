@@ -31,18 +31,19 @@ public class AnimalController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Response deleteAnimal(@PathVariable int id){
         return animalService.deleteAnimal(id);
     }
 
     @PutMapping( "/update/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Animal updateAnimal(@PathVariable int id,  @RequestBody Animal animal) {
         return animalService.updateAnimal(id,animal);
     }
 
     @GetMapping("/get/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Animal getAnimalById(@PathVariable int id){
         return animalService.getAnimalById(id);
     }

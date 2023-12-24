@@ -20,4 +20,6 @@ public interface DoctorService {
     Doctor getDoctorById(int id);
 
     Doctor getDoctorByLastName(String lastName);
+
+    int getNumberOfAppointments(int id);
 }

@@ -17,6 +17,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     private final DoctorRepository doctorRepository;
     UserInterface userInterface;
+
     public DoctorServiceImpl(DoctorRepository doctorRepository, UserInterface userInterface) {
         this.doctorRepository = doctorRepository;
         this.userInterface = userInterface;
@@ -83,5 +84,12 @@ public class DoctorServiceImpl implements DoctorService {
         log.info("Fetching doctor with last name: {}", lastName);
         Optional<Doctor> doctor = doctorRepository.findByLastName(lastName);
         return doctor.orElse(null);
+    }
+
+    @Override
+    public int getNumberOfAppointments(int id) {
+        log.info("Fetching number of appointments for doctor with id: {}", id);
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        return doctor.get().getNumberOfAppointments();
     }
 }

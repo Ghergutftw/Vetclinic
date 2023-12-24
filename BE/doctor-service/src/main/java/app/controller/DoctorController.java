@@ -53,4 +53,11 @@ public class DoctorController {
     public Doctor getDoctorByLastName(@PathVariable String lastName){
         return doctorService.getDoctorByLastName(lastName);
     }
+
+    @PostMapping("/add-appointment/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public int addConsultation(@PathVariable int id){
+        return doctorService.getNumberOfAppointments(id);
+    }
+
 }
