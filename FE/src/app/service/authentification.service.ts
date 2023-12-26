@@ -3,6 +3,7 @@ import {DataService} from "./data.service";
 import {User} from "../users/users.component";
 import {LoginModel} from "../models/LoginModel";
 import {LoginResponse} from "../models/LoginResponse";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +17,16 @@ export class AuthentificationService {
   users !: User[];
   canLogin!: boolean;
 
-  authenticate(loginModel: LoginModel) {
-    this.service.login(loginModel).subscribe(
-      (response: LoginResponse) => {
-        if (response.status == "success") {
+  authenticate(loginModel: LoginModel): Observable<boolean> {
+    return this.service.login(loginModel).pipe(
+       map((response: LoginResponse) => {
+        if (response.status === "success") {
           sessionStorage.setItem("Authenticated User", loginModel.email);
-          this.canLogin = true;
+          return true;
         }
+        return false;
       })
-
-    return this.canLogin;
+    );
   }
 
   isUserLoggedIn() {
@@ -35,11 +36,7 @@ export class AuthentificationService {
 
   logOut() {
     sessionStorage.removeItem("Authenticated User")
-    this.service.logout().subscribe(
-      value => {
-        console.log(value)
-      }
-    )
+    this.service.logout();
   }
 
 }

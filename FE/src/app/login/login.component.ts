@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import {Data, Router} from "@angular/router";
+import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 import {AuthentificationService} from "../service/authentification.service";
 import {DataService} from "../service/data.service";
 import {User} from "../users/users.component";
 import {LoginModel} from "../models/LoginModel";
-
 
 
 @Component({
@@ -16,41 +15,44 @@ export class LoginComponent {
   ERROR_MESSAGE = "Wrong password or username!"
   // Delay de inchidere a popului wrong password (ms)
   POPUP_DELAY = 4000;
-  username : string = ""
-  password : string  = ""
-  invalidLogin : boolean | unknown
+  username: string = ""
+  password: string = ""
+  invalidLogin: boolean | unknown
 
   users !: User[]
   loginModel !: LoginModel;
 
-  constructor( public router : Router ,
-               public hardcodedAuthentificationService: AuthentificationService,
-               public service:DataService
+  constructor(public router: Router,
+              public hardcodedAuthentificationService: AuthentificationService,
+              public service: DataService
   ) {
   }
 
   handleLogin() {
-      this.loginModel = new LoginModel(this.username, this.password)
-      this.service.login(this.loginModel);
+    this.loginModel = new LoginModel(this.username, this.password);
 
-      if (this.hardcodedAuthentificationService.authenticate(this.loginModel)) {
-        this.invalidLogin = false;
-        this.router.navigate(['/welcome'])
-      } else {
-        this.invalidLogin = true;
-        this.changeInvalidLogin()
-      }
+    this.hardcodedAuthentificationService.authenticate(this.loginModel)
+      .subscribe((authenticated: boolean) => {
+        if (authenticated) {
+          this.invalidLogin = false;
+          this.router.navigate(['/welcome']).then(r => console.log(r));
+        } else {
+          this.invalidLogin = true;
+          this.changeInvalidLogin();
+        }
+      });
   }
 
-  changeInvalidLogin(){
-    setTimeout(() =>{
+  changeInvalidLogin() {
+    setTimeout(() => {
       this.invalidLogin = false;
-    },this.POPUP_DELAY)
+    }, this.POPUP_DELAY)
   }
-  changeInvalidLoginInstantly(){
-    setTimeout(() =>{
+
+  changeInvalidLoginInstantly() {
+    setTimeout(() => {
       this.invalidLogin = false;
-    },0)
+    }, 0)
   }
 
 }

@@ -1,44 +1,42 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+BE/
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-.idea/
-BE/.idea/shelf/
-BE/.idea/sonarlint/issuestore/
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# IDEs and editors
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
 .idea/
-.project
+docker/
+
+### Eclipse ###
+.apt_generated
 .classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# Visual Studio Code
-.vscode/tasks.json
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+### VS Code ###
+.vscode/
 
-# System files
+### Mac OS ###
 .DS_Store
-Thumbs.db

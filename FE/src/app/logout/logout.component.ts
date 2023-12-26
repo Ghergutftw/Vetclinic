@@ -13,6 +13,7 @@ export class LogoutComponent {
 
   ngOnInit(): void{
     this.hardcodedAuthentificationService.logOut()
+    sessionStorage.clear();
   }
 
 }
