@@ -12,6 +12,8 @@ import app.repository.OwnerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,9 +41,17 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment updateStatus(int appointmentId, Status newStatus) {
+    public Appointment updateStatus(int appointmentId, Status newStatus){
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found with id: " + appointmentId));
+
+        if (newStatus == Status.CANCELLED) {
+            appointment.setCancelledDate(Timestamp.from(Instant.now()));
+            log.warn("Appointment with id {} got cancelled", appointmentId);
+        } else if (newStatus == Status.FINISHED) {
+            appointment.setFinishedDate(Timestamp.from(Instant.now()));
+            log.warn("Appointment with id {} finished", appointmentId);
+        }
 
         appointment.setStatus(newStatus);
         return appointmentRepository.save(appointment);
@@ -84,7 +94,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .reason(appointmentDTO.getReason())
                 .build();
 
-        log.info("Saving appointment to the database {}" ,appointment);
+        log.info("Saving appointment to the database {}" ,appointment.getId());
         appointmentRepository.save(appointment);
         log.info("Appointment saved successfully.");
         return appointment;

@@ -12,7 +12,7 @@
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/adoptions">ADOPTION</a></li>
     </ul>
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li class="nav-link fw-bold fst-italic">Welcome {{currentUser}}</li>
+      <li class="nav-link fw-bold fst-italic" *ngIf="sessionStorage.getItem('Authenticated User')">Welcome {{sessionStorage.getItem('Authenticated User')}}</li>
       <li><a class="nav-link" *ngIf="!authService.isUserLoggedIn()"  routerLink="/login" >LOGIN</a></li>
       <li><a class="nav-link" *ngIf="authService.isUserLoggedIn()"  routerLink="/logout" >LOGOUT</a></li>
     </ul>

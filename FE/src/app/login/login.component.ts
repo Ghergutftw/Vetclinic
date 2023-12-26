@@ -23,7 +23,7 @@ export class LoginComponent {
   loginModel !: LoginModel;
 
   constructor(public router: Router,
-              public hardcodedAuthentificationService: AuthentificationService,
+              public authService: AuthentificationService,
               public service: DataService
   ) {
   }
@@ -31,7 +31,7 @@ export class LoginComponent {
   handleLogin() {
     this.loginModel = new LoginModel(this.username, this.password);
 
-    this.hardcodedAuthentificationService.authenticate(this.loginModel)
+    this.authService.authenticate(this.loginModel)
       .subscribe((authenticated: boolean) => {
         if (authenticated) {
           this.invalidLogin = false;

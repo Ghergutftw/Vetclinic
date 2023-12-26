@@ -41,10 +41,10 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner updateOwner(int id, Owner owner) {
-        log.info("Updating owner with ID: {}", owner.getId());
+        log.info("Updating owner with id: {}", id);
+        owner.setId(id);
         ownerRepository.save(owner);
-        log.info("Owner updated successfully.");
-        return owner;
+        return ownerRepository.findOneById(id);
     }
 
     @Override

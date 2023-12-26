@@ -7,12 +7,12 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 })
 export class RouterGuardService implements CanActivate {
 
-  constructor(public hardcodedAuthentificationService: AuthentificationService,
+  constructor(public authService: AuthentificationService,
               public router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-      if(this.hardcodedAuthentificationService.isUserLoggedIn()){
+      if(this.authService.isUserLoggedIn()){
         return true;
       }else {
         this.router.navigate(['login'])

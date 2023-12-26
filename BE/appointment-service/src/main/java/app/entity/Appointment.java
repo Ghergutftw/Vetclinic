@@ -30,6 +30,12 @@ public class Appointment {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Timestamp appointmentDate;
 
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Timestamp finishedDate;
+
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Timestamp cancelledDate;
+
     private String reason;
 
     private int doctorId;

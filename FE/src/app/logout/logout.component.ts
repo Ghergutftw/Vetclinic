@@ -8,11 +8,11 @@ import {AuthentificationService} from "../service/authentification.service";
 })
 export class LogoutComponent {
 
-  constructor(public hardcodedAuthentificationService : AuthentificationService) {
+  constructor(public authService : AuthentificationService) {
   }
 
   ngOnInit(): void{
-    this.hardcodedAuthentificationService.logOut()
+    this.authService.logOut()
     sessionStorage.clear();
   }
 
