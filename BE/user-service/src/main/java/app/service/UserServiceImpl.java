@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String logout() {
-        return "Logged out";
+    public Response logout() {
+        return new Response(SUCCESS_MESSAGE, "Logged out");
     }
 
     @Override

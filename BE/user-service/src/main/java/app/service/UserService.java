@@ -12,7 +12,7 @@ public interface UserService {
 
     Response login(UserLoginDTO userToCheck);
 
-    String logout();
+    Response logout();
 
     String getDecodedPassword(String encodedPassword);
 

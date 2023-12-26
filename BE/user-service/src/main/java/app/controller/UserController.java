@@ -62,7 +62,7 @@ public class UserController {
 
     @GetMapping("/logout")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String logout(){
+    public Response logout(){
         return userService.logout();
     }
 
