@@ -1,3 +1,5 @@
+fe:
+  url: http://localhost:4200
 services:
   animal:
     port: 8081

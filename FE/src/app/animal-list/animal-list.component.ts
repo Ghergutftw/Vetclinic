@@ -1,18 +1,7 @@
 import {Component} from '@angular/core';
 import {DataService} from "../service/data.service";
 import {Router} from "@angular/router";
-
-export class Animal {
-  constructor(
-    public id: number,
-    public nickname: string,
-    public animalType: string,
-    public specie: string,
-    public age: number,
-    public weight: number
-  ) {
-  }
-}
+import {Animal} from "../models/Animal";
 
 @Component({
   selector: 'app-animal-list',
@@ -44,11 +33,11 @@ export class AnimalListComponent {
 
   deleteAnimal(id : number) {
     this.service.deleteAnimal(id).subscribe(
-      response =>{
+      () =>{
         this.deleteMessage = "DELETED SUCCESSFULLY"
         this.refreshPage();
         this.changeDeleteMessageInstantly()
-      },error =>{
+      },() =>{
         this.deleteMessage = "AN ERROR HAS OCCURED"
       }
     )

@@ -22,7 +22,7 @@ public class AppointmentController {
 
     @GetMapping("/get-all")
     @ResponseStatus(HttpStatus.OK)
-    public List<Appointment> getAllAppointments() {
+    public List<AppointmentDTO> getAllAppointments() {
         return appointmentService.findAll();
     }
 

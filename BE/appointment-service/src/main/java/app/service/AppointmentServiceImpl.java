@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,13 +36,29 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 
     @Override
-    public List<Appointment> findAll() {
+    public List<AppointmentDTO> findAll() {
         log.info("Fetching all appointments from the database.");
-        return appointmentRepository.findAll();
+        List<Appointment> appointments = appointmentRepository.findAll();
+        List<AppointmentDTO> appointmentDTOs = new ArrayList<>();
+        appointments.forEach(appointment -> {
+            AppointmentDTO appointmentDTO = AppointmentDTO.builder()
+                    .id(appointment.getId())
+                    .appointmentDate(appointment.getAppointmentDate())
+                    .cancelledDate(appointment.getCancelledDate())
+                    .finishedDate(appointment.getFinishedDate())
+                    .owner(appointment.getOwner())
+                    .reason(appointment.getReason())
+                    .doctorLastName(doctorInterface.getDoctor(appointment.getDoctorId()).getLastName())
+                    .build();
+
+            appointmentDTOs.add(appointmentDTO);
+        });
+
+        return appointmentDTOs;
     }
 
     @Override
-    public Appointment updateStatus(int appointmentId, Status newStatus){
+    public Appointment updateStatus(int appointmentId, Status newStatus) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found with id: " + appointmentId));
 
@@ -72,7 +89,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         Owner existingOwner = ownerRepository.findByEmail(appointmentDTO.getOwner().getEmail());
 
 
-        if(existingOwner == null){
+        if (existingOwner == null) {
             Owner newOwner = Owner.builder()
                     .email(appointmentDTO.getOwner().getEmail())
                     .firstName(appointmentDTO.getOwner().getFirstName())
@@ -82,7 +99,7 @@ public class AppointmentServiceImpl implements AppointmentService {
             ownerRepository.save(newOwner);
             log.info("Owner with email {} not found. Creating new owner.", appointmentDTO.getOwner().getEmail());
             appointmentDTO.setOwner(newOwner);
-        }else{
+        } else {
             log.info("Owner with email {} found.", appointmentDTO.getOwner().getEmail());
             appointmentDTO.setOwner(existingOwner);
         }
@@ -94,7 +111,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .reason(appointmentDTO.getReason())
                 .build();
 
-        log.info("Saving appointment to the database {}" ,appointment.getId());
+        log.info("Saving appointment to the database {}", appointment.getId());
         appointmentRepository.save(appointment);
         log.info("Appointment saved successfully.");
         return appointment;

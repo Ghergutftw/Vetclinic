@@ -45,5 +45,5 @@ spring:
           '[/**]':
             exposed-headers: "*"
             allowedHeaders : "*"
-            allowedOrigins: "http://localhost:4200"
+            allowedOrigins: ${fe.url}
             allowedMethods: "*"

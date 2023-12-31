@@ -30,6 +30,9 @@ import {MatInputModule} from "@angular/material/input";
 import { CreateConsultationComponent } from './consultations/create/create-consultation.component';
 import {CorsInterceptor} from "./interceptors/cors-interceptor.interceptor";
 import { AdoptionsComponent } from './adoptions/adoptions.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { CreateAppointmentComponent } from './appointments/create-appointment/create-appointment.component';
+import { UpdateConsultationComponent } from './consultations/update-consultation/update-consultation.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { AdoptionsComponent } from './adoptions/adoptions.component';
     UpdateAnimalComponent,
     UpdateUserComponent,
     CreateConsultationComponent,
-    AdoptionsComponent
+    AdoptionsComponent,
+    AppointmentsComponent,
+    CreateAppointmentComponent,
+    UpdateConsultationComponent
   ],
     imports: [
         BrowserModule,

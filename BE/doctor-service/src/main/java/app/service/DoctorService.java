@@ -22,4 +22,6 @@ public interface DoctorService {
     Doctor getDoctorByLastName(String lastName);
 
     int getNumberOfAppointments(int id);
+
+    List<String> getDoctorsLastName();
 }

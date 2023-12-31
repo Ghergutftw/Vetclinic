@@ -18,10 +18,13 @@ import {UpdateAnimalComponent} from "./animal-list/update-animal/update-animal.c
 import {UpdateUserComponent} from "./users/update-user/update-user.component";
 import {CreateConsultationComponent} from "./consultations/create/create-consultation.component";
 import {AdoptionsComponent} from "./adoptions/adoptions.component";
+import {AppointmentsComponent} from "./appointments/appointments.component";
+import {UpdateConsultationComponent} from "./consultations/update-consultation/update-consultation.component";
 
 const routes: Routes = [
   {path: '', component:LoginComponent},
   {path: 'welcome',component:WelcomeComponent , canActivate:[RouterGuardService]},
+  {path: 'appointments',component:AppointmentsComponent , canActivate:[RouterGuardService]},
   {path: 'animals-list',component:AnimalListComponent , canActivate:[RouterGuardService]},
   {path: 'doctors-list',component:DoctorListComponent , canActivate:[RouterGuardService]},
   {path: 'create-doctor',component:CreateDoctorComponent , canActivate:[RouterGuardService]},
@@ -32,9 +35,10 @@ const routes: Routes = [
   {path: 'update-user/:id',component:UpdateUserComponent , canActivate:[RouterGuardService]},
   {path: 'consultations',component:ConsultationsComponent , canActivate:[RouterGuardService]},
   {path: 'create-consultation',component:CreateConsultationComponent , canActivate:[RouterGuardService]},
+  {path: 'update-consultation/:id',component:UpdateConsultationComponent , canActivate:[RouterGuardService]},
   {path: 'prescriptions',component:PrescriptionsComponent , canActivate:[RouterGuardService]},
   {path: 'adoptions',component:AdoptionsComponent , canActivate:[RouterGuardService]},
-  {path: 'workingHours',component:WorkingHoursComponent , canActivate:[RouterGuardService]},
+  {path: 'working-hours',component:WorkingHoursComponent , canActivate:[RouterGuardService]},
   {path: 'login',component:LoginComponent},
   {path: 'logout',component:LogoutComponent , canActivate:[RouterGuardService]},
   {path: '**', component:ErrorComponent}

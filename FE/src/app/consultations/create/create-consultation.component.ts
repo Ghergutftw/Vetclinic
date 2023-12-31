@@ -1,10 +1,9 @@
-import {Component, NgIterable, OnInit} from '@angular/core';
-import {Doctor} from "../../doctor-list/doctor-list.component";
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../service/data.service";
-import {Animal} from "../../animal-list/animal-list.component";
 import {Consultation} from "../../models/Models";
-import {formatDate} from "@angular/common";
 import {Router} from "@angular/router";
+import {Doctor} from "../../models/Doctor";
+import {Animal} from "../../models/Animal";
 
 @Component({
   selector: 'app-create-consultation',
@@ -23,7 +22,8 @@ export class CreateConsultationComponent implements OnInit{
     "",
     "",
     0,
-    new Animal(0, "", "", "",0,0));
+    new Animal());
+
   response : string = "";
   constructor(
     public service: DataService,
@@ -33,7 +33,7 @@ export class CreateConsultationComponent implements OnInit{
 
   updateSpecies() {
 
-    switch (this.consultation.consultatedAnimal.animalType) {
+    switch (this.consultation.consultatedAnimal?.animalType) {
       case 'Cat':
         this.speciesOptions = ['Siamese', 'Persian', 'Maine Coon', 'Ragdoll', 'Bengal'];
         break;
@@ -62,7 +62,7 @@ export class CreateConsultationComponent implements OnInit{
 
   createConsultation() {
     this.service.createConsultation(this.consultation).subscribe(
-      value => {
+      () => {
         this.router.navigate(["/consultations"])
       }
     );

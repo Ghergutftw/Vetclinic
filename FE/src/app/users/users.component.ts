@@ -1,23 +1,12 @@
 import { Component } from '@angular/core';
 import {DataService} from "../service/data.service";
 import {Router} from "@angular/router";
-import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
-
+import {User} from "../models/User";
 
 export enum Roles{
   ADMIN = "ADMIN",
   DOCTOR = "DOCTOR",
   DEFAULT = ""
-}
-export class User{
-  constructor(
-    public email : string,
-    public username : string,
-    public password : string,
-    public role : Roles
-  ) {
-  }
-
 }
 @Component({
   selector: 'app-users',

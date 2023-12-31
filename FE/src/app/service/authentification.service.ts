@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {DataService} from "./data.service";
-import {User} from "../users/users.component";
 import {LoginModel} from "../models/LoginModel";
 import {LoginResponse} from "../models/LoginResponse";
 import {map, Observable} from "rxjs";
+import {User} from "../models/User";
 
 @Injectable({
   providedIn: 'root'

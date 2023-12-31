@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthentificationService} from "../service/authentification.service";
 import {DataService} from "../service/data.service";
-import {User} from "../users/users.component";
 import {LoginModel} from "../models/LoginModel";
+import {User} from "../models/User";
 
 
 @Component({

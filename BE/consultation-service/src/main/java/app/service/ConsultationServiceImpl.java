@@ -63,6 +63,7 @@ public class ConsultationServiceImpl implements ConsultationService {
                     .diagnostic(consultation.getDiagnostic())
                     .treatment(consultation.getTreatment())
                     .recommendations(consultation.getRecommendations())
+                    .price(consultation.getPrice())
                     .build();
             consultations.add(consultationDTO);
         });
@@ -110,6 +111,7 @@ public class ConsultationServiceImpl implements ConsultationService {
                 .diagnostic(updatedConsultation.getDiagnostic())
                 .treatment(updatedConsultation.getTreatment())
                 .recommendations(updatedConsultation.getRecommendations())
+                .price(updatedConsultation.getPrice())
                 .build();
 
         log.info("Consultation updated successfully");

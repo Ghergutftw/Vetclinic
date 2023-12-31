@@ -24,6 +24,8 @@ public class DoctorController {
         return doctorService.getDoctors();
     }
 
+
+
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public Doctor addDoctor(@RequestBody DoctorDTO doctor){
@@ -40,6 +42,12 @@ public class DoctorController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateDoctor(@RequestBody DoctorDTO doctorDTO,@PathVariable int id) {
         doctorService.updateDoctor(doctorDTO,id);
+    }
+
+    @GetMapping("/last-names")
+    @ResponseStatus(HttpStatus.OK)
+    public List<String> getDoctorsLastName(){
+        return doctorService.getDoctorsLastName();
     }
 
     @GetMapping("/get/{id}")

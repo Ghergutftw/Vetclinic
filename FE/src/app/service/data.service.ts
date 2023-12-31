@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Doctor} from "../doctor-list/doctor-list.component";
-import {Animal} from "../animal-list/animal-list.component";
-import {User} from "../users/users.component";
 import {LoginModel} from "../models/LoginModel";
 import {LoginResponse} from "../models/LoginResponse";
 import {Consultation} from "../models/Models";
 import {environment} from "../../environments/environment";
+import {Appointment} from "../appointments/appointments.component";
+import {Doctor} from "../models/Doctor";
+import {Animal} from "../models/Animal";
+import {User} from "../models/User";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class DataService {
   ANIMAL_API: string = environment.animalServiceName;
   USER_API: string = environment.userServiceName;
   CONSULTATION_API: string = environment.consultationServiceName;
+  APPOINTMENT_API: string = environment.appointmentServiceName;
 
   //DOCTORS API
   getAllDoctors(){
@@ -42,6 +44,10 @@ export class DataService {
 
   retrieveDoctorById(id:number){
     return this.httpClient.get<Doctor>(`${this.BACKEND_API}/${this.DOCTOR_API}/get/${id}`)
+  }
+
+  getLastNames(){
+    return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.DOCTOR_API}/last-names`)
   }
 
   // DOCTORS API
@@ -92,7 +98,7 @@ export class DataService {
     return this.httpClient.get<User>(`${this.BACKEND_API}/${this.USER_API}/${id}`)
   }
 
-  getDecodedString(encodedPassword : string){
+  getDecodedString(encodedPassword?: string ){
     return this.httpClient.get<string>(`${this.BACKEND_API}/${this.USER_API}/${encodedPassword}`);
   }
   getEncodedString(decodedPassword : string){
@@ -122,4 +128,34 @@ export class DataService {
     return this.httpClient.put(`${this.BACKEND_API}/${this.CONSULTATION_API}/update/${id}`, consultation);
   }
 
+  //Appointments API
+
+  getAllAppointments(){
+    return this.httpClient.get<Appointment[]>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/get-all`)
+  }
+
+  createAppointment(appointment: Appointment) {
+    return this.httpClient.post<Appointment>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/create`, appointment);
+  }
+
+  getAppointmentById(id: number) {
+    return this.httpClient.get<Appointment>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/get/${id}`);
+  }
+
+  deleteAppointmentById(id: number) {
+    return this.httpClient.delete(`${this.BACKEND_API}/${this.APPOINTMENT_API}/delete/${id}`);
+  }
+
+  updateAppointmentById(id: number, appointment: Appointment) {
+    return this.httpClient.put(`${this.BACKEND_API}/${this.APPOINTMENT_API}/update/${id}`, appointment);
+  }
+
+  updateStatus(id: number, status: string) {
+    return this.httpClient.post(`${this.BACKEND_API}/${this.APPOINTMENT_API}/update/${id}/${status}`, null);
+  }
+
+
+  getAnimalById(id: number) {
+    return this.httpClient.get<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/get/${id}`);
+  }
 }

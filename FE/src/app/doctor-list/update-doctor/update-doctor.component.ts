@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../service/data.service";
-import {Doctor} from "../doctor-list.component";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Roles, User} from "../../users/users.component";
+import {Doctor} from "../../models/Doctor";
+import {User} from "../../models/User";
+import {Roles} from "../../users/users.component";
 
 @Component({
   selector: 'app-update-doctor',
@@ -15,7 +16,6 @@ export class UpdateDoctorComponent implements OnInit{
 
   user!: User;
   id!: number | any
-
 
   constructor(
     private service:DataService,
@@ -37,7 +37,7 @@ export class UpdateDoctorComponent implements OnInit{
   }
   updateDoctor(id:number) {
     this.service.updateDoctorById(id,this.doctor).subscribe(
-      response =>{
+      () =>{
         this.router.navigate(["/doctors-list"])
       }
     )

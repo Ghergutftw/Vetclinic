@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {Animal} from "../animal-list.component";
 import {DataService} from "../../service/data.service";
 import {Router} from "@angular/router";
+import {Animal} from "../../models/Animal";
 
 @Component({
   selector: 'app-create-animal',
@@ -47,7 +47,7 @@ export class CreateAnimalComponent {
 
   createAnimal() {
     this.service.createAnimal(this.createdAnimal).subscribe(
-      response =>{
+      () =>{
         this.router.navigate(["/animals-list"])
       }
     )

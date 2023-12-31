@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../../service/data.service";
-import {Roles, User} from "../users.component";
+import {User} from "../../models/User";
+import {Roles} from "../users.component";
 
 @Component({
   selector: 'app-update-user',
@@ -43,7 +44,7 @@ export class UpdateUserComponent implements OnInit{
   updateUser(id:number) {
     console.log("updating")
     this.service.updateUserById(id,this.user).subscribe(
-      response=>{
+      ()=>{
         this.router.navigate(["/users-list"])
       }
     )

@@ -20,14 +20,14 @@
     <tbody class="table-tabs text-center">
     <tr *ngFor="let consultation  of consultations">
       <td>{{ consultation.id }}</td>
-      <td>{{ consultation.date | date: 'M/d/yyyy, hh:mm a' }}</td>
+      <td>{{ consultation.date | date: 'MM/dd/yyyy, hh:mm a' }}</td>
       <td>{{ consultation.consultatedAnimal.animalCode }}</td>
       <td>Dr. {{ consultation.doctorLastName }}</td>
       <td>
-        <button (click)="deleteConsultation(consultation.id)" class="btn btn-danger">Delete</button>
+        <button (click)="updateConsultation(consultation.id)" class="btn btn-info">Update</button>
       </td>
       <td>
-        <button (click)="updateConsultation(consultation.id)" class="btn btn-info">Update</button>
+        <button (click)="deleteConsultation(consultation.id)" class="btn btn-danger">Delete</button>
       </td>
     <tr>
     </tr>

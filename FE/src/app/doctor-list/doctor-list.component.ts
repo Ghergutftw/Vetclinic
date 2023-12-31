@@ -1,27 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../service/data.service";
-import {User} from "../users/users.component";
 import {Router} from "@angular/router";
-export class Doctor{
-  constructor(
-    public id: number,
-    public firstName: string,
-    public lastName: string,
-    public speciality: string,
-    public age: number,
-    public yearsOfExperience: number,
-    public user: User
-  ){
-  }
-
-}
+import {Doctor} from "../models/Doctor";
 
 @Component({
   selector: 'app-doctor-list',
   templateUrl: './doctor-list.component.html',
   styleUrls: ['./doctor-list.component.css']
 })
-export class DoctorListComponent {
+export class DoctorListComponent implements OnInit{
 
   doctors : Doctor[] | any;
 
@@ -78,7 +65,7 @@ export class DoctorListComponent {
 
   deleteDoctor(id : number) {
     console.log(`Deleting doctor at ${id}`)
-    this.service.deleteDoctorById(id).subscribe(response =>{
+    this.service.deleteDoctorById(id).subscribe(() =>{
       console.log("Deleted successfully");
       this.deleteMessage = "DELETED SUCCESSFULLY"
       this.refreshPage();

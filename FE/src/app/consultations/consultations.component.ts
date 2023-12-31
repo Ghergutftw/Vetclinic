@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {DataService} from "../service/data.service";
 import {Consultation} from "../models/Models";
 import {formatDate} from "@angular/common";
 import {DocsService} from "../service/docs.service";
 import {saveAs} from "file-saver";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -18,7 +18,8 @@ export class ConsultationsComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-    public docsService : DocsService
+    public docsService : DocsService,
+    public router : Router
   ) {
   }
 
@@ -36,7 +37,7 @@ export class ConsultationsComponent implements OnInit {
 
   deleteConsultation(id: number) {
     this.dataService.deleteConsultationById(id).subscribe(
-      response => {
+      () => {
         this.deleteMessage = 'Consultation deleted successfully!';
         this.getAllConsultations();
       }
@@ -44,7 +45,7 @@ export class ConsultationsComponent implements OnInit {
   }
 
   updateConsultation(id: number) {
-
+    this.router.navigate(['update-consultation', id]);
   }
 
   protected readonly formatDate = formatDate;
@@ -72,14 +73,6 @@ export class ConsultationsComponent implements OnInit {
     });
   }
 
-  private getCurrentDate(): string {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
-    const day = ('0' + currentDate.getDate()).slice(-2);
-
-    return `${year}-${month}-${day}`;
-  }
 
   private getCurrentDateTime(): string {
     const currentDate = new Date();

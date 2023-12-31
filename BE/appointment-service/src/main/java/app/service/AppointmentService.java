@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AppointmentService {
 
-    List<Appointment> findAll();
+    List<AppointmentDTO> findAll();
 
     Appointment updateStatus(int appointmentId, Status newStatus);
 

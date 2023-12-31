@@ -14,8 +14,8 @@
       <th colspan="2" class="text-center">EDIT</th>
     </tr>
     </thead>
-    <tbody class="table-tabs text-center">
-    <tr *ngFor="let animal of animals">
+    <tbody class="table-tabs text-center" *ngIf="animals">
+    <tr *ngFor="let animal of animals" >
       <td>{{animal.id}}</td>
       <td>{{animal.nickname}}</td>
       <td>{{animal.animalType}}</td>
@@ -26,7 +26,6 @@
       <td><button class="btn btn-danger" (click)="deleteAnimal(animal.id)">Delete</button></td>
     </tr>
     </tbody>
-
     <div class="col-1 mt-2">
       <button class="btn btn-dark" (click) = "createAnimal()" >Create</button>
     </div>

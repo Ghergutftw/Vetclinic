@@ -11,6 +11,8 @@ import java.sql.Timestamp;
 @Data
 @Builder
 public class AppointmentDTO {
+    private int id;
+
     private Owner owner;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
@@ -18,6 +20,10 @@ public class AppointmentDTO {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Timestamp finishedDate;
+
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Timestamp cancelledDate;
 
     private String reason;
 
