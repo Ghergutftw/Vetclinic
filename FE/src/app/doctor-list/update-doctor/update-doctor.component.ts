@@ -25,17 +25,26 @@ export class UpdateDoctorComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.user = new User("", "" ,"", Roles.DEFAULT)
-    this.doctor = new Doctor(0, "", "", "", 0, 0, this.user)
+    this.user = new User()
+    this.doctor = new Doctor(0, "", "", "", 0, 0, new User());
     this.id=this.route.snapshot.params['id']
+    this.service.getUserById(this.id).subscribe(
+      (response:User) =>{
+        this.user = response
+      }
+    )
+
     this.service.retrieveDoctorById(this.id).subscribe(
       (response:Doctor) =>{
         this.doctor = response
-        this.doctor.user = response.user;
       }
     )
+
+    console.log(this.doctor)
+    console.log(this.user)
   }
   updateDoctor(id:number) {
+    this.doctor.user = this.user;
     this.service.updateDoctorById(id,this.doctor).subscribe(
       () =>{
         this.router.navigate(["/doctors-list"])

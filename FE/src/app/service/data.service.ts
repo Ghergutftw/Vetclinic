@@ -94,8 +94,8 @@ export class DataService {
     return this.httpClient.put(`${this.BACKEND_API}/${this.USER_API}/${id}`,user)
   }
 
-  retrieveUserById(id:number){
-    return this.httpClient.get<User>(`${this.BACKEND_API}/${this.USER_API}/${id}`)
+  getUserById(id:number){
+    return this.httpClient.get<User>(`${this.BACKEND_API}/${this.USER_API}/get/${id}`)
   }
 
   getDecodedString(encodedPassword?: string ){

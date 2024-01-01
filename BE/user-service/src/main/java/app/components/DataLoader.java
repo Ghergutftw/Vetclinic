@@ -19,7 +19,6 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Create and save some dummy users
         User user1 = new User(0, "test", "test@gmail.com", "test", Roles.ADMIN);
         User user2 = new User(0, "test", "test@gmail.com", "test", Roles.ADMIN);
 

@@ -58,7 +58,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void updateDoctor(DoctorDTO doctorDTO, int id) {
         log.info("Updating doctor with id: {}", id);
-
+        userInterface.updateUser(id, doctorDTO.getUser());
         UserDTO user = userInterface.getUser(id);
 
         Optional<Doctor> toBeSaved = doctorRepository.findById(id);

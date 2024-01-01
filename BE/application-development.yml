@@ -49,5 +49,5 @@ database:
   MYSQL_PASSWORD: secret
   MYSQL_ROOT_PASSWORD: verysecret
   MYSQL_USER: myuser
-  url: jdbc:mysql://${database.ip}:${database.host-port}/${database.name}
+  url: jdbc:mysql://${database.ip}:${database.host-port}/${database.name}?useSSL=false&allowPublicKeyRetrieval=true
 

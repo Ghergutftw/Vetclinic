@@ -30,18 +30,19 @@
     <br>
     <fieldset class="form-group text-center">
       <label>Email</label>
-      <input type="text" [(ngModel)]="doctor.user.email" class="form-control text-center" name="email" required = "required"  #email = "ngModel">
+      <input type="text" [(ngModel)]="user.email" class="form-control text-center" name="email" required = "required"  #email = "ngModel">
     </fieldset>
     <br>
     <fieldset class="form-group text-center">
       <label>Password</label>
-      <input type="text" [(ngModel)]="doctor.user.password" class="form-control text-center" name="password" required = "required"  #password = "ngModel">
+      <input type="text" [(ngModel)]="user.password" class="form-control text-center" name="password" required = "required"  #password = "ngModel">
     </fieldset>
     <br>
     <fieldset class="form-group text-center">
       <label for="inputState">Role</label>
-      <select id="inputState" class="form-control text-center" name="role" [(ngModel)]="doctor.user.role" required="required" #role= "ngModel">
+      <select id="inputState" class="form-control text-center" name="role" [(ngModel)]="user.role" required="required" #role= "ngModel">
         <option>ADMIN</option>
+        <option>DOCTOR</option>
         <option>DEV</option>
       </select>
     </fieldset>
