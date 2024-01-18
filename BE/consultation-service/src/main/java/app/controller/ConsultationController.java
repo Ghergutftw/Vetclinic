@@ -2,6 +2,9 @@ package app.controller;
 
 import app.dto.ConsultationDTO;
 import app.entity.Consultation;
+import app.enums.Diagnosis;
+import app.enums.Recommendation;
+import app.enums.Treatment;
 import app.service.ConsultationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -86,5 +89,20 @@ public class ConsultationController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteConsultation(@PathVariable int id) {
        consultationService.deleteConsultation(id);
+    }
+
+    @GetMapping("/diagnoses")
+    public String[] getAnimalDiseases() {
+        return Diagnosis.getAllDisplayNames();
+    }
+
+    @GetMapping("/recommendations")
+    public String[] getRecommendations() {
+        return Recommendation.getAllDisplayNames();
+    }
+
+    @GetMapping("/treatments")
+    public String[] getTreatments() {
+        return Treatment.getAllDisplayNames();
     }
 }

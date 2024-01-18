@@ -14,6 +14,11 @@ export class CreateConsultationComponent implements OnInit{
   defaultDate = new Date();
   doctors: Doctor[] = [];
   speciesOptions: string[] = [];
+
+  diagnostics: string[] = [];
+  recommendations: string[] = [];
+  treatments: string[] = [];
+
   consultation: Consultation = new Consultation(0,
     new Date(),
     "",
@@ -58,6 +63,10 @@ export class CreateConsultationComponent implements OnInit{
         this.doctors = response;
       }
     )
+
+    this.service.getAnimalDiseases().subscribe((data) => (this.diagnostics = data));
+    this.service.getRecommendations().subscribe((data) => (this.recommendations = data));
+    this.service.getTreatments().subscribe((data) => (this.treatments = data));
   }
 
   createConsultation() {
@@ -66,6 +75,7 @@ export class CreateConsultationComponent implements OnInit{
         this.router.navigate(["/consultations"])
       }
     );
-
   }
+
+
 }

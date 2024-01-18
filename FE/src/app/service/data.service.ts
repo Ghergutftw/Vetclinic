@@ -8,6 +8,7 @@ import {Appointment} from "../appointments/appointments.component";
 import {Doctor} from "../models/Doctor";
 import {Animal} from "../models/Animal";
 import {User} from "../models/User";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -157,5 +158,20 @@ export class DataService {
 
   getAnimalById(id: number) {
     return this.httpClient.get<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/get/${id}`);
+  }
+
+  getAnimalDiseases(): Observable<string[]> {
+    // Assuming your backend returns an array of disease names as strings
+    return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/diagnoses`);
+  }
+
+  getRecommendations(): Observable<string[]> {
+    // Assuming your backend returns an array of recommendation descriptions as strings
+    return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/recommendations`);
+  }
+
+  getTreatments(): Observable<string[]> {
+    // Assuming your backend returns an array of treatment procedures as strings
+    return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/treatments`);
   }
 }

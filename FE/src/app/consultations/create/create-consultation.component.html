@@ -61,21 +61,27 @@
       </div>
       <br>
       <fieldset class="form-group justify-content-center text-center">
-        <label class="fs-5">Diagnostic</label>
-        <input type="text" [(ngModel)]="consultation.diagnostic" class="form-control text-center" name="diagnostic"
-               required="required">
+        <label class="fs-5">Treatment</label>
+        <select [(ngModel)]="consultation.diagnostic" class="form-control text-center" name="treatment" required="required">
+          <option *ngFor="let diagnostic of diagnostics" [value]="diagnostic">{{ diagnostic }}</option>
+        </select>
       </fieldset>
       <br>
+
       <fieldset class="form-group justify-content-center text-center">
         <label class="fs-5">Treatment</label>
-        <input type="text" [(ngModel)]="consultation.treatment" class="form-control text-center" name="treatment"
-               required="required">
+        <select [(ngModel)]="consultation.treatment" class="form-control text-center" name="treatment" required="required">
+          <option *ngFor="let treatment of treatments" [value]="treatment">{{ treatment }}</option>
+        </select>
       </fieldset>
       <br>
+
       <fieldset class="form-group justify-content-center text-center">
         <label class="fs-5">Recommendations</label>
-        <input type="text" [(ngModel)]="consultation.recommendations" class="form-control text-center"
-               name="recommendations" required="required">
+        <select [(ngModel)]="consultation.recommendations" class="form-control text-center"
+                name="recommendations" required="required">
+          <option *ngFor="let recommendation of recommendations" [value]="recommendation">{{ recommendation }}</option>
+        </select>
       </fieldset>
       <br>
       <fieldset class="form-group justify-content-center text-center">
