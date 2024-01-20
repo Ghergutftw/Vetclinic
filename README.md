@@ -1,3 +1,4 @@
+#TEST
 # Veterinary Clinic Management System
 
 This is a comprehensive Veterinary Clinic Management System designed to streamline the operations of a veterinary clinic. It consists of a Spring Boot backend with multiple services and an Angular frontend.
@@ -27,7 +28,7 @@ Ensure you have the following installed on your machine:
 
 - Java Development Kit (JDK)
 - Apache Maven
-- Node.js and npm
+- Spring boot 3.2 and npm
 - Angular CLI
 
 ## Getting Started
