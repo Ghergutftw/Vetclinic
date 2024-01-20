@@ -5,7 +5,7 @@ import {User} from "../../models/User";
 import {Roles} from "../users.component";
 
 @Component({
-  selector: 'app-update-user',
+  selector: 'app-update',
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.css']
 })
@@ -45,7 +45,7 @@ export class UpdateUserComponent implements OnInit{
     console.log("updating")
     this.service.updateUserById(id,this.user).subscribe(
       ()=>{
-        this.router.navigate(["/users-list"])
+        this.router.navigate(["/users"])
       }
     )
   }

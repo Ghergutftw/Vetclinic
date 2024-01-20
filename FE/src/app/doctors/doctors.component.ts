@@ -5,11 +5,11 @@ import {Doctor} from "../models/Doctor";
 import {User} from "../models/User";
 
 @Component({
-  selector: 'app-doctor-list',
-  templateUrl: './doctor-list.component.html',
-  styleUrls: ['./doctor-list.component.css']
+  selector: 'app-doctors',
+  templateUrl: './doctors.component.html',
+  styleUrls: ['./doctors.component.css']
 })
-export class DoctorListComponent implements OnInit {
+export class DoctorsComponent implements OnInit {
 
   doctors: Doctor[] ;
 

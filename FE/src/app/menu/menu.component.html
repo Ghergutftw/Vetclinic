@@ -1,16 +1,15 @@
 <header>
   <nav class = "navbar navbar-expand-md navbar-dark bg-dark" >
-    <div class="navbar-brand logo">
+    <div class="navbar-brand logo" routerLink="/welcome">
       <img src="favicon.ico" alt="logo" width="50px" />
     </div>
     <ul class="navbar-nav">
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/appointments">APPOINTMENTS</a></li>
-      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/doctors-list">DOCTORS</a></li>
-      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/animals-list">ANIMALS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/doctors">DOCTORS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/animals">ANIMALS</a></li>
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/consultations">CONSULTATIONS</a></li>
-      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/prescriptions">PRESCRIPTIONS</a></li>
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/adoptions">ADOPTION</a></li>
-      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/users-list">USERS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/users">USERS</a></li>
     </ul>
     <ul class="navbar-nav navbar-collapse justify-content-end">
       <li class="nav-link fw-bold fst-italic" *ngIf="sessionStorage.getItem('Authenticated User')">Welcome {{sessionStorage.getItem('Authenticated User')}}</li>

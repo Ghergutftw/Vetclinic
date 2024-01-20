@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../service/data.service";
-import {Consultation} from "../models/Models";
+import {Consultation} from "../models/Consultation";
 import {formatDate} from "@angular/common";
 import {DocsService} from "../service/docs.service";
 import {saveAs} from "file-saver";

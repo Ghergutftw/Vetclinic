@@ -10,20 +10,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import {FormsModule} from "@angular/forms";
-import { DoctorListComponent } from './doctor-list/doctor-list.component';
-import { AnimalListComponent } from './animal-list/animal-list.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { AnimalsComponent } from './animals/animals.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ConsultationsComponent } from './consultations/consultations.component';
-import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
-import { WorkingHoursComponent } from './working-hours/working-hours.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
-import { CreateDoctorComponent } from './doctor-list/create-doctor/create-doctor.component';
+import { CreateDoctorComponent } from './doctors/create/create-doctor.component';
 import { UsersComponent } from './users/users.component';
-import { UpdateDoctorComponent } from './doctor-list/update-doctor/update-doctor.component';
-import { CreateAnimalComponent } from './animal-list/create-animal/create-animal.component';
-import { UpdateAnimalComponent } from './animal-list/update-animal/update-animal.component';
+import { UpdateDoctorComponent } from './doctors/update/update-doctor.component';
+import { CreateAnimalComponent } from './animals/create/create-animal.component';
+import { UpdateAnimalComponent } from './animals/update/update-animal.component';
 import {AlertModule} from "./alert";
-import { UpdateUserComponent } from './users/update-user/update-user.component';
+import { UpdateUserComponent } from './users/update/update-user.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
@@ -31,8 +29,9 @@ import { CreateConsultationComponent } from './consultations/create/create-consu
 import {CorsInterceptor} from "./interceptors/cors-interceptor.interceptor";
 import { AdoptionsComponent } from './adoptions/adoptions.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
-import { CreateAppointmentComponent } from './appointments/create-appointment/create-appointment.component';
-import { UpdateConsultationComponent } from './consultations/update-consultation/update-consultation.component';
+import { CreateAppointmentComponent } from './appointments/create/create-appointment.component';
+import { UpdateConsultationComponent } from './consultations/update/update-consultation.component';
+import { UpdateAppointmentComponent } from './appointments/update/update-appointment.component';
 
 @NgModule({
   declarations: [
@@ -42,12 +41,10 @@ import { UpdateConsultationComponent } from './consultations/update-consultation
     WelcomeComponent,
     LoginComponent,
     ErrorComponent,
-    DoctorListComponent,
-    AnimalListComponent,
+    DoctorsComponent,
+    AnimalsComponent,
     LogoutComponent,
     ConsultationsComponent,
-    PrescriptionsComponent,
-    WorkingHoursComponent,
     CreateDoctorComponent,
     UsersComponent,
     UpdateDoctorComponent,
@@ -58,7 +55,8 @@ import { UpdateConsultationComponent } from './consultations/update-consultation
     AdoptionsComponent,
     AppointmentsComponent,
     CreateAppointmentComponent,
-    UpdateConsultationComponent
+    UpdateConsultationComponent,
+    UpdateAppointmentComponent
   ],
     imports: [
         BrowserModule,

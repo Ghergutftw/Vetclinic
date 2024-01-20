@@ -4,11 +4,11 @@ import {Router} from "@angular/router";
 import {Animal} from "../models/Animal";
 
 @Component({
-  selector: 'app-animal-list',
-  templateUrl: './animal-list.component.html',
-  styleUrls: ['./animal-list.component.css']
+  selector: 'app-animals',
+  templateUrl: './animals.component.html',
+  styleUrls: ['./animals.component.css']
 })
-export class AnimalListComponent {
+export class AnimalsComponent {
 
   deleteMessage : string = ''
 

@@ -23,7 +23,7 @@ public class Appointment {
     @Builder.Default
     private Status status = Status.CREATED;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 

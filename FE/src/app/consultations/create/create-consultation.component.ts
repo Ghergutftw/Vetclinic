@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../service/data.service";
-import {Consultation} from "../../models/Models";
+import {Consultation} from "../../models/Consultation";
 import {Router} from "@angular/router";
 import {Doctor} from "../../models/Doctor";
 import {Animal} from "../../models/Animal";
+import {DocsService} from "../../service/docs.service";
 
 @Component({
   selector: 'app-create-consultation',
@@ -32,6 +33,7 @@ export class CreateConsultationComponent implements OnInit{
   response : string = "";
   constructor(
     public service: DataService,
+    public docsService:DocsService,
     public router: Router
   ) {
   }

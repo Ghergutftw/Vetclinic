@@ -40,6 +40,7 @@ front-end:
   uri: http://localhost:${front-end.port}
 
 database:
+  show-sql: false
   driver-class-name: com.mysql.cj.jdbc.Driver
   host-port: 3306
   container-port: 3306

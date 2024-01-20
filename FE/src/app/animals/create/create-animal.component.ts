@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {Animal} from "../../models/Animal";
 
 @Component({
-  selector: 'app-create-animal',
+  selector: 'app-create',
   templateUrl: './create-animal.component.html',
   styleUrls: ['./create-animal.component.css']
 })
@@ -48,7 +48,7 @@ export class CreateAnimalComponent {
   createAnimal() {
     this.service.createAnimal(this.createdAnimal).subscribe(
       () =>{
-        this.router.navigate(["/animals-list"])
+        this.router.navigate(["/animals"])
       }
     )
   }

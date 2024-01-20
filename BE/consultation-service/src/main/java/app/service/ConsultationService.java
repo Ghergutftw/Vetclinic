@@ -20,4 +20,6 @@ public interface ConsultationService {
     byte[] generateExcelReport();
 
     byte[] generateWordReport();
+
+//    byte[] generateBill(int consultationId);
 }

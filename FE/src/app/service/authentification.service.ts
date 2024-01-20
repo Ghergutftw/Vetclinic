@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {DataService} from "./data.service";
-import {LoginModel} from "../models/LoginModel";
+import {Login} from "../models/Login";
 import {LoginResponse} from "../models/LoginResponse";
 import {map, Observable} from "rxjs";
 import {User} from "../models/User";
@@ -17,7 +17,7 @@ export class AuthentificationService {
   users !: User[];
   canLogin!: boolean;
 
-  authenticate(loginModel: LoginModel): Observable<boolean> {
+  authenticate(loginModel: Login): Observable<boolean> {
     return this.service.login(loginModel).pipe(
        map((response: LoginResponse) => {
         if (response.status === "success") {

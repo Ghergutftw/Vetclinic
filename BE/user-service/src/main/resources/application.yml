@@ -13,5 +13,6 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: create-drop
+    show-sql: ${database.show-sql}
 server:
   port: ${services.user.port}

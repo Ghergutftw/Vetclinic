@@ -7,7 +7,7 @@ import {Doctor} from "../../models/Doctor";
 import {User} from "../../models/User";
 
 @Component({
-  selector: 'app-create-doctor',
+  selector: 'app-create',
   templateUrl: './create-doctor.component.html',
   styleUrls: ['./create-doctor.component.css']
 })
@@ -43,7 +43,7 @@ export class CreateDoctorComponent {
 
     this.service.createDoctor(this.createdDoctor).subscribe(() =>{
       this.alertService.created("CREATED")
-      this.router.navigate(["/doctors-list"])
+      this.router.navigate(["/doctors"])
     })
 
   }

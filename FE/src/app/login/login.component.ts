@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthentificationService} from "../service/authentification.service";
 import {DataService} from "../service/data.service";
-import {LoginModel} from "../models/LoginModel";
+import {Login} from "../models/Login";
 import {User} from "../models/User";
 
 
@@ -20,7 +20,7 @@ export class LoginComponent {
   invalidLogin: boolean | unknown
 
   users !: User[]
-  loginModel !: LoginModel;
+  loginModel !: Login;
 
   constructor(public router: Router,
               public authService: AuthentificationService,
@@ -29,7 +29,7 @@ export class LoginComponent {
   }
 
   handleLogin() {
-    this.loginModel = new LoginModel(this.username, this.password);
+    this.loginModel = new Login(this.username, this.password);
 
     this.authService.authenticate(this.loginModel)
       .subscribe((authenticated: boolean) => {

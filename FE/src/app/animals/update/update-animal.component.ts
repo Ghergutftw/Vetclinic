@@ -4,7 +4,7 @@ import {DataService} from "../../service/data.service";
 import {Animal} from "../../models/Animal";
 
 @Component({
-  selector: 'app-update-animal',
+  selector: 'app-update',
   templateUrl: './update-animal.component.html',
   styleUrls: ['./update-animal.component.css']
 })
@@ -33,7 +33,7 @@ export class UpdateAnimalComponent {
   updateAnimal(id:number){
     this.service.updateAnimal(id,this.animal).subscribe(
       () =>{
-        this.router.navigate(["animals-list"])
+        this.router.navigate(["animals"])
       }
     )
   }

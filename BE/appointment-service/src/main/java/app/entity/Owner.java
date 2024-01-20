@@ -30,7 +30,7 @@ public class Owner {
 
     private String email;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner")
     @JsonIgnore
     private List<Appointment> appointments ;
 
