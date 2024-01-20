@@ -85,19 +85,6 @@ public class ConsultationController {
         }
     }
 
-//    @GetMapping("/generate-bill")
-//    public ResponseEntity<byte[]> generateBill(@RequestParam int consultationId) {
-//        byte[] pdfDocument = consultationService.generateBill(consultationId);
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-//        String fileName = "Bill_" + new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date()) + ".pdf";
-//        headers.setContentDispositionFormData("attachment", fileName);
-//        log.info("Generating bill for consultation with id " + consultationId);
-//
-//        return new ResponseEntity<>(pdfDocument, headers, HttpStatus.ACCEPTED);
-//    }
-
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteConsultation(@PathVariable int id) {

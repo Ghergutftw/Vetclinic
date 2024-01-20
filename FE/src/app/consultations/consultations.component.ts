@@ -53,10 +53,7 @@ export class ConsultationsComponent implements OnInit {
 
   downloadConsultationsExcel() {
     this.docsService.exportToExcel().subscribe((blob: Blob) => {
-      // Dynamically set the filename
       const fileName = 'Consultation_' + this.getCurrentDateTime() + '.xlsx';
-
-      // Use the FileSaver library or other methods to trigger the download
       saveAs(blob, fileName);
     });
   }

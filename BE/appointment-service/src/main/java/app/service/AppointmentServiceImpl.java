@@ -44,9 +44,9 @@ public class AppointmentServiceImpl implements AppointmentService {
             AppointmentDTO appointmentDTO = AppointmentDTO.builder()
                     .id(appointment.getId())
                     .appointmentDate(appointment.getAppointmentDate())
-                    .cancelledDate(appointment.getCancelledDate())
                     .finishedDate(appointment.getFinishedDate())
                     .owner(appointment.getOwner())
+                    .status(appointment.getStatus())
                     .reason(appointment.getReason())
                     .doctorLastName(doctorInterface.getDoctor(appointment.getDoctorId()).getLastName())
                     .build();
@@ -62,12 +62,12 @@ public class AppointmentServiceImpl implements AppointmentService {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found with id: " + appointmentId));
 
-        if (newStatus == Status.CANCELLED) {
-            appointment.setCancelledDate(Timestamp.from(Instant.now()));
-            log.warn("Appointment with id {} got cancelled", appointmentId);
-        } else if (newStatus == Status.FINISHED) {
+        if (newStatus == Status.FINISHED) {
             appointment.setFinishedDate(Timestamp.from(Instant.now()));
             log.warn("Appointment with id {} finished", appointmentId);
+        } else if (newStatus == Status.IN_PROGRESS) {
+//          todo:  Leaga de consultatie cumva
+
         }
 
         appointment.setStatus(newStatus);

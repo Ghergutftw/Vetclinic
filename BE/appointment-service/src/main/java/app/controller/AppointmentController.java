@@ -32,7 +32,7 @@ public class AppointmentController {
         return appointmentService.save(appointment);
     }
 
-    @PostMapping("/{appointmentId}/updateStatus/{status}")
+    @PostMapping("/{appointmentId}/update-status/{status}")
     public Appointment updateStatus(@PathVariable int appointmentId, @PathVariable String status) {
         Status newStatus = Status.valueOf(status);
         return appointmentService.updateStatus(appointmentId, newStatus);

@@ -23,9 +23,9 @@
       <td>{{ doctor.speciality }}</td>
       <td>{{ doctor.age }}</td>
       <td>{{ doctor.yearsOfExperience }}</td>
-      <td>{{ doctor.user.role }}</td>
+      <td>{{ doctor.user ? doctor.user.role : 'N/A' }}</td>
       <td>
-        <button class="btn btn-success justify-content-center" (click)="updateDoctor(doctor.id)">Update</button>
+        <button class="btn btn-warning justify-content-center" (click)="updateDoctor(doctor.id)">Update</button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="deleteDoctor(doctor.id)">Delete</button>

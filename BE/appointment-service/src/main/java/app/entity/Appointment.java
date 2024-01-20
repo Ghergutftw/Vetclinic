@@ -4,6 +4,7 @@ import app.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.sql.Timestamp;
 
 @Entity
@@ -20,6 +21,7 @@ public class Appointment {
     private int id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     @Builder.Default
     private Status status = Status.CREATED;
 
@@ -30,15 +32,13 @@ public class Appointment {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Timestamp appointmentDate;
 
-   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Timestamp finishedDate;
-
-   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private Timestamp cancelledDate;
 
     private String reason;
 
     private int doctorId;
 
+    private int consultationId;
 
 }

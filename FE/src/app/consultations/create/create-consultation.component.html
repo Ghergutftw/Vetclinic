@@ -1,6 +1,6 @@
 <div class="container vh-100">
-  <div class="container text-center mt-2">
-    <h1>CREATE CONSULTATION</h1>
+  <div class="container text-center mt-2 ">
+    <div class="h1">CREATE CONSULTATION</div>
   </div>
   <div class="container w-50 h-75">
     <form (ngSubmit)="createConsultation()">
@@ -46,6 +46,7 @@
           </select>
         </fieldset>
         <br>
+<!--        TODO: https://www.npmjs.com/package/ng-multiselect-dropdown sau https://material.angular.io/components/select/overview-->
         <fieldset class="form-group text-center">
           <label class="fs-5">Age</label>
           <input type="number" [(ngModel)]="consultation.consultatedAnimal.age" class="form-control text-center" name="age"
@@ -53,7 +54,7 @@
         </fieldset>
         <br>
         <fieldset class="form-group text-center">
-          <label class="fs-5">Weight(gg)</label>
+          <label class="fs-5">Weight(g)</label>
           <input type="number" [(ngModel)]="consultation.consultatedAnimal.weight" class="form-control text-center" name="weight"
                  required="required">
         </fieldset>
@@ -61,8 +62,8 @@
       </div>
       <br>
       <fieldset class="form-group justify-content-center text-center">
-        <label class="fs-5">Treatment</label>
-        <select [(ngModel)]="consultation.diagnostic" class="form-control text-center" name="treatment" required="required">
+        <label class="fs-5">Diagnoses</label>
+        <select [(ngModel)]="consultation.diagnostic" (ngModelChange)="updateDiagnoses()" class="form-control text-center" name="diagnostic" required="required">
           <option *ngFor="let diagnostic of diagnostics" [value]="diagnostic">{{ diagnostic }}</option>
         </select>
       </fieldset>

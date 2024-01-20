@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {DataService} from "../../service/data.service";
 import {Router} from "@angular/router";
-import {Roles} from "../../users/users.component";
 import {AlertService} from "../../alert";
 import {Doctor} from "../../models/Doctor";
 import {User} from "../../models/User";
+import {Status} from "../../Enums/Status";
 
 @Component({
   selector: 'app-create',
@@ -42,7 +42,7 @@ export class CreateDoctorComponent {
     this.createdDoctor.user.username = doctor.user.username;
 
     this.service.createDoctor(this.createdDoctor).subscribe(() =>{
-      this.alertService.created("CREATED")
+      this.alertService.created(Status.CREATED)
       this.router.navigate(["/doctors"])
     })
 

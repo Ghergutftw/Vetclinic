@@ -31,7 +31,7 @@ export class DataService {
     return this.httpClient.get<Doctor[]>(`${this.BACKEND_API}/${this.DOCTOR_API}/get-all`)
   }
 
-  deleteDoctorById(id : number){
+  deleteDoctorById(id: number | undefined){
     return this.httpClient.delete(`${this.BACKEND_API}/${this.DOCTOR_API}/delete/${id}`)
   }
 
@@ -155,23 +155,20 @@ export class DataService {
     return this.httpClient.put(`${this.BACKEND_API}/${this.APPOINTMENT_API}/update/${id}`, appointment);
   }
 
-  updateStatus(id: number, status: string) {
-    return this.httpClient.post(`${this.BACKEND_API}/${this.APPOINTMENT_API}/update/${id}/${status}`, null);
+  // Change status of appointment
+  updateStatus(id: number | undefined, status: string) {
+    return this.httpClient.post(`${this.BACKEND_API}/${this.APPOINTMENT_API}/${id}/update-status/${status}`, null);
   }
 
-
   getAnimalDiseases(): Observable<string[]> {
-    // Assuming your backend returns an array of disease names as strings
     return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/diagnoses`);
   }
 
   getRecommendations(): Observable<string[]> {
-    // Assuming your backend returns an array of recommendation descriptions as strings
     return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/recommendations`);
   }
 
   getTreatments(): Observable<string[]> {
-    // Assuming your backend returns an array of treatment procedures as strings
     return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/treatments`);
   }
 

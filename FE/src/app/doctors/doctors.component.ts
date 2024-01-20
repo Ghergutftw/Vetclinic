@@ -34,12 +34,10 @@ export class DoctorsComponent implements OnInit {
     this.service.getAllDoctors().subscribe(
       response => {
         this.doctors = response;
-
         this.service.getAllUsers().subscribe(
           userResponse => {
             this.doctors.forEach(doctor => {
               const foundUser = userResponse.find((user: User) => user.id === doctor.id);
-
               if (foundUser) {
                 doctor.user = foundUser;
               }
@@ -51,7 +49,7 @@ export class DoctorsComponent implements OnInit {
 
   }
 
-  deleteDoctor(id: number) {
+  deleteDoctor(id: number | undefined) {
     console.log(`Deleting doctor at ${id}`)
     this.service.deleteDoctorById(id).subscribe(() => {
       console.log("Deleted successfully");
@@ -61,7 +59,7 @@ export class DoctorsComponent implements OnInit {
     })
   }
 
-  updateDoctor(id: number) {
+  updateDoctor(id: number | undefined) {
     this.router.navigate(['update-doctor', id])
   }
 

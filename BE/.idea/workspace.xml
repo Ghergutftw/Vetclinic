@@ -4,19 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="541cceab-bacd-48fc-9801-70bea0702dab" name="Changes" comment="Creating an animal through Consultation as it should">
-      <change afterPath="$PROJECT_DIR$/animal-service/src/main/java/app/service/AnimalServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-service/src/main/java/app/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-service/src/main/java/app/entity/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-service/src/main/java/app/service/AnimalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-service/src/main/java/app/service/AnimalService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/animal-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/AnimalDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/AnimalDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/ConsultationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/dto/ConsultationDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/doctor-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.html" afterDir="false" />
+    <list default="true" id="541cceab-bacd-48fc-9801-70bea0702dab" name="Changes" comment="-Rename Files&#10;-Create Appointment / update / delete&#10;-Creating bill">
+      <change afterPath="$PROJECT_DIR$/doctor-service/src/main/java/app/components/DataLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FE/src/app/Enums/Status.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/controller/AppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/dto/AppointmentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/dto/AppointmentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/entity/Appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/enums/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/service/AppointmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/service/AppointmentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/controller/ConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/controller/ConsultationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/app/components/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/app/components/DataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/animals/animals.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/animals/animals.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/animals/update/update-animal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/animals/update/update-animal.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/models/Models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/models/Models.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/create/create-consultation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/create/create-consultation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/create/create-consultation.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/create/create-consultation.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/doctors/create/create-doctor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/doctors/create/create-doctor.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/doctors/doctors.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/doctors/doctors.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/doctors/doctors.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/doctors/doctors.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/models/Doctor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/models/Doctor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/service/data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/service/data.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +72,15 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Docker.compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in appointment-service.executor&quot;: &quot;Debug&quot;,
     &quot;JUnit.ConsultationControllerTest.executor&quot;: &quot;Debug&quot;,
     &quot;Maven.BE [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [deploy].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy-file].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [org.springframework.boot:spring-boot-maven-plugin:3.2.0:build-image].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [test].executor&quot;: &quot;Run&quot;,
     &quot;Maven.discovery-server [clean,package].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
@@ -73,16 +90,27 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
     &quot;Spring Boot.AnimalServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.AppointmentServiceApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.ConsultationServiceApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.DiscoveryServerApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.DoctorServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.animal-service.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.api-gateway.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.appoitment-service.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.consultation-service.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.discovery-server.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.doctor-service.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.user-service.executor&quot;: &quot;Debug&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/madal/Desktop/Files/Vetclinic/BE/consultation-service/src/main/java/app&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/madal/Desktop/Files/Vetclinic/BE/user-service/src/main/java/app/service&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -303,6 +331,38 @@
       <workItem from="1702413256241" duration="1147000" />
       <workItem from="1702449373582" duration="207000" />
       <workItem from="1702483809154" duration="8781000" />
+      <workItem from="1702567011347" duration="9387000" />
+      <workItem from="1702665594412" duration="39000" />
+      <workItem from="1702671717701" duration="7494000" />
+      <workItem from="1702752575975" duration="8345000" />
+      <workItem from="1702841921979" duration="951000" />
+      <workItem from="1702894443850" duration="3690000" />
+      <workItem from="1702991969604" duration="1425000" />
+      <workItem from="1703082161651" duration="28000" />
+      <workItem from="1703095634136" duration="9882000" />
+      <workItem from="1703107709809" duration="43000" />
+      <workItem from="1703107773377" duration="1281000" />
+      <workItem from="1703162240777" duration="7700000" />
+      <workItem from="1703172695882" duration="12670000" />
+      <workItem from="1703193740637" duration="957000" />
+      <workItem from="1703249047351" duration="6014000" />
+      <workItem from="1703266525023" duration="2276000" />
+      <workItem from="1703331416838" duration="8576000" />
+      <workItem from="1703351351905" duration="8389000" />
+      <workItem from="1703434438295" duration="14047000" />
+      <workItem from="1703594372292" duration="678000" />
+      <workItem from="1703603441972" duration="14578000" />
+      <workItem from="1703779270179" duration="156000" />
+      <workItem from="1703785675101" duration="4459000" />
+      <workItem from="1704039584157" duration="1151000" />
+      <workItem from="1704054810162" duration="2300000" />
+      <workItem from="1704129636305" duration="4259000" />
+      <workItem from="1704292163325" duration="395000" />
+      <workItem from="1705070627174" duration="189000" />
+      <workItem from="1705499839615" duration="14000" />
+      <workItem from="1705581480745" duration="4133000" />
+      <workItem from="1705595833931" duration="1110000" />
+      <workItem from="1705750945556" duration="16809000" />
     </task>
     <task id="LOCAL-00001" summary="Discovery Server - Eureka">
       <option name="closed" value="true" />

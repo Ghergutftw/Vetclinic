@@ -7,14 +7,6 @@ import app.feign.AnimalInterface;
 import app.entity.Consultation;
 import app.feign.DoctorInterface;
 import app.repository.ConsultationRepository;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfCopy;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfReader;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.NoContentException;
 import lombok.extern.slf4j.Slf4j;
@@ -245,65 +237,7 @@ public class ConsultationServiceImpl implements ConsultationService {
             return new byte[0];
         }
     }
-//
-//    @Override
-//    public byte[] generateBill(int consultationId) {
-//        Document document = new Document();
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//
-//        try {
-//            PdfCopy copy = new PdfCopy(document, byteArrayOutputStream);
-//            document.open();
-//
-//            // Add content from the existing PDF template
-//            addExistingPdfContent(copy, "src/main/resources/pdf/bill.pdf");
-//
-//            // Add the table to the PDF
-//            addTableToPdf(copy);
-//
-//        } catch (DocumentException e) {
-//            e.printStackTrace(); // Handle the exception appropriately
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        } finally {
-//            document.close();
-//        }
-//
-//        return byteArrayOutputStream.toByteArray();
-//    }
-//
-//    private static void addExistingPdfContent(PdfCopy copy, String templatePath) throws IOException, DocumentException {
-//        InputStream inputStream = PDFFormat.class.getClassLoader().getResourceAsStream(templatePath);
-//        PdfReader reader = new PdfReader(inputStream);
-//        copy.addPage(copy.getImportedPage(reader, 1)); // Import the first page of the existing PDF
-//        reader.close();
-//    }
-//
-//    private static void addTableToPdf(PdfCopy copy) throws DocumentException {
-//        PdfPTable table = new PdfPTable(3); // 3 columns
-//
-//        // Add table headers
-//        PdfPCell header1 = new PdfPCell(new Phrase("Header 1"));
-//        PdfPCell header2 = new PdfPCell(new Phrase("Header 2"));
-//        PdfPCell header3 = new PdfPCell(new Phrase("Header 3"));
-//
-//        table.addCell(header1);
-//        table.addCell(header2);
-//        table.addCell(header3);
-//
-//        // Add table rows (you can loop through your data here)
-//        table.addCell("Row 1, Cell 1");
-//        table.addCell("Row 1, Cell 2");
-//        table.addCell("Row 1, Cell 3");
-//
-//        table.addCell("Row 2, Cell 1");
-//        table.addCell("Row 2, Cell 2");
-//        table.addCell("Row 2, Cell 3");
-//
-//        // Add the table to the PDF
-//        copy.add(table);
-//    }
-//    //UTILS
+//    UTILS
     private void createStyledExcelCell(Row row, int cellIndex, String text) {
         Cell cell = row.createCell(cellIndex);
         cell.setCellValue(text);
