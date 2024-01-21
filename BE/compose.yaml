@@ -1,5 +1,7 @@
+version: '3.8'
+
 services:
-  mysql:
+  vetclinic-db:
     image: mysql:latest
     container_name: vetclinic-db
     environment:
@@ -8,6 +10,67 @@ services:
       - MYSQL_ROOT_PASSWORD=verysecret
       - MYSQL_USER=myuser
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
       - ./docker/volume_mysql:/var/lib/mysql
+
+  discovery-server:
+    image: discovery-server:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    depends_on:
+      - vetclinic-db
+
+  api-gateway:
+    image: api-gateway:0.0.1-SNAPSHOT
+    ports:
+      - "8765:8765"
+    depends_on:
+      - discovery-server
+
+  animal-service:
+    image: animal-service:0.0.1-SNAPSHOT
+    ports:
+      - "8081:8081"
+    depends_on:
+      - vetclinic-db
+      - discovery-server
+
+  consultation-service:
+    image: consultation-service:0.0.1-SNAPSHOT
+    ports:
+      - "8082:8082"
+    depends_on:
+      - vetclinic-db
+      - discovery-server
+
+  appointment-service:
+    image: appointment-service:0.0.1-SNAPSHOT
+    ports:
+      - "8083:8083"
+    depends_on:
+      - vetclinic-db
+      - discovery-server
+
+  doctor-service:
+    image: doctor-service:0.0.1-SNAPSHOT
+    ports:
+      - "8084:8084"
+    depends_on:
+      - vetclinic-db
+      - discovery-server
+
+  user-service:
+    image: user-service:0.0.1-SNAPSHOT
+    ports:
+      - "8085:8085"
+    depends_on:
+      - vetclinic-db
+      - discovery-server
+
+  front-end:
+    image: your-front-end-image
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api-gateway
