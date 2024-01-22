@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/${services.appointment.name}")
+@RequestMapping("/appointment-service")
 public class AppointmentController {
 
     private final AppointmentService appointmentService;

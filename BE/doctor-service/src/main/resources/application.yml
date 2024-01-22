@@ -2,8 +2,10 @@ spring:
   profiles:
     active: development
   datasource:
-    url: jdbc:mysql://3306:3306/$vetclinic-db?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://vetclinic-db:3306/mydatabase?useSSL=false&allowPublicKeyRetrieval=true
     driverClassName: com.mysql.cj.jdbc.Driver
+    username: myuser
+    password: secret
   application:
     name: doctor-service
   data:
@@ -16,3 +18,12 @@ spring:
     show-sql: false
 server:
   port: 8084
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:password@discovery-server:8761/eureka
+
+app:
+  eureka-server:discovery-server
+

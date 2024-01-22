@@ -20,7 +20,7 @@ docker tag doctor-service:0.0.1-SNAPSHOT ghergutmadalin/doctor-service:0.0.1-SNA
 docker tag user-service:0.0.1-SNAPSHOT ghergutmadalin/user-service:0.0.1-SNAPSHOT
 
 # Tagging front-end
-docker tag front-end:latest ghergutmadalin/front-end:latest
+docker tag front-end:latest ghergutmadalin/front-end:0.0.1-SNAPSHOT
 
 # Logging in to Docker Hub
 docker login
@@ -47,4 +47,4 @@ docker push ghergutmadalin/doctor-service:0.0.1-SNAPSHOT
 docker push ghergutmadalin/user-service:0.0.1-SNAPSHOT
 
 # Pushing front-end
-docker push ghergutmadalin/front-end:latest
+docker push ghergutmadalin/front-end:0.0.1-SNAPSHOT
