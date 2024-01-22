@@ -32,7 +32,6 @@ services:
     expose:
       - "8765"
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
       - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
     depends_on:
       - discovery-server
