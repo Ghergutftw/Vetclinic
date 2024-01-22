@@ -3,6 +3,7 @@ version: '3.8'
 services:
   vetclinic-db:
     image: mysql:latest
+    container_name: vetclinic-db
     environment:
       - MYSQL_DATABASE=mydatabase
       - MYSQL_PASSWORD=secret
@@ -15,63 +16,72 @@ services:
 
   discovery-server:
     image: ghergutmadalin/discovery-server:0.0.1-SNAPSHOT
+    container_name: discovery-server
     ports:
       - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       - vetclinic-db
 
   api-gateway:
     image: ghergutmadalin/api-gateway:0.0.1-SNAPSHOT
+    container_name: api-gateway
     ports:
       - "8765:8765"
+    expose:
+      - "8765"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
     depends_on:
       - discovery-server
 
   animal-service:
     image: ghergutmadalin/animal-service:0.0.1-SNAPSHOT
+    container_name: animal-service
     ports:
       - "8081:8081"
     depends_on:
-      - vetclinic-db
       - discovery-server
 
-  consultation-service:
-    image: ghergutmadalin/consultation-service:0.0.1-SNAPSHOT
-    ports:
-      - "8082:8082"
-    depends_on:
-      - vetclinic-db
-      - discovery-server
-
-  appointment-service:
-    image: ghergutmadalin/appointment-service:0.0.1-SNAPSHOT
-    ports:
-      - "8083:8083"
-    depends_on:
-      - vetclinic-db
-      - discovery-server
-
-  doctor-service:
-    image: ghergutmadalin/doctor-service:0.0.1-SNAPSHOT
-    ports:
-      - "8084:8084"
-    depends_on:
-      - vetclinic-db
-      - discovery-server
-
-  user-service:
-    image: ghergutmadalin/user-service:0.0.1-SNAPSHOT
-    ports:
-      - "8085:8085"
-    environment:
-      - SERVICES_NAME=user-service
-    depends_on:
-      - vetclinic-db
-      - discovery-server
-
-  front-end:
-    image: ghergutmadalin/front-end:latest
-    ports:
-      - "4200:4200"
-    depends_on:
-      - api-gateway
+#  consultation-service:
+#    image: ghergutmadalin/consultation-service:0.0.1-SNAPSHOT
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - vetclinic-db
+#      - discovery-server
+#
+#  appointment-service:
+#    image: ghergutmadalin/appointment-service:0.0.1-SNAPSHOT
+#    ports:
+#      - "8083:8083"
+#    depends_on:
+#      - vetclinic-db
+#      - discovery-server
+#
+#  doctor-service:
+#    image: ghergutmadalin/doctor-service:0.0.1-SNAPSHOT
+#    ports:
+#      - "8084:8084"
+#    depends_on:
+#      - vetclinic-db
+#      - discovery-server
+#
+#  user-service:
+#    image: ghergutmadalin/user-service:0.0.1-SNAPSHOT
+#    ports:
+#      - "8085:8085"
+#    environment:
+#      - SERVICES_NAME=user-service
+#    depends_on:
+#      - vetclinic-db
+#      - discovery-server
+#
+#  front-end:
+#    image: ghergutmadalin/front-end:0.0.1-SNAPSHOT
+#    ports:
+#      - "4200:4200"
+#    depends_on:
+#      - api-gateway

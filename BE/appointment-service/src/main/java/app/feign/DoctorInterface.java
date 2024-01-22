@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "${services.doctor.name}" , url = "http://localhost:${services.doctor.port}/${services.doctor.name}" )
+@FeignClient(name = "doctor-service" , url = "http://localhost:8084/doctor-service" )
 public interface DoctorInterface {
 
     @GetMapping("/get/{id}")

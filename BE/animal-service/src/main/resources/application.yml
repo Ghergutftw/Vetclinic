@@ -2,10 +2,12 @@ spring:
   profiles:
     active: development
   datasource:
-    url: ${database.url}
-    driverClassName: ${database.driver-class-name}
+    url: jdbc:mysql://vetclinic-db:3306/mydatabase?useSSL=false&allowPublicKeyRetrieval=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: myuser
+    password: secret
   application:
-    name: ${services.animal.name}
+    name: animal-service
   data:
     rest:
       default-page-size: '20'
@@ -13,7 +15,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: create-drop
-    show-sql: ${database.show-sql}
-
+    show-sql: false
 server:
-  port: ${services.animal.port}
+  port: 8081
+

@@ -1,5 +1,5 @@
 server:
-  port: ${services.api-gateway.port}
+  port: 8765
 
 logging:
   level:
@@ -11,30 +11,30 @@ spring:
   profiles:
     active: development
   application:
-    name: ${services.api-gateway.name}
+    name: api-gateway
   cloud:
     gateway:
       routes:
-        - id: ${services.animal.name}
-          uri: ${services.animal.uri}
+        - id: animal-service
+          uri: http://localhost:8081/
           predicates:
-            - Path=/${services.animal.name}/**
-        - id: ${services.consultation.name}
-          uri: ${services.consultation.uri}
+            - Path=/animal-service/**
+        - id: consultation-service
+          uri: http://localhost:8082/
           predicates:
-            - Path=/${services.consultation.name}/**
-        - id: ${services.appointment.name}
-          uri: ${services.appointment.uri}
+            - Path=/consultation-service/**
+        - id: appointment-service
+          uri: http://localhost:8083/
           predicates:
-            - Path=/${services.appointment.name}/**
-        - id: ${services.doctor.name}
-          uri: ${services.doctor.uri}
+            - Path=/appointment-service/**
+        - id: doctor-service
+          uri: http://localhost:8084/
           predicates:
-            - Path=/${services.doctor.name}/**
-        - id: ${services.user.name}
-          uri: ${services.user.uri}
+            - Path=/doctor-service/**
+        - id: user-service
+          uri: http://localhost:8085/
           predicates:
-            - Path=/${services.user.name}/**
+            - Path=/user-service/**
           metadata:
             cors:
               allowedOrigins: '*'
@@ -45,5 +45,9 @@ spring:
           '[/**]':
             exposed-headers: "*"
             allowedHeaders : "*"
-            allowedOrigins: ${fe.url}
+            allowedOrigins: http://localhost:4200/front-end
             allowedMethods: "*"
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

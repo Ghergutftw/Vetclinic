@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/${services.animal.name}")
+@RequestMapping("/animal-service")
 public class AnimalController {
 
     private final AnimalService animalService;
