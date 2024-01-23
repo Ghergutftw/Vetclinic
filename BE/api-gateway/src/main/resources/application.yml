@@ -12,32 +12,54 @@ logging:
 
 spring:
   profiles:
+#    development for docker-compose and test for local
     active: development
   application:
     name: api-gateway
   cloud:
     gateway:
       routes:
+#        - id: animal-service
+#          uri: http://animal-service:8081/
+#          predicates:
+#            - Path=/animal-service/**
+#        - id: doctor-service
+#          uri: http://doctor-service:8084/
+#          predicates:
+#            - Path=/doctor-service/**
+#        - id: consultation-service
+#          uri: http://consultation-service:8082/
+#          predicates:
+#            - Path=/consultation-service/**
+#        - id: user-service
+#          uri: http://user-service:8085/
+#          predicates:
+#            - Path=/user-service/**
+#        - id: appointment-service
+#          uri: http://appointment-service:8083/
+#          predicates:
+#            - Path=/appointment-service/**
         - id: animal-service
-          uri: http://animal-service:8081/
+          uri: http://localhost:8081/
           predicates:
             - Path=/animal-service/**
         - id: doctor-service
-          uri: http://doctor-service:8084/
+          uri: http://localhost:8084/
           predicates:
             - Path=/doctor-service/**
         - id: consultation-service
-          uri: http://consultation-service:8082/
+          uri: http://localhost:8082/
           predicates:
             - Path=/consultation-service/**
         - id: user-service
-          uri: http://user-service:8085/
+          uri: http://localhost:8085/
           predicates:
             - Path=/user-service/**
         - id: appointment-service
-          uri: http://appointment-service:8083/
+          uri: http://localhost:8083/
           predicates:
             - Path=/appointment-service/**
+
           metadata:
             cors:
               allowedOrigins: '*'
@@ -48,9 +70,9 @@ spring:
           '[/**]':
             exposed-headers: "*"
             allowedHeaders : "*"
-            allowedOrigins: http://localhost:8080
+            allowedOrigins: "*"
             allowedMethods: "*"
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://eureka:password@discovery-server:8761/eureka
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://eureka:password@discovery-server:8761/eureka

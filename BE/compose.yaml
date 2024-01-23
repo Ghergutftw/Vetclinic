@@ -19,7 +19,7 @@ services:
     ports:
       - "8761:8761"
     environment:
-      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
     depends_on:
       - vetclinic-db
 
@@ -31,7 +31,7 @@ services:
     expose:
       - "8765"
     environment:
-      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
     depends_on:
       - discovery-server
 
@@ -41,8 +41,9 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
     depends_on:
+      - api-gateway
       - discovery-server
 
   doctor-service:
@@ -51,8 +52,9 @@ services:
     ports:
       - "8084:8084"
     environment:
-      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
     depends_on:
+      - user-service
       - discovery-server
 
   user-service:
@@ -61,7 +63,7 @@ services:
     ports:
       - "8085:8085"
     environment:
-      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
     depends_on:
       - discovery-server
 
@@ -70,8 +72,11 @@ services:
     ports:
       - "8082:8082"
     environment:
-      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
     depends_on:
+      - animal-service
+      - doctor-service
+      - api-gateway
       - discovery-server
 
   appointment-service:
@@ -79,8 +84,10 @@ services:
     ports:
       - "8083:8083"
     environment:
-      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
     depends_on:
+      - doctor-service
+      - api-gateway
       - discovery-server
   front-end:
     image: ghergutmadalin/front-end:0.0.1-SNAPSHOT
@@ -89,3 +96,4 @@ services:
       - "8080:80"
     depends_on:
       - api-gateway
+      - discovery-server

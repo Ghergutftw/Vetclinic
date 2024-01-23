@@ -18,12 +18,12 @@ spring:
     show-sql: false
 server:
   port: 8084
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka:password@discovery-server:8761/eureka
-
-app:
-  eureka-server:discovery-server
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://eureka:password@discovery-server:8761/eureka
+#
+#app:
+#  eureka-server:discovery-server
 
