@@ -19,7 +19,7 @@ services:
     ports:
       - "8761:8761"
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
     depends_on:
       - vetclinic-db
 
@@ -31,7 +31,7 @@ services:
     expose:
       - "8765"
     environment:
-      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
     depends_on:
       - discovery-server
 
@@ -40,6 +40,8 @@ services:
     container_name: animal-service
     ports:
       - "8081:8081"
+    environment:
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
     depends_on:
       - discovery-server
 
@@ -48,6 +50,8 @@ services:
     container_name: doctor-service
     ports:
       - "8084:8084"
+    environment:
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
     depends_on:
       - discovery-server
 
@@ -56,6 +60,8 @@ services:
     container_name: user-service
     ports:
       - "8085:8085"
+    environment:
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
     depends_on:
       - discovery-server
 
@@ -63,6 +69,8 @@ services:
     image: ghergutmadalin/consultation-service:0.0.1-SNAPSHOT
     ports:
       - "8082:8082"
+    environment:
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
     depends_on:
       - discovery-server
 
@@ -70,14 +78,14 @@ services:
     image: ghergutmadalin/appointment-service:0.0.1-SNAPSHOT
     ports:
       - "8083:8083"
+    environment:
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=WARN
     depends_on:
       - discovery-server
   front-end:
     image: ghergutmadalin/front-end:0.0.1-SNAPSHOT
     container_name: front-end
     ports:
-      - "4200:4200"
+      - "8080:80"
     depends_on:
       - api-gateway
-
-

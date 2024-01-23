@@ -1,5 +1,6 @@
+#TODO: Make it work for all docker-compose files
 fe:
-  url: http://localhost:4200
+  url: http://localhost:8080
 services:
   animal:
     port: 8081

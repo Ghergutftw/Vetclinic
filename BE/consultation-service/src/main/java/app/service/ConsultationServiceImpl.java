@@ -166,10 +166,11 @@ public class ConsultationServiceImpl implements ConsultationService {
             createStyledExcelCell(totalRow, 5, "Total Price");
             createStyledExcelCell(totalRow, 6, calculateTotalPrice(consultations));
 
+//            TODO: Auto-size columns for dockerfile0
             // Auto-size columns
-            for (int i = 0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++) {
-                sheet.autoSizeColumn(i);
-            }
+//            for (int i = 0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++) {
+//                sheet.autoSizeColumn(i);
+//            }
 
             workbook.write(outputStream);
             return outputStream.toByteArray();
