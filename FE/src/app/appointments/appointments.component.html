@@ -1,0 +1,36 @@
+<div class="container vh-100">
+  <div class="container text-center mt-2 ">
+    <div class="h1">Appointments</div>
+  </div>
+  <table class="table table-dark">
+    <thead class="thead-dark text-center">
+    <tr class="table-header">
+      <th>Nr.Crt</th>
+      <th>Time</th>
+      <th>Doctor</th>
+      <th>Owner</th>
+      <th colspan="3" class="text-center">EDIT</th>
+    </tr>
+    </thead>
+    <tbody class="table-tabs text-center" *ngIf="appointments">
+    <tr *ngFor="let appointment of appointments" >
+      <td>{{appointment.id}}</td>
+      <td>{{appointment.appointmentDate | date: 'MM/dd/yyyy, hh:mm a' }}</td>
+      <td>Dr {{appointment.doctorLastName}}</td>
+      <td>{{appointment.owner.firstName}} {{appointment.owner.lastName}}</td>
+      <td><button class="btn btn-success justify-content-center" (click)="processAppointment(appointment.id, appointment.doctorLastName)">Process</button></td>
+      <td><button class="btn btn-warning justify-content-center" (click)="updateAppointment(appointment.id)">Update</button></td>
+      <td><button class="btn btn-danger" (click)="deleteAppointment(appointment.id)">Delete</button></td>
+    </tr>
+    </tbody>
+    <div class="col-1 mt-2">
+      <button class="btn btn-dark" (click) = "createAppointment()" >Create</button>
+    </div>
+  </table>
+  <div class="container">
+    <div class="alert alert-success text-center " *ngIf="deleteMessage!=''">
+      Deleted Successfully!
+    </div>
+  </div>
+
+</div>

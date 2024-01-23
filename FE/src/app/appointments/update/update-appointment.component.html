@@ -1,0 +1,67 @@
+<div class="container vh-100">
+  <div class="container text-center mt-2">
+    <h1>UPDATE CONSULTATION</h1>
+  </div>
+  <div class="container w-50 h-75">
+    <form (ngSubmit)="updateAppointment()">
+      <fieldset class="form-group justify-content-center text-center">
+        <label class="fs-5">Date</label>
+        <input type="datetime-local" class="form-control text-center" [(ngModel)]="appointment.appointmentDate" name="date">
+      </fieldset>
+
+      <br>
+      <fieldset class="form-group justify-content-center text-center">
+        <label class="fs-5">Doctor</label>
+        <select class="form-control text-center" [(ngModel)]="appointment.doctorLastName" name="doctorLastName">
+          <option *ngFor="let doctor of doctors" [value]="doctor.lastName">
+            {{ doctor.lastName }}
+          </option>
+        </select>
+      </fieldset>
+      <br>
+      <div class="container w-75 border border-secondary-subtle border-3 rounded">
+        <h1 class="text-center">Owner Info</h1>
+        <fieldset class="form-group justify-content-center text-center">
+          <label class="fs-5">First Name</label>
+          <input type="text" [(ngModel)]="appointment.owner.firstName" class="form-control text-center" name="firstName"
+                 required="required">
+        </fieldset>
+        <br>
+        <fieldset class="form-group justify-content-center text-center">
+          <label class="fs-5">Last Name</label>
+          <input type="text" [(ngModel)]="appointment.owner.lastName" class="form-control text-center" name="lastName"
+                 required="required">
+        </fieldset>
+        <br>
+        <fieldset class="form-group justify-content-center text-center">
+          <label class="fs-5">Phone Number</label>
+          <input type="number" mask="(000) 000-000"  [(ngModel)]="appointment.owner.phoneNumber" class="form-control text-center" name="phoneNumber"
+                 required="required">
+        </fieldset>
+        <br>
+        <fieldset class="form-group justify-content-center text-center">
+          <label class="fs-5">Email</label>
+          <input type="email" [(ngModel)]="appointment.owner.email" class="form-control text-center" name="email"
+                 required="required">
+        </fieldset>
+        <br>
+      </div>
+      <br>
+      <div>
+        <fieldset class="form-group justify-content-center text-center">
+          <label class="fs-5">Reason</label>
+          <input type="text" [(ngModel)]="appointment.reason" class="form-control text-center" name="petName"
+                 required="required">
+        </fieldset>
+      </div>
+      <br>
+
+      <div class="text-center">
+        <div class="btn-group">
+          <button class="btn btn-success" type="submit"> SAVE</button>
+          <button class="btn btn-warning" type="reset"> RESET</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
