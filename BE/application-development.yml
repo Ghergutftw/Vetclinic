@@ -27,6 +27,11 @@ services:
     name: user-service
     url: http://localhost:${services.user.port}/${services.user.name}
     uri: http://localhost:${services.user.port}/
+  adoption:
+    port: 8086
+    name: adoption-service
+    url: http://localhost:${services.adoption.port}/${services.adoption.name}
+    uri: http://localhost:${services.adoption.port}/
   api-gateway:
     port: 8765
     name: api-gateway

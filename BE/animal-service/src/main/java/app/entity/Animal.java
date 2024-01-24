@@ -31,4 +31,6 @@ public class Animal {
     @Column(unique = true)
     private String animalCode;
 
+    private Boolean fromAdoption;
+
 }

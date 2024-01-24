@@ -25,6 +25,7 @@
         <module>appointment-service</module>
         <module>api-gateway</module>
         <module>user-service</module>
+        <module>adoption-service</module>
     </modules>
 
     <dependencies>
