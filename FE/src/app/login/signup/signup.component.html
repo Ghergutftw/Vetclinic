@@ -1,0 +1,46 @@
+<!-- signup.component.html -->
+
+<div class="container">
+  <section class="min-vh-75 mt-4 mb-4 gradient-custom">
+    <div class="container py-1 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-4 text-center">
+              <div class="md-5 mb-3 mt-md-4 pb-5 m-0">
+                <!-- Your sign-up form goes here -->
+                <h2 class="fw-bold mb-2 text-uppercase">Create Account</h2>
+                <p class="text-white-50 mb-3">Please fill in the details to create your account!</p>
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="username">Username</label>
+                  <input type="text" id="username" class="form-control form-control-lg" [(ngModel)]="user.username" />
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="email">Email</label>
+                  <input type="email" id="email" class="form-control form-control-lg" [(ngModel)]="user.email" />
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="password">Password</label>
+                  <input type="password" id="password" class="form-control form-control-lg" [(ngModel)]="user.password" />
+                </div>
+
+                <!-- ng-recaptcha component -->
+                <re-captcha [(ngModel)]="recaptchaResponse" siteKey="6Le5iVwpAAAAALlkDGymK8x2AvC0SG5cuwc67h36"></re-captcha>
+
+                <button class="btn btn-outline-light btn-lg px-5" type="submit" (click)="handleSignUp()">Create Account</button>
+                <br>
+                <br>
+                <div>
+                  <p class="mb-0">Already have an account? <a routerLink="/login" class="text-white-50 fw-bold">Login</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
