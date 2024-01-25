@@ -20,6 +20,7 @@ import {AppointmentsComponent} from "./appointments/appointments.component";
 import {UpdateConsultationComponent} from "./consultations/update/update-consultation.component";
 import {CreateAppointmentComponent} from "./appointments/create/create-appointment.component";
 import {UpdateAppointmentComponent} from "./appointments/update/update-appointment.component";
+import {SignupComponent} from "./login/signup/signup.component";
 
 const routes: Routes = [
   {path: '', component:LoginComponent},
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'update-consultation/:id',component:UpdateConsultationComponent , canActivate:[RouterGuardService]},
   {path: 'adoptions',component:AdoptionsComponent , canActivate:[RouterGuardService]},
   {path: 'login',component:LoginComponent},
+  {path: 'signup',component:SignupComponent},
   {path: 'logout',component:LogoutComponent , canActivate:[RouterGuardService]},
   {path: '**', component:ErrorComponent}
 ]
