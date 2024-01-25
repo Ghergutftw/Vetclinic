@@ -18,6 +18,8 @@ docker/
 
 node_modules/
 .angular/
+FE/.angular/cache/
+
 
 ### Eclipse ###
 .apt_generated
