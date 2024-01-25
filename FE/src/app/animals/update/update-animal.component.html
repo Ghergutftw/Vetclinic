@@ -2,7 +2,16 @@
   UPDATE ANIMAL INFO
 </h1>
 <div class="container w-50 h-75">
-  <form (ngSubmit)="!updateCreateForm.invalid && updateAnimal(id)" #updateCreateForm="ngForm">
+  <form (ngSubmit)="!updateCreateForm.invalid && updateAnimal(id)" #updateCreateForm="ngForm" enctype="multipart/form-data">
+    <div class="text-center">
+      <img [src]="retrievedImage" alt="Animal Image" class="img-fluid" width="200px" height="200px">
+    </div>
+
+    <div class="mb-3">
+      <input type="file" name="image" id="image" accept="image/*" (change)="onFileSelected($event)" class="form-control">
+    </div>
+
+    <br>
     <fieldset class="form-group justify-content-center text-center">
       <label>Nickname</label>
       <input type="text" [(ngModel)]="animal.nickname" class="form-control text-center" name="nickname" required = "required" >
@@ -35,6 +44,7 @@
     <br>
     <div class="btn-group">
       <button class="btn btn-warning" type="submit"> UPDATE </button>
+      <button class="btn btn-warning" (click)="updateImage()"> UPDATE IMAGE</button>
       <button class="btn btn-warning" type="reset"> RESET </button>
     </div>
   </form>

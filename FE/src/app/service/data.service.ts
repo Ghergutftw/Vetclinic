@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHeaders} from "@angular/common/http";
 import {Login} from "../models/Login";
 import {LoginResponse} from "../models/LoginResponse";
 import {Consultation} from "../models/Consultation";
@@ -7,8 +7,9 @@ import {environment} from "../../environments/environment";
 import {Doctor} from "../models/Doctor";
 import {Animal} from "../models/Animal";
 import {User} from "../models/User";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {Appointment} from "../models/Appointment";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ import {Appointment} from "../models/Appointment";
 export class DataService {
 
   constructor(
-    public httpClient:HttpClient
+    public httpClient:HttpClient,
+    private sanitizer: DomSanitizer
   ) { }
 
   BACKEND_API: string = environment.backendApi;
@@ -77,6 +79,22 @@ export class DataService {
 
   createAnimal(animal: Animal){
     return this.httpClient.post<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/create` , animal)
+  }
+
+  getImage(id: number): Observable<SafeUrl> {
+    return this.httpClient.get(`${this.BACKEND_API}/${this.ANIMAL_API}/get-image/${id}`, { responseType: 'arraybuffer' })
+      .pipe(map(res => {
+        const blob = new Blob([res], { type: 'image/png' }); // Adjust the type based on the actual image type
+        return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+      }));
+  }
+
+  saveImage(id: number, image: File) {
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.httpClient.post(`${this.BACKEND_API}/${this.ANIMAL_API}/post-image/${id}`, formData , {headers: headers});
   }
 
  // ANIMALS API
@@ -171,6 +189,8 @@ export class DataService {
   getTreatments(): Observable<string[]> {
     return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/treatments`);
   }
+
+
 
 
 }

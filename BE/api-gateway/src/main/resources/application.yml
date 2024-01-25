@@ -77,7 +77,7 @@ spring:
           '[/**]':
             exposed-headers: "*"
             allowedHeaders : "*"
-            allowedOrigins: http://localhost:8080
+            allowedOrigins: "*"
             allowedMethods: "*"
 #eureka:
 #  client:

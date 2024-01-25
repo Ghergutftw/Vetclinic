@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "animal")
 public class Animal {
 
@@ -32,5 +31,11 @@ public class Animal {
     private String animalCode;
 
     private Boolean fromAdoption;
+
+    private String pathToImage;
+
+    public Animal() {
+        this.pathToImage = "animal-service/src/main/resources/images/animals/default.png";
+    }
 
 }
