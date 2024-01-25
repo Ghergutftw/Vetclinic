@@ -28,6 +28,11 @@ export class UpdateAnimalComponent implements OnInit{
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.animal = new Animal(0, "", "", "", 0, 0)
+    this.refreshPage();
+
+  }
+
+  private refreshPage() {
     this.service.retrieveAnimalById(this.id).subscribe(
       response => {
         this.animal = new Animal(response.id, response.nickname, response.animalType, response.specie, response.age, response.weight);
@@ -35,11 +40,10 @@ export class UpdateAnimalComponent implements OnInit{
     )
 
     this.service.getImage(this.id).subscribe(
-      value =>{
+      value => {
         this.retrievedImage = value;
       }
     );
-
   }
 
   updateAnimal(id: number) {
@@ -55,11 +59,7 @@ export class UpdateAnimalComponent implements OnInit{
   }
 
   updateImage() {
-    this.service.saveImage(this.id, this.image).subscribe(
-      () => {
-        console.log("Image updated")
-      }
-    )
+    this.service.saveImage(this.id, this.image)
   }
 
   onFileSelected(event: Event): void {

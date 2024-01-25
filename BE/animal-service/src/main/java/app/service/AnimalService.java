@@ -20,7 +20,7 @@ public interface AnimalService {
 
     Animal getAnimalById(int id);
 
-    String saveImage(MultipartFile file, int animalId) throws IOException;
+    Response saveImage(MultipartFile file, int animalId) throws IOException;
 
     byte[] getImage(int animalId) throws IOException;
 }

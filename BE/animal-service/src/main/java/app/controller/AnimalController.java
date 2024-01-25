@@ -35,7 +35,7 @@ public class AnimalController {
 
     @PostMapping("/post-image/{animalId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public String addAnimal(@RequestParam("image") MultipartFile file  , @PathVariable int animalId) throws IOException {
+    public Response addAnimal(@RequestParam("image") MultipartFile file  , @PathVariable int animalId) throws IOException {
         return animalService.saveImage(file,animalId);
     }
 

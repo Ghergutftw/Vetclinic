@@ -19,7 +19,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     @PostMapping("/update-password/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public User updatePassword(@PathVariable int id, @RequestBody String password){

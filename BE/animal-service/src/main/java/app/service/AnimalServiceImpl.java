@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -65,16 +66,17 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public String saveImage(MultipartFile file, int animalId) throws IOException {
-        String fileName = file.getOriginalFilename();
-        Path targetPath = Path.of(IMAGES_FOLDER, fileName);
+    public Response saveImage(MultipartFile file, int animalId) throws IOException {
+        String randomFileName = UUID.randomUUID().toString();
+        Path targetPath = Path.of(IMAGES_FOLDER, randomFileName);
         Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
         Animal animal = animalRepository.findOneById(animalId);
-        String path = IMAGES_FOLDER + fileName;
-        log.info("Saving image for animal with id: {} with path : {}", animalId, path);
+        String path = IMAGES_FOLDER + randomFileName;
+        log.info("Saving image for animal with id: {} with path: {}", animalId, path);
         animal.setPathToImage(path);
         animalRepository.save(animal);
-        return "Uploaded image successfully";
+
+        return new Response("success", "Image saved successfully");
     }
 
     @Override

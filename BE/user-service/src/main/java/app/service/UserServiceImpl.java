@@ -6,10 +6,12 @@ import app.entity.User;
 import app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -28,24 +30,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response login(UserLoginDTO userToCheck) {
-        List<User> users = userRepository.findAll();
+        // Find user by username or email
+        Optional<User> optionalUser = userRepository.findByUsernameOrEmail(userToCheck.getEmail(), userToCheck.getEmail());
 
-        // Check if the user only logged in with the username if not check is he logged in with the email
-        if (!userToCheck.getEmail().contains("@")) {
-            for (User user : users) {
-                if (user.getUsername().equals(userToCheck.getEmail()) && user.getPassword().equals(userToCheck.getPassword())) {
-                    log.info("User " + user.getUsername() + " logged in");
-                    return new Response(SUCCESS_MESSAGE, "Logged in");
-                }
-            }
-        } else {
-            for (User user : users) {
-                if (user.getEmail().equals(userToCheck.getEmail()) && user.getPassword().equals(userToCheck.getPassword())) {
-                    log.info("User " + user.getUsername() + " logged in");
-                    return new Response(SUCCESS_MESSAGE, "Logged in");
-                }
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+            // Check if entered password matches the stored hashed password
+            if (passwordEncoder.matches(userToCheck.getPassword(), user.getPassword())) {
+                log.info("User " + user.getUsername() + " logged in");
+                return new Response(SUCCESS_MESSAGE, "Logged in");
             }
         }
+
         return new Response("failed", "Wrong credentials");
     }
 
@@ -63,6 +61,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user) {
         log.info("Creating user: {}", user);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
 

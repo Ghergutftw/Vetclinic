@@ -5,12 +5,15 @@ import app.enums.Roles;
 import app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
     private final UserRepository userRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     public DataLoader(UserRepository userRepository) {
@@ -19,7 +22,11 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User user = new User(0, "test", "test@gmail.com", "test", Roles.ADMIN);
+        // Create admin user
+
+        String password = passwordEncoder.encode("test");
+
+        User user = new User(0, "test", "test@gmail.com", password, Roles.ADMIN);
         userRepository.save(user);
     }
 }

@@ -10,4 +10,6 @@ public interface AdoptionService {
 
     List<Adoption> getAllAdoptions();
 
+    
+
 }
