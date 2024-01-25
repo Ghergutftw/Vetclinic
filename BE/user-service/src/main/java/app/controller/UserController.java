@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.dto.Response;
+import app.dto.SignUpDTO;
 import app.dto.UserLoginDTO;
 import app.entity.User;
 import app.service.UserService;
@@ -26,8 +27,8 @@ public class UserController {
     }
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+    public Response createUser(@RequestBody SignUpDTO sign){
+        return userService.createUser(sign);
     }
 
     @GetMapping("/get/{id}")

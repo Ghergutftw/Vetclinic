@@ -31,7 +31,6 @@ export class UsersComponent {
   refreshPage(){
     this.dataService.getAllUsers().subscribe(
       response =>{
-        console.log(response)
         this.users = response
       }
     )
@@ -42,11 +41,9 @@ export class UsersComponent {
   }
 
   decrypt() {
-    console.log("Decrypting password");
     for (let i = 0; i < this.users.length; i++) {
       this.dataService.getDecodedString(this.users[i].password).subscribe(
         value => {
-          console.log(value)
           this.users[i].password = value
         }
       )
@@ -66,7 +63,6 @@ export class UsersComponent {
     for (let i = 0; i < this.users.length; i++) {
       this.dataService.getEncodedString(this.users[i].password).subscribe(
         value => {
-          console.log(value)
           this.users[i].password = value
         }
       )

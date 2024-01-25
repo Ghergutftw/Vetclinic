@@ -33,6 +33,7 @@ import {CreateAppointmentComponent} from './appointments/create/create-appointme
 import {UpdateConsultationComponent} from './consultations/update/update-consultation.component';
 import {UpdateAppointmentComponent} from './appointments/update/update-appointment.component';
 import {SignupComponent} from './login/signup/signup.component';
+import {NotifierModule} from "angular-notifier";
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {SignupComponent} from './login/signup/signup.component';
     HttpClientModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    NotifierModule
   ],
   providers: [HttpClient,
     {

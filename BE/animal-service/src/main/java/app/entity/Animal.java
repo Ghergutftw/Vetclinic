@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -35,7 +34,7 @@ public class Animal {
     private String pathToImage;
 
     public Animal() {
-        this.pathToImage = "animal-service/src/main/resources/images/animals/default.png";
+        this.pathToImage = "animal-service/src/main/resources/images/animals/default.jpg";
     }
 
 }

@@ -10,6 +10,7 @@ import {User} from "../models/User";
 import {map, Observable} from "rxjs";
 import {Appointment} from "../models/Appointment";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {Response} from "../models/Response";
 
 @Injectable({
   providedIn: 'root'
@@ -107,6 +108,14 @@ export class DataService {
 
   login(user : Login){
     return this.httpClient.post<LoginResponse>(`${this.BACKEND_API}/${this.USER_API}/login`,user)
+  }
+
+  createUser(user:User){
+    return this.httpClient.post<Response>(`${this.BACKEND_API}/${this.USER_API}/create`,user)
+  }
+
+  forgotPassword(email:string){
+    return this.httpClient.get(`${this.BACKEND_API}/${this.USER_API}/forgot-password/${email}`)
   }
 
   logout(){

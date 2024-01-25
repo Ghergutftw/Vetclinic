@@ -33,7 +33,6 @@ export class CreateAppointmentComponent implements OnInit {
   createAppointment() {
     this.service.createAppointment(this.appointment).subscribe(
       response => {
-        console.log(response);
         this.router.navigate(['appointments'])
       }
     )

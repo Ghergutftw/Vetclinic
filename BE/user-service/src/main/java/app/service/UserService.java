@@ -1,6 +1,7 @@
 package app.service;
 
 import app.dto.Response;
+import app.dto.SignUpDTO;
 import app.dto.UserLoginDTO;
 import app.entity.User;
 
@@ -20,7 +21,7 @@ public interface UserService {
 
     User getUser(int id);
 
-    User createUser(User user);
+    Response createUser(SignUpDTO sign);
 
     Response deleteUser(int id);
 

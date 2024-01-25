@@ -1,7 +1,10 @@
 // signup.component.ts
 
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/User";
+import {DataService} from "../../service/data.service";
+import {Router} from "@angular/router";
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-signup',
@@ -9,16 +12,24 @@ import {User} from "../../models/User";
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  user!: User// Assuming you have a user object
-  recaptchaResponse: string = "";
+  user: User = new User();
+
+  constructor(
+    public dataService: DataService,
+    public router: Router,
+    public notifier: NotifierService
+  ) {
+  }
 
   handleSignUp() {
-    if (!this.recaptchaResponse) {
-      console.error('reCAPTCHA not checked!');
-      return;
-    }
+    this.dataService.createUser(this.user).subscribe(
+      response => {
+        if(response.status == "success"){
+          this.notifier.notify("success", "User created successfully!")
+        }
+        this.router.navigate(['login'])
+      }
+    )
 
-
-    this.recaptchaResponse = '';
   }
 }

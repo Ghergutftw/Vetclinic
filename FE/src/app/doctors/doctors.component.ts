@@ -50,9 +50,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   deleteDoctor(id: number | undefined) {
-    console.log(`Deleting doctor at ${id}`)
     this.service.deleteDoctorById(id).subscribe(() => {
-      console.log("Deleted successfully");
       this.deleteMessage = "DELETED SUCCESSFULLY"
       this.refreshPage();
       this.changeDeleteMessageInstantly()

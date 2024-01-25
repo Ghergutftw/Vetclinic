@@ -39,9 +39,6 @@ export class UpdateDoctorComponent implements OnInit{
         this.doctor = response
       }
     )
-
-    console.log(this.doctor)
-    console.log(this.user)
   }
   updateDoctor(id:number) {
     this.doctor.user = this.user;

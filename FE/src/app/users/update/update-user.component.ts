@@ -28,11 +28,9 @@ export class UpdateUserComponent implements OnInit{
     this.id = this.route.snapshot.params["id"]
     this.service.getUserById(this.id).subscribe(
       response=>{
-        console.log(response)
         this.user = response;
         this.service.getDecodedString(this.user.password).subscribe(
           responseDecoded=>{
-            console.log(responseDecoded);
             this.user.password = responseDecoded
           }
         )
@@ -42,7 +40,6 @@ export class UpdateUserComponent implements OnInit{
   }
 
   updateUser(id:number) {
-    console.log("updating")
     this.service.updateUserById(id,this.user).subscribe(
       ()=>{
         this.router.navigate(["/users"])

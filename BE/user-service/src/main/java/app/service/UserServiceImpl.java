@@ -1,8 +1,10 @@
 package app.service;
 
 import app.dto.Response;
+import app.dto.SignUpDTO;
 import app.dto.UserLoginDTO;
 import app.entity.User;
+import app.enums.Roles;
 import app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,12 +61,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        log.info("Creating user: {}", user);
+    public Response createUser(SignUpDTO sign) {
+        User user = new User();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        String encodedPassword = passwordEncoder.encode(sign.getPassword());
+        if (user.getRole()==null){
+            user.setRole(Roles.OWNER);
+        }
         user.setPassword(encodedPassword);
-        return userRepository.save(user);
+        user.setUsername(sign.getUsername());
+        user.setEmail(sign.getEmail());
+        userRepository.save(user);
+        return new Response("success", "User created");
     }
 
     @Override
