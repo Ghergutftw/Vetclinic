@@ -16,6 +16,7 @@ export class UpdateAnimalComponent implements OnInit{
   id!: number
   retrievedImage: any;
   image!: File;
+  imagePreview: any;
 
   constructor(
     private service: DataService,
@@ -65,6 +66,16 @@ export class UpdateAnimalComponent implements OnInit{
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       this.image = inputElement.files[0];
+      this.displayImagePreview();
     }
   }
+
+  displayImagePreview(): void {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imagePreview = e.target.result;
+    };
+    reader.readAsDataURL(this.image);
+  }
+
 }

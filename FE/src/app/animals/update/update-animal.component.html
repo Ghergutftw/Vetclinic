@@ -11,6 +11,11 @@
       <input type="file" name="image" id="image" accept="image/*" (change)="onFileSelected($event)" class="form-control">
     </div>
 
+    <div *ngIf="image">
+      <img [src]="imagePreview" alt="Image Preview" class="img-preview">
+    </div>
+
+
     <br>
     <fieldset class="form-group justify-content-center text-center">
       <label>Nickname</label>
