@@ -16,6 +16,9 @@ target/
 .idea/
 docker/
 
+node_modules/
+.angular/
+
 ### Eclipse ###
 .apt_generated
 .classpath
