@@ -28,4 +28,6 @@ public interface UserService {
     User updateUser(int id, User user);
 
     User updatePassword(int id, String password);
+
+    User getUser(String username);
 }

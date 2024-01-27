@@ -7,5 +7,6 @@ export const environment = {
   animalServiceName: 'animal-service',
   userServiceName: 'user-service',
   consultationServiceName: 'consultation-service',
-  appointmentServiceName: 'appointment-service'
+  appointmentServiceName: 'appointment-service',
+  adoptionServiceName: 'adoption-service'
 };

@@ -16,6 +16,7 @@
         <java.version>21</java.version>
         <spring-boot.version>3.2.0</spring-boot.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <app.version>1.1</app.version>
     </properties>
     <modules>
         <module>animal-service</module>

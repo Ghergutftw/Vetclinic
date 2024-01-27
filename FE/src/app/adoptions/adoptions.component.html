@@ -1,1 +1,33 @@
-<p>adoptions works!</p>
+<div class="container mt-3">
+  <h1 class="h1 text-center">
+    Animals for Adoption
+  </h1>
+  <div class="row" *ngIf="animals">
+    <div class="col-md-3" *ngFor="let animal of animals | sortByStar">
+      <div class="card mb-3 custom-card" [@slide]="animal.forceAnimation">
+        <img [src]="animal.image | async" class="card-img-top fixed-image" alt="Animal Image">
+        <div *ngIf="animal.starred" class="star-icon">&#9733;</div>
+        <div class="card-body">
+          <h4 class="card-title">{{ animal.nickname }}</h4>
+          <p class="card-text">
+            <strong>Type:</strong> {{ animal.animalType }}
+          </p>
+          <p class="card-text">
+            <strong>Species:</strong> {{ animal.specie }}
+          </p>
+          <p class="card-text">
+            <strong>Age:</strong> {{ animal.age }}
+          </p>
+          <p class="card-text">
+            <strong>Weight:</strong> {{ animal.weight }}
+          </p>
+          <div class="btn-group">
+            <button class="btn btn-success" (click)="adoptAnimal(animal)">Adopt</button>
+            <button class="btn btn-warning" (click)="starAnimal(animal)">Star</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3 *ngIf="!exists">No animals in adoption :)</h3>
+</div>

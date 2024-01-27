@@ -34,6 +34,7 @@ import {UpdateConsultationComponent} from './consultations/update/update-consult
 import {UpdateAppointmentComponent} from './appointments/update/update-appointment.component';
 import {SignupComponent} from './login/signup/signup.component';
 import {NotifierModule} from "angular-notifier";
+import { StarSortPipe } from './adoptions/star-sort.pipe';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {NotifierModule} from "angular-notifier";
     CreateAppointmentComponent,
     UpdateConsultationComponent,
     UpdateAppointmentComponent,
-    SignupComponent
+    SignupComponent,
+    StarSortPipe
   ],
   imports: [
     BrowserModule,

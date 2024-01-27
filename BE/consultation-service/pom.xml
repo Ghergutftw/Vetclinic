@@ -12,7 +12,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>consultation-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${app.version}</version>
     <name>consultation-service</name>
     <description>This service takes care of the animals that are in this clinic</description>
     <properties>

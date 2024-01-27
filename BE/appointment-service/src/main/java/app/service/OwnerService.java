@@ -1,5 +1,6 @@
 package app.service;
 
+import app.dto.AdoptionDTO;
 import app.dto.Response;
 import app.entity.Owner;
 
@@ -16,4 +17,7 @@ public interface OwnerService {
     Owner updateOwner(int id, Owner owner);
 
     Response deleteOwner(int ownerId);
+
+    int adopt(AdoptionDTO adoption);
+    int abandon(AdoptionDTO adoption);
 }

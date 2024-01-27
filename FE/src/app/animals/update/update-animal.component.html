@@ -14,11 +14,10 @@
         </div>
 
         <div *ngIf="image" class="text-center">
-          <img [src]="imagePreview" alt="Image Preview" class="img-preview">
+          <img [src]="imagePreview" alt="Image Preview" class="img-preview" >
         </div>
       </form>
     </div>
-
 
     <div class="col-md-6 text-center">
       <h1 class="h1 text-center">
@@ -55,10 +54,16 @@
           <input type="number" [(ngModel)]="animal.weight" class="form-control text-center" name="weight" required="required" #weight="ngModel">
         </fieldset>
 
+        <fieldset class="form-group text-center">
+          <div class="form-check d-flex justify-content-center align-items-center">
+            <input type="checkbox" class="form-check-input custom-checkbox" id="forAdoption" [(ngModel)]="animal.forAdoption" name="forAdoption">
+            <label class="form-check-label " for="forAdoption">For Adoption</label>
+          </div>
+        </fieldset>
         <br>
         <div class="btn-group">
           <button class="btn btn-success" type="submit">UPDATE</button>
-          <button class="btn btn-info" (click)="updateImage()">UPDATE IMAGE</button>
+          <button class="btn btn-info" (click)="updateImage()" [disabled]="!imageUploaded">UPDATE IMAGE</button>
           <button class="btn btn-danger" type="reset">RESET</button>
         </div>
       </form>

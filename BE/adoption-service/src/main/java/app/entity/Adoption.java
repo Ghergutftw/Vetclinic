@@ -1,10 +1,13 @@
 package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Entity
 @Data
@@ -18,22 +21,12 @@ public class Adoption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "animal_id")
     private Integer animalId;
 
-    @Column(name = "adopter_id")
-    private Integer adopterId;
+    private Integer ownerId;
 
-    @Column(name = "status")
-//    Sa poti vedea daca a fost adoptat sau nu
-    private String status;
-
-    @Column(name = "animal_name")
-    private String animalName;
-
-    @Column(name = "image_path")
-    private String imagePath;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Date date;
 
 
 }

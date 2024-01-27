@@ -3,11 +3,13 @@ package app.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,10 +30,18 @@ public class Owner {
 
     private String phoneNumber;
 
+    @Email
     private String email;
+
+    private int userId;
 
     @OneToMany(mappedBy = "owner")
     @JsonIgnore
-    private List<Appointment> appointments ;
+    @Builder.Default
+    private List<Appointment> appointments = new ArrayList<>();
+
+    @ElementCollection
+    @Builder.Default
+    private List<Integer> ownedAnimals = new ArrayList<>();
 
 }

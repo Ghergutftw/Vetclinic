@@ -7,14 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class SignUpDTO {
-
+@AllArgsConstructor
+public class AdoptionDTO {
+    private int animalId;
     private String username;
-    private String email;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
 }

@@ -1,9 +1,11 @@
 package app.service;
 
+import app.dto.AdoptionDTO;
 import app.dto.Response;
+import app.dto.UserDTO;
 import app.entity.Owner;
+import app.feign.UserInterface;
 import app.repository.OwnerRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,16 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class OwnerServiceImpl implements OwnerService {
 
     private final OwnerRepository ownerRepository;
+
+    UserInterface userInterface;
+
+    public OwnerServiceImpl(OwnerRepository ownerRepository, UserInterface userInterface) {
+        this.ownerRepository = ownerRepository;
+        this.userInterface = userInterface;
+    }
 
 
     @Override
@@ -53,5 +61,48 @@ public class OwnerServiceImpl implements OwnerService {
         ownerRepository.deleteById(ownerId);
         log.info("Owner deleted successfully.");
         return new Response("success","Owner deleted successfully." );
+    }
+
+    @Override
+    public int adopt(AdoptionDTO adoption) {
+        UserDTO user = userInterface.getUser(adoption.getUsername());
+        Owner oneByEmail = ownerRepository.findOneByEmail(user.getEmail());
+        if (oneByEmail == null){
+            Owner built = Owner.builder()
+                    .firstName(user.getFirstName())
+                    .lastName(user.getLastName())
+                    .email(user.getEmail())
+                    .phoneNumber(user.getPhoneNumber())
+                    .userId(user.getId())
+                    .build();
+            ownerRepository.save(built);
+            log.info("Owner with id : {} added successfully." , built.getId());
+            return built.getId();
+        }else {
+            List<Integer> ownedAnimals = oneByEmail.getOwnedAnimals();
+            ownedAnimals.add(adoption.getAnimalId());
+            oneByEmail.setOwnedAnimals(ownedAnimals);
+            ownerRepository.save(oneByEmail);
+            log.info("Owner with id : {} updated successfully." , oneByEmail.getId());
+            return oneByEmail.getId();
+        }
+    }
+
+    @Override
+    public int abandon(AdoptionDTO adoption) {
+        UserDTO user = userInterface.getUser(adoption.getUsername());
+        Owner oneByEmail = ownerRepository.findOneByEmail(user.getEmail());
+        if (oneByEmail == null){
+            log.info("Owner with id : {} not found." , oneByEmail.getId());
+            return -1;
+        }else {
+            log.info("Owner with id : {} is abandoning." , oneByEmail.getId());
+            List<Integer> ownedAnimals = oneByEmail.getOwnedAnimals();
+            ownedAnimals.removeIf(integer -> integer == adoption.getAnimalId());
+            oneByEmail.setOwnedAnimals(ownedAnimals);
+            ownerRepository.save(oneByEmail);
+            log.info("Owner with id : {} updated successfully." , oneByEmail.getId());
+            return oneByEmail.getId();
+        }
     }
 }

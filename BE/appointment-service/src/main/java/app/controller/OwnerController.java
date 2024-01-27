@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dto.AdoptionDTO;
 import app.dto.Response;
 import app.entity.Owner;
 import app.service.OwnerService;
@@ -22,6 +23,17 @@ public class OwnerController {
     @ResponseStatus(HttpStatus.OK)
     public List<Owner> getAllOwners() {
         return ownerService.getAllOwners();
+    }
+
+    @PostMapping("/adopt")
+    @ResponseStatus(HttpStatus.OK)
+    public int adopt(@RequestBody AdoptionDTO adoption) {
+        return ownerService.adopt(adoption);
+    }
+    @PostMapping("/abandon")
+    @ResponseStatus(HttpStatus.OK)
+    public int abandon(@RequestBody AdoptionDTO adoption) {
+        return ownerService.abandon(adoption);
     }
 
     @PostMapping("/create")

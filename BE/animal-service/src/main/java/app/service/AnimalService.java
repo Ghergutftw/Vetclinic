@@ -23,4 +23,6 @@ public interface AnimalService {
     Response saveImage(MultipartFile file, int animalId) throws IOException;
 
     byte[] getImage(int animalId) throws IOException;
+
+    Response adoptAnimal(int animalId);
 }

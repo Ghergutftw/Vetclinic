@@ -46,6 +46,11 @@ public class AnimalController {
         return animalService.getImage(animalId);
     }
 
+    @PostMapping("/adopt/{animalId}")
+    public Response adoptAnimal(@PathVariable int animalId){
+        return animalService.adoptAnimal(animalId);
+    }
+
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)

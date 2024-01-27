@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>doctor-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${app.version}</version>
+
 	<name>doctor-service</name>
 	<description>This service takes care of the animals that are in this clinic</description>
 	<dependencies>

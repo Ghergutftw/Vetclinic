@@ -11,7 +11,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>animal-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${app.version}</version>
     <name>animal-service</name>
     <description>This service takes care of the animals that are in this clinic</description>
     <dependencies>

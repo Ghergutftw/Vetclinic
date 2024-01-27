@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "animal")
 public class Animal {
 
@@ -29,12 +31,11 @@ public class Animal {
     @Column(unique = true)
     private String animalCode;
 
-    private Boolean fromAdoption;
+    private Boolean forAdoption;
 
-    private String pathToImage;
+    @Lob
+    @Column(name = "image_data", length = 1048576)
+    private byte[] imageData;
 
-    public Animal() {
-        this.pathToImage = "animal-service/src/main/resources/images/animals/default.jpg";
-    }
 
 }

@@ -17,6 +17,7 @@ export class UpdateAnimalComponent implements OnInit{
   retrievedImage: any;
   image!: File;
   imagePreview: any;
+  imageUploaded: boolean = false;
 
   constructor(
     private service: DataService,
@@ -27,15 +28,15 @@ export class UpdateAnimalComponent implements OnInit{
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.animal = new Animal(0, "", "", "", 0, 0)
+    this.animal = new Animal()
     this.refreshPage();
 
   }
 
   private refreshPage() {
     this.service.retrieveAnimalById(this.id).subscribe(
-      response => {
-        this.animal = new Animal(response.id, response.nickname, response.animalType, response.specie, response.age, response.weight);
+      (response) => {
+        this.animal = response;
       }
     )
 
@@ -47,17 +48,28 @@ export class UpdateAnimalComponent implements OnInit{
   }
 
   updateAnimal(id: number) {
-    this.service.updateAnimal(id, this.animal).subscribe(
-      () => {
-        this.service.saveImage(this.id, this.image).subscribe(
-          () => {
-            this.router.navigate(["animals"])
-          }
-        )
+    // if(this.animal.forAdoption == true) {
+    //   this.service.abandonAnimal(id).subscribe(
+    //     () => {
+    //       console.log("Animal abandoned");
+    //     }
+    //   )
+    // }
+    this.service.updateAnimal(id, this.animal).subscribe(() => {
+      // Check if an image was uploaded
+      if (this.imageUploaded) {
+        this.service.saveImage(this.id, this.image).subscribe(() => {
+          this.router.navigate(["animals"]);
+        });
+      } else {
+        // No image uploaded, navigate without saving image
+        this.router.navigate(["animals"]);
       }
-    )
+    });
   }
 
+
+  // TODO : it routes for no reason
   updateImage() {
     this.service.saveImage(this.id, this.image)
   }
@@ -68,6 +80,7 @@ export class UpdateAnimalComponent implements OnInit{
       this.image = inputElement.files[0];
       this.displayImagePreview();
     }
+    this.imageUploaded = true;
   }
 
   displayImagePreview(): void {
@@ -77,5 +90,6 @@ export class UpdateAnimalComponent implements OnInit{
     };
     reader.readAsDataURL(this.image);
   }
+
 
 }

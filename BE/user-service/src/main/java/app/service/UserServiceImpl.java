@@ -71,6 +71,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(encodedPassword);
         user.setUsername(sign.getUsername());
         user.setEmail(sign.getEmail());
+        user.setFirstName(sign.getFirstName());
+        user.setLastName(sign.getLastName());
+        user.setPhoneNumber(sign.getPhoneNumber());
+
         userRepository.save(user);
         return new Response("success", "User created");
     }
@@ -97,6 +101,12 @@ public class UserServiceImpl implements UserService {
         user.setPassword(password);
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    public User getUser(String username) {
+        log.info("Fetching email for user with username: {}", username);
+        return userRepository.findOneByUsername(username);
     }
 
 

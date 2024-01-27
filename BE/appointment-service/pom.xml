@@ -12,7 +12,8 @@
 
     <groupId>com.example</groupId>
     <artifactId>appointment-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${app.version}</version>
+
     <name>appointment-service</name>
     <description>This service takes care of the appointments that are in this clinic</description>
     <dependencies>

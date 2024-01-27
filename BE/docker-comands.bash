@@ -1,50 +1,54 @@
 # Tagging discovery-server
-docker tag discovery-server:0.0.1-SNAPSHOT ghergutmadalin/discovery-server:0.0.1-SNAPSHOT
+docker tag discovery-server:1.1 ghergutmadalin/discovery-server:1.1
 
 # Tagging api-gateway
-docker tag api-gateway:0.0.1-SNAPSHOT ghergutmadalin/api-gateway:0.0.1-SNAPSHOT
+docker tag api-gateway:1.1 ghergutmadalin/api-gateway:1.1
 
 # Tagging animal-service
-docker tag animal-service:0.0.1-SNAPSHOT ghergutmadalin/animal-service:0.0.1-SNAPSHOT
+docker tag animal-service:1.1 ghergutmadalin/animal-service:1.1
 
 # Tagging consultation-service
-docker tag consultation-service:0.0.1-SNAPSHOT ghergutmadalin/consultation-service:0.0.1-SNAPSHOT
+docker tag consultation-service:1.1 ghergutmadalin/consultation-service:1.1
 
 # Tagging appointment-service
-docker tag appointment-service:0.0.1-SNAPSHOT ghergutmadalin/appointment-service:0.0.1-SNAPSHOT
+docker tag appointment-service:1.1 ghergutmadalin/appointment-service:1.1
 
 # Tagging doctor-service
-docker tag doctor-service:0.0.1-SNAPSHOT ghergutmadalin/doctor-service:0.0.1-SNAPSHOT
+docker tag doctor-service:1.1 ghergutmadalin/doctor-service:1.1
 
 # Tagging user-service
-docker tag user-service:0.0.1-SNAPSHOT ghergutmadalin/user-service:0.0.1-SNAPSHOT
+docker tag user-service:1.1 ghergutmadalin/user-service:1.1
+
+docker tag adoption-service:1.1 ghergutmadalin/adoption-service:1.1
 
 # Tagging front-end
-docker tag front-end:latest ghergutmadalin/front-end:0.0.1-SNAPSHOT
+docker tag 4bf4c2cb4878 ghergutmadalin/front-end:1.1
 
 # Logging in to Docker Hub
 docker login
 
 # Pushing discovery-server
-docker push ghergutmadalin/discovery-server:0.0.1-SNAPSHOT
+docker push ghergutmadalin/discovery-server:1.1
 
 # Pushing api-gateway
-docker push ghergutmadalin/api-gateway:0.0.1-SNAPSHOT
+docker push ghergutmadalin/api-gateway:1.1
 
 # Pushing animal-service
-docker push ghergutmadalin/animal-service:0.0.1-SNAPSHOT
+docker push ghergutmadalin/animal-service:1.1
 
 # Pushing consultation-service
-docker push ghergutmadalin/consultation-service:0.0.1-SNAPSHOT
+docker push ghergutmadalin/consultation-service:1.1
 
 # Pushing appointment-service
-docker push ghergutmadalin/appointment-service:0.0.1-SNAPSHOT
+docker push ghergutmadalin/appointment-service:1.1
 
 # Pushing doctor-service
-docker push ghergutmadalin/doctor-service:0.0.1-SNAPSHOT
+docker push ghergutmadalin/doctor-service:1.1
 
 # Pushing user-service
-docker push ghergutmadalin/user-service:0.0.1-SNAPSHOT
+docker push ghergutmadalin/user-service:1.1
+
+docker push ghergutmadalin/adoption-service:1.1
 
 # Pushing front-end
-docker push ghergutmadalin/front-end:0.0.1-SNAPSHOT
+docker push ghergutmadalin/front-end:1.1

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "user-service" , url = "http://user-service:8085/user-service" )
+@FeignClient(name = "user-service" , url = "http://localhost:8085/user-service" )
 public interface UserInterface {
 
     @PostMapping("/create")

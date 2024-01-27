@@ -1,0 +1,14 @@
+.img-preview {
+  max-width: 100%;
+  max-height: 300px; /* Adjust as needed */
+  margin-top: 10px;
+}
+/* Custom styling for the checkbox */
+.custom-checkbox {
+  transform: scale(1.5); /* Adjust the scale factor as needed */
+  margin-right: 5px; /* Optional: Add some margin to the right of the checkbox */
+}
+.custom-form-check {
+  display: flex;
+  align-items: center;
+}

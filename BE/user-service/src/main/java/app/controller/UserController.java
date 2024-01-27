@@ -54,6 +54,12 @@ public class UserController {
        return userService.getAllUsers();
     }
 
+    @GetMapping("/get-user/{username}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public User getEmail(@PathVariable String username){
+        return userService.getUser(username);
+    }
+
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Response login(@RequestBody UserLoginDTO userLoginDTO){

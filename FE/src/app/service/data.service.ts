@@ -11,6 +11,7 @@ import {map, Observable} from "rxjs";
 import {Appointment} from "../models/Appointment";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {Response} from "../models/Response";
+import {Adoption} from "../models/Adoption";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class DataService {
   USER_API: string = environment.userServiceName;
   CONSULTATION_API: string = environment.consultationServiceName;
   APPOINTMENT_API: string = environment.appointmentServiceName;
+  ADOPTION_API: string = environment.adoptionServiceName;
 
   //DOCTORS API
   getAllDoctors(){
@@ -82,7 +84,7 @@ export class DataService {
     return this.httpClient.post<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/create` , animal)
   }
 
-  getImage(id: number): Observable<SafeUrl> {
+  getImage(id: number | undefined): Observable<SafeUrl> {
     return this.httpClient.get(`${this.BACKEND_API}/${this.ANIMAL_API}/get-image/${id}`, { responseType: 'arraybuffer' })
       .pipe(map(res => {
         const blob = new Blob([res], { type: 'image/png' }); // Adjust the type based on the actual image type
@@ -90,14 +92,17 @@ export class DataService {
       }));
   }
 
-  saveImage(id: number, image: File) {
+  saveImage(id: number | undefined, image: File) {
     const formData = new FormData();
     formData.append('image', image, image.name);
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     return this.httpClient.post(`${this.BACKEND_API}/${this.ANIMAL_API}/post-image/${id}`, formData , {headers: headers});
   }
-
+  // TODO : ABANDONING ANIMAL
+  abandonAnimal(id: number | undefined) {
+    return this.httpClient.post(`${this.BACKEND_API}/${this.APPOINTMENT_API}/owner/abandon/${id}`, null);
+  }
  // ANIMALS API
  //USERS API
 
@@ -199,6 +204,15 @@ export class DataService {
     return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/treatments`);
   }
 
+//   //Adoptions API
+//
+//   getAllAdoptions(){
+//     return this.httpClient.get<Animal[]>(`${this.BACKEND_API}/${this.ADOPTION_API}/get-all`)
+//   }
+
+  createAdoption(adoption: Adoption) {
+    return this.httpClient.post<Animal>(`${this.BACKEND_API}/${this.ADOPTION_API}/create`, adoption);
+  }
 
 
 

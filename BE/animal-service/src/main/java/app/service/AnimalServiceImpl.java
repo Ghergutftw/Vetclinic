@@ -3,6 +3,7 @@ package app.service;
 
 import app.dto.Response;
 import app.entity.Animal;
+import app.utils.ImageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,9 +24,7 @@ import java.util.UUID;
 public class AnimalServiceImpl implements AnimalService {
 
     private static int animalCodeCounter = 0;
-    private static final String IMAGES_FOLDER = "animal-service/src/main/resources/images/animals/";
     private final AnimalRepository animalRepository;
-
 
     @Autowired
     public AnimalServiceImpl(AnimalRepository animalRepository) {
@@ -64,16 +65,12 @@ public class AnimalServiceImpl implements AnimalService {
         log.info("Fetching animal with id: {}", id);
         return animalRepository.findById(id).orElseThrow();
     }
-
     @Override
     public Response saveImage(MultipartFile file, int animalId) throws IOException {
-        String randomFileName = UUID.randomUUID().toString();
-        Path targetPath = Path.of(IMAGES_FOLDER, randomFileName);
-        Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+        byte[] imageData = ImageUtils.compressImage(file.getBytes()); // Compress the image data
         Animal animal = animalRepository.findOneById(animalId);
-        String path = IMAGES_FOLDER + randomFileName;
-        log.info("Saving image for animal with id: {} with path: {}", animalId, path);
-        animal.setPathToImage(path);
+        animal.setImageData(imageData);
+        log.info("Saving image for animal with id: {}", animalId);
         animalRepository.save(animal);
 
         return new Response("success", "Image saved successfully");
@@ -82,8 +79,15 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public byte[] getImage(int animalId) throws IOException {
         Animal animal = animalRepository.findOneById(animalId);
-        Path path = Path.of(animal.getPathToImage());
-        return Files.readAllBytes(path);
+        return ImageUtils.decompressImage(animal.getImageData());
+    }
+
+    @Override
+    public Response adoptAnimal(int animalId) {
+        Animal animal = animalRepository.findOneById(animalId);
+        animal.setForAdoption(false);
+        animalRepository.save(animal);
+        return new Response("success", "Animal adopted successfully");
     }
 
 
