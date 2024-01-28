@@ -1,0 +1,20 @@
+<!-- confirm-modal.component.html -->
+<div class="modal" tabindex="-1" role="dialog" #modal>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Adoption</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to adopt {{ animalToAdopt.nickname }}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="confirmAdoption()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
