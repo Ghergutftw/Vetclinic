@@ -185,10 +185,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@^15.0.0", "@angular/core@^15.0.0 || ^16.0.0", "@angular/core@>= 15.0.0 < 16.0.0", "@angular/core@15.0.4":
-  version "15.0.4"
-  resolved "https://registry.npmjs.org/@angular/core/-/core-15.0.4.tgz"
-  integrity sha512-Xf8Nuu0iM/VjQHPS4A0jufqTYZCfiGqc0iAD7j9zM3TD6caQ3OP4mxXVYYTpIG+APKel38+Gol8cpQB/8PVbqQ==
+"@angular/core@^15.0.0", "@angular/core@^15.0.0 || ^16.0.0", "@angular/core@^15.2.10", "@angular/core@>= 15.0.0 < 16.0.0", "@angular/core@15.0.4":
+  version "15.2.10"
+  resolved "https://registry.npmjs.org/@angular/core/-/core-15.2.10.tgz"
+  integrity sha512-meGGidnitQJGDxYd9/LrqYiVlId+vGaLoiLgJdKBz+o2ZO6OmXQGuNw2VBqf17/Cc0/UjzrOY7+kILNFKkk/WQ==
   dependencies:
     tslib "^2.3.0"
 
@@ -6776,7 +6776,7 @@ yargs@^17.2.1, yargs@17.6.2:
     y18n "^5.0.5"
     yargs-parser "^21.1.1"
 
-"zone.js@~0.11.4 || ~0.12.0", zone.js@~0.12.0:
+"zone.js@~0.11.4 || ~0.12.0 || ~0.13.0", zone.js@~0.12.0:
   version "0.12.0"
   resolved "https://registry.npmjs.org/zone.js/-/zone.js-0.12.0.tgz"
   integrity sha512-XtC+I5dXU14HrzidAKBNMqneIVUykLEAA1x+v4KVrd6AUPWlwYORF8KgsVqvgdHiKZ4BkxxjvYi/ksEixTPR0Q==
