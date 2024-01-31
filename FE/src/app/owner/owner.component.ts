@@ -28,13 +28,6 @@ export class OwnerComponent implements OnInit{
     this.router.navigate(['/owners/create'])
   }
 
-  updateOwner(ownerId: number | undefined) {
-    // this.dataService.updateOwner(ownerId, updatedOwner).subscribe(updatedOwner => {
-    //   // Handle the updated owner as needed
-    //   console.log('Owner updated:', updatedOwner);
-    // });
-  }
-
   deleteOwner(ownerId: number | undefined) {
     this.dataService.deleteOwner(ownerId).subscribe(response => {
       console.log('Delete response:', response);

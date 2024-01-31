@@ -27,9 +27,8 @@ export class UpdateAnimalComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.animal = new Animal()
+    this.animal = new Animal();
     this.refreshPage();
-
   }
 
   private refreshPage() {
@@ -38,7 +37,6 @@ export class UpdateAnimalComponent implements OnInit {
         this.animal = response;
       }
     )
-
     this.service.getImage(this.id).subscribe(
       value => {
         this.retrievedImage = value;
@@ -47,22 +45,15 @@ export class UpdateAnimalComponent implements OnInit {
   }
 
   updateAnimal(id: number) {
-    // TODO: remove the animal from the owner
     if (this.toBeAdopted) {
-      this.service.abandonAnimalOwner(this.id).subscribe(
-        () => {
-          console.log("Animal abandoned");
-        }
-      )
+      this.service.abandonAnimalOwner(this.id).subscribe();
     }
     this.service.updateAnimal(id, this.animal).subscribe(() => {
-      // Check if an image was uploaded
       if (this.imageUploaded) {
         this.service.saveImage(this.id, this.image).subscribe(() => {
           this.router.navigate(["animals"]);
         });
       } else {
-        // No image uploaded, navigate without saving image
         this.router.navigate(["animals"]);
       }
     });
