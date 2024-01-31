@@ -1,6 +1,7 @@
 package app.service;
 
 import app.dto.DoctorDTO;
+import app.dto.ResponseDTO;
 import app.dto.UserDTO;
 import app.entity.Doctor;
 import app.feign.UserInterface;
@@ -50,9 +51,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void deleteDoctor(int id) {
+    public ResponseDTO deleteDoctor(int id) {
         log.info("Deleting doctor with id: {}", id);
         doctorRepository.deleteById(id);
+        return new ResponseDTO("success", "Doctor deleted");
     }
 
     @Override

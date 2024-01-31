@@ -8,5 +8,6 @@ export const environment = {
   userServiceName: 'user-service',
   consultationServiceName: 'consultation-service',
   appointmentServiceName: 'appointment-service',
-  adoptionServiceName: 'adoption-service'
+  adoptionServiceName: 'adoption-service',
+  ownerServiceName: 'owner'
 };

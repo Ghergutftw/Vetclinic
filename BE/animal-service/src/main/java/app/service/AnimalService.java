@@ -1,6 +1,7 @@
 // AnimalService.java
 package app.service;
 
+import app.dto.AnimalDTO;
 import app.dto.Response;
 import app.entity.Animal;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,13 +11,13 @@ import java.util.List;
 
 public interface AnimalService {
 
-    Animal addAnimal(Animal animal);
+    AnimalDTO addAnimal(Animal animal);
 
-    List<Animal> getAllAnimals();
+    List<AnimalDTO> getAllAnimals();
 
     Response deleteAnimal(int id);
 
-    Animal updateAnimal(int id, Animal animal);
+    AnimalDTO updateAnimal(int id, Animal animal);
 
     Animal getAnimalById(int id);
 
@@ -25,4 +26,6 @@ public interface AnimalService {
     byte[] getImage(int animalId) throws IOException;
 
     Response adoptAnimal(int animalId);
+
+    Response abandonAnimal(int animalId);
 }

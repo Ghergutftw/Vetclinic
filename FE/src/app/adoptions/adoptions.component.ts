@@ -10,22 +10,21 @@ import {Adoption} from "../models/Adoption";
   styleUrls: ['./adoptions.component.css'],
   animations: [
     trigger('slide', [
-      state('void', style({ transform: 'translateX(0)' })),
-      state('*', style({ transform: 'translateX(0)' })),
+      state('void', style({transform: 'translateY(0)'})),
+      state('*', style({transform: 'translateY(0)'})),
       transition(':enter', [
         animate('0.5s ease-in-out', keyframes([
-          style({ offset: 0, transform: 'translateX(100%)' }),
-          style({ offset: 1, transform: 'translateX(0)' })
+          style({offset: 0, transform: 'translateY(-10%)'}),
+          style({offset: 1, transform: 'translateY(0)'})
         ])),
       ]),
       transition(':leave', [
         animate('0.5s ease-in-out', keyframes([
-          style({ offset: 0, transform: 'translateX(0)' }),
-          style({ offset: 1, transform: 'translateX(-100%)' })
+          style({offset: 0, transform: 'translateY(0)'}),
+          style({offset: 1, transform: 'translateY(10%)'})
         ])),
       ]),
-    ]),
-  ],
+    ]),],
 })
 export class AdoptionsComponent  implements OnInit{
   animals!: Animal[];

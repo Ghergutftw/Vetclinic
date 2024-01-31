@@ -79,6 +79,11 @@ spring:
             allowedHeaders : "*"
             allowedOrigins: "*"
             allowedMethods: "*"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
 #eureka:
 #  client:
 #    serviceUrl:

@@ -30,10 +30,11 @@ public class OwnerController {
     public int adopt(@RequestBody AdoptionDTO adoption) {
         return ownerService.adopt(adoption);
     }
-    @PostMapping("/abandon")
+
+    @PostMapping("/abandon/{animalId}")
     @ResponseStatus(HttpStatus.OK)
-    public int abandon(@RequestBody AdoptionDTO adoption) {
-        return ownerService.abandon(adoption);
+    public Response abandon(@PathVariable int animalId) {
+        return ownerService.abandon(animalId);
     }
 
     @PostMapping("/create")

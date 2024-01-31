@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "FE-VetClinic:build:production"
+              "buildTarget": "FE-VetClinic:build:production"
             },
             "development": {
-              "browserTarget": "FE-VetClinic:build:development"
+              "buildTarget": "FE-VetClinic:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.dto.DoctorDTO;
+import app.dto.ResponseDTO;
 import app.entity.Doctor;
 import app.service.DoctorService;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +33,8 @@ public class DoctorController {
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteDoctor(@PathVariable int id){
-        doctorService.deleteDoctor(id);
+    public ResponseDTO deleteDoctor(@PathVariable int id) {
+        return doctorService.deleteDoctor(id);
     }
 
     @PutMapping( "/update/{id}")

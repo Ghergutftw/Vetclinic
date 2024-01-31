@@ -32,6 +32,9 @@ public class Animal {
     private String animalCode;
 
     private Boolean forAdoption;
+    //  TODO:  TREBUIE SA LEEEEG
+    @JoinColumn(nullable = true)
+    private int ownerId;
 
     @Lob
     @Column(name = "image_data", length = 1048576)

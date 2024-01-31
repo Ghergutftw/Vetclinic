@@ -12,6 +12,7 @@ services:
       - "3306:3306"
     volumes:
       - ./docker/volume_mysql:/var/lib/mysql
+    restart: on-failure
 #
 #  discovery-server:
 #    image: ghergutmadalin/discovery-server:0.0.1-SNAPSHOT

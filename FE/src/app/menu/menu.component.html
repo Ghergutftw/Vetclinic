@@ -1,20 +1,32 @@
 <header>
-  <nav class = "navbar navbar-expand-md navbar-dark bg-dark" >
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="navbar-brand logo" routerLink="/welcome">
-      <img src="favicon.ico" alt="logo" width="50px" />
+      <img alt="logo" src="favicon.ico" width="50px"/>
     </div>
     <ul class="navbar-nav">
-      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/appointments">APPOINTMENTS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/appointments">APPOINTMENTS</a>
+      </li>
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/doctors">DOCTORS</a></li>
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/animals">ANIMALS</a></li>
-      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/consultations">CONSULTATIONS</a></li>
-      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/adoptions">ADOPTION</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/consultations">CONSULTATIONS</a>
+      </li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/adoptions">ADOPTIONS</a></li>
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/users">USERS</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link fw-bold" routerLink="/owners">OWNERS</a></li>
+      <li>
+        <div *ngIf="loadingService.loading$ | async" class="loading-spinner">
+          <div class="spinner-border text-light" role="status">
+          </div>
+        </div>
+      </li>
     </ul>
+
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li class="nav-link fw-bold fst-italic" *ngIf="sessionStorage.getItem('Authenticated User')">Welcome {{sessionStorage.getItem('Authenticated User')}}</li>
-      <li><a class="nav-link" *ngIf="!authService.isUserLoggedIn()"  routerLink="/login" >LOGIN</a></li>
-      <li><a class="nav-link" *ngIf="authService.isUserLoggedIn()"  routerLink="/logout" >LOGOUT</a></li>
+      <li *ngIf="sessionStorage.getItem('Authenticated User')" class="nav-link fw-bold fst-italic">
+        Welcome {{ sessionStorage.getItem('Authenticated User') }}
+      </li>
+      <li><a *ngIf="!authService.isUserLoggedIn()" class="nav-link" routerLink="/login">LOGIN</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link" routerLink="/logout">LOGOUT</a></li>
     </ul>
   </nav>
 </header>

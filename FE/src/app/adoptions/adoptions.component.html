@@ -29,5 +29,5 @@
       </div>
     </div>
   </div>
-  <h3 *ngIf="!exists">No animals in adoption :)</h3>
+  <h3 *ngIf="animals && animals.length === 0">No animals in adoption :)</h3>
 </div>

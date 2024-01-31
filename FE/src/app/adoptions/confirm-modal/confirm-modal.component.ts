@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Animal} from "../../models/Animal";
 
 @Component({
   selector: 'app-confirm-modal',
@@ -7,7 +9,7 @@ import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 })
 export class ConfirmModalComponent {
   @ViewChild('modal') modal: any;
-  @Input() animalToAdopt: any;
+  @Input() animalToAdopt?: Animal;
   @Output() onConfirm = new EventEmitter();
 
   constructor(private modalService: NgbModal) {}

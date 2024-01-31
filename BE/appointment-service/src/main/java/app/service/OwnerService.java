@@ -19,5 +19,6 @@ public interface OwnerService {
     Response deleteOwner(int ownerId);
 
     int adopt(AdoptionDTO adoption);
-    int abandon(AdoptionDTO adoption);
+
+    Response abandon(int animalId);
 }

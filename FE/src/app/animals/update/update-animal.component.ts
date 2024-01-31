@@ -2,15 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../../service/data.service";
 import {Animal} from "../../models/Animal";
-import {HttpClient, HttpEvent} from "@angular/common/http";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-update',
   templateUrl: './update-animal.component.html',
   styleUrls: ['./update-animal.component.css']
 })
-export class UpdateAnimalComponent implements OnInit{
+export class UpdateAnimalComponent implements OnInit {
 
   animal!: Animal
   id!: number
@@ -18,6 +16,7 @@ export class UpdateAnimalComponent implements OnInit{
   image!: File;
   imagePreview: any;
   imageUploaded: boolean = false;
+  toBeAdopted: boolean = false;
 
   constructor(
     private service: DataService,
@@ -48,13 +47,14 @@ export class UpdateAnimalComponent implements OnInit{
   }
 
   updateAnimal(id: number) {
-    // if(this.animal.forAdoption == true) {
-    //   this.service.abandonAnimal(id).subscribe(
-    //     () => {
-    //       console.log("Animal abandoned");
-    //     }
-    //   )
-    // }
+    // TODO: remove the animal from the owner
+    if (this.toBeAdopted) {
+      this.service.abandonAnimalOwner(this.id).subscribe(
+        () => {
+          console.log("Animal abandoned");
+        }
+      )
+    }
     this.service.updateAnimal(id, this.animal).subscribe(() => {
       // Check if an image was uploaded
       if (this.imageUploaded) {
@@ -92,4 +92,9 @@ export class UpdateAnimalComponent implements OnInit{
   }
 
 
+  modify() {
+    if (this.animal.forAdoption == true) {
+      this.toBeAdopted = true;
+    }
+  }
 }

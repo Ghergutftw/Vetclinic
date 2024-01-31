@@ -43,7 +43,6 @@ export class CreateConsultationComponent implements OnInit{
   }
 
   updateSpecies() {
-
     switch (this.consultation.consultatedAnimal?.animalType) {
       case 'Cat':
         this.speciesOptions = ['Siamese', 'Persian', 'Maine Coon', 'Ragdoll', 'Bengal'];

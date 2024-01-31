@@ -1,0 +1,52 @@
+.fixed-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.star-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: gold;
+  font-size: 20px;
+}
+
+.custom-card {
+  background-color: #b3b2b2;
+}
+.max-height-animals {
+  max-height: 400px;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.max-height-animals {
+  overflow-y: auto;
+  max-height: 500px;
+  scrollbar-width: thin;
+  scrollbar-color: darkgray lightgray;
+}
+
+.max-height-animals::-webkit-scrollbar {
+  width: 10px;
+}
+
+.max-height-animals::-webkit-scrollbar-thumb {
+  background-color: darkgray;
+  border-radius: 5px;
+}
+
+.max-height-animals::-webkit-scrollbar-track {
+  background-color: lightgray;
+}
+
+.max-height-animals {
+  scrollbar-width: thin;
+  scrollbar-color: darkgray lightgray;
+}
+
+.max-height-animals {
+  scrollbar-color: darkgray lightgray;
+}

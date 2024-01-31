@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {ErrorComponent} from "./error/error.component";
@@ -21,6 +21,9 @@ import {UpdateConsultationComponent} from "./consultations/update/update-consult
 import {CreateAppointmentComponent} from "./appointments/create/create-appointment.component";
 import {UpdateAppointmentComponent} from "./appointments/update/update-appointment.component";
 import {SignupComponent} from "./login/signup/signup.component";
+import {OwnerComponent} from "./owner/owner.component";
+import {DetailsComponent} from "./owner/details/details.component";
+import {CreateOwnerComponent} from "./owner/create/create-owner/create-owner.component";
 
 const routes: Routes = [
   {path: '', component:LoginComponent},
@@ -39,6 +42,9 @@ const routes: Routes = [
   {path: 'consultations',component:ConsultationsComponent , canActivate:[RouterGuardService]},
   {path: 'create-consultation',component:CreateConsultationComponent , canActivate:[RouterGuardService]},
   {path: 'update-consultation/:id',component:UpdateConsultationComponent , canActivate:[RouterGuardService]},
+  {path: 'owners', component: OwnerComponent, canActivate: [RouterGuardService]},
+  {path: 'owners/:id/details', component: DetailsComponent, canActivate: [RouterGuardService]},
+  {path: 'owners/create', component: CreateOwnerComponent, canActivate: [RouterGuardService]},
   {path: 'adoptions',component:AdoptionsComponent , canActivate:[RouterGuardService]},
   {path: 'login',component:LoginComponent},
   {path: 'signup',component:SignupComponent},

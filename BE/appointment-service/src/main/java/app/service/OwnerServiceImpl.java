@@ -74,6 +74,7 @@ public class OwnerServiceImpl implements OwnerService {
                     .email(user.getEmail())
                     .phoneNumber(user.getPhoneNumber())
                     .userId(user.getId())
+                    .ownedAnimals(List.of(adoption.getAnimalId()))
                     .build();
             ownerRepository.save(built);
             log.info("Owner with id : {} added successfully." , built.getId());
@@ -89,20 +90,18 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public int abandon(AdoptionDTO adoption) {
-        UserDTO user = userInterface.getUser(adoption.getUsername());
-        Owner oneByEmail = ownerRepository.findOneByEmail(user.getEmail());
-        if (oneByEmail == null){
-            log.info("Owner with id : {} not found." , oneByEmail.getId());
-            return -1;
-        }else {
-            log.info("Owner with id : {} is abandoning." , oneByEmail.getId());
-            List<Integer> ownedAnimals = oneByEmail.getOwnedAnimals();
-            ownedAnimals.removeIf(integer -> integer == adoption.getAnimalId());
-            oneByEmail.setOwnedAnimals(ownedAnimals);
-            ownerRepository.save(oneByEmail);
-            log.info("Owner with id : {} updated successfully." , oneByEmail.getId());
-            return oneByEmail.getId();
+    public Response abandon(int animalId) {
+        List<Owner> all = ownerRepository.findAll();
+        for (Owner owner : all) {
+            List<Integer> ownedAnimals = owner.getOwnedAnimals();
+            if (ownedAnimals.contains(animalId)) {
+                ownedAnimals.remove(Integer.valueOf(animalId));
+                owner.setOwnedAnimals(ownedAnimals);
+                ownerRepository.save(owner);
+                log.info("Animal with id : {} abandoned successfully.", animalId);
+                return new Response("success", "Animal abandoned successfully.");
+            }
         }
+        return new Response("failed", "Something went wrong.");
     }
 }

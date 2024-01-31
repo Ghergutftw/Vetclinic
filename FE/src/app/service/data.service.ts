@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpHeaders} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Login} from "../models/Login";
 import {LoginResponse} from "../models/LoginResponse";
 import {Consultation} from "../models/Consultation";
@@ -12,6 +12,7 @@ import {Appointment} from "../models/Appointment";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {Response} from "../models/Response";
 import {Adoption} from "../models/Adoption";
+import {Owner} from "../models/Owner";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,7 @@ export class DataService {
   CONSULTATION_API: string = environment.consultationServiceName;
   APPOINTMENT_API: string = environment.appointmentServiceName;
   ADOPTION_API: string = environment.adoptionServiceName;
+  OWNER_API: string = environment.ownerServiceName;
 
   //DOCTORS API
   getAllDoctors(){
@@ -67,6 +69,9 @@ export class DataService {
     return this.httpClient.get<Animal[]>(`${this.BACKEND_API}/${this.ANIMAL_API}/get-all`)
   }
 
+  abandonAnimal(id: number | undefined) {
+    return this.httpClient.post(`${this.BACKEND_API}/${this.ANIMAL_API}/abandon/${id}`, null);
+  }
 
   deleteAnimal(id:number){
     return this.httpClient.delete(`${this.BACKEND_API}/${this.ANIMAL_API}/delete/${id}`)
@@ -99,8 +104,8 @@ export class DataService {
     headers.append('Content-Type', 'multipart/form-data');
     return this.httpClient.post(`${this.BACKEND_API}/${this.ANIMAL_API}/post-image/${id}`, formData , {headers: headers});
   }
-  // TODO : ABANDONING ANIMAL
-  abandonAnimal(id: number | undefined) {
+
+  abandonAnimalOwner(id: number | undefined) {
     return this.httpClient.post(`${this.BACKEND_API}/${this.APPOINTMENT_API}/owner/abandon/${id}`, null);
   }
  // ANIMALS API
@@ -214,6 +219,25 @@ export class DataService {
     return this.httpClient.post<Animal>(`${this.BACKEND_API}/${this.ADOPTION_API}/create`, adoption);
   }
 
+//
+  getAllOwners(): Observable<Owner[]> {
+    return this.httpClient.get<Owner[]>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/${this.OWNER_API}/get-all`);
+  }
 
+  createOwner(owner: Owner): Observable<Owner> {
+    return this.httpClient.post<Owner>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/${this.OWNER_API}/create`, owner);
+  }
+
+  deleteOwner(id: number | undefined): Observable<Response> {
+    return this.httpClient.delete<Response>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/${this.OWNER_API}/delete/${id}`);
+  }
+
+  updateOwner(id: number, owner: Owner): Observable<Owner> {
+    return this.httpClient.put<Owner>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/${this.OWNER_API}/update/${id}`, owner);
+  }
+
+  getOwnerById(id: number): Observable<Owner> {
+    return this.httpClient.get<Owner>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/${this.OWNER_API}/get/${id}`);
+  }
 
 }

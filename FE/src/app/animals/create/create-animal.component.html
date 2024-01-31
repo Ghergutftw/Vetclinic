@@ -22,14 +22,16 @@
       </h1>
       <form (ngSubmit)="!updateCreateForm.invalid && createAnimal()" #updateCreateForm="ngForm" enctype="multipart/form-data" class="text-center">
         <fieldset class="form-group text-center">
-          <label>Nickname</label>
+          <label class="fs-6 fw-bold">Nickname</label>
           <input type="text" [(ngModel)]="createdAnimal.nickname" class="form-control text-center" name="nickname" required="required">
         </fieldset>
         <br>
 
         <fieldset class="form-group text-center">
-          <label for="inputState">Animal Type</label>
-          <select id="inputState" class="form-control  text-center" name="animalType" [(ngModel)]="createdAnimal.animalType" required="required" #animalType="ngModel">
+          <label class="fs-6 fw-bold" for="inputState">Animal Type</label>
+          <select #animalType="ngModel" (change)="updateSpecies()" [(ngModel)]="createdAnimal.animalType"
+                  class="form-control  text-center" id="inputState" name="animalType"
+                  required="required">
             <option>Cat</option>
             <option>Dog</option>
             <option>Hamster</option>
@@ -37,34 +39,35 @@
           </select>
         </fieldset>
         <br>
-
         <fieldset class="form-group text-center">
-          <label>Specie</label>
-          <input type="text" [(ngModel)]="createdAnimal.specie" class="form-control text-center" name="specie" required="required" #specie="ngModel">
+          <label class="fs-6 fw-bold" class="fs-6 fw-bold">Species</label>
+          <select [(ngModel)]="createdAnimal.specie" class="form-control text-center" name="specie"
+                  required="required">
+            <option *ngFor="let species of speciesOptions" [value]="species">{{ species }}</option>
+          </select>
         </fieldset>
         <br>
-
         <fieldset class="form-group text-center">
-          <label>Age</label>
+          <label class="fs-6 fw-bold">Age</label>
           <input type="number" [(ngModel)]="createdAnimal.age" class="form-control text-center" name="age" required="required" #age="ngModel">
         </fieldset>
         <br>
         <fieldset class="form-group text-center">
-          <label>Weight</label>
+          <label class="fs-6 fw-bold">Weight</label>
           <input type="number" [(ngModel)]="createdAnimal.weight" class="form-control text-center" name="weight" required="required" #weight="ngModel">
         </fieldset>
         <br>
         <fieldset class="form-group text-center">
           <div class="form-check d-flex justify-content-center align-items-center">
             <input type="checkbox" class="form-check-input custom-checkbox" id="forAdoption" [(ngModel)]="createdAnimal.forAdoption" name="forAdoption">
-            <label class="form-check-label " for="forAdoption">For Adoption</label>
+            <label class="fs-6 fw-bold" for="forAdoption">For Adoption</label>
           </div>
         </fieldset>
 
         <br>
-        <div class="btn-group">
-          <button class="btn btn-success" type="submit">CREATE</button>
-          <button class="btn btn-danger" type="reset">RESET</button>
+        <div class="btn-group d-flex justify-content-center">
+          <button class="btn btn-success" type="submit"> SAVE</button>
+          <button class="btn btn-warning" type="reset"> RESET</button>
         </div>
       </form>
     </div>

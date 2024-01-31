@@ -34,8 +34,18 @@ import {UpdateConsultationComponent} from './consultations/update/update-consult
 import {UpdateAppointmentComponent} from './appointments/update/update-appointment.component';
 import {SignupComponent} from './login/signup/signup.component';
 import {NotifierModule} from "angular-notifier";
-import { StarSortPipe } from './adoptions/star-sort.pipe';
+import {StarSortPipe} from './adoptions/star-sort.pipe';
 import {ConfirmModalComponent} from "./adoptions/confirm-modal/confirm-modal.component";
+import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {OwnerComponent} from "./owner/owner.component";
+import {DetailsComponent} from "./owner/details/details.component";
+import {CommonModule} from "@angular/common";
+import {LoadingInterceptor} from "./service/loading/loading.interceptor";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {CreateOwnerComponent} from "./owner/create/create-owner/create-owner.component";
 
 @NgModule({
   declarations: [
@@ -63,7 +73,10 @@ import {ConfirmModalComponent} from "./adoptions/confirm-modal/confirm-modal.com
     UpdateAppointmentComponent,
     SignupComponent,
     StarSortPipe,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    OwnerComponent,
+    DetailsComponent,
+    CreateOwnerComponent
   ],
   imports: [
     BrowserModule,
@@ -75,12 +88,23 @@ import {ConfirmModalComponent} from "./adoptions/confirm-modal/confirm-modal.com
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatInputModule,
-    NotifierModule
+    NotifierModule,
+    NgbModalModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    CommonModule,
+    MatProgressSpinner
   ],
   providers: [HttpClient,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CorsInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true,
     }],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dto.AnimalDTO;
 import app.dto.Response;
 import app.entity.Animal;
 import app.service.AnimalService;
@@ -23,13 +24,13 @@ public class AnimalController {
 
     @GetMapping("/get-all")
     @ResponseStatus(HttpStatus.OK)
-    public List<Animal> get(){
+    public List<AnimalDTO> get() {
         return animalService.getAllAnimals();
     }
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public Animal addAnimal(@RequestBody Animal animal) {
+    public AnimalDTO addAnimal(@RequestBody Animal animal) {
         return animalService.addAnimal(animal);
     }
 
@@ -39,8 +40,12 @@ public class AnimalController {
         return animalService.saveImage(file,animalId);
     }
 
+    @PostMapping("/abandon/{animalId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Response abandonAnimal(@PathVariable int animalId) {
+        return animalService.abandonAnimal(animalId);
+    }
 
-//    If you want to save the image to see it remove the produces stuff
     @GetMapping(value = "/get-image/{animalId}",produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getImage(@PathVariable int animalId) throws IOException {
         return animalService.getImage(animalId);
@@ -60,7 +65,7 @@ public class AnimalController {
 
     @PutMapping( "/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Animal updateAnimal(@PathVariable int id,  @RequestBody Animal animal) {
+    public AnimalDTO updateAnimal(@PathVariable int id, @RequestBody Animal animal) {
         return animalService.updateAnimal(id,animal);
     }
 

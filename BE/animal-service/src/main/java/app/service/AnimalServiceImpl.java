@@ -1,29 +1,27 @@
-// AnimalServiceImpl.java
 package app.service;
 
+import app.dto.AnimalDTO;
 import app.dto.Response;
 import app.entity.Animal;
+import app.repository.AnimalRepository;
 import app.utils.ImageUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import app.repository.AnimalRepository;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class AnimalServiceImpl implements AnimalService {
 
     private static int animalCodeCounter = 0;
+    ModelMapper modelMapper = new ModelMapper();
     private final AnimalRepository animalRepository;
 
     @Autowired
@@ -32,17 +30,20 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Animal addAnimal(Animal animal) {
+    public AnimalDTO addAnimal(Animal animal) {
         animal.setAnimalCode(generateAnimalCode());
         animalRepository.save(animal);
         log.info("Animal with id added successfully: {}", animal.getId());
-        return animal;
+        return modelMapper.map(animal, AnimalDTO.class);
     }
 
     @Override
-    public List<Animal> getAllAnimals() {
+    public List<AnimalDTO> getAllAnimals() {
         log.info("Fetching all animals");
-        return animalRepository.findAll();
+        List<Animal> animalEntities = animalRepository.findAll();
+        return animalEntities.stream()
+                .map(animalEntity -> modelMapper.map(animalEntity, AnimalDTO.class))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     @Override
@@ -53,11 +54,11 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Animal updateAnimal(int id, Animal animal) {
+    public AnimalDTO updateAnimal(int id, Animal animal) {
         log.info("Updating animal with id: {}", id);
         animal.setId(id);
         animalRepository.save(animal);
-        return animalRepository.findOneById(id);
+        return modelMapper.map(animalRepository.findOneById(id), AnimalDTO.class);
     }
 
     @Override
@@ -72,13 +73,13 @@ public class AnimalServiceImpl implements AnimalService {
         animal.setImageData(imageData);
         log.info("Saving image for animal with id: {}", animalId);
         animalRepository.save(animal);
-
         return new Response("success", "Image saved successfully");
     }
 
     @Override
     public byte[] getImage(int animalId) throws IOException {
         Animal animal = animalRepository.findOneById(animalId);
+        log.info("Fetching image for animal with id: {}", animalId);
         return ImageUtils.decompressImage(animal.getImageData());
     }
 
@@ -86,8 +87,18 @@ public class AnimalServiceImpl implements AnimalService {
     public Response adoptAnimal(int animalId) {
         Animal animal = animalRepository.findOneById(animalId);
         animal.setForAdoption(false);
+        log.info("Animal with id: {} is now adopted", animalId);
         animalRepository.save(animal);
         return new Response("success", "Animal adopted successfully");
+    }
+
+    @Override
+    public Response abandonAnimal(int animalId) {
+        Animal animal = animalRepository.findOneById(animalId);
+        animal.setForAdoption(true);
+        log.info("Animal with id: {} is now available for adoption", animalId);
+        animalRepository.save(animal);
+        return new Response("success", "Animal abandoned successfully");
     }
 
 

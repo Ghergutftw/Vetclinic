@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {DataService} from "../../service/data.service";
 import {Router} from "@angular/router";
 import {Animal} from "../../models/Animal";
@@ -27,8 +27,6 @@ export class CreateAnimalComponent {
   }
 
   updateSpecies() {
-    // Add logic to fetch top 5 species based on the selected animalType
-    // For simplicity, I'll provide a sample data for each animalType
     switch (this.createdAnimal.animalType) {
       case 'Cat':
         this.speciesOptions = ['Siamese', 'Persian', 'Maine Coon', 'Ragdoll', 'Bengal'];

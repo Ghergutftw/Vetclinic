@@ -18,6 +18,12 @@ spring:
     show-sql: false
 server:
   port: 8084
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
 #
 #eureka:
 #  client:

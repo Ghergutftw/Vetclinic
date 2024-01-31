@@ -4,7 +4,7 @@
 <div class="container w-50 h-75">
   <form (ngSubmit)="!userUpdateForm.invalid && updateUser(id)" #userUpdateForm="ngForm">
     <fieldset class="form-group text-center">
-      <label for="inputState">Role</label>
+      <label class="fs-6 fw-bold" for="inputState">Role</label>
       <select id="inputState" class="form-control text-center" name="role" [(ngModel)]="user.role" required="required" #role= "ngModel">
         <option>ADMIN</option>
         <option>DEV</option>
@@ -13,17 +13,17 @@
     </fieldset>
     <br>
     <fieldset class="form-group text-center">
-      <label>Email</label>
+      <label class="fs-6 fw-bold">Email</label>
       <input type="text" [(ngModel)]="user.email" class="form-control text-center" name="email"  required = "required"  #email = "ngModel">
     </fieldset>
     <br>
     <fieldset class="form-group text-center">
-      <label>Password</label>
+      <label class="fs-6 fw-bold">Password</label>
       <input type="text" [(ngModel)]="user.password" class="form-control text-center" name="password" required = "required"  #password = "ngModel">
     </fieldset>
     <br>
-    <div class="btn-group">
-      <button class="btn btn-success " type="submit"> UPDATE </button>
+    <div class="btn-group d-flex justify-content-center">
+      <button class="btn btn-success" type="submit"> UPDATE</button>
       <button class="btn btn-warning" type="reset"> RESET </button>
     </div>
 
