@@ -22,7 +22,6 @@ import {CreateAnimalComponent} from './animals/create/create-animal.component';
 import {UpdateAnimalComponent} from './animals/update/update-animal.component';
 import {AlertModule} from "./alert";
 import {UpdateUserComponent} from './users/update/update-user.component';
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
 import {CreateConsultationComponent} from './consultations/create/create-consultation.component';
@@ -33,7 +32,6 @@ import {CreateAppointmentComponent} from './appointments/create/create-appointme
 import {UpdateConsultationComponent} from './consultations/update/update-consultation.component';
 import {UpdateAppointmentComponent} from './appointments/update/update-appointment.component';
 import {SignupComponent} from './login/signup/signup.component';
-import {NotifierModule} from "angular-notifier";
 import {StarSortPipe} from './adoptions/star-sort.pipe';
 import {ConfirmModalComponent} from "./adoptions/confirm-modal/confirm-modal.component";
 import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
@@ -44,7 +42,6 @@ import {OwnerComponent} from "./owner/owner.component";
 import {DetailsComponent} from "./owner/details/details.component";
 import {CommonModule} from "@angular/common";
 import {LoadingInterceptor} from "./service/loading/loading.interceptor";
-import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {CreateOwnerComponent} from "./owner/create/create-owner/create-owner.component";
 
 @NgModule({
@@ -85,16 +82,13 @@ import {CreateOwnerComponent} from "./owner/create/create-owner/create-owner.com
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FontAwesomeModule,
     BrowserAnimationsModule,
     MatInputModule,
-    NotifierModule,
     NgbModalModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    CommonModule,
-    MatProgressSpinner
+    CommonModule
   ],
   providers: [HttpClient,
     {

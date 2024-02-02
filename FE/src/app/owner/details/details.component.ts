@@ -7,7 +7,7 @@ import { Animal } from 'src/app/models/Animal';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrl: './details.component.css'
+  styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
 

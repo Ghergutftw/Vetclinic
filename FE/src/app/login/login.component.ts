@@ -4,8 +4,6 @@ import {AuthentificationService} from "../service/authentification.service";
 import {DataService} from "../service/data.service";
 import {Login} from "../models/Login";
 import {User} from "../models/User";
-import {NotifierService} from "angular-notifier";
-
 
 @Component({
   selector: 'app-login',
@@ -25,13 +23,11 @@ export class LoginComponent {
 
   constructor(public router: Router,
               public authService: AuthentificationService,
-              public service: DataService,
-              public notifier: NotifierService
+              public service: DataService
   ) {
   }
 
   handleLogin() {
-    this.notifier.notify("success", "User created successfully!")
     this.loginModel = new Login(this.username, this.password);
 
     this.authService.authenticate(this.loginModel)

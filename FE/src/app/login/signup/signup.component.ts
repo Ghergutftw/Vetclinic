@@ -1,10 +1,7 @@
-// signup.component.ts
-
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {User} from "../../models/User";
 import {DataService} from "../../service/data.service";
 import {Router} from "@angular/router";
-import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-signup',
@@ -16,8 +13,7 @@ export class SignupComponent {
 
   constructor(
     public dataService: DataService,
-    public router: Router,
-    public notifier: NotifierService
+    public router: Router
   ) {
   }
 
@@ -25,7 +21,7 @@ export class SignupComponent {
     this.dataService.createUser(this.user).subscribe(
       response => {
         if(response.status == "success"){
-          this.notifier.notify("success", "User created successfully!")
+          console.log("User created successfully!")
         }
         this.router.navigate(['login'])
       }

@@ -1,8 +1,12 @@
-FROM node:16-alpine3.11 as angular
+FROM node:18.17 as angular
 
 WORKDIR /app
 
 COPY . .
+
+# Update npm to the specified version
+RUN npm install -g npm@10.4.0
+
 RUN npm install
 RUN npm run build
 
@@ -14,3 +18,6 @@ COPY --from=angular /app/dist/fe-vet-clinic .
 
 LABEL name="front-end" \
       version="1.1"
+
+#docker tag {image id} ghergutmadalin/front-end:1.1
+#docker push ghergutmadalin/front-end:1.1

@@ -6,7 +6,7 @@ import {Owner} from "../../../models/Owner";
 @Component({
   selector: 'app-create-owner',
   templateUrl: './create-owner.component.html',
-  styleUrl: './create-owner.component.css'
+  styleUrls: ['./create-owner.component.css']
 })
 export class CreateOwnerComponent{
 

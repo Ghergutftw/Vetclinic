@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^16.2.12",
     "@angular/cdk": "^15.2.9",
     "@angular/common": "^16.2.12",
     "@angular/compiler": "^16.2.12",
@@ -19,6 +20,7 @@
     "@angular/platform-browser": "^16.2.12",
     "@angular/platform-browser-dynamic": "^16.2.12",
     "@angular/router": "^16.2.12",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "bootstrap": "^5.3.2",
     "file-saver": "^2.0.5",
