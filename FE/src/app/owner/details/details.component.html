@@ -1,4 +1,4 @@
-<h1 class="h1 text-center">
+<h1 class="h1 text-center fw-bold mt-2">
   OWNER INFO
 </h1>
 <div class="container w-50 h-75">
@@ -25,8 +25,10 @@
     <br>
 <!--    TODO : ADD THIS BEAUTY-->
     <div class="btn-group d-flex justify-content-center">
-      <button class="btn btn-success" type="submit"> UPDATE </button>
-      <button class="btn btn-warning" type="reset"> RESET </button>
+      <button class="btn btn-success" type="submit">
+        <i class="fas fa-save"></i> UPDATE </button>
+      <button class="btn btn-warning" type="reset">
+        <i class="fas fa-sync-alt"></i> RESET </button>
     </div>
   </form>
 </div>
@@ -53,11 +55,18 @@
             <strong>Weight:</strong> {{ animal.weight }}
           </p>
           <div class="btn-group">
-            <button class="btn btn-warning" (click)="abandonAnimal(animal)">Abandon</button>
+            <button class="btn btn-warning" (click)="abandonAnimal(animal)">
+              <i class="fas fa-circle-xmark"></i> Abandon</button>
           </div>
         </div>
       </div>
 
     </div>
   </div>
+  <div class="row" *ngIf="animals && animals.length === 0">
+    <div class="col-md-12">
+      <h1 class="h1 text-center">
+        No Animals Owned =(
+      </h1>
+    </div>
 </div>

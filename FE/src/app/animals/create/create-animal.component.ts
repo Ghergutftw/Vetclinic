@@ -72,4 +72,15 @@ export class CreateAnimalComponent {
     };
     reader.readAsDataURL(this.image);
   }
+
+  isFormValid(): "" | undefined | 0 | File{
+    return (
+      this.createdAnimal.nickname &&
+      this.createdAnimal.animalType &&
+      this.createdAnimal.specie &&
+      this.createdAnimal.age &&
+      this.createdAnimal.weight &&
+      this.image
+    );
+  }
 }

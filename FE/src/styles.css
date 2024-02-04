@@ -1,7 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 
-body { background-color: lightslategray !important;}
+body {
+  background-color: lightslategray !important;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/* Change the background color of the input fields */
+input[type="datetime-local"],
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="option"],
+input[type="file"],
+input[type="image"],
+input[name="doctorLastName"],
+label[for="imageInput"],
+select[name="select"],
+select[name="role"] {
+  background-color: #cecbcb;
+}
+
+.bgc{
+  background-color: #cecbcb;
+}

@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="text-center">
-    <h1>CREATE DOCTOR</h1>
+  <div class="text-center mt-2">
+    <h1 class="fw-bold">CREATE DOCTOR</h1>
   </div>
   <div class="container w-50 h-75">
     <form (ngSubmit)="!doctorCreateForm.invalid && createDoctor(createdDoctor)" #doctorCreateForm="ngForm">
@@ -63,9 +63,15 @@
       </fieldset>
       <br>
 
-      <div class="btn-group d-flex justify-content-center">
-        <button class="btn btn-success" type="submit"> SAVE</button>
-        <button class="btn btn-warning" type="reset"> RESET</button>
+      <div class="text-center">
+        <div class="btn-group d-flex justify-content-center">
+          <button class="btn btn-success" type="submit">
+            <i class="fas fa-save"></i> SAVE
+          </button>
+          <button class="btn btn-warning" type="reset">
+            <i class="fas fa-sync-alt"></i> RESET
+          </button>
+        </div>
       </div>
     </form>
   </div>

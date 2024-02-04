@@ -40,7 +40,11 @@ export class AppointmentsComponent implements OnInit {
   getAppointments() {
     this.dataService.getAllAppointments().subscribe(
       response => {
-        this.appointments = response;
+        response.map(appointment => {
+          if(appointment.status != Status.FINISHED){
+            this.appointments.push(appointment)
+          }
+        })
       }
     )
   }

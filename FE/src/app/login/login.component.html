@@ -4,34 +4,44 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-dark text-white" style="border-radius: 1rem;">
-            <div class="card-body p-4 text-center">
+            <div class="card-body p-4 text-center" (keyup.enter)="handleLogin()">
               <div class="md-5 mb-3 mt-md-4 pb-5 m-0">
                 <div class="container">
-                  <div class="alert alert-danger alert-dismissible fade show" *ngIf="invalidLogin === true" role="alert">
-                    <strong>{{ERROR_MESSAGE}}</strong>
-                    <button type="button" (click)="changeInvalidLoginInstantly()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  <div class="alert alert-danger alert-dismissible fade show" *ngIf="invalidLogin === true"
+                       role="alert">
+                    <strong>{{ ERROR_MESSAGE }}</strong>
+                    <button type="button" (click)="changeInvalidLoginInstantly()" class="btn-close"
+                            data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 </div>
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                 <p class="text-white-50 mb-3">Please enter your login and password!</p>
 
                 <div class="form-outline form-white mb-4">
-                  <label class="fs-6 fw-bold" class="form-label" for="typeEmailX">Username / Email</label>
-                  <input type="email" id="typeEmailX" class="form-control form-control-lg" [(ngModel)]="username" />
+                  <label class="fs-6 fw-bold form-label" for="email">
+                    <i class="fas fa-envelope"></i> Email
+                  </label>
+                  <input type="email" id="email" class="form-control form-control-lg" [(ngModel)]="username"/>
                 </div>
 
                 <div class="form-outline form-white mb-4">
-                  <label class="fs-6 fw-bold" class="form-label" for="typePasswordX">Password</label>
-                  <input type="password" id="typePasswordX" class="form-control form-control-lg" [(ngModel)]="password"  />
+                  <label class="fs-6 fw-bold form-label" for="password">
+                    <i class="fas fa-lock"></i> Password
+                  </label>
+                  <input type="password" id="password" class="form-control form-control-lg" [(ngModel)]="password"/>
                 </div>
 
                 <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
 
-                <button (click)="handleLogin()" class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                <button (click)="handleLogin()" class="btn btn-outline-light btn-lg px-5">
+                  <i class="fas fa-sign-in-alt"></i> Login
+                </button>
                 <br>
                 <br>
                 <div>
-                  <p class="mb-0">Don't have an account? <a routerLink="/signup" class="text-white-50 fw-bold">Sign Up</a>
+
+                  <p class="mb-0">Don't have an account? <a routerLink="/signup" class="text-white-50 fw-bold">
+                    Sign Up</a>
                   </p>
                 </div>
               </div>
@@ -41,5 +51,4 @@
       </div>
     </div>
   </section>
-  <!-- Pills content -->
 </div>

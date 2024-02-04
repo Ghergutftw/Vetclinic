@@ -7,7 +7,8 @@ export class Appointment {
     public appointmentDate?: string,
     public doctorId?: number,
     public owner: Owner = new Owner(),
-    public reason?: string
+    public reason?: string,
+    public status?: string
   ) {
   }
 }

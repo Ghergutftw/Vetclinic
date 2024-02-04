@@ -1,36 +1,44 @@
 <div class="container vh-100">
-  <div class="container text-center mt-2 ">
+  <div class="container text-center mt-2">
     <div class="h1">Appointments</div>
   </div>
-  <table class="table table-dark">
+  <table class="table table-dark table-bordered table-hover text-center">
     <thead class="thead-dark text-center">
     <tr class="table-header">
-      <th>Nr.Crt</th>
-      <th>Time</th>
-      <th>Doctor</th>
-      <th>Owner</th>
-      <th colspan="3" class="text-center">EDIT</th>
+      <th scope="col">Nr.Crt</th>
+      <th scope="col">Time</th>
+      <th scope="col">Doctor</th>
+      <th scope="col">Owner</th>
+      <th colspan="3">Actions</th>
     </tr>
     </thead>
     <tbody class="table-tabs text-center" *ngIf="appointments">
-    <tr *ngFor="let appointment of appointments" >
+    <tr *ngFor="let appointment of appointments">
       <td>{{appointment.id}}</td>
       <td>{{appointment.appointmentDate | date: 'MM/dd/yyyy, hh:mm a' }}</td>
       <td>Dr {{appointment.doctorLastName}}</td>
       <td>{{appointment.owner.firstName}} {{appointment.owner.lastName}}</td>
-      <td><button class="btn btn-success justify-content-center" (click)="processAppointment(appointment.id, appointment.doctorLastName)">Process</button></td>
-      <td><button class="btn btn-warning justify-content-center" (click)="updateAppointment(appointment.id)">Update</button></td>
-      <td><button class="btn btn-danger" (click)="deleteAppointment(appointment.id)">Delete</button></td>
+      <td>
+        <button class="btn btn-success" (click)="processAppointment(appointment.id, appointment.doctorLastName)">
+          <i class="fas fa-check"></i> Process
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-warning" (click)="updateAppointment(appointment.id)">
+          <i class="fas fa-edit"></i> Edit
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteAppointment(appointment.id)">
+          <i class="fas fa-trash-alt"></i> Delete
+        </button>
+      </td>
     </tr>
     </tbody>
-    <div class="col-1 mt-2">
-      <button class="btn btn-dark" (click) = "createAppointment()" >Create</button>
-    </div>
   </table>
-  <div class="container">
-    <div class="alert alert-success text-center " *ngIf="deleteMessage!=''">
-      Deleted Successfully!
-    </div>
+  <div class="col-1 mt-2">
+    <button class="btn btn-dark" (click)="createAppointment()">
+      <i class="fas fa-plus"></i> Create
+    </button>
   </div>
-
 </div>

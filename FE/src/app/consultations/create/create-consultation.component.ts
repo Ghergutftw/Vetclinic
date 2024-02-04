@@ -63,14 +63,12 @@ export class CreateConsultationComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
     this.activatedRoute.queryParams.subscribe(
       params => {
         this.appointmentId = params['id']
         this.consultation.doctorLastName = params['lastName']
       }
     )
-
     this.service.getAllDoctors().subscribe(
       response => {
         this.doctors = response;

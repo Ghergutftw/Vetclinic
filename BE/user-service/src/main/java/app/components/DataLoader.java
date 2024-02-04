@@ -24,7 +24,7 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) {
         // Create admin user
         String password = passwordEncoder.encode("test");
-        User user = new User(0, "madalin_ghergut", "Madalin", "Ghergut", "0740123456","madalinghergut@gmail.com", password, Roles.DEV);
+        User user = new User(0, "test", "Madalin", "Ghergut", "0740123456","madalinghergut@gmail.com", password, Roles.DEV);
         userRepository.save(user);
     }
 }

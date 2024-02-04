@@ -2,7 +2,7 @@
   <div class="container text-center mt-2 ">
     <div class="h1">Owners</div>
   </div>
-  <table class="table table-dark">
+  <table class="table table-dark table-bordered table-hover text-center">
     <thead class="thead-dark text-center">
     <tr class="table-header">
       <th>ID</th>
@@ -21,15 +21,19 @@
       <td>{{ owner.email }}</td>
       <td>{{ owner.phoneNumber }}</td>
       <td>
-        <button class="btn btn-info" (click)="getOwnerById(owner.id)">Details</button>
+        <button class="btn btn-info" (click)="getOwnerById(owner.id)">
+          <i class="fas fa-circle-info"></i> Details</button>
       </td>
       <td>
-        <button class="btn btn-danger" (click)="deleteOwner(owner.id)">Delete</button>
+        <button class="btn btn-danger" (click)="deleteOwner(owner.id)">
+          <i class="fas fa-trash-alt"></i> Delete</button>
       </td>
     </tr>
     </tbody>
   </table>
   <div class="col-1 mt-2">
-    <button (click)="createOwner()" class="btn btn-dark">Create</button>
+    <button class="btn btn-dark" (click)="createOwner()">
+      <i class="fas fa-plus"></i> Create
+    </button>
   </div>
 </div>

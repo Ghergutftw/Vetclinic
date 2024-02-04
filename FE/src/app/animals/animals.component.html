@@ -2,7 +2,7 @@
   <div class="container text-center mt-2 ">
     <div class="h1">Animals</div>
   </div>
-  <table class="table table-dark">
+  <table class="table table-dark table-bordered table-hover text-center">
     <thead class="thead-dark text-center">
     <tr class="table-header">
       <th>Nr.Crt</th>
@@ -22,18 +22,17 @@
       <td>{{animal.specie}}</td>
       <td>{{animal.age}}</td>
       <td>{{animal.weight}}</td>
-      <td><button class="btn btn-warning justify-content-center" (click)="updateAnimal(animal.id)">Update</button></td>
-      <td><button class="btn btn-danger" (click)="deleteAnimal(animal.id)">Delete</button></td>
+      <td><button class="btn btn-warning justify-content-center" (click)="updateAnimal(animal.id)">
+        <i class="fas fa-edit"></i> Edit</button></td>
+      <td><button class="btn btn-danger" (click)="deleteAnimal(animal.id)">
+        <i class="fas fa-trash-alt"></i> Delete</button></td>
     </tr>
     </tbody>
-    <div class="col-1 mt-2">
-      <button (click)="createAnimal()" class="btn btn-dark">Create</button>
-    </div>
   </table>
-  <div class="container">
-    <div class="alert alert-success text-center " *ngIf="deleteMessage!=''">
-      Deleted Successfully!
-    </div>
+  <div class="col-1 mt-2">
+    <button class="btn btn-dark" (click)="createAnimal()">
+      <i class="fas fa-plus"></i>&nbsp;Create
+    </button>
   </div>
 
 </div>

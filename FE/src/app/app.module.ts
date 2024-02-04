@@ -43,6 +43,8 @@ import {DetailsComponent} from "./owner/details/details.component";
 import {CommonModule} from "@angular/common";
 import {LoadingInterceptor} from "./service/loading/loading.interceptor";
 import {CreateOwnerComponent} from "./owner/create/create-owner/create-owner.component";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -88,7 +90,10 @@ import {CreateOwnerComponent} from "./owner/create/create-owner/create-owner.com
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    CommonModule
+    CommonModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [HttpClient,
     {

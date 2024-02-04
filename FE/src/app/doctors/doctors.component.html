@@ -2,10 +2,10 @@
   <div class="container text-center mt-2 ">
     <div class="h1">Doctors</div>
   </div>
-  <table class="table table-dark">
+  <table class="table table-dark table-bordered table-hover text-center">
     <thead class="thead-dark text-center">
     <tr class="table-header">
-      <th (click)="sort('id')">Avatar</th>
+      <th (click)="sort('id')">Id</th>
       <th (click)="sort('firstName')">First Name</th>
       <th (click)="sort('lastName')">Last Name</th>
       <th (click)="sort('speciality')">Speciality</th>
@@ -15,7 +15,7 @@
       <th colspan="2" class="text-center">EDIT</th>
     </tr>
     </thead>
-    <tbody class="table-tabs text-center">
+    <tbody class="table-tabs text-center" *ngIf="doctors">
     <tr *ngFor="let doctor of doctors">
       <td>{{ doctor.id }}</td>
       <td>{{ doctor.firstName }}</td>
@@ -25,22 +25,19 @@
       <td>{{ doctor.yearsOfExperience }}</td>
       <td>{{ doctor.user ? doctor.user.role : 'N/A' }}</td>
       <td>
-        <button class="btn btn-warning justify-content-center" (click)="updateDoctor(doctor.id)">Update</button>
+        <button class="btn btn-warning justify-content-center" (click)="updateDoctor(doctor.id)">
+          <i class="fas fa-edit"></i> Edit</button>
       </td>
       <td>
-        <button class="btn btn-danger" (click)="deleteDoctor(doctor.id)">Delete</button>
+        <button class="btn btn-danger" (click)="deleteDoctor(doctor.id)">
+          <i class="fas fa-trash-alt"></i> Delete</button>
       </td>
     </tr>
     </tbody>
-
-    <div class="col-1 mt-2">
-      <button (click)="createDoctor()" class="btn btn-dark">Create</button>
-    </div>
   </table>
-  <div class="container">
-    <div class="alert alert-success text-center " *ngIf="deleteMessage!=''">
-      Deleted Successfully!
-    </div>
+  <div class="col-1 mt-2">
+    <button class="btn btn-dark" (click)="createDoctor()">
+      <i class="fas fa-plus"></i> Create
+    </button>
   </div>
-
 </div>
