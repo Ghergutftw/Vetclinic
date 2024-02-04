@@ -6,14 +6,13 @@
     <parent>
         <groupId>main</groupId>
         <artifactId>BE</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <groupId>com.example</groupId>
     <artifactId>appointment-service</artifactId>
-    <version>${app.version}</version>
-
+    <version>1.1</version>
     <name>appointment-service</name>
     <description>This service takes care of the appointments that are in this clinic</description>
     <dependencies>

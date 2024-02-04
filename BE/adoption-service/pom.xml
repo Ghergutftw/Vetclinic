@@ -12,7 +12,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>adoption-service</artifactId>
-    <version>${app.version}</version>
+    <version>1.1</version>
     <name>adoption-service</name>
     <description>This service takes care of the adoption that are in this clinic</description>
     <dependencies>
