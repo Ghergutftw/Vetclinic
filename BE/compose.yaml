@@ -3,6 +3,7 @@ services:
   vetclinic-db:
     image: mysql:latest
     container_name: vetclinic-db
+    pull_policy: always
     environment:
       - MYSQL_DATABASE=mydatabase
       - MYSQL_PASSWORD=secret
@@ -16,6 +17,7 @@ services:
   discovery-server:
     image: ghergutmadalin/discovery-server:1.1
     container_name: discovery-server
+    pull_policy: always
     ports:
       - "8761:8761"
     environment:
@@ -25,6 +27,7 @@ services:
 
   api-gateway:
     image: ghergutmadalin/api-gateway:1.1
+    pull_policy: always
     container_name: api-gateway
     ports:
       - "8765:8765"
@@ -37,6 +40,7 @@ services:
 
   animal-service:
     image: ghergutmadalin/animal-service:1.1
+    pull_policy: always
     container_name: animal-service
     ports:
       - "8081:8081"
@@ -48,6 +52,7 @@ services:
 
   doctor-service:
     image: ghergutmadalin/doctor-service:1.1
+    pull_policy: always
     container_name: doctor-service
     ports:
       - "8084:8084"
@@ -58,6 +63,7 @@ services:
 
   user-service:
     image: ghergutmadalin/user-service:1.1
+    pull_policy: always
     container_name: user-service
     ports:
       - "8085:8085"
@@ -69,6 +75,7 @@ services:
   consultation-service:
     image: ghergutmadalin/consultation-service:1.1
     container_name: consultation-service
+    pull_policy: always
     ports:
       - "8082:8082"
     environment:
@@ -82,6 +89,7 @@ services:
   appointment-service:
     image: ghergutmadalin/appointment-service:1.1
     container_name: appointment-service
+    pull_policy: always
     ports:
       - "8083:8083"
     environment:
@@ -94,6 +102,7 @@ services:
   adoption-service:
     image: ghergutmadalin/adoption-service:1.1
     container_name: adoption-service
+    pull_policy: always
     ports:
       - "8086:8086"
     environment:
@@ -103,11 +112,12 @@ services:
       - api-gateway
       - discovery-server
 
-  # front-end:
-  #   image: ghergutmadalin/front-end:1.1
-  #   container_name: front-end
-  #   ports:
-  #     - "8080:80"
-  #   depends_on:
-  #     - api-gateway
-  #     - discovery-server
+  front-end:
+   image: ghergutmadalin/front-end:1.1
+   container_name: front-end
+   pull_policy: always
+   ports:
+     - "8080:80"
+   depends_on:
+     - api-gateway
+     - discovery-server
