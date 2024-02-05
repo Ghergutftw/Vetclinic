@@ -23,7 +23,7 @@ import {UpdateAppointmentComponent} from "./appointments/update/update-appointme
 import {SignupComponent} from "./login/signup/signup.component";
 import {OwnerComponent} from "./owner/owner.component";
 import {DetailsComponent} from "./owner/details/details.component";
-import {CreateOwnerComponent} from "./owner/create/create-owner/create-owner.component";
+import {CreateOwnerComponent} from "./owner/create/create/create-owner.component";
 
 const routes: Routes = [
   {path: '', component:LoginComponent},

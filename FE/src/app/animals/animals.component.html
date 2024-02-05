@@ -23,15 +23,15 @@
       <td>{{animal.age}}</td>
       <td>{{animal.weight}}</td>
       <td><button class="btn btn-warning justify-content-center" (click)="updateAnimal(animal.id)">
-        <i class="fas fa-edit"></i> Edit</button></td>
+        <fa-icon icon="edit"></fa-icon> Edit</button></td>
       <td><button class="btn btn-danger" (click)="deleteAnimal(animal.id)">
-        <i class="fas fa-trash-alt"></i> Delete</button></td>
+        <fa-icon icon="trash-alt"></fa-icon> Delete</button></td>
     </tr>
     </tbody>
   </table>
   <div class="col-1 mt-2">
     <button class="btn btn-dark" (click)="createAnimal()">
-      <i class="fas fa-plus"></i>&nbsp;Create
+      <fa-icon icon="plus"></fa-icon> Create
     </button>
   </div>
 

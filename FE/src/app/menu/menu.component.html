@@ -18,7 +18,7 @@
         Welcome {{ sessionStorage.getItem('Authenticated User') }}
       </li>
       <li><a *ngIf="!authService.isUserLoggedIn()" class="nav-link" routerLink="/login">LOGIN</a></li>
-      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link" routerLink="/logout"><i class="fas fa-right-from-bracket"></i> LOGOUT</a></li>
+      <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link" routerLink="/logout"><fa-icon icon="right-from-bracket"></fa-icon> LOGOUT</a></li>
     </ul>
   </nav>
 </header>

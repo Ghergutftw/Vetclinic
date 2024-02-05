@@ -20,17 +20,17 @@
       <td>{{appointment.owner.firstName}} {{appointment.owner.lastName}}</td>
       <td>
         <button class="btn btn-success" (click)="processAppointment(appointment.id, appointment.doctorLastName)">
-          <i class="fas fa-check"></i> Process
+          <fa-icon icon="check"></fa-icon> Process
         </button>
       </td>
       <td>
         <button class="btn btn-warning" (click)="updateAppointment(appointment.id)">
-          <i class="fas fa-edit"></i> Edit
+          <fa-icon icon="edit"></fa-icon> Edit
         </button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="deleteAppointment(appointment.id)">
-          <i class="fas fa-trash-alt"></i> Delete
+          <fa-icon icon="trash-alt"></fa-icon>  Delete
         </button>
       </td>
     </tr>
@@ -38,7 +38,7 @@
   </table>
   <div class="col-1 mt-2">
     <button class="btn btn-dark" (click)="createAppointment()">
-      <i class="fas fa-plus"></i> Create
+      <fa-icon icon="plus"></fa-icon>  Create
     </button>
   </div>
 </div>

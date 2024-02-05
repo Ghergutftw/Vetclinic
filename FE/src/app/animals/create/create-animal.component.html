@@ -1,13 +1,13 @@
 <div class="container mt-3">
-  <h1 class="h1 text-center fw-bold">
+  <h1 class="h1 text-center fw-bold form-label">
     CREATE ANIMAL
   </h1>
   <div class="row">
     <div class="col-md-6">
       <form (ngSubmit)="!updateCreateForm.invalid && createAnimal()" #updateCreateForm="ngForm" enctype="multipart/form-data">
         <div class="mb-3 input-group">
-          <label for="imageInput" class="input-group-text">
-            <i class="fas fa-image"></i>
+          <label for="imageInput" class="input-group-text form-label">
+            <fa-icon icon="image"></fa-icon>
           </label>
           <input type="file" #imageInput name="image" id="imageInput" accept="image/*" (change)="onFileSelected($event)" class="form-control">
         </div>
@@ -19,18 +19,17 @@
     </div>
 
     <div class="col-md-6 text-center">
-      <h1 class="h1 text-center fw-bold">
+      <h1 class="h1 text-center fw-bold form-label">
         ANIMAL INFO
       </h1>
       <form (ngSubmit)="!updateCreateForm.invalid && createAnimal()" #updateCreateForm="ngForm" enctype="multipart/form-data" class="text-center">
         <fieldset class="form-group text-center">
-          <label class="fs-6 fw-bold">Nickname</label>
+          <label class="fs-6 fw-bold form-label">Nickname</label>
           <input type="text" [(ngModel)]="createdAnimal.nickname" class="form-control text-center" name="nickname" required="required">
         </fieldset>
         <br>
-
         <fieldset class="form-group text-center">
-          <label class="fs-6 fw-bold" for="inputState">Animal Type</label>
+          <label class="fs-6 fw-bold form-label" for="inputState">Animal Type</label>
           <select #animalType="ngModel" (change)="updateSpecies()" [(ngModel)]="createdAnimal.animalType"
                   class="form-control  text-center" id="inputState" name="animalType"
                   required="required">
@@ -42,33 +41,33 @@
         </fieldset>
         <br>
         <fieldset class="form-group text-center">
-          <label class="fs-6 fw-bold">Species</label>
-          <select [(ngModel)]="createdAnimal.specie" class="form-control text-center" name="select" required="required">
+          <label class="fs-6 fw-bold form-label">Species</label>
+          <select [(ngModel)]="createdAnimal.specie" class="form-control text-center" name="specie" required="required">
             <option *ngFor="let species of speciesOptions" [value]="species">{{ species }}</option>
           </select>
         </fieldset>
         <br>
         <fieldset class="form-group text-center">
-          <label class="fs-6 fw-bold">Age</label>
+          <label class="fs-6 fw-bold form-label">Age</label>
           <input type="number" [(ngModel)]="createdAnimal.age" class="form-control text-center" name="age" required="required" #age="ngModel">
         </fieldset>
         <br>
         <fieldset class="form-group text-center">
-          <label class="fs-6 fw-bold">Weight</label>
+          <label class="fs-6 fw-bold form-label ">Weight</label>
           <input type="number" [(ngModel)]="createdAnimal.weight" class="form-control text-center" name="weight" required="required" #weight="ngModel">
         </fieldset>
         <br>
         <fieldset class="form-group text-center">
           <div class="form-check d-flex justify-content-center align-items-center">
             <input type="checkbox" class="form-check-input custom-checkbox" id="forAdoption" [(ngModel)]="createdAnimal.forAdoption" name="forAdoption">
-            <label class="fs-6 fw-bold" for="forAdoption">&nbsp;For Adoption</label>
+            <label class="fs-6 fw-bold  form-label" for="forAdoption">&nbsp;For Adoption</label>
           </div>
         </fieldset>
 
         <br>
         <div class="btn-group d-flex justify-content-center">
-          <button class="btn btn-success" type="submit" [disabled]="!isFormValid()"><i class="fas fa-save"></i> SAVE</button>
-          <button class="btn btn-warning" type="reset"><i class="fas fa-sync-alt"></i> RESET</button>
+          <button class="btn btn-success" type="submit" [disabled]="!isFormValid()"><fa-icon icon="save"></fa-icon> SAVE</button>
+          <button class="btn btn-warning" type="reset"><fa-icon icon="sync-alt"></fa-icon> RESET</button>
         </div>
       </form>
     </div>

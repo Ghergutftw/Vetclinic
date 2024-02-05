@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <h1 class="h1 text-center fw-bold">
+  <h1 class="h1 text-center fw-bold form-label">
     Animals for Adoption
   </h1>
   <div class="row" *ngIf="animals">
@@ -23,9 +23,9 @@
           </p>
           <div class="btn-group">
             <button class="btn btn-success" (click)="adoptAnimal(animal)">
-              <i class="fas fa-paw"></i> Adopt</button>
+              <fa-icon icon="paw"></fa-icon> Adopt</button>
             <button class="btn btn-warning" (click)="starAnimal(animal)">
-              <i class="fas fa-star"></i></button>
+              <fa-icon icon="star"></fa-icon></button>
           </div>
         </div>
       </div>

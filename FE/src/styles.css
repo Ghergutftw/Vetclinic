@@ -1,5 +1,4 @@
 @import "~bootstrap/dist/css/bootstrap.css";
-@import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 body {
   background-color: lightslategray !important;
@@ -26,6 +25,8 @@ input[type="image"],
 input[name="doctorLastName"],
 label[for="imageInput"],
 select[name="select"],
+select[name="specie"],
+select[name="animalType"],
 select[name="role"] {
   background-color: #cecbcb;
 }

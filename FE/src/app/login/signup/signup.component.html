@@ -13,40 +13,42 @@
                 <p class="text-white-50 mb-3">Please fill in the details to create your account!</p>
 
                 <div class="form-outline form-white mb-4">
-                  <label class="fs-6 fw-bold" class="form-label" for="username">Username</label>
+                  <label class="fs-6 fw-bold form-label" for="username">Username</label>
                   <input type="text" id="username" class="form-control form-control-lg" [(ngModel)]="user.username" />
                 </div>
 
                 <div class="form-outline form-white mb-4">
-                  <label class="fs-6 fw-bold" class="form-label" for="firstName">First Name</label>
+                  <label class="fs-6 fw-bold form-label" for="firstName">First Name</label>
                   <input type="text" id="firstName" class="form-control form-control-lg" [(ngModel)]="user.firstName" />
                 </div>
 
                 <div class="form-outline form-white mb-4">
-                  <label class="fs-6 fw-bold" class="form-label" for="lastName">Last Name</label>
+                  <label class="fs-6 fw-bold form-label" for="lastName">Last Name</label>
                   <input type="text" id="lastName" class="form-control form-control-lg" [(ngModel)]="user.lastName" />
                 </div>
 
                 <div class="form-outline form-white mb-4">
-                  <label class="fs-6 fw-bold" class="form-label" for="phoneNumber">Phone Number</label>
+                  <label class="fs-6 fw-bold orm-label form-label" for="phoneNumber">Phone Number</label>
                   <input type="text" id="phoneNumber" class="form-control form-control-lg" [(ngModel)]="user.phoneNumber" />
                 </div>
 
                 <div class="form-outline form-white mb-4">
-                  <label class="fs-6 fw-bold" class="form-label" for="email">Email</label>
+                  <label class="fs-6 fw-bold form-label" for="email">Email</label>
                   <input type="email" id="email" class="form-control form-control-lg" [(ngModel)]="user.email" />
                 </div>
 
                 <div class="form-outline form-white mb-4">
-                  <label class="fs-6 fw-bold" class="form-label" for="password">Password</label>
+                  <label class="fs-6 fw-bold form-label" for="password">Password</label>
                   <input type="password" id="password" class="form-control form-control-lg" [(ngModel)]="user.password" />
                 </div>
 
-                <button class="btn btn-outline-light btn-lg px-5" type="submit" (click)="handleSignUp()">Create Account</button>
+                <button class="btn btn-outline-light btn-lg px-5" type="submit" (click)="handleSignUp()">
+                  <fa-icon icon="plus"></fa-icon> Create Account</button>
                 <br>
                 <br>
                 <div>
-                  <p class="mb-0">Already have an account? <a routerLink="/login" class="text-white-50 fw-bold">Login</a></p>
+                  <p class="mb-0">Already have an account? <a routerLink="/login" class="text-white-50 fw-bold form-label">
+                    Login</a></p>
                 </div>
               </div>
             </div>

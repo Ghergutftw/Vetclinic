@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {Owner} from "../../../models/Owner";
 
 @Component({
-  selector: 'app-create-owner',
+  selector: 'app-create',
   templateUrl: './create-owner.component.html',
   styleUrls: ['./create-owner.component.css']
 })

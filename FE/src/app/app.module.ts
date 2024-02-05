@@ -42,10 +42,12 @@ import {OwnerComponent} from "./owner/owner.component";
 import {DetailsComponent} from "./owner/details/details.component";
 import {CommonModule} from "@angular/common";
 import {LoadingInterceptor} from "./service/loading/loading.interceptor";
-import {CreateOwnerComponent} from "./owner/create/create-owner/create-owner.component";
+import {CreateOwnerComponent} from "./owner/create/create/create-owner.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-
+import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {faCalendar} from "@fortawesome/free-solid-svg-icons";
+import {fontAwesomeIcons} from "../app/config/fontAwesomeIcons";
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +96,7 @@ import {MatButtonModule} from "@angular/material/button";
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    FontAwesomeModule,
   ],
   providers: [HttpClient,
     {
@@ -109,4 +112,9 @@ import {MatButtonModule} from "@angular/material/button";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  constructor( iconLibrary: FaIconLibrary) {
+    iconLibrary.addIcons(...fontAwesomeIcons,faCalendar);
+  }
+
 }

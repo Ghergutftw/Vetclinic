@@ -19,5 +19,6 @@ COPY --from=angular /app/dist/fe-vet-clinic .
 LABEL name="front-end" \
       version="1.1"
 
-#docker tag {image id} ghergutmadalin/front-end:1.1
+#docker login
+#docker tag e931d5634f7b ghergutmadalin/front-end:1.1
 #docker push ghergutmadalin/front-end:1.1

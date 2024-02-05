@@ -10,7 +10,7 @@
       <th>Username</th>
       <th>Email</th>
       <th>Password
-      <span (click)="handlePassword()" class="btn btn-secondary small"><i class="fas fa-eye"></i></span></th>
+      <span (click)="handlePassword()" class="btn btn-secondary small"><fa-icon icon="eye"></fa-icon></span></th>
       <th class="text-center">EDIT</th>
     </tr>
     </thead>
@@ -22,7 +22,7 @@
       <td>{{user.email}}</td>
       <td>TODO</td>
       <td><button class="btn btn-success justify-content-center" (click)="updateUser(user.id)">
-        <i class="fas fa-edit"></i> Edit</button></td>
+        <fa-icon icon="edit"></fa-icon> Edit</button></td>
     </tr>
     </tbody>
   </table>

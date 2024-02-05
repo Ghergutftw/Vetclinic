@@ -22,18 +22,18 @@
       <td>{{ owner.phoneNumber }}</td>
       <td>
         <button class="btn btn-info" (click)="getOwnerById(owner.id)">
-          <i class="fas fa-circle-info"></i> Details</button>
+          <fa-icon icon="info-circle"></fa-icon> Details</button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="deleteOwner(owner.id)">
-          <i class="fas fa-trash-alt"></i> Delete</button>
+          <fa-icon icon="trash-alt"></fa-icon> Delete</button>
       </td>
     </tr>
     </tbody>
   </table>
   <div class="col-1 mt-2">
     <button class="btn btn-dark" (click)="createOwner()">
-      <i class="fas fa-plus"></i> Create
+      <fa-icon icon="plus"></fa-icon> Create
     </button>
   </div>
 </div>
