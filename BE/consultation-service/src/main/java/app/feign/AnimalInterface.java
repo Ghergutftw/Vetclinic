@@ -2,16 +2,19 @@ package app.feign;
 
 import app.dto.AnimalDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "animal-service" , url = "http://localhost:8081/animal-service" )
 public interface AnimalInterface {
 
 //    Api-urile de la animal-service
-    @PostMapping("/create")
+@PostMapping("")
     AnimalDTO addAnimal(@RequestBody AnimalDTO animal);
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     AnimalDTO getAnimalById(@PathVariable int id);
 
 

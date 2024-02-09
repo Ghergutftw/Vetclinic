@@ -10,19 +10,19 @@ import java.util.List;
 @FeignClient(name = "user-service" , url = "http://localhost:8085/user-service" )
 public interface UserInterface {
 
-    @PostMapping("/create")
+    @PostMapping("")
     UserDTO createUser(@RequestBody UserDTO user);
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     UserDTO getUser(@PathVariable int id);
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     ResponseDTO deleteUser(@PathVariable int id);
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     UserDTO updateUser(@PathVariable int id, @RequestBody UserDTO user);
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     List<UserDTO> getUsers();
 
     @PostMapping("/login")

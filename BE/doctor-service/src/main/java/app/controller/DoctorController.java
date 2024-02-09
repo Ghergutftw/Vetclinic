@@ -19,25 +19,25 @@ public class DoctorController {
 
     private final DoctorService doctorService;
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<Doctor> getDoctors(){
         return doctorService.getDoctors();
     }
 
-    @PostMapping("/add")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Doctor addDoctor(@RequestBody DoctorDTO doctor){
        return doctorService.addDoctor(doctor);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseDTO deleteDoctor(@PathVariable int id) {
         return doctorService.deleteDoctor(id);
     }
 
-    @PutMapping( "/update/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateDoctor(@RequestBody DoctorDTO doctorDTO,@PathVariable int id) {
         doctorService.updateDoctor(doctorDTO,id);
@@ -49,18 +49,19 @@ public class DoctorController {
         return doctorService.getDoctorsLastName();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Doctor getDoctor(@PathVariable int id){
         return doctorService.getDoctorById(id);
     }
 
-    @GetMapping("/get-by-last-name/{lastName}")
+    @GetMapping("/doctors")
     @ResponseStatus(HttpStatus.OK)
-    public Doctor getDoctorByLastName(@PathVariable String lastName){
+    public Doctor getDoctorByLastName(@RequestParam String lastName) {
         return doctorService.getDoctorByLastName(lastName);
     }
 
+    //    TODO : What is the purpose of this method? To tired to check it now ¯\_(ツ)_/¯
     @PostMapping("/add-appointment/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public int addConsultation(@PathVariable int id){

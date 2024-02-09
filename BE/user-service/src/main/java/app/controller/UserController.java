@@ -25,38 +25,39 @@ public class UserController {
     public User updatePassword(@PathVariable int id, @RequestBody String password){
         return userService.updatePassword(id, password);
     }
-    @PostMapping("/create")
+
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Response createUser(@RequestBody SignUpDTO sign){
         return userService.createUser(sign);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public User getUser(@PathVariable int id){
         return userService.getUser(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Response deleteUser(@PathVariable int id){
         return userService.deleteUser(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public User updateUser(@PathVariable int id, @RequestBody User user){
         return userService.updateUser(id, user);
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<User> getUsers(){
        return userService.getAllUsers();
     }
 
-    @GetMapping("/get-user/{username}")
+    @GetMapping("/users")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public User getEmail(@PathVariable String username){
+    public User getEmail(@RequestParam String username) {
         return userService.getUser(username);
     }
 

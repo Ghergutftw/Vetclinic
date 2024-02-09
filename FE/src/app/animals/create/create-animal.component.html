@@ -6,7 +6,7 @@
     <div class="col-md-6">
       <form (ngSubmit)="!updateCreateForm.invalid && createAnimal()" #updateCreateForm="ngForm" enctype="multipart/form-data">
         <div class="mb-3 input-group">
-          <label for="imageInput" class="input-group-text form-label">
+          <label class="input-group-text" for="imageInput">
             <fa-icon icon="image"></fa-icon>
           </label>
           <input type="file" #imageInput name="image" id="imageInput" accept="image/*" (change)="onFileSelected($event)" class="form-control">

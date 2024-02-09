@@ -20,36 +20,37 @@ public class AppointmentController {
 
     private final AppointmentService appointmentService;
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<AppointmentDTO> getAllAppointments() {
         return appointmentService.findAll();
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Appointment addAppointment(@RequestBody AppointmentDTO appointment) {
         return appointmentService.save(appointment);
     }
 
-    @PostMapping("/{appointmentId}/update-status/{status}")
-    public Appointment updateStatus(@PathVariable int appointmentId, @PathVariable String status) {
+    @PostMapping("/{appointmentId}/update-status")
+    public Appointment updateStatus(@PathVariable int appointmentId, @RequestParam String status) {
         Status newStatus = Status.valueOf(status);
         return appointmentService.updateStatus(appointmentId, newStatus);
     }
-    @DeleteMapping("/delete/{id}")
+
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Response deleteAppointment(@PathVariable int id) {
         return appointmentService.deleteById(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Appointment updateAppointment(@PathVariable int id, @RequestBody Appointment appointment) {
         return appointmentService.update(id, appointment);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Appointment getAppointmentById(@PathVariable int id) {
         return appointmentService.findById(id);

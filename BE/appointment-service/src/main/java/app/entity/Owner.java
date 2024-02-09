@@ -1,7 +1,6 @@
 package app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -35,7 +34,7 @@ public class Owner {
 
     private int userId;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     @JsonIgnore
     @Builder.Default
     private List<Appointment> appointments = new ArrayList<>();

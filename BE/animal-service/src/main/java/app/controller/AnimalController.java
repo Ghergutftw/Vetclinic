@@ -22,13 +22,13 @@ public class AnimalController {
 
     private final AnimalService animalService;
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<AnimalDTO> get() {
         return animalService.getAllAnimals();
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public AnimalDTO addAnimal(@RequestBody Animal animal) {
         return animalService.addAnimal(animal);
@@ -36,42 +36,41 @@ public class AnimalController {
 
     @PostMapping("/post-image/{animalId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Response addAnimal(@RequestParam("image") MultipartFile file  , @PathVariable int animalId) throws IOException {
-        return animalService.saveImage(file,animalId);
+    public Response postImage(@RequestParam("image") MultipartFile file, @PathVariable int animalId) throws IOException {
+        return animalService.saveImage(file, animalId);
     }
 
-    @PostMapping("/abandon/{animalId}")
+    @PostMapping("/abandon")
     @ResponseStatus(HttpStatus.CREATED)
-    public Response abandonAnimal(@PathVariable int animalId) {
-        return animalService.abandonAnimal(animalId);
+    public Response abandonAnimal(@RequestParam int id) {
+        return animalService.abandonAnimal(id);
     }
 
-    @GetMapping(value = "/get-image/{animalId}",produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] getImage(@PathVariable int animalId) throws IOException {
-        return animalService.getImage(animalId);
+    @GetMapping(value = "/images", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getImage(@RequestParam int id) throws IOException {
+        return animalService.getImage(id);
     }
 
-    @PostMapping("/adopt/{animalId}")
-    public Response adoptAnimal(@PathVariable int animalId){
-        return animalService.adoptAnimal(animalId);
+    @PostMapping("/adopt")
+    public Response adoptAnimal(@RequestParam int id) {
+        return animalService.adoptAnimal(id);
     }
 
-
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Response deleteAnimal(@PathVariable int id){
+    public Response deleteAnimal(@PathVariable int id) {
         return animalService.deleteAnimal(id);
     }
 
-    @PutMapping( "/update/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public AnimalDTO updateAnimal(@PathVariable int id, @RequestBody Animal animal) {
-        return animalService.updateAnimal(id,animal);
+        return animalService.updateAnimal(id, animal);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Animal getAnimalById(@PathVariable int id){
+    public Animal getAnimalById(@PathVariable int id) {
         return animalService.getAnimalById(id);
     }
 

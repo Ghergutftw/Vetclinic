@@ -28,7 +28,7 @@ public class ConsultationController {
         this.consultationService = consultationService;
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<ConsultationDTO> getAllConsultations() {
         return consultationService.getAllConsultations();
@@ -48,7 +48,7 @@ public class ConsultationController {
     }
 
     @GetMapping("/download-word")
-    public ResponseEntity<byte[]> exportToWord(){
+    public ResponseEntity<byte[]> exportToWord() {
         byte[] wordDocument = consultationService.generateWordReport();
 
         HttpHeaders headers = new HttpHeaders();
@@ -60,7 +60,7 @@ public class ConsultationController {
         return new ResponseEntity<>(wordDocument, headers, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Consultation> getConsultationById(@PathVariable int id) {
         Consultation consultation = consultationService.getConsultationById(id);
         if (consultation != null) {
@@ -70,13 +70,13 @@ public class ConsultationController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Consultation addConsultation(@RequestBody ConsultationDTO consultationDTO) {
         return consultationService.addConsultation(consultationDTO);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Consultation> updateConsultation(@PathVariable int id, @RequestBody Consultation consultation) {
         Consultation updatedConsultation = consultationService.updateConsultation(id, consultation);
         if (updatedConsultation != null) {
@@ -86,10 +86,10 @@ public class ConsultationController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteConsultation(@PathVariable int id) {
-       consultationService.deleteConsultation(id);
+        consultationService.deleteConsultation(id);
     }
 
     @GetMapping("/diagnoses")

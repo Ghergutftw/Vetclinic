@@ -47,7 +47,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
-import {fontAwesomeIcons} from "../app/config/fontAwesomeIcons";
+import {fontAwesomeIcons} from "./config/font-awesome-icons";
+
 @NgModule({
   declarations: [
     AppComponent,

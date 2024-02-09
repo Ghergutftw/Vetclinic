@@ -19,31 +19,31 @@ public class AdoptionController {
 
     private final AdoptionService adoptionService;
 
-    @GetMapping("get-all")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<Adoption> getAllAdoptions() {
         return adoptionService.getAllAdoptions();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Adoption getAdoptionById(@PathVariable Integer id) {
+    public Adoption getAdoptionById(@PathVariable int id) {
         return adoptionService.getAdoptionById(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Response createAdoption(@RequestBody AdoptionDTO adoption) {
         return adoptionService.createAdoption(adoption);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Adoption updateAdoption(@PathVariable Integer id, @RequestBody Adoption adoption) {
         return adoptionService.updateAdoption(id, adoption);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteAdoption(@PathVariable Integer id) {
         adoptionService.deleteAdoption(id);

@@ -3,9 +3,12 @@ import {
   faCheck,
   faDownload,
   faEdit,
-  faEnvelope, faEye, faFileExcel,
+  faEnvelope,
+  faEye,
+  faFileExcel,
   faFileWord,
-  faImage, faInfoCircle,
+  faImage,
+  faInfoCircle,
   faLock,
   faPaw,
   faPlus,
@@ -14,7 +17,8 @@ import {
   faSignInAlt,
   faStar,
   faSyncAlt,
-  faTrashAlt, faXmark
+  faTrashAlt,
+  faXmark
 } from "@fortawesome/free-solid-svg-icons";
 
 export const fontAwesomeIcons = [

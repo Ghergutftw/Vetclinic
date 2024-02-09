@@ -19,7 +19,7 @@ public class OwnerController {
 
     private final OwnerService ownerService;
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<Owner> getAllOwners() {
         return ownerService.getAllOwners();
@@ -37,25 +37,25 @@ public class OwnerController {
         return ownerService.abandon(animalId);
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Owner addOwner(@RequestBody Owner owner) {
         return ownerService.addOwner(owner);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Response deleteOwner(@PathVariable int id) {
         return ownerService.deleteOwner(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Owner updateOwner(@PathVariable int id, @RequestBody Owner owner) {
         return ownerService.updateOwner(id, owner);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Owner getOwnerById(@PathVariable int id) {
         return ownerService.getOwnerById(id);

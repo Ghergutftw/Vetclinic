@@ -3,15 +3,14 @@ package app.service;
 import app.dto.AnimalDTO;
 import app.dto.ConsultationDTO;
 import app.dto.DoctorResponse;
-import app.feign.AnimalInterface;
 import app.entity.Consultation;
+import app.feign.AnimalInterface;
 import app.feign.DoctorInterface;
 import app.repository.ConsultationRepository;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.NoContentException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xslf.util.PDFFormat;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTcPr;
@@ -81,6 +80,7 @@ public class ConsultationServiceImpl implements ConsultationService {
     public Consultation addConsultation(ConsultationDTO consultation) {
         DoctorResponse doctor = doctorInterface.getDoctorByLastName(consultation.getDoctorLastName());
 
+//        TODO: Check if the animal exists if it does use a one to many on the animal side
         AnimalDTO animalCreated = animalInterface.addAnimal(consultation.getConsultatedAnimal());
         log.info("Adding new consultation: {}", consultation);
 
@@ -166,8 +166,8 @@ public class ConsultationServiceImpl implements ConsultationService {
             createStyledExcelCell(totalRow, 5, "Total Price");
             createStyledExcelCell(totalRow, 6, calculateTotalPrice(consultations));
 
-//            TODO: Auto-size columns for dockerfile0
-            // Auto-size columns
+//            TODO: Auto-size columns for dockerfile
+// Auto-size columns
 //            for (int i = 0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++) {
 //                sheet.autoSizeColumn(i);
 //            }
