@@ -1,11 +1,16 @@
 package app.controller;
 
 import app.dto.ConsultationDTO;
+import app.dto.EmailDTO;
+import app.dto.Response;
 import app.entity.Consultation;
 import app.enums.Diagnosis;
 import app.enums.Recommendation;
 import app.enums.Treatment;
 import app.service.ConsultationService;
+import app.service.EmailService;
+import jakarta.mail.MessagingException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -20,13 +26,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/consultation-service")
 @Slf4j
+@AllArgsConstructor
 public class ConsultationController {
 
     private final ConsultationService consultationService;
 
-    public ConsultationController(ConsultationService consultationService) {
-        this.consultationService = consultationService;
-    }
+    private final EmailService emailService;
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -82,6 +87,12 @@ public class ConsultationController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/get-receipt")
+    @ResponseStatus(HttpStatus.OK)
+    public Response sendEmailWithAttachment(@RequestBody EmailDTO emailDTO , @RequestParam String email) throws MessagingException, IOException {
+        return emailService.getReceipt(email, emailDTO.getSubject(), emailDTO.getText());
     }
 
     @DeleteMapping("/{id}")
