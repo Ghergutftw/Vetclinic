@@ -279,6 +279,7 @@ public class ConsultationServiceImpl implements ConsultationService {
             table.getRow(0).getCell(col).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(defaultColumnWidth));
         }
     }
+
     private void createStyledCellWord(XWPFTableRow row, int cellIndex, Object value, boolean isHeader) {
         XWPFTableCell cell = row.getCell(cellIndex);
 
@@ -302,6 +303,7 @@ public class ConsultationServiceImpl implements ConsultationService {
             run.setText(value.toString());
         }
     }
+
     private void boldRow(Row row) {
         for (Cell cell : row) {
             CellStyle style = cell.getCellStyle();
@@ -312,7 +314,6 @@ public class ConsultationServiceImpl implements ConsultationService {
             cell.setCellStyle(style);
         }
     }
-
 
     private String calculateTotalPrice(List<Consultation> consultations) {
         int totalPrice = consultations.stream().mapToInt(Consultation::getPrice).sum();

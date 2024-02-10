@@ -91,8 +91,8 @@ public class ConsultationController {
 
     @GetMapping("/get-receipt")
     @ResponseStatus(HttpStatus.OK)
-    public Response sendEmailWithAttachment(@RequestBody EmailDTO emailDTO , @RequestParam String email) throws MessagingException, IOException {
-        return emailService.getReceipt(email, emailDTO.getSubject(), emailDTO.getText());
+    public Response sendEmailWithAttachment(@RequestParam String email) throws MessagingException, IOException {
+        return emailService.getReceipt(email);
     }
 
     @DeleteMapping("/{id}")
