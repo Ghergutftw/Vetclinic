@@ -63,7 +63,7 @@ public class EmailService {
         return new Response("success", "Email sent to " + to);
     }
 
-    private byte[] createPDF() throws IOException {
+    private static byte[] createPDF() throws IOException {
         // Create a new PDF document
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
              PDDocument document = new PDDocument()) {
@@ -77,7 +77,14 @@ public class EmailService {
                 contentStream.beginText();
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
                 contentStream.newLineAtOffset(100, 700);
-                contentStream.showText("This is a sample PDF document created dynamically.");
+
+                // Adding current date and time to the title
+                LocalDateTime now = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
+                String formattedDateTime = now.format(formatter);
+
+                String title = "Chitanta Consultatie - " + formattedDateTime;
+                contentStream.showText(title);
                 contentStream.endText();
             }
 
@@ -89,13 +96,4 @@ public class EmailService {
         }
     }
 
-    public Response generateWordDocument() throws IOException {
-        XWPFDocument document = new XWPFDocument();
-        XWPFParagraph paragraph = document.createParagraph();
-        XWPFRun run = paragraph.createRun();
-        run.setText("Hello, this is a sample Word document created from Spring Boot.");
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        document.write(outputStream);
-        return new Response("success", "Word document created");
-    }
 }
