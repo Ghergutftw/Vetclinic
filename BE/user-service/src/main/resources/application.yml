@@ -20,7 +20,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: alphapawsclinic@gmail.com
-    password: vetclinictest
+    password: jfgz oort ssfv lgtu
     properties:
       mail:
         smtp:
