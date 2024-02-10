@@ -30,7 +30,6 @@ export class OwnerComponent implements OnInit{
 
   deleteOwner(ownerId: number | undefined) {
     this.dataService.deleteOwner(ownerId).subscribe(response => {
-      console.log('Delete response:', response);
       this.loadOwners();
     });
   }

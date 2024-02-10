@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Owner} from "../../models/Owner";
 import {DataService} from "../../service/data.service";
-import { Animal } from 'src/app/models/Animal';
+import {Animal} from 'src/app/models/Animal';
 
 @Component({
   selector: 'app-details',
@@ -18,7 +18,8 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: DataService
+    private service: DataService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +53,7 @@ export class DetailsComponent implements OnInit {
     this.service.updateOwner(this.ownerId, this.owner).subscribe(data => {
       this.owner = data;
     });
+    this.router.navigate(['/owners']);
   }
 
   abandonAnimal(animal: any) {

@@ -43,8 +43,8 @@ public class AdoptionServiceImpl implements AdoptionService {
     @Override
     public Response createAdoption(AdoptionDTO adoption) {
         log.info("Creating adoption");
-        Response animalResponse = animalInterface.adopt(adoption.getAnimalId());
         int ownerId = ownerInterface.adopt(new AdoptionDTO(adoption.getUsername(),adoption.getAnimalId(),adoption.getAdoptionDate()));
+        Response animalResponse = animalInterface.adopt(adoption.getAnimalId() , ownerId);
 
         if (!animalResponse.getStatus().equals("success")) {
             log.error("Error creating adoption: {}", animalResponse.getMessage());

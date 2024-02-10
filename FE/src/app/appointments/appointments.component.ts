@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from "../service/data.service";
 import {Appointment} from "../models/Appointment";
 import {Router} from "@angular/router";
-import { Status } from "../Enums/Status";
+import {Status} from "../Enums/Status";
 
 @Component({
   selector: 'app-appointments',
@@ -31,13 +31,14 @@ export class AppointmentsComponent implements OnInit {
   deleteAppointment(id: number | undefined) {
     this.dataService.deleteAppointment(id).subscribe(
       response => {
-        this.deleteMessage = `Appointment ${id} was deleted successfully!`
         this.getAppointments();
       }
     )
   }
 
   getAppointments() {
+    // TODO : add this to all delete methods for good practice
+    this.appointments = [];
     this.dataService.getAllAppointments().subscribe(
       response => {
         response.map(appointment => {

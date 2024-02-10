@@ -62,7 +62,11 @@ export class UpdateAnimalComponent implements OnInit {
 
   // TODO : it routes for no reason
   updateImage() {
-    this.service.saveImage(this.id, this.image)
+    if (this.imageUploaded) {
+      this.service.saveImage(this.id, this.image).subscribe(() => {
+        this.refreshPage();
+      });
+    }
   }
 
   onFileSelected(event: Event): void {

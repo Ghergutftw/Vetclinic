@@ -52,8 +52,8 @@ public class AnimalController {
     }
 
     @PostMapping("/adopt")
-    public Response adoptAnimal(@RequestParam int id) {
-        return animalService.adoptAnimal(id);
+    public Response adoptAnimal(@RequestParam int animalId,@RequestParam int ownerId) {
+        return animalService.adoptAnimal(animalId , ownerId);
     }
 
     @DeleteMapping("/{id}")

@@ -66,6 +66,7 @@ public class AnimalServiceImpl implements AnimalService {
         log.info("Fetching animal with id: {}", id);
         return animalRepository.findById(id).orElseThrow();
     }
+
     @Override
     public Response saveImage(MultipartFile file, int animalId) throws IOException {
         byte[] imageData = ImageUtils.compressImage(file.getBytes()); // Compress the image data
@@ -84,9 +85,10 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public Response adoptAnimal(int animalId) {
+    public Response adoptAnimal(int animalId, int ownerId) {
         Animal animal = animalRepository.findOneById(animalId);
         animal.setForAdoption(false);
+        animal.setOwnerId(ownerId);
         log.info("Animal with id: {} is now adopted", animalId);
         animalRepository.save(animal);
         return new Response("success", "Animal adopted successfully");
@@ -95,6 +97,7 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public Response abandonAnimal(int animalId) {
         Animal animal = animalRepository.findOneById(animalId);
+        animal.setOwnerId(0);
         animal.setForAdoption(true);
         log.info("Animal with id: {} is now available for adoption", animalId);
         animalRepository.save(animal);

@@ -81,6 +81,7 @@ public class ConsultationServiceImpl implements ConsultationService {
         DoctorResponse doctor = doctorInterface.getDoctorByLastName(consultation.getDoctorLastName());
 
 //        TODO: Check if the animal exists if it does use a one to many on the animal side
+//        TODO : O sa fie facut cu formula
         AnimalDTO animalCreated = animalInterface.addAnimal(consultation.getConsultatedAnimal());
         log.info("Adding new consultation: {}", consultation);
 

@@ -37,8 +37,6 @@ public class ConsultationController {
     @GetMapping("/download-excel")
     public ResponseEntity<byte[]> exportToExcel() {
         byte[] excelDocument = consultationService.generateExcelReport();
-
-//        TODO: Fix for docker compose and local I think
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         String fileName = "Consultations_" + new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date()) + ".xlsx";

@@ -25,7 +25,7 @@ public interface AnimalService {
 
     byte[] getImage(int animalId) throws IOException;
 
-    Response adoptAnimal(int animalId);
+    Response adoptAnimal(int animalId,int ownerId);
 
     Response abandonAnimal(int animalId);
 }

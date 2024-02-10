@@ -107,6 +107,12 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>4.1.0</version>
         </dependency>
+<!--        alphapawsclinic@gmail.com-->
+<!--        vetclinictest-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

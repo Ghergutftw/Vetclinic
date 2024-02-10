@@ -16,7 +16,6 @@ export class CreateConsultationComponent implements OnInit{
   defaultDate = new Date();
   doctors: Doctor[] = [];
   speciesOptions: string[] = [];
-
   diagnostics: string[] = [];
   recommendations: string[] = [];
   treatments: string[] = [];
