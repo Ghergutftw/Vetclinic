@@ -41,7 +41,7 @@ export class DetailsComponent implements OnInit {
     this.animals = [];
     if (this.ownerAnimals) {
       this.ownerAnimals.forEach((animalId) => {
-        this.service.retrieveAnimalById(animalId).subscribe((data: Animal) => {
+        this.service.getAnimalById(animalId).subscribe((data: Animal) => {
           data.image = this.service.getImage(data.id);
           this.animals.push(data);
         });

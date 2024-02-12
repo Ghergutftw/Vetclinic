@@ -85,7 +85,7 @@ export class DataService {
     return this.httpClient.put(`${this.BACKEND_API}/${this.ANIMAL_API}/${id}`, animal)
   }
 
-  retrieveAnimalById(id: number) {
+  getAnimalById(id: number | undefined) {
     return this.httpClient.get<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/${id}`)
   }
 
@@ -227,12 +227,11 @@ export class DataService {
     return this.httpClient.get<string[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}/treatments`);
   }
 
-//   TODO : Make an adoption page that switches or something ¯\_(ツ)_/¯
-//   //Adoptions API
-//
-//   getAllAdoptions(){
-//     return this.httpClient.get<Animal[]>(`${this.BACKEND_API}/${this.ADOPTION_API}/get-all`)
-//   }
+  //Adoptions API
+
+  getAllAdoptions(){
+    return this.httpClient.get<Adoption[]>(`${this.BACKEND_API}/${this.ADOPTION_API}`)
+  }
 
   createAdoption(adoption: Adoption) {
     return this.httpClient.post<Animal>(`${this.BACKEND_API}/${this.ADOPTION_API}`, adoption);
@@ -255,7 +254,7 @@ export class DataService {
     return this.httpClient.put<Owner>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/${this.OWNER_API}/${id}`, owner);
   }
 
-  getOwnerById(id: number): Observable<Owner> {
+  getOwnerById(id: number | undefined): Observable<Owner> {
     return this.httpClient.get<Owner>(`${this.BACKEND_API}/${this.APPOINTMENT_API}/${this.OWNER_API}/${id}`);
   }
 

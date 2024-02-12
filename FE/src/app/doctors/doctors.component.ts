@@ -12,9 +12,7 @@ import {User} from "../models/User";
 export class DoctorsComponent implements OnInit {
 
   doctors: Doctor[] ;
-
   deleteMessage: string = '';
-
   sortColumn: string = 'id';
   sortOrder: string = 'asc';
   users: User[] = [];
@@ -31,6 +29,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   refreshPage() {
+    this.doctors = [];
     this.service.getAllDoctors().subscribe(
       response => {
         this.doctors = response;

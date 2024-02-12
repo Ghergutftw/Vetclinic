@@ -34,7 +34,6 @@ export class DocsService {
   }
 
   getReceipt(email: string | undefined , consultation : Consultation){
-    const params = new HttpParams();
     return this.http.post(`${this.BACKEND_API}/${this.CONSULTATION_API}/get-receipt?email=${email}`,consultation);
   }
 

@@ -32,7 +32,7 @@ export class UpdateConsultationComponent implements OnInit {
       }
     )
 
-    this.dataService.retrieveAnimalById(this.id).subscribe(
+    this.dataService.getAnimalById(this.id).subscribe(
       response => {
         this.consultatedAnimal = response;
         this.updateSpecies();

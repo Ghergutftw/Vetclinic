@@ -29,6 +29,7 @@ export class UsersComponent {
   }
 
   refreshPage(){
+    this.users = [];
     this.dataService.getAllUsers().subscribe(
       response =>{
         this.users = response

@@ -19,6 +19,8 @@ export class CreateConsultationComponent implements OnInit{
   diagnostics: string[] = [];
   recommendations: string[] = [];
   treatments: string[] = [];
+  image!: File;
+  imagePreview: any;
 
   appointmentId: number = 0;
 
@@ -62,6 +64,22 @@ export class CreateConsultationComponent implements OnInit{
         this.speciesOptions = [];
         break;
     }
+  }
+
+  onFileSelected(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      this.image = inputElement.files[0];
+      this.displayImagePreview();
+    }
+  }
+
+  displayImagePreview(): void {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imagePreview = e.target.result;
+    };
+    reader.readAsDataURL(this.image);
   }
 
   ngOnInit(): void {

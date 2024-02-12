@@ -32,7 +32,7 @@ export class UpdateAnimalComponent implements OnInit {
   }
 
   private refreshPage() {
-    this.service.retrieveAnimalById(this.id).subscribe(
+    this.service.getAnimalById(this.id).subscribe(
       (response) => {
         this.animal = response;
       }
@@ -59,8 +59,6 @@ export class UpdateAnimalComponent implements OnInit {
     });
   }
 
-
-  // TODO : it routes for no reason
   updateImage() {
     if (this.imageUploaded) {
       this.service.saveImage(this.id, this.image).subscribe(() => {

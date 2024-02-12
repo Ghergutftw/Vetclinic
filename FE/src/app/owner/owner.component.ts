@@ -18,7 +18,9 @@ export class OwnerComponent implements OnInit{
   ngOnInit(): void {
     this.loadOwners();
   }
+
   loadOwners() {
+    this.owners = [];
     this.dataService.getAllOwners().subscribe(data => {
       this.owners = data;
     });
@@ -33,7 +35,6 @@ export class OwnerComponent implements OnInit{
       this.loadOwners();
     });
   }
-
 
   getOwnerById(id: number | undefined) {
     this.router.navigate(['owners', id, 'details']);

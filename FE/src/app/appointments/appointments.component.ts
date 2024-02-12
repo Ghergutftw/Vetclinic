@@ -37,7 +37,6 @@ export class AppointmentsComponent implements OnInit {
   }
 
   getAppointments() {
-    // TODO : add this to all delete methods for good practice
     this.appointments = [];
     this.dataService.getAllAppointments().subscribe(
       response => {

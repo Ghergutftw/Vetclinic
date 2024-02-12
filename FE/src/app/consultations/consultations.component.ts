@@ -29,6 +29,7 @@ export class ConsultationsComponent implements OnInit {
 
 
   private getAllConsultations() {
+    this.consultations = [];
     this.dataService.getAllConsultations().subscribe(
       response => {
         this.consultations = response

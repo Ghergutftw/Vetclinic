@@ -20,7 +20,7 @@
       </fieldset>
       <br>
       <div class="container w-100 d-flex justify-content-center">
-        <div class="container w-75 border border-secondary-subtle border-3 rounded mt-4">
+        <div class="container w-75 border border-secondary-subtle border-3 rounded mt-4 col-6">
           <h1 class="text-center mt-2">Animal
             <fa-icon icon="paw"></fa-icon>
           </h1>
@@ -67,24 +67,38 @@
                    required="required">
           </fieldset>
           <br>
+          <div class="mt-2">
+            <div class="mb-3 input-group">
+              <label class="input-group-text" for="imageInput">
+                <fa-icon icon="image"></fa-icon>
+              </label>
+              <input type="file" #imageInput name="image" id="imageInput" accept="image/*"
+                     (change)="onFileSelected($event)" class="form-control">
+            </div>
+
+            <div *ngIf="image" class="text-center">
+              <img [src]="imagePreview" alt="Image Preview" class="img-preview w-75 h-75">
+            </div>
+          </div>
+          <br>
         </div>
-        <div class="container w-75 border border-secondary-subtle border-3 rounded mt-4">
+        <div class="container w-75 border border-secondary-subtle border-3 rounded mt-4 col-6">
           <h1 class="text-center mt-2">Owner Info</h1>
-          <fieldset class="form-group text-center form-label">
-            <label class="fs-6 fw-bold form-label">First Name</label>
+          <fieldset class="form-group text-center">
+            <label class="fs-6 fw-bold form-label mt-2">First Name</label>
             <input [(ngModel)]="owner.firstName" class="form-control text-center" name="firstName" type="text">
           </fieldset>
           <fieldset class="form-group text-center">
-            <label class="fs-6 fw-bold form-label">Last Name</label>
+            <label class="fs-6 fw-bold form-label mt-3">Last Name</label>
             <input [(ngModel)]="owner.lastName" class="form-control text-center" name="lastName" type="text">
           </fieldset>
-          <fieldset class="form-group text-center form-label">
-            <label class="fs-6 fw-bold form-label">Email</label>
+          <fieldset class="form-group text-center">
+            <label class="fs-6 fw-bold form-label mt-3">Email</label>
             <input [(ngModel)]="owner.email" class="form-control text-center" name="email" type="email">
           </fieldset>
-          <fieldset class="form-group text-center form-label">
-            <label class="fs-6 fw-bold form-label">Phone Number</label>
-            <input [(ngModel)]="owner.phoneNumber" class="form-control text-center" name="phoneNumber" type="tel">
+          <fieldset class="form-group text-center">
+            <label class="fs-6 fw-bold form-label mt-3">Phone Number</label>
+            <input [(ngModel)]="owner.phoneNumber" class="form-control text-center bgc" name="phoneNumber" type="tel">
           </fieldset>
           <br>
         </div>

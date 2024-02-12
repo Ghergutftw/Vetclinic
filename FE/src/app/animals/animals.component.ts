@@ -25,6 +25,7 @@ export class AnimalsComponent {
   }
 
   refreshPage() {
+    this.animals = [];
     this.service.getAllAnimals().subscribe(
       response => {
         this.animals=response
@@ -37,8 +38,6 @@ export class AnimalsComponent {
         this.deleteMessage = "DELETED SUCCESSFULLY"
         this.refreshPage();
         this.changeDeleteMessageInstantly()
-      },() =>{
-        this.deleteMessage = "AN ERROR HAS OCCURED"
       }
     )
   }

@@ -19,6 +19,4 @@ export class RouterGuardService {
       return false;
     }
   }
-
-
 }
