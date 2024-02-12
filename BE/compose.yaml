@@ -12,6 +12,17 @@ services:
       - "3306:3306"
     volumes:
       - ./docker/volume_mysql:/var/lib/mysql
+    networks:
+      - vetclinic-network
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - vetclinic-network
+
 #
 #  discovery-server:
 #    image: ghergutmadalin/discovery-server:1.1
@@ -21,6 +32,8 @@ services:
 #      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
 #    depends_on:
 #      - vetclinic-db
+#    networks:
+#      - vetclinic-network
 #
 #  api-gateway:
 #    image: ghergutmadalin/api-gateway:1.1
@@ -34,6 +47,8 @@ services:
 #      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
 #    depends_on:
 #      - discovery-server
+#    networks:
+#      - vetclinic-network
 #
 #  animal-service:
 #    image: ghergutmadalin/animal-service:1.1
@@ -44,6 +59,8 @@ services:
 #    depends_on:
 #      - api-gateway
 #      - discovery-server
+#    networks:
+#      - vetclinic-network
 #
 #  doctor-service:
 #    image: ghergutmadalin/doctor-service:1.1
@@ -53,6 +70,8 @@ services:
 #      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
 #    depends_on:
 #      - discovery-server
+#    networks:
+#      - vetclinic-network
 #
 #  user-service:
 #    image: ghergutmadalin/user-service:1.1
@@ -62,6 +81,8 @@ services:
 #      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
 #    depends_on:
 #      - discovery-server
+#    networks:
+#      - vetclinic-network
 #
 #  consultation-service:
 #    image: ghergutmadalin/consultation-service:1.1
@@ -74,6 +95,8 @@ services:
 #      - doctor-service
 #      - api-gateway
 #      - discovery-server
+#    networks:
+#      - vetclinic-network
 #
 #  appointment-service:
 #    image: ghergutmadalin/appointment-service:1.1
@@ -85,6 +108,8 @@ services:
 #      - doctor-service
 #      - api-gateway
 #      - discovery-server
+#    networks:
+#      - vetclinic-network
 #
 #  adoption-service:
 #    image: ghergutmadalin/adoption-service:1.1
@@ -96,6 +121,8 @@ services:
 #      - doctor-service
 #      - api-gateway
 #      - discovery-server
+#    networks:
+#      - vetclinic-network
 #
 #  front-end:
 #   image: ghergutmadalin/front-end:1.1
@@ -106,3 +133,9 @@ services:
 #   depends_on:
 #     - api-gateway
 #     - discovery-server
+#    networks:
+#      - vetclinic-network
+
+networks:
+  vetclinic-network:
+    driver: bridge

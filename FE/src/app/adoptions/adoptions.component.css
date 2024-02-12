@@ -15,3 +15,24 @@
   background-color: #b3b2b2;
 }
 
+/* Additional styles for the switch alignment */
+.text-end {
+  text-align: end;
+}
+
+.text-start {
+  text-align: start;
+}
+
+/* Adjust switch position */
+.form-check.form-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Optional styles for improving switch appearance */
+.form-switch .form-check-input {
+  width: 40px; /* Adjust width as needed */
+  height: 20px; /* Adjust height as needed */
+}

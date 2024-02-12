@@ -10,6 +10,7 @@ logging:
     org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
     org.springframework.cloud.gateway: TRACE
 
+
 spring:
   profiles:
     active: development
@@ -84,6 +85,9 @@ management:
     web:
       exposure:
         include: prometheus
+  tracing:
+    sampling:
+      probability: 1.0
 #eureka:
 #  client:
 #    serviceUrl:
