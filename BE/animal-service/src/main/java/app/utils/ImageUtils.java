@@ -1,5 +1,7 @@
 package app.utils;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
@@ -23,8 +25,8 @@ public class ImageUtils {
         }
         try {
             outputStream.close();
-        } catch (Exception ignored) {
-            log.error(ignored.getMessage());
+        } catch (Exception exception) {
+            log.error(exception.getMessage());
         }
         return outputStream.toByteArray();
     }
@@ -42,7 +44,8 @@ public class ImageUtils {
                 outputStream.write(tmp, 0, count);
             }
             outputStream.close();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            log.error(e.getMessage());
         }
         return outputStream.toByteArray();
     }

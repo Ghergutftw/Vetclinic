@@ -2,6 +2,7 @@ package app.service;
 
 import app.dto.Response;
 import app.dto.SignUpDTO;
+import app.dto.UserDTO;
 import app.dto.UserLoginDTO;
 import app.entity.User;
 
@@ -29,5 +30,5 @@ public interface UserService {
 
     User updatePassword(int id, String password);
 
-    User getUser(String username);
+    UserDTO getUserByUsername(String username);
 }

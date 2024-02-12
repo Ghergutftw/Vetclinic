@@ -1,12 +1,10 @@
 package app.service;
 
+import app.dto.ConsultationDTO;
 import app.dto.Response;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfDocument;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.*;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.*;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -16,26 +14,23 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.pdf.codec.Base64;
 import com.itextpdf.text.pdf.PdfWriter;
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+
+import java.awt.Font;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static com.itextpdf.text.BaseColor.BLACK;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Service
 @Slf4j
 public class EmailService {
 
     private static final String CHITANTA_PATH = "templates/logo.jpg";
-
 
     private final JavaMailSender emailSender;
 
@@ -46,9 +41,9 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String from;
 
-    public Response getReceipt(String to) throws MessagingException, IOException {
+    public Response getReceipt(String to, ConsultationDTO consultation) throws MessagingException, IOException {
         // Create a PDF document
-        byte[] pdfBytes = createPDF();
+        byte[] pdfBytes = createPDF(consultation);
 
         // Create MimeMessage and helper
         MimeMessage message = emailSender.createMimeMessage();
@@ -72,32 +67,57 @@ public class EmailService {
         return new Response("success", "Email sent to " + to);
     }
 
-    private static byte[] createPDF() throws IOException {
+    private static byte[] createPDF(ConsultationDTO consultation) throws IOException {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-            Document document = new Document();
-
-            // Initialize PdfWriter with ByteArrayOutputStream
+            Document document = new Document(PageSize.A4);
             PdfWriter.getInstance(document, outputStream);
-
             document.open();
 
-            // Load your image from resources and add it to the document
+            // Add logo
             InputStream imageStream = new ClassPathResource(CHITANTA_PATH).getInputStream();
             Image image = Image.getInstance(org.apache.commons.io.IOUtils.toByteArray(imageStream));
-            image.scaleToFit(400, 400);
+            image.scaleToFit(200, 200);
             document.add(image);
 
-            // Write text to the document
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
-            String formattedDateTime = now.format(formatter);
+            // Add title
 
             com.itextpdf.text.Font font = new com.itextpdf.text.Font();
-            font.setSize(20);
+            font.setSize(12);
             font.setColor(com.itextpdf.text.BaseColor.BLACK);
+            document.add(new Phrase("Consultation Receipt", font));
 
-            Paragraph paragraph = new Paragraph("Chitanta Consultatie - " + formattedDateTime, font);
-            document.add(paragraph);
+            // Add current date and time
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = now.format(formatter);
+            document.add(new Phrase("\n\nDate: " + formattedDateTime));
+
+            // Create table
+            PdfPTable table = new PdfPTable(8); // 8 columns
+            table.setWidthPercentage(100);
+
+            // Add table headers
+            table.addCell("ID");
+            table.addCell("Date");
+            table.addCell("Doctor Last Name");
+            table.addCell("Diagnostic");
+            table.addCell("Treatment");
+            table.addCell("Recommendations");
+            table.addCell("Price");
+
+
+            // Add data from consultations DTO
+            addCell(table, String.valueOf(consultation.getId()));
+            addCell(table, consultation.getDate().toString());
+            addCell(table, consultation.getDoctorLastName());
+            addCell(table, consultation.getDiagnostic());
+            addCell(table, consultation.getTreatment());
+            addCell(table, consultation.getRecommendations());
+            addCell(table, String.valueOf(consultation.getPrice()));
+
+
+            // Add table to document
+            document.add(table);
 
             document.close();
 
@@ -106,5 +126,12 @@ public class EmailService {
         } catch (DocumentException e) {
             throw new IOException(e);
         }
+    }
+
+    // Method to add cell to table with specified alignment
+    private static void addCell(PdfPTable table, String text) {
+        PdfPCell cell = new PdfPCell(new Phrase(text));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
     }
 }

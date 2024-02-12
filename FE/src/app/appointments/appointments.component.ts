@@ -30,7 +30,7 @@ export class AppointmentsComponent implements OnInit {
 
   deleteAppointment(id: number | undefined) {
     this.dataService.deleteAppointment(id).subscribe(
-      response => {
+      () => {
         this.getAppointments();
       }
     )
@@ -42,9 +42,10 @@ export class AppointmentsComponent implements OnInit {
     this.dataService.getAllAppointments().subscribe(
       response => {
         response.map(appointment => {
-          if(appointment.status != Status.FINISHED){
-            this.appointments.push(appointment)
-          }
+          // if(appointment.status != Status.FINISHED){
+          //   this.appointments.push(appointment)
+          // }
+          this.appointments.push(appointment)
         })
       }
     )
@@ -56,7 +57,7 @@ export class AppointmentsComponent implements OnInit {
 
   processAppointment(id: number | undefined, doctorLastName: string | undefined) {
     this.dataService.updateStatus(id,Status.IN_PROGRESS).subscribe(
-      response => {
+      () => {
         this.router.navigate(["create-consultation"],{queryParams: {id: id , lastName: doctorLastName}})
       }
     )

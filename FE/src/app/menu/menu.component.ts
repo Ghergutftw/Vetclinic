@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit , OnDestroy{
 
   ngOnInit(): void {
     this.currentUser = sessionStorage.getItem("Authenticated User");
+    this.currentUser = JSON.parse(this.currentUser);
   }
 
   ngOnDestroy(): void {

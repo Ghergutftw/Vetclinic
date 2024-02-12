@@ -18,13 +18,15 @@ export class AuthentificationService {
   canLogin!: boolean;
 
   authenticate(loginModel: Login): Observable<boolean> {
+    this.service.getUserByUsername(loginModel.email).subscribe(
+      (response: User) => {
+        sessionStorage.setItem("Authenticated User", JSON.stringify(response));
+      }
+    )
+
     return this.service.login(loginModel).pipe(
-       map((response: LoginResponse) => {
-        if (response.status === "success") {
-          sessionStorage.setItem("Authenticated User", loginModel.email);
-          return true;
-        }
-        return false;
+      map((response: LoginResponse) => {
+        return response.status === "success";
       })
     );
   }

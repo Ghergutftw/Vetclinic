@@ -59,7 +59,7 @@ export class AdoptionsComponent  implements OnInit{
       return;
     }
     this.dataService.createAdoption(new Adoption(user, animal.id, new Date())).subscribe(
-      (response: any) => {
+      () => {
         this.loadAnimals();
       }
     )

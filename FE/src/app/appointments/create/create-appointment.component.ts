@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../service/data.service";
 import {Appointment} from "../../models/Appointment";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {Doctor} from "../../models/Doctor";
 import {Owner} from "../../models/Owner";
 
@@ -32,7 +32,7 @@ export class CreateAppointmentComponent implements OnInit {
 
   createAppointment() {
     this.service.createAppointment(this.appointment).subscribe(
-      response => {
+      () => {
         this.router.navigate(['appointments'])
       }
     )

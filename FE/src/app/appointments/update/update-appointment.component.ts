@@ -40,7 +40,7 @@ export class UpdateAppointmentComponent implements OnInit{
 
   updateAppointment() {
     this.service.updateAppointment(this.id, this.appointment).subscribe(
-      response => {
+      () => {
         this.router.navigate(['appointments'])
       }
     )

@@ -121,6 +121,10 @@ export class DataService {
   // ANIMALS API
   //USERS API
 
+  getUserByUsername(username: string) {
+    const params = new HttpParams().set('username', username);
+    return this.httpClient.get<User>(`${this.BACKEND_API}/${this.USER_API}/users`,{params: params});
+  }
 
   getAllUsers() {
     return this.httpClient.get<User[]>(`${this.BACKEND_API}/${this.USER_API}`)

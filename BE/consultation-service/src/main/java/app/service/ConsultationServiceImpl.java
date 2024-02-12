@@ -81,9 +81,10 @@ public class ConsultationServiceImpl implements ConsultationService {
         DoctorResponse doctor = doctorInterface.getDoctorByLastName(consultation.getDoctorLastName());
 
 //        TODO: Check if the animal exists if it does use a one to many on the animal side
-//        TODO : O sa fie facut cu formula
         AnimalDTO animalCreated = animalInterface.addAnimal(consultation.getConsultatedAnimal());
         log.info("Adding new consultation: {}", consultation);
+
+
 
 //        Extrage Consultation din ConsultationDTO
         Consultation toAddConsultation = Consultation.builder()
@@ -166,12 +167,6 @@ public class ConsultationServiceImpl implements ConsultationService {
             Row totalRow = sheet.createRow(rowNum);
             createStyledExcelCell(totalRow, 5, "Total Price");
             createStyledExcelCell(totalRow, 6, calculateTotalPrice(consultations));
-
-//            TODO: Auto-size columns for dockerfile
-// Auto-size columns
-//            for (int i = 0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++) {
-//                sheet.autoSizeColumn(i);
-//            }
 
             workbook.write(outputStream);
             return outputStream.toByteArray();

@@ -2,6 +2,7 @@ package app.service;
 
 import app.dto.Response;
 import app.dto.SignUpDTO;
+import app.dto.UserDTO;
 import app.dto.UserLoginDTO;
 import app.entity.User;
 import app.enums.Roles;
@@ -104,9 +105,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String username) {
-        log.info("Fetching email for user with username: {}", username);
-        return userRepository.findOneByUsername(username);
+    public UserDTO getUserByUsername(String username) {
+        log.info("Fetching user with username: {}", username);
+        User oneByUsername = userRepository.findOneByUsername(username);
+        return UserDTO.builder()
+                .id(oneByUsername.getId())
+                .username(oneByUsername.getUsername())
+                .firstName(oneByUsername.getFirstName())
+                .lastName(oneByUsername.getLastName())
+                .phoneNumber(oneByUsername.getPhoneNumber())
+                .email(oneByUsername.getEmail())
+                .role(oneByUsername.getRole())
+                .build();
     }
 
 

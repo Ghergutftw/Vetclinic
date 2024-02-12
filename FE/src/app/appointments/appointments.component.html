@@ -9,6 +9,7 @@
       <th scope="col">Time</th>
       <th scope="col">Doctor</th>
       <th scope="col">Owner</th>
+      <th scope="col">Status</th>
       <th colspan="3">Actions</th>
     </tr>
     </thead>
@@ -18,6 +19,7 @@
       <td>{{appointment.appointmentDate | date: 'MM/dd/yyyy, hh:mm a' }}</td>
       <td>Dr {{appointment.doctorLastName}}</td>
       <td>{{appointment.owner.firstName}} {{appointment.owner.lastName}}</td>
+      <td>{{appointment.status}}</td>
       <td>
         <button class="btn btn-success" (click)="processAppointment(appointment.id, appointment.doctorLastName)">
           <fa-icon icon="check"></fa-icon> Process

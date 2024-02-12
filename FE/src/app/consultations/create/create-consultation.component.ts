@@ -6,6 +6,7 @@ import {Doctor} from "../../models/Doctor";
 import {Animal} from "../../models/Animal";
 import {DocsService} from "../../service/docs.service";
 import {Status} from "../../Enums/Status";
+import {Owner} from "../../models/Owner";
 
 @Component({
   selector: 'app-create-consultation',
@@ -13,7 +14,6 @@ import {Status} from "../../Enums/Status";
   styleUrls: ['./create-consultation.component.css']
 })
 export class CreateConsultationComponent implements OnInit{
-  defaultDate = new Date();
   doctors: Doctor[] = [];
   speciesOptions: string[] = [];
   diagnostics: string[] = [];
@@ -33,6 +33,8 @@ export class CreateConsultationComponent implements OnInit{
     new Animal());
 
   response : string = "";
+  email: string = "";
+  owner: Owner = new Owner();
   constructor(
     public service: DataService,
     public docsService:DocsService,
@@ -42,6 +44,7 @@ export class CreateConsultationComponent implements OnInit{
   }
 
   updateSpecies() {
+
     switch (this.consultation.consultatedAnimal?.animalType) {
       case 'Cat':
         this.speciesOptions = ['Siamese', 'Persian', 'Maine Coon', 'Ragdoll', 'Bengal'];
@@ -74,16 +77,26 @@ export class CreateConsultationComponent implements OnInit{
       }
     )
 
+    this.service.getAppointmentById(this.appointmentId).subscribe(
+      value => {
+        this.owner = value.owner
+      }
+    )
+    this.consultation.date = new Date();
+
     this.service.getAnimalDiseases().subscribe((data) => (this.diagnostics = data));
     this.service.getRecommendations().subscribe((data) => (this.recommendations = data));
     this.service.getTreatments().subscribe((data) => (this.treatments = data));
   }
 
   createConsultation() {
+    // @ts-ignore
+    this.email = JSON.parse(sessionStorage.getItem('Authenticated User')).email;
     this.service.createConsultation(this.consultation).subscribe(
       () => {
         this.service.updateStatus(this.appointmentId,Status.FINISHED).subscribe(
           () => {
+            this.docsService.getReceipt(this.owner.email , this.consultation).subscribe();
             this.router.navigate(["/consultations"])
           }
         )
@@ -156,4 +169,5 @@ export class CreateConsultationComponent implements OnInit{
         break;
     }
   }
+
 }

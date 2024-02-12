@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {map, Observable} from "rxjs";
+import {Consultation} from "../models/Consultation";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,11 @@ export class DocsService {
   }
   exportToWord(): Observable<ArrayBuffer> {
     return this.http.get(`${this.BACKEND_API}/${this.CONSULTATION_API}/download-word`, { responseType: 'arraybuffer' });
+  }
+
+  getReceipt(email: string | undefined , consultation : Consultation){
+    const params = new HttpParams();
+    return this.http.post(`${this.BACKEND_API}/${this.CONSULTATION_API}/get-receipt?email=${email}`,consultation);
   }
 
 }

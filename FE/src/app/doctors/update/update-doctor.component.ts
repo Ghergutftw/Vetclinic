@@ -3,7 +3,6 @@ import {DataService} from "../../service/data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Doctor} from "../../models/Doctor";
 import {User} from "../../models/User";
-import {Roles} from "../../users/users.component";
 
 @Component({
   selector: 'app-update',

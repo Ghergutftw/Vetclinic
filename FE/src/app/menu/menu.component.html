@@ -14,8 +14,8 @@
     </ul>
 
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li *ngIf="sessionStorage.getItem('Authenticated User')" class="nav-link fw-bold fst-italic">
-        Welcome {{ sessionStorage.getItem('Authenticated User') }}
+      <li *ngIf="currentUser" class="nav-link fw-bold fst-italic">
+        Welcome {{currentUser.email}}
       </li>
       <li><a *ngIf="!authService.isUserLoggedIn()" class="nav-link" routerLink="/login">LOGIN</a></li>
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link" routerLink="/logout"><fa-icon icon="right-from-bracket"></fa-icon> LOGOUT</a></li>

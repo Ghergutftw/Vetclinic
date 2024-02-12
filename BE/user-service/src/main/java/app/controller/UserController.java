@@ -2,6 +2,7 @@ package app.controller;
 
 import app.dto.Response;
 import app.dto.SignUpDTO;
+import app.dto.UserDTO;
 import app.dto.UserLoginDTO;
 import app.entity.User;
 import app.service.UserService;
@@ -37,6 +38,11 @@ public class UserController {
         return userService.getUser(id);
     }
 
+    @GetMapping("/users")
+    public UserDTO getUserByUsername(@RequestParam String username) {
+        return userService.getUserByUsername(username);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Response deleteUser(@PathVariable int id){
@@ -53,12 +59,6 @@ public class UserController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<User> getUsers(){
        return userService.getAllUsers();
-    }
-
-    @GetMapping("/users")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public User getEmail(@RequestParam String username) {
-        return userService.getUser(username);
     }
 
     @PostMapping("/login")

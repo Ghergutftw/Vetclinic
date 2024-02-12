@@ -27,4 +27,5 @@ public class ConsultationDTO {
     private AnimalDTO consultatedAnimal;
 
     private int price;
+
 }

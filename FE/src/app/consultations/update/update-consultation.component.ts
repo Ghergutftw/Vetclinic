@@ -76,7 +76,7 @@ export class UpdateConsultationComponent implements OnInit {
 
   updateConsultation() {
     this.dataService.updateConsultationById(this.id, this.consultation).subscribe(
-      value => {
+      () => {
         this.router.navigate(['/consultations'])
       }
     )
