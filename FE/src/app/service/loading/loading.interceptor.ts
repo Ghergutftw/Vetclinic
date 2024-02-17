@@ -1,4 +1,5 @@
 // loading.interceptor.ts
+
 import { Injectable } from '@angular/core';
 import {
   HttpEvent,
@@ -18,11 +19,10 @@ export class LoadingInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.loadingService.setLoadingState(true);
-
+    this.loadingService.show();
     return next.handle(req).pipe(
       finalize(() => {
-        this.loadingService.setLoadingState(false);
+        this.loadingService.hide();
       })
     );
   }

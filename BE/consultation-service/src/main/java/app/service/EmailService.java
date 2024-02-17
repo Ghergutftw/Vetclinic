@@ -21,6 +21,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -85,7 +86,7 @@ public class EmailService {
         return new Response("success", "Email sent to " + to);
     }
 
-    private static byte[] createPDF(ConsultationDTO consultation) throws IOException {
+    public static byte[] createPDF(ConsultationDTO consultation) throws IOException {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             Document document = new Document(PageSize.A4);
             PdfWriter.getInstance(document, outputStream);
@@ -98,45 +99,48 @@ public class EmailService {
             document.add(image);
 
             // Add title
-
-            com.itextpdf.text.Font font = new com.itextpdf.text.Font();
-            font.setSize(12);
-            font.setColor(com.itextpdf.text.BaseColor.BLACK);
-            document.add(new Phrase("Consultation Receipt", font));
+            Font titleFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
+            Paragraph title = new Paragraph("Consultation Receipt", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
 
             // Add current date and time
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedDateTime = now.format(formatter);
-            document.add(new Phrase("\n\nDate: " + formattedDateTime));
+            Paragraph date = new Paragraph("\n\nDate: " + formattedDateTime);
+            document.add(date);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             // Create table
             PdfPTable table = new PdfPTable(8); // 8 columns
             table.setWidthPercentage(100);
 
-            // Add table headers
+            // Add headers
             table.addCell("ID");
             table.addCell("Date");
             table.addCell("Doctor Last Name");
+            table.addCell("Animal Code");
             table.addCell("Diagnostic");
             table.addCell("Treatment");
             table.addCell("Recommendations");
             table.addCell("Price");
-
-
-            // Add data from consultations DTO
-            addCell(table, String.valueOf(consultation.getId()));
-            addCell(table, consultation.getDate().toString());
-            addCell(table, consultation.getDoctorLastName());
-            addCell(table, consultation.getDiagnostic());
-            addCell(table, consultation.getTreatment());
-            addCell(table, consultation.getRecommendations());
-            addCell(table, String.valueOf(consultation.getPrice()));
+            // Add table headers
+            table.addCell(String.valueOf(consultation.getId()));
+            table.addCell(dateFormat.format(consultation.getDate())); // Format the date
+            table.addCell(consultation.getDoctorLastName());
+            table.addCell(consultation.getAnimalCode());
+            table.addCell(consultation.getDiagnostic());
+            table.addCell(consultation.getTreatment());
+            table.addCell(consultation.getRecommendations());
+            table.addCell(String.valueOf(consultation.getPrice()));
 
 
             // Add table to document
             document.add(table);
 
+            // Close document
             document.close();
 
             // Return the byte array of the PDF document
@@ -146,10 +150,4 @@ public class EmailService {
         }
     }
 
-    // Method to add cell to table with specified alignment
-    private static void addCell(PdfPTable table, String text) {
-        PdfPCell cell = new PdfPCell(new Phrase(text));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(cell);
-    }
 }

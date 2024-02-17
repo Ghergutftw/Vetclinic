@@ -49,6 +49,7 @@ import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {fontAwesomeIcons} from "./config/font-awesome-icons";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { LoadingComponent } from './service/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     ConfirmModalComponent,
     OwnerComponent,
     DetailsComponent,
-    CreateOwnerComponent
+    CreateOwnerComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
