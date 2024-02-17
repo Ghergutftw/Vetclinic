@@ -54,15 +54,13 @@ public class EmailService {
                 "Thank you for choosing our clinic.\n\n" +
                 "Best regards,\n" +
                 "Clinic Team");
-//        TODO : Make a change account info page
         emailSender.send(message);
-        return new Response("status", "Information send successfully");
+        return new Response("status", "Information sent successfully");
     }
 
-    //    TODO : Send a email with the credentials to the new owner
     public Response getReceipt(String to, ConsultationDTO consultation) throws MessagingException, IOException {
         // Create a PDF document
-        byte[] pdfBytes = createPDF(consultation);
+        byte[] pdfBytes = createPdf(consultation);
 
         // Create MimeMessage and helper
         MimeMessage message = emailSender.createMimeMessage();
@@ -86,68 +84,71 @@ public class EmailService {
         return new Response("success", "Email sent to " + to);
     }
 
-    public static byte[] createPDF(ConsultationDTO consultation) throws IOException {
+    public static byte[] createPdf(ConsultationDTO consultation) throws IOException {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             Document document = new Document(PageSize.A4);
             PdfWriter.getInstance(document, outputStream);
             document.open();
 
-            // Add logo
             InputStream imageStream = new ClassPathResource(CHITANTA_PATH).getInputStream();
             Image image = Image.getInstance(org.apache.commons.io.IOUtils.toByteArray(imageStream));
             image.scaleToFit(200, 200);
             document.add(image);
 
-            // Add title
-            Font titleFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
+            Font titleFont = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
             Paragraph title = new Paragraph("Consultation Receipt", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
 
-            // Add current date and time
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedDateTime = now.format(formatter);
             Paragraph date = new Paragraph("\n\nDate: " + formattedDateTime);
             document.add(date);
 
+            document.add(new Paragraph("\n"));
+
+            Font contentFont = new Font(Font.FontFamily.HELVETICA, 12);
+
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             // Create table
-            PdfPTable table = new PdfPTable(8); // 8 columns
+            PdfPTable table = new PdfPTable(6); // 6 columns
             table.setWidthPercentage(100);
 
-            // Add headers
-            table.addCell("ID");
-            table.addCell("Date");
-            table.addCell("Doctor Last Name");
-            table.addCell("Animal Code");
-            table.addCell("Diagnostic");
-            table.addCell("Treatment");
-            table.addCell("Recommendations");
-            table.addCell("Price");
-            // Add table headers
-            table.addCell(String.valueOf(consultation.getId()));
-            table.addCell(dateFormat.format(consultation.getDate())); // Format the date
-            table.addCell(consultation.getDoctorLastName());
-            table.addCell(consultation.getAnimalCode());
-            table.addCell(consultation.getDiagnostic());
-            table.addCell(consultation.getTreatment());
-            table.addCell(consultation.getRecommendations());
-            table.addCell(String.valueOf(consultation.getPrice()));
+            table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(createCellWithBorder("Date", contentFont)); // Use the modified method for header cells
+            table.addCell(createCellWithBorder("Doctor Last Name", contentFont)); // Use the modified method for header cells
+            table.addCell(createCellWithBorder("Diagnostic", contentFont)); // Use the modified method for header cells
+            table.addCell(createCellWithBorder("Treatment", contentFont)); // Use the modified method for header cells
+            table.addCell(createCellWithBorder("Recommendations", contentFont)); // Use the modified method for header cells
+            table.addCell(createCellWithBorder("Price", contentFont)); // Use the modified method for header cells
 
+            table.addCell(createCell(dateFormat.format(consultation.getDate()), contentFont)); // Format the date
+            table.addCell(createCell(consultation.getDoctorLastName(), contentFont));
+            table.addCell(createCell(consultation.getDiagnostic(), contentFont));
+            table.addCell(createCell(consultation.getTreatment(), contentFont));
+            table.addCell(createCell(consultation.getRecommendations(), contentFont));
+            table.addCell(createCell(String.valueOf(consultation.getPrice()), contentFont));
 
-            // Add table to document
             document.add(table);
-
-            // Close document
             document.close();
-
-            // Return the byte array of the PDF document
             return outputStream.toByteArray();
         } catch (DocumentException e) {
             throw new IOException(e);
         }
     }
 
+    private static PdfPCell createCell(String content, Font font) {
+        PdfPCell cell = new PdfPCell(new Phrase(content, font));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        return cell;
+    }
+
+    private static PdfPCell createCellWithBorder(String content, Font font) {
+        PdfPCell cell = new PdfPCell(new Phrase(content, font));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBorderWidth(2f); // Set thicker border width for header cells
+        return cell;
+    }
 }
