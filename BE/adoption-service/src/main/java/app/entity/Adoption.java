@@ -21,7 +21,7 @@ public class Adoption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer animalId;
+    private String animalCode;
 
     private Integer ownerId;
 

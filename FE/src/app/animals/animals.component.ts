@@ -42,8 +42,8 @@ export class AnimalsComponent {
     )
   }
 
-  updateAnimal(id : number) {
-    this.router.navigate(["update-animal" , id])
+  updateAnimal(animalCode : string) {
+    this.router.navigate(["update-animal" , animalCode])
   }
 
 

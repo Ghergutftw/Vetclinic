@@ -25,4 +25,5 @@ public class AnimalDTO {
 
     private String animalCode;
 
+    private int ownerId;
 }

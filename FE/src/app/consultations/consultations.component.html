@@ -25,11 +25,15 @@
       <td>Dr. {{ consultation.doctorLastName }}</td>
       <td>
         <button (click)="updateConsultation(consultation.id)" class="btn btn-info">
-          <fa-icon icon="edit"></fa-icon> Update</button>
+          <fa-icon icon="eye"></fa-icon>
+          View
+        </button>
       </td>
       <td>
         <button (click)="deleteConsultation(consultation.id)" class="btn btn-danger">
-          <fa-icon icon="trash-alt"></fa-icon>  Delete</button>
+          <fa-icon icon="trash-alt"></fa-icon>
+          Delete
+        </button>
       </td>
     <tr>
     </tr>
@@ -37,21 +41,28 @@
   </table>
   <div class="col-1 mt-2">
     <button routerLink="/create-consultation" class="btn btn-dark">
-      <fa-icon icon="plus"></fa-icon>  Create</button>
+      <fa-icon icon="plus"></fa-icon>
+      Create
+    </button>
   </div>
   <div class="dropdown">
     <br>
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <fa-icon icon="download"></fa-icon>  Export
+      <fa-icon icon="download"></fa-icon>
+      Export
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
       <li class="text-center">
         <button (click)="downloadConsultationsExcel()" class="btn btn-dark mt-2 green ">
-          <fa-icon icon="file-excel"></fa-icon>  Excel</button>
+          <fa-icon icon="file-excel"></fa-icon>
+          Excel
+        </button>
       </li>
       <li class="text-center">
         <button (click)="downloadConsultationsWord()" class="btn btn-dark mt-2 blue ">
-          <fa-icon icon="file-word"></fa-icon>  Word</button>
+          <fa-icon icon="file-word"></fa-icon>
+          Word
+        </button>
       </li>
     </ul>
   </div>

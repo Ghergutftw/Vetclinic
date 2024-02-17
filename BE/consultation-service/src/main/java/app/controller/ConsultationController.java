@@ -1,7 +1,6 @@
 package app.controller;
 
 import app.dto.ConsultationDTO;
-import app.dto.EmailDTO;
 import app.dto.Response;
 import app.entity.Consultation;
 import app.enums.Diagnosis;
@@ -72,11 +71,10 @@ public class ConsultationController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Consultation addConsultation(@RequestBody ConsultationDTO consultationDTO) {
-        return consultationService.addConsultation(consultationDTO);
+    public Response addConsultation(@RequestBody ConsultationDTO consultation ) {
+        return consultationService.addConsultation(consultation);
     }
 
     @PutMapping("/{id}")

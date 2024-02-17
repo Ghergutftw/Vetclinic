@@ -28,7 +28,7 @@ public class AppointmentController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Appointment addAppointment(@RequestBody AppointmentDTO appointment) {
+    public Response addAppointment(@RequestBody AppointmentDTO appointment) {
         return appointmentService.save(appointment);
     }
 

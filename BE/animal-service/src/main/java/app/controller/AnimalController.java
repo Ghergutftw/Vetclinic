@@ -1,7 +1,9 @@
 package app.controller;
 
 import app.dto.AnimalDTO;
+import app.dto.Creation;
 import app.dto.Response;
+import app.dto.ConsultationCreation;
 import app.entity.Animal;
 import app.service.AnimalService;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +36,12 @@ public class AnimalController {
         return animalService.addAnimal(animal);
     }
 
+    @PostMapping("/add-from-consultation")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Creation addAnimalFromConsultation(@RequestBody ConsultationCreation creation) {
+        return animalService.addAnimalFromConsultation(creation);
+    }
+
     @PostMapping("/post-image/{animalId}")
     @ResponseStatus(HttpStatus.CREATED)
     public Response postImage(@RequestParam("image") MultipartFile file, @PathVariable int animalId) throws IOException {
@@ -47,13 +55,13 @@ public class AnimalController {
     }
 
     @GetMapping(value = "/images", produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] getImage(@RequestParam int id) throws IOException {
-        return animalService.getImage(id);
+    public byte[] getImage(@RequestParam String animalCode) throws IOException {
+        return animalService.getImage(animalCode);
     }
 
     @PostMapping("/adopt")
-    public Response adoptAnimal(@RequestParam int animalId,@RequestParam int ownerId) {
-        return animalService.adoptAnimal(animalId , ownerId);
+    public Response adoptAnimal(@RequestParam String animalCode,@RequestParam int ownerId) {
+        return animalService.adoptAnimal(animalCode , ownerId);
     }
 
     @DeleteMapping("/{id}")
@@ -72,6 +80,12 @@ public class AnimalController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Animal getAnimalById(@PathVariable int id) {
         return animalService.getAnimalById(id);
+    }
+
+    @GetMapping("/animals")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Animal getAnimalByCode(@RequestParam String animalCode) {
+        return animalService.getAnimalByCode(animalCode);
     }
 
 }

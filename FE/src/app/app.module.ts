@@ -48,6 +48,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {fontAwesomeIcons} from "./config/font-awesome-icons";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import {fontAwesomeIcons} from "./config/font-awesome-icons";
     MatInputModule,
     MatButtonModule,
     FontAwesomeModule,
+    MatSnackBarModule
   ],
   providers: [HttpClient,
     {

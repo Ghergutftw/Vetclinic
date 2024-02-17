@@ -42,9 +42,9 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Owner addOwner(Owner owner) {
         log.info("Adding a new owner to the database: {}", owner);
-        ownerRepository.save(owner);
+        Owner savedOwner = ownerRepository.save(owner);
         log.info("Owner added successfully.");
-        return owner;
+        return savedOwner;
     }
 
     @Override
@@ -60,48 +60,66 @@ public class OwnerServiceImpl implements OwnerService {
         log.info("Deleting owner with ID: {}", ownerId);
         ownerRepository.deleteById(ownerId);
         log.info("Owner deleted successfully.");
-        return new Response("success","Owner deleted successfully." );
+        return new Response("success", "Owner deleted successfully.");
     }
 
     @Override
     public int adopt(AdoptionDTO adoption) {
-        UserDTO user = userInterface.getUser(adoption.getUsername());
-        Owner oneByEmail = ownerRepository.findOneByEmail(user.getEmail());
-        if (oneByEmail == null){
+        UserDTO user;
+//        TODO :Merge momentan ? fa user cand e trimis din consultate si trimite email cu informatiile create
+//        OwnerDTO ownerToBeUsered = adoption.getOwner();
+//        ownerToBeUsered.setUsername(adoption.getOwner().getFirstName().toLowerCase()+"."+adoption.getOwner().getFirstName().toLowerCase());
+//        ownerToBeUsered.setPassword(adoption.getOwner().getFirstName()+adoption.getOwner().getLastName());
+//        userInterface.saveUser(ownerToBeUsered);
+        user = userInterface.getUserByEmail(adoption.getEmail());
+
+        Owner owner = ownerRepository.findOneByEmail(user.getEmail());
+        if (owner == null) {
             Owner built = Owner.builder()
                     .firstName(user.getFirstName())
                     .lastName(user.getLastName())
                     .email(user.getEmail())
                     .phoneNumber(user.getPhoneNumber())
                     .userId(user.getId())
-                    .ownedAnimals(List.of(adoption.getAnimalId()))
+                    .ownedAnimals(List.of(adoption.getAnimalCode()))
                     .build();
             ownerRepository.save(built);
-            log.info("Owner with id : {} added successfully." , built.getId());
+            log.info("Owner with id : {} added successfully.", built.getId());
             return built.getId();
-        }else {
-            List<Integer> ownedAnimals = oneByEmail.getOwnedAnimals();
-            ownedAnimals.add(adoption.getAnimalId());
-            oneByEmail.setOwnedAnimals(ownedAnimals);
-            ownerRepository.save(oneByEmail);
-            log.info("Owner with id : {} updated successfully." , oneByEmail.getId());
-            return oneByEmail.getId();
+        } else {
+            List<String> ownedAnimals = owner.getOwnedAnimals();
+            ownedAnimals.add(adoption.getAnimalCode());
+            owner.setOwnedAnimals(ownedAnimals);
+            ownerRepository.save(owner);
+            log.info("Owner with id : {} updated successfully.", owner.getId());
+            return owner.getId();
         }
     }
 
     @Override
-    public Response abandon(int animalId) {
+    public Response abandon(String animalCode) {
         List<Owner> all = ownerRepository.findAll();
         for (Owner owner : all) {
-            List<Integer> ownedAnimals = owner.getOwnedAnimals();
-            if (ownedAnimals.contains(animalId)) {
-                ownedAnimals.remove(Integer.valueOf(animalId));
+            List<String> ownedAnimals = owner.getOwnedAnimals();
+            if (ownedAnimals.contains(animalCode)) {
+                ownedAnimals.remove(String.valueOf(animalCode));
                 owner.setOwnedAnimals(ownedAnimals);
                 ownerRepository.save(owner);
-                log.info("Animal with id : {} abandoned successfully.", animalId);
+                log.info("Animal with id : {} abandoned successfully.", animalCode);
                 return new Response("success", "Animal abandoned successfully.");
             }
         }
         return new Response("failed", "Something went wrong.");
     }
+
+    @Override
+    public Owner getOwnerByEmail(String email) {
+        return ownerRepository.findOneByEmail(email);
+    }
+
+//    @Override
+//    public Owner getOwnerByUsername(String username) {
+//        return ownerRepository.findOneByUsername(username);
+//    }
+
 }

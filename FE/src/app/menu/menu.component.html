@@ -15,7 +15,7 @@
 
     <ul class="navbar-nav navbar-collapse justify-content-end">
       <li class="nav-link fw-bold fst-italic" *ngIf="currentUser">
-        Welcome {{currentUser.firstName}} {{currentUser.lastName}}
+        Welcome {{currentUser}}
       </li>
       <li><a *ngIf="!authService.isUserLoggedIn()" class="nav-link" routerLink="/login">LOGIN</a></li>
       <li><a *ngIf="authService.isUserLoggedIn()" class="nav-link" routerLink="/logout"><fa-icon icon="right-from-bracket"></fa-icon> LOGOUT</a></li>

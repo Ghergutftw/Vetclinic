@@ -1,6 +1,7 @@
 export class Animal {
   constructor(
     public id?: number,
+    public animalCode?: string,
     public nickname?: string,
     public animalType?: string,
     public specie?: string,

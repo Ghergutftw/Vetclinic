@@ -1,11 +1,10 @@
 package app.service;
 
-import app.dto.AnimalDTO;
-import app.dto.ConsultationDTO;
-import app.dto.DoctorResponse;
+import app.dto.*;
 import app.entity.Consultation;
 import app.feign.AnimalInterface;
 import app.feign.DoctorInterface;
+import app.feign.OwnerInterface;
 import app.repository.ConsultationRepository;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.NoContentException;
@@ -36,13 +35,16 @@ public class ConsultationServiceImpl implements ConsultationService {
 
     private final ConsultationRepository consultationRepository;
 
-    DoctorInterface doctorInterface;
+    private final DoctorInterface doctorInterface;
 
-    AnimalInterface animalInterface;
+    private final OwnerInterface ownerInterface;
 
-    public ConsultationServiceImpl(ConsultationRepository consultationRepository, DoctorInterface doctorInterface, AnimalInterface animalInterface) {
+    private final AnimalInterface animalInterface;
+
+    public ConsultationServiceImpl(ConsultationRepository consultationRepository, DoctorInterface doctorInterface, OwnerInterface ownerInterface, AnimalInterface animalInterface) {
         this.consultationRepository = consultationRepository;
         this.doctorInterface = doctorInterface;
+        this.ownerInterface = ownerInterface;
         this.animalInterface = animalInterface;
     }
 
@@ -54,6 +56,7 @@ public class ConsultationServiceImpl implements ConsultationService {
         allConsultations.forEach(consultation -> {
             DoctorResponse doctor = doctorInterface.getDoctor(consultation.getDoctorId());
             AnimalDTO animal = animalInterface.getAnimalById(consultation.getAnimalId());
+            OwnerDTO ownerDTO = ownerInterface.getOwnerById(consultation.getOwnerId());
             ConsultationDTO consultationDTO = ConsultationDTO.builder()
                     .id(consultation.getId())
                     .date(consultation.getDate())
@@ -64,10 +67,10 @@ public class ConsultationServiceImpl implements ConsultationService {
                     .treatment(consultation.getTreatment())
                     .recommendations(consultation.getRecommendations())
                     .price(consultation.getPrice())
+                    .owner(ownerDTO)
                     .build();
             consultations.add(consultationDTO);
         });
-
         return consultations;
     }
     @Override
@@ -77,26 +80,25 @@ public class ConsultationServiceImpl implements ConsultationService {
         return consultation.orElse(null);
     }
     @Override
-    public Consultation addConsultation(ConsultationDTO consultation) {
+    public Response addConsultation(ConsultationDTO consultation) {
         DoctorResponse doctor = doctorInterface.getDoctorByLastName(consultation.getDoctorLastName());
-
-//        TODO: Check if the animal exists if it does use a one to many on the animal side
-        AnimalDTO animalCreated = animalInterface.addAnimal(consultation.getConsultatedAnimal());
+        Creation creation = animalInterface.addAnimalFromConsultation(new ConsultationCreation(consultation.getConsultatedAnimal(),consultation.getOwner()));
+        log.info("Owner id: {} \n Animal id: {}", creation.getOwnerId() , creation.getAnimalId());
         log.info("Adding new consultation: {}", consultation);
 
-
-
-//        Extrage Consultation din ConsultationDTO
         Consultation toAddConsultation = Consultation.builder()
                 .date(consultation.getDate())
                 .doctorId(doctor.getId())
-                .animalId(animalCreated.getId())
+                .animalId(creation.getAnimalId())
+                .ownerId(creation.getOwnerId())
                 .diagnostic(consultation.getDiagnostic())
                 .treatment(consultation.getTreatment())
                 .recommendations(consultation.getRecommendations())
                 .price(consultation.getPrice())
                 .build();
-        return consultationRepository.save(toAddConsultation);
+        consultationRepository.save(toAddConsultation);
+
+        return new Response("success" , String.valueOf(creation.getAnimalId()));
     }
 
     @Override

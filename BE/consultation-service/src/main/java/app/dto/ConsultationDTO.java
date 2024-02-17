@@ -9,6 +9,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class ConsultationDTO {
     private int id;
 
@@ -27,5 +28,7 @@ public class ConsultationDTO {
     private AnimalDTO consultatedAnimal;
 
     private int price;
+
+    private OwnerDTO owner;
 
 }

@@ -31,10 +31,10 @@ public class OwnerController {
         return ownerService.adopt(adoption);
     }
 
-    @PostMapping("/abandon/{animalId}")
+    @PostMapping("/abandon")
     @ResponseStatus(HttpStatus.OK)
-    public Response abandon(@PathVariable int animalId) {
-        return ownerService.abandon(animalId);
+    public Response abandon(@RequestParam String animalCode) {
+        return ownerService.abandon(animalCode);
     }
 
     @PostMapping("")
@@ -60,4 +60,10 @@ public class OwnerController {
     public Owner getOwnerById(@PathVariable int id) {
         return ownerService.getOwnerById(id);
     }
+
+    @GetMapping("/owners/email")
+    public Owner getOwnerByEmail(@RequestParam String email){
+        return ownerService.getOwnerByEmail(email);
+    }
+
 }

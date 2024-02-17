@@ -82,19 +82,26 @@ export class DataService {
   }
 
   updateAnimal(id: number, animal: Animal) {
+    console.log(id)
     return this.httpClient.put(`${this.BACKEND_API}/${this.ANIMAL_API}/${id}`, animal)
   }
 
   getAnimalById(id: number | undefined) {
     return this.httpClient.get<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/${id}`)
+
+  }
+
+  getAnimalByAnimalCode(animalCode: string) {
+    let params = new HttpParams().set('animalCode', animalCode);
+    return this.httpClient.get<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}/animals`, {params: params})
   }
 
   createAnimal(animal: Animal) {
     return this.httpClient.post<Animal>(`${this.BACKEND_API}/${this.ANIMAL_API}`, animal)
   }
 
-  getImage(id: number | undefined): Observable<SafeUrl> {
-    const params = new HttpParams().set('id', id?.toString() || '');
+  getImage(animalCode: string): Observable<SafeUrl> {
+    const params = new HttpParams().set('animalCode', animalCode);
 
     return this.httpClient.get(`${this.BACKEND_API}/${this.ANIMAL_API}/images`, {
       responseType: 'arraybuffer',
@@ -123,7 +130,7 @@ export class DataService {
 
   getUserByUsername(username: string) {
     const params = new HttpParams().set('username', username);
-    return this.httpClient.get<User>(`${this.BACKEND_API}/${this.USER_API}/users`,{params: params});
+    return this.httpClient.get<User>(`${this.BACKEND_API}/${this.USER_API}/users/username`, {params: params});
   }
 
   getAllUsers() {
@@ -170,8 +177,9 @@ export class DataService {
     return this.httpClient.get<Consultation[]>(`${this.BACKEND_API}/${this.CONSULTATION_API}`)
   }
 
-  createConsultation(consultation: Consultation) {
-    return this.httpClient.post<Consultation>(`${this.BACKEND_API}/${this.CONSULTATION_API}`, consultation);
+  createConsultation(consultation: Consultation, owner: Owner) {
+    consultation.owner = owner;
+    return this.httpClient.post<Response>(`${this.BACKEND_API}/${this.CONSULTATION_API}`, consultation);
   }
 
   getConsultationById(id: number) {
@@ -229,7 +237,7 @@ export class DataService {
 
   //Adoptions API
 
-  getAllAdoptions(){
+  getAllAdoptions() {
     return this.httpClient.get<Adoption[]>(`${this.BACKEND_API}/${this.ADOPTION_API}`)
   }
 

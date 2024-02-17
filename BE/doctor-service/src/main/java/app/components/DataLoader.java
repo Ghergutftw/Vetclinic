@@ -18,7 +18,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Doctor doctor = new Doctor(0,"Madalin", "Ghergut", 0 , "Cardiologie", 25, 5, 0);
+        Doctor doctor = new Doctor(0,"Lucian", "Bolota", 0 , "Cardiologie", 25, 5, 0);
         doctorRepository.save(doctor);
     }
 }

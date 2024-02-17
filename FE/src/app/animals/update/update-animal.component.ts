@@ -12,6 +12,7 @@ export class UpdateAnimalComponent implements OnInit {
 
   animal!: Animal
   id!: number
+  animalCode!: string
   retrievedImage: any;
   image!: File;
   imagePreview: any;
@@ -26,18 +27,19 @@ export class UpdateAnimalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['animalCode'];
+    this.animalCode = this.route.snapshot.params['animalCode'];
     this.animal = new Animal();
     this.refreshPage();
   }
 
   private refreshPage() {
-    this.service.getAnimalById(this.id).subscribe(
+    this.service.getAnimalByAnimalCode(this.animalCode).subscribe(
       (response) => {
         this.animal = response;
       }
     )
-    this.service.getImage(this.id).subscribe(
+    this.service.getImage(this.animalCode).subscribe(
       value => {
         this.retrievedImage = value;
       }
@@ -48,15 +50,17 @@ export class UpdateAnimalComponent implements OnInit {
     if (this.toBeAdopted) {
       this.service.abandonAnimalOwner(this.id).subscribe();
     }
-    this.service.updateAnimal(id, this.animal).subscribe(() => {
-      if (this.imageUploaded) {
-        this.service.saveImage(this.id, this.image).subscribe(() => {
+    if (this.animal.id) {
+      this.service.updateAnimal(this.animal.id, this.animal).subscribe(() => {
+        if (this.imageUploaded) {
+          this.service.saveImage(this.id, this.image).subscribe(() => {
+            this.router.navigate(["animals"]);
+          });
+        } else {
           this.router.navigate(["animals"]);
-        });
-      } else {
-        this.router.navigate(["animals"]);
-      }
-    });
+        }
+      });
+    }
   }
 
   updateImage() {

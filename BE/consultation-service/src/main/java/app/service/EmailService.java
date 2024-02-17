@@ -1,5 +1,6 @@
 package app.service;
 
+import app.dto.AccountInfo;
 import app.dto.ConsultationDTO;
 import app.dto.Response;
 import com.itextpdf.text.*;
@@ -11,20 +12,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.awt.Font;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 @Service
 @Slf4j
@@ -41,6 +40,25 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String from;
 
+    public Response sendNewAccountInformations(String to, AccountInfo accountInfo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(from);
+        message.setTo(to);
+        message.setSubject("Welcome to the clinic");
+        message.setText("Hello " + accountInfo.getUsername() + ",\n\n" +
+                "Welcome to our clinic! Your account information is as follows:\n" +
+                "Username: " + accountInfo.getUsername() + "\n" +
+                "Password: " + accountInfo.getPassword() + "\n\n" +
+                "This account credentials were generated\n" +
+                "Thank you for choosing our clinic.\n\n" +
+                "Best regards,\n" +
+                "Clinic Team");
+//        TODO : Make a change account info page
+        emailSender.send(message);
+        return new Response("status", "Information send successfully");
+    }
+
+    //    TODO : Send a email with the credentials to the new owner
     public Response getReceipt(String to, ConsultationDTO consultation) throws MessagingException, IOException {
         // Create a PDF document
         byte[] pdfBytes = createPDF(consultation);
@@ -52,7 +70,7 @@ public class EmailService {
         helper.setTo(to);
 
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String formattedDateTime = now.format(formatter);
 
         helper.setSubject("Chitanța Consultație " + " - " + formattedDateTime);

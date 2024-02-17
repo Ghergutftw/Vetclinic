@@ -11,4 +11,5 @@ public interface OwnerRepository extends JpaRepository<Owner, Integer> {
     Owner findOneById(int id);
 
     Owner findOneByEmail(String email);
+
 }

@@ -31,7 +31,6 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
 
-
     @Override
     public Doctor addDoctor(DoctorDTO doctorDTO) {
         log.info("Creating a doctor!");
@@ -93,8 +92,8 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public int getNumberOfAppointments(int id) {
         log.info("Fetching number of appointments for doctor with id: {}", id);
-        Optional<Doctor> doctor = doctorRepository.findById(id);
-        return doctor.get().getNumberOfAppointments();
+        Doctor doctor = doctorRepository.findOneById(id);
+        return doctor.getNumberOfAppointments();
     }
 
     @Override

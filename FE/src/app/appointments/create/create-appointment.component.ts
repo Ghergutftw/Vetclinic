@@ -4,6 +4,7 @@ import {Appointment} from "../../models/Appointment";
 import {Router} from "@angular/router";
 import {Doctor} from "../../models/Doctor";
 import {Owner} from "../../models/Owner";
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-create',
@@ -16,7 +17,8 @@ export class CreateAppointmentComponent implements OnInit {
   doctors !: Doctor[]
   constructor(
     private service: DataService,
-    private router: Router
+    private router: Router,
+    private notService: NotificationService
   ) {
   }
 
@@ -29,10 +31,10 @@ export class CreateAppointmentComponent implements OnInit {
     )
 
   }
-
   createAppointment() {
     this.service.createAppointment(this.appointment).subscribe(
       () => {
+        this.notService.showNotification("Appointment created successfully");
         this.router.navigate(['appointments'])
       }
     )

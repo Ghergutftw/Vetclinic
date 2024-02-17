@@ -21,7 +21,7 @@
       <td>{{appointment.owner.firstName}} {{appointment.owner.lastName}}</td>
       <td>{{appointment.status}}</td>
       <td>
-        <button class="btn btn-success" (click)="processAppointment(appointment.id, appointment.doctorLastName)">
+        <button class="btn btn-success" (click)="processAppointment(appointment.id, appointment.doctorLastName)" [disabled]="appointment.status === 'FINISHED' " >
           <fa-icon icon="check"></fa-icon> Process
         </button>
       </td>

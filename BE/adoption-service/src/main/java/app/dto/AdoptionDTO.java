@@ -13,8 +13,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class AdoptionDTO {
 
-    private String username;
-    private int animalId;
+    private OwnerDTO owner;
+    private String email;
+    private String animalCode;
     private Date adoptionDate;
 
 }

@@ -1,6 +1,7 @@
 package app.service;
 
 import app.dto.ConsultationDTO;
+import app.dto.Response;
 import app.entity.Consultation;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface ConsultationService {
 
     Consultation getConsultationById(int id);
 
-    Consultation addConsultation(ConsultationDTO consultation);
+    Response addConsultation(ConsultationDTO consultation);
 
     Consultation updateConsultation(int id, Consultation updatedConsultation);
 

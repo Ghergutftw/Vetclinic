@@ -15,7 +15,7 @@ public interface AppointmentService {
 
     Appointment findById(int id);
 
-    Appointment save(AppointmentDTO appointment);
+    Response save(AppointmentDTO appointment);
 
     Response deleteById(int id);
 

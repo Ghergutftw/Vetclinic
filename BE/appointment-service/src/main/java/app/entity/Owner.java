@@ -41,6 +41,10 @@ public class Owner {
 
     @ElementCollection
     @Builder.Default
-    private List<Integer> ownedAnimals = new ArrayList<>();
+    private List<Integer> consultations = new ArrayList<>();
+
+    @ElementCollection
+    @Builder.Default
+    private List<String> ownedAnimals = new ArrayList<>();
 
 }

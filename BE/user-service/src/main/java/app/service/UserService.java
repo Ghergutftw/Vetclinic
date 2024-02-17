@@ -1,9 +1,6 @@
 package app.service;
 
-import app.dto.Response;
-import app.dto.SignUpDTO;
-import app.dto.UserDTO;
-import app.dto.UserLoginDTO;
+import app.dto.*;
 import app.entity.User;
 
 import java.util.List;
@@ -31,4 +28,6 @@ public interface UserService {
     User updatePassword(int id, String password);
 
     UserDTO getUserByUsername(String username);
+
+    UserDTO getUserByEmail(String email);
 }

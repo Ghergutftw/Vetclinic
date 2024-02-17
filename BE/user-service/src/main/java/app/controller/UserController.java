@@ -1,9 +1,6 @@
 package app.controller;
 
-import app.dto.Response;
-import app.dto.SignUpDTO;
-import app.dto.UserDTO;
-import app.dto.UserLoginDTO;
+import app.dto.*;
 import app.entity.User;
 import app.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -38,9 +35,14 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @GetMapping("/users")
+    @GetMapping("/users/username")
     public UserDTO getUserByUsername(@RequestParam String username) {
         return userService.getUserByUsername(username);
+    }
+
+    @GetMapping("/users/email")
+    public UserDTO getUserByEmail(@RequestParam String email) {
+        return userService.getUserByEmail(email);
     }
 
     @DeleteMapping("/{id}")

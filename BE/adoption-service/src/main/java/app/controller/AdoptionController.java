@@ -39,7 +39,7 @@ public class AdoptionController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Adoption updateAdoption(@PathVariable Integer id, @RequestBody Adoption adoption) {
+    public Response updateAdoption(@PathVariable Integer id, @RequestBody Adoption adoption) {
         return adoptionService.updateAdoption(id, adoption);
     }
 

@@ -43,15 +43,19 @@ public class AdoptionServiceImpl implements AdoptionService {
     @Override
     public Response createAdoption(AdoptionDTO adoption) {
         log.info("Creating adoption");
-        int ownerId = ownerInterface.adopt(new AdoptionDTO(adoption.getUsername(),adoption.getAnimalId(),adoption.getAdoptionDate()));
-        Response animalResponse = animalInterface.adopt(adoption.getAnimalId() , ownerId);
+        AdoptionDTO adoptionDTO = new AdoptionDTO();
+        adoptionDTO.setEmail(adoption.getEmail());
+        adoptionDTO.setAnimalCode(adoption.getAnimalCode());
+        adoptionDTO.setAdoptionDate(adoption.getAdoptionDate());
+        int ownerId = ownerInterface.adopt(adoptionDTO);
+        Response animalResponse = animalInterface.adopt(adoption.getAnimalCode() , ownerId);
 
         if (!animalResponse.getStatus().equals("success")) {
             log.error("Error creating adoption: {}", animalResponse.getMessage());
         }
 
         Adoption toBeAdded = new Adoption();
-        toBeAdded.setAnimalId(adoption.getAnimalId());
+        toBeAdded.setAnimalCode(adoption.getAnimalCode());
         toBeAdded.setDate(adoption.getAdoptionDate());
         toBeAdded.setOwnerId(ownerId);
 
@@ -61,21 +65,19 @@ public class AdoptionServiceImpl implements AdoptionService {
     }
 
     @Override
-    public Adoption updateAdoption(Integer id, Adoption updatedAdoption) {
+    public Response updateAdoption(Integer id, Adoption updatedAdoption) {
         log.info("Updating adoption with id: {}", id);
         Optional<Adoption> existingAdoption = adoptionRepository.findById(id);
 
         if (existingAdoption.isPresent()) {
             Adoption adoption = existingAdoption.get();
-            adoption.setAnimalId(updatedAdoption.getAnimalId());
+            adoption.setAnimalCode(updatedAdoption.getAnimalCode());
             adoption.setOwnerId(updatedAdoption.getOwnerId());
-            adoption.setAnimalId(updatedAdoption.getAnimalId());
             adoption.setDate(updatedAdoption.getDate());
-
-            return adoptionRepository.save(adoption);
+            adoptionRepository.save(adoption);
+            return new Response("success", "Adoption updated");
         }
-
-        return null;
+        return new Response("error", "Adoption not found");
     }
 
     @Override

@@ -13,7 +13,7 @@ public interface AdoptionService {
     List<Adoption> getAllAdoptions();
     Adoption getAdoptionById(Integer id);
     Response createAdoption(AdoptionDTO adoption);
-    Adoption updateAdoption(Integer id, Adoption adoption);
+    Response updateAdoption(Integer id, Adoption adoption);
     void deleteAdoption(Integer id);
 
     

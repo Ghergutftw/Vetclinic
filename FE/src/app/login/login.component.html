@@ -6,20 +6,11 @@
           <div class="card bg-dark text-white" style="border-radius: 1rem;">
             <div class="card-body p-4 text-center" (keyup.enter)="handleLogin()">
               <div class="md-5 mb-3 mt-md-4 pb-5 m-0">
-                <div class="container">
-                  <div class="alert alert-danger alert-dismissible fade show" *ngIf="invalidLogin === true"
-                       role="alert">
-                    <strong>{{ ERROR_MESSAGE }}</strong>
-                    <button type="button" (click)="changeInvalidLoginInstantly()" class="btn-close"
-                            data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                </div>
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                 <p class="text-white-50 mb-3">Please enter your login and password!</p>
-
                 <div class="form-outline form-white mb-4">
                   <label class="fs-6 fw-bold form-label" for="email">
-                    <fa-icon icon="envelope"></fa-icon> Email
+                    <fa-icon icon="envelope"></fa-icon> Email / Username
                   </label>
                   <input type="email" id="email" class="form-control form-control-lg" [(ngModel)]="username"/>
                 </div>

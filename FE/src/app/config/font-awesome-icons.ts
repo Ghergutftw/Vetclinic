@@ -17,7 +17,7 @@ import {
   faSignInAlt,
   faStar,
   faSyncAlt,
-  faTrashAlt,
+  faTrashAlt, faUser,
   faXmark
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -41,6 +41,7 @@ export const fontAwesomeIcons = [
   faDownload,
   faFileWord,
   faFileExcel,
-  faInfoCircle
+  faInfoCircle,
+  faUser
   // jhipster-needle-add-icon-import
 ];

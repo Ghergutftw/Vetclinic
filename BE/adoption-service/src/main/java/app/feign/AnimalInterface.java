@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface AnimalInterface {
 
     @PostMapping("/adopt")
-    Response adopt(@RequestParam int animalId, @RequestParam int ownerId);
+    Response adopt(@RequestParam String animalCode, @RequestParam int ownerId);
 
 }

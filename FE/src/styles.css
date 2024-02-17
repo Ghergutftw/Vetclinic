@@ -19,6 +19,7 @@ input[type="datetime-local"],
 input[type="text"],
 input[type="number"],
 input[type="email"],
+input[type="password"],
 input[type="option"],
 input[type="file"],
 input[type="image"],
@@ -33,4 +34,18 @@ select[name="role"] {
 
 .bgc{
   background-color: #cecbcb;
+}
+.error-snackbar {
+  background-color: #f44336; /* Red */
+  color: white; /* white text for better contrast */
+}
+
+.warning-snackbar {
+  background-color: #ff9800; /* Orange */
+  color: black; /* black text for better contrast */
+}
+
+.info-snackbar {
+  background-color: #2196f3; /* Blue */
+  color: white; /* white text for better contrast */
 }

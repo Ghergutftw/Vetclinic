@@ -1,8 +1,8 @@
 
 export class Adoption {
   constructor(
-    public username?: string,
-    public animalId?: number,
+    public email?: string,
+    public animalCode?: string,
     public adoptionDate?: Date
   ) {
   }

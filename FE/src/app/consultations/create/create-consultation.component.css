@@ -1,0 +1,10 @@
+
+.required-field::before {
+  content: "*";
+  color: red;
+  margin-right: 5px;
+}
+
+.required-field::after {
+  display: none;
+}

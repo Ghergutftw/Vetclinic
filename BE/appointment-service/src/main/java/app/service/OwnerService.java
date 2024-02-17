@@ -20,5 +20,7 @@ public interface OwnerService {
 
     int adopt(AdoptionDTO adoption);
 
-    Response abandon(int animalId);
+    Response abandon(String animalCode);
+
+    Owner getOwnerByEmail(String email);
 }

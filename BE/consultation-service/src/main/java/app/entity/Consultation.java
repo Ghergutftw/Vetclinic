@@ -26,6 +26,8 @@ public class Consultation {
 
     private int animalId;
 
+    private int ownerId;
+
     private String diagnostic;
 
     private String treatment;

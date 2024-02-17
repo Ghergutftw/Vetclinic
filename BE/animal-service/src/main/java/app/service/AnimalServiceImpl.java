@@ -1,13 +1,12 @@
 package app.service;
 
-import app.dto.AnimalDTO;
-import app.dto.Response;
+import app.dto.*;
 import app.entity.Animal;
+import app.feign.OwnerInterface;
 import app.repository.AnimalRepository;
 import app.utils.ImageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,9 +23,11 @@ public class AnimalServiceImpl implements AnimalService {
     ModelMapper modelMapper = new ModelMapper();
     private final AnimalRepository animalRepository;
 
-    @Autowired
-    public AnimalServiceImpl(AnimalRepository animalRepository) {
+    OwnerInterface ownerInterface;
+
+    public AnimalServiceImpl(AnimalRepository animalRepository, OwnerInterface ownerInterface) {
         this.animalRepository = animalRepository;
+        this.ownerInterface = ownerInterface;
     }
 
     @Override
@@ -78,18 +79,18 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public byte[] getImage(int animalId) throws IOException {
-        Animal animal = animalRepository.findOneById(animalId);
-        log.info("Fetching image for animal with id: {}", animalId);
+    public byte[] getImage(String animalCode) throws IOException {
+        Animal animal = animalRepository.findOneByAnimalCode(animalCode);
+        log.info("Fetching image for animal with animal code: {}", animalCode);
         return ImageUtils.decompressImage(animal.getImageData());
     }
 
     @Override
-    public Response adoptAnimal(int animalId, int ownerId) {
-        Animal animal = animalRepository.findOneById(animalId);
+    public Response adoptAnimal(String animalCode, int ownerId) {
+        Animal animal = animalRepository.findOneByAnimalCode(animalCode);
         animal.setForAdoption(false);
         animal.setOwnerId(ownerId);
-        log.info("Animal with id: {} is now adopted", animalId);
+        log.info("Animal with id: {} is now adopted", animalCode);
         animalRepository.save(animal);
         return new Response("success", "Animal adopted successfully");
     }
@@ -101,12 +102,53 @@ public class AnimalServiceImpl implements AnimalService {
         animal.setForAdoption(true);
         log.info("Animal with id: {} is now available for adoption", animalId);
         animalRepository.save(animal);
+        ownerInterface.abandon(animal.getAnimalCode());
         return new Response("success", "Animal abandoned successfully");
+    }
+
+    @Override
+    public Animal getAnimalByCode(String animalCode) {
+        log.info("Fetching animal with code: {}", animalCode);
+        return animalRepository.findOneByAnimalCode(animalCode);
+    }
+
+    @Override
+    public Creation addAnimalFromConsultation(ConsultationCreation consultationCreation) {
+        Creation creation = new Creation();
+        OwnerDTO owner = ownerInterface.getOwnerByEmail(consultationCreation.getOwnerDTO().getEmail());
+        AnimalDTO animalDTO = consultationCreation.getAnimalDTO();
+        Animal animal = animalRepository.findAnimalByNicknameAndOwnerIdAndAnimalTypeAndSpecie(animalDTO.getNickname(), owner.getId(),animalDTO.getAnimalType(),animalDTO.getSpecie());
+
+        if (animal == null) {
+            Animal animalToBeSaved = Animal.builder()
+                    .nickname(consultationCreation.getAnimalDTO().getNickname())
+                    .animalType(consultationCreation.getAnimalDTO().getAnimalType())
+                    .animalCode(generateAnimalCode())
+                    .specie(consultationCreation.getAnimalDTO().getSpecie())
+                    .age(consultationCreation.getAnimalDTO().getAge())
+                    .weight(consultationCreation.getAnimalDTO().getWeight())
+                    .ownerId(owner.getId())
+                    .consultations(1)
+                    .forAdoption(false).build();
+            Animal animalSaved = animalRepository.save(animalToBeSaved);
+            AdoptionDTO adoptionDTO = new AdoptionDTO();
+            adoptionDTO.setEmail(owner.getEmail());
+            adoptionDTO.setOwner(consultationCreation.getOwnerDTO());
+            adoptionDTO.setAnimalCode(animalSaved.getAnimalCode());
+            ownerInterface.adopt(adoptionDTO);
+            creation.setOwnerId(owner.getId());
+            creation.setAnimalId(animalSaved.getId());
+        } else if (owner.getOwnedAnimals().contains(animal.getAnimalCode())) {
+            animal.setConsultations(animal.getConsultations() + 1);
+            animalRepository.save(animal);
+            creation.setOwnerId(owner.getId());
+            creation.setAnimalId(animal.getId());
+        }
+        return creation;
     }
 
 
     private static String generateAnimalCode() {
-        // Increment the counter and format the animal code
         animalCodeCounter++;
         return "AP" + String.format("%05d", animalCodeCounter);
     }

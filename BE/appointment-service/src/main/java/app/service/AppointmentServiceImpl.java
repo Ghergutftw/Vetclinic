@@ -82,12 +82,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment save(AppointmentDTO appointmentDTO) {
+    public Response save(AppointmentDTO appointmentDTO) {
         log.info("Saving appointment to the database.");
         DoctorResponse doctorResponse = doctorInterface.getDoctorByLastName(appointmentDTO.getDoctorLastName());
         log.info("Adding appointment to the doctor with ID: {}", doctorResponse.getId());
         Owner existingOwner = ownerRepository.findByEmail(appointmentDTO.getOwner().getEmail());
-
 
         if (existingOwner == null) {
             Owner newOwner = Owner.builder()
@@ -114,7 +113,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         log.info("Saving appointment to the database {}", appointment.getId());
         appointmentRepository.save(appointment);
         log.info("Appointment saved successfully.");
-        return appointment;
+        return new Response("success", "Appointment saved successfully");
     }
 
     @Override

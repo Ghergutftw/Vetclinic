@@ -3,6 +3,7 @@ import {DataService} from "../service/data.service";
 import {Appointment} from "../models/Appointment";
 import {Router} from "@angular/router";
 import {Status} from "../Enums/Status";
+import {NotificationService} from "../service/notification.service";
 
 @Component({
   selector: 'app-appointments',
@@ -16,7 +17,8 @@ export class AppointmentsComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-    public router: Router
+    public router: Router,
+    private notService : NotificationService
   ) {
   }
 
@@ -31,6 +33,7 @@ export class AppointmentsComponent implements OnInit {
   deleteAppointment(id: number | undefined) {
     this.dataService.deleteAppointment(id).subscribe(
       () => {
+        this.notService.showNotification("Appointment deleted successfully!");
         this.getAppointments();
       }
     )

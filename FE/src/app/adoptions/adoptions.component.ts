@@ -5,6 +5,7 @@ import {animate, keyframes, state, style, transition, trigger} from "@angular/an
 import {Adoption} from "../models/Adoption";
 import {AdoptionElement} from "../models/AdoptionElement";
 import {Owner} from "../models/Owner";
+import {NotificationService} from "../service/notification.service";
 
 @Component({
   selector: 'app-adoptions',
@@ -29,12 +30,13 @@ import {Owner} from "../models/Owner";
     ]),],
 })
 export class AdoptionsComponent implements OnInit {
-  displayMode = false;
+  displayMode = true;
   animals!: Animal[];
   exists: boolean = false;
   adoptions: AdoptionElement[] = [];
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -50,26 +52,28 @@ export class AdoptionsComponent implements OnInit {
       this.animals = animals.filter((animal: Animal) => animal.forAdoption === true);
       if (animals.length > 0) {
         this.exists = true;
+        this.animals.forEach(animal => {
+          if (animal.animalCode) {
+            animal.image = this.dataService.getImage(animal.animalCode);
+          }
+        });
       }
-      this.animals.forEach(animal => {
-        animal.image = this.dataService.getImage(animal.id);
-      });
     });
   }
 
-
   adoptAnimal(animal: Animal) {
     let authUser = sessionStorage.getItem('Authenticated User');
-    let user = JSON.parse(authUser!).username;
-    if (user === null) {
+    let email = JSON.parse(authUser!).email;
+    if (email === null) {
       alert("You must be logged in to adopt an animal!");
       return;
     }
-    this.dataService.createAdoption(new Adoption(user, animal.id, new Date())).subscribe(
+    this.dataService.createAdoption(new Adoption(email, animal.animalCode, new Date())).subscribe(
       () => {
         this.loadAnimals();
       }
     )
+    this.notificationService.showNotification('Adoption successful!');
   }
 
   starAnimal(animal: Animal) {
@@ -94,11 +98,13 @@ export class AdoptionsComponent implements OnInit {
     adoptions.forEach(adoption => {
       this.dataService.getOwnerById(adoption.ownerId).subscribe((owner: Owner) => {
         adoption.ownerName = owner.lastName + " " + owner.firstName;
-        this.dataService.getAnimalById(adoption.animalId).subscribe((animal: Animal) => {
-          adoption.animalName = animal.nickname;
-        });
+        if (adoption.id != 0) {
+          this.dataService.getAnimalById(adoption.id).subscribe((animal: Animal) => {
+            adoption.animalName = animal.nickname;
+          });
+        }
       });
-   });
+    });
   }
 
   changeDisplayMode() {

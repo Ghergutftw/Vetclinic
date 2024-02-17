@@ -20,7 +20,8 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private service: DataService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -40,10 +41,13 @@ export class DetailsComponent implements OnInit {
   private loadAnimalDetails() {
     this.animals = [];
     if (this.ownerAnimals) {
-      this.ownerAnimals.forEach((animalId) => {
-        this.service.getAnimalById(animalId).subscribe((data: Animal) => {
-          data.image = this.service.getImage(data.id);
-          this.animals.push(data);
+      this.ownerAnimals.forEach((animalCode) => {
+        // @ts-ignore
+        this.service.getAnimalByAnimalCode(animalCode).subscribe((data: Animal) => {
+          if (data.animalCode) {
+            data.image = this.service.getImage(data.animalCode);
+            this.animals.push(data);
+          }
         });
       });
     }

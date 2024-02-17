@@ -4,6 +4,7 @@ import {AuthentificationService} from "../service/authentification.service";
 import {DataService} from "../service/data.service";
 import {Login} from "../models/Login";
 import {User} from "../models/User";
+import {NotificationService} from "../service/notification.service";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
 
   constructor(public router: Router,
               public authService: AuthentificationService,
-              public service: DataService
+              public service: DataService,
+              private notificationService: NotificationService
   ) {
   }
 
@@ -34,9 +36,11 @@ export class LoginComponent {
       .subscribe((authenticated: boolean) => {
         if (authenticated) {
           this.invalidLogin = false;
+          this.notificationService.showNotification('Login successful');
           this.router.navigate(['/welcome']);
         } else {
           this.invalidLogin = true;
+          this.notificationService.showNotification(this.ERROR_MESSAGE);
           this.changeInvalidLogin();
         }
       });
@@ -54,4 +58,7 @@ export class LoginComponent {
     }, 0)
   }
 
+  showNotification(): void {
+    this.notificationService.showNotification('Custom message here');
+  }
 }

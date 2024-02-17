@@ -7,13 +7,14 @@ import {Animal} from "../../models/Animal";
 import {DocsService} from "../../service/docs.service";
 import {Status} from "../../Enums/Status";
 import {Owner} from "../../models/Owner";
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-create-consultation',
   templateUrl: './create-consultation.component.html',
   styleUrls: ['./create-consultation.component.css']
 })
-export class CreateConsultationComponent implements OnInit{
+export class CreateConsultationComponent implements OnInit {
   doctors: Doctor[] = [];
   speciesOptions: string[] = [];
   diagnostics: string[] = [];
@@ -21,27 +22,20 @@ export class CreateConsultationComponent implements OnInit{
   treatments: string[] = [];
   image!: File;
   imagePreview: any;
-
   appointmentId: number = 0;
 
-  consultation: Consultation = new Consultation(0,
-    new Date(),
-    "",
-    "",
-    "",
-    "",
-    "",
-    0,
-    new Animal());
+  consultation: Consultation = new Consultation();
 
-  response : string = "";
+  response: string = "";
   email: string = "";
   owner: Owner = new Owner();
+
   constructor(
     public service: DataService,
-    public docsService:DocsService,
+    public docsService: DocsService,
     public router: Router,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public notService: NotificationService
   ) {
   }
 
@@ -108,13 +102,18 @@ export class CreateConsultationComponent implements OnInit{
   }
 
   createConsultation() {
+    let animalId = 0;
     // @ts-ignore
     this.email = JSON.parse(sessionStorage.getItem('Authenticated User')).email;
-    this.service.createConsultation(this.consultation).subscribe(
-      () => {
-        this.service.updateStatus(this.appointmentId,Status.FINISHED).subscribe(
+
+    this.service.createConsultation(this.consultation, this.owner).subscribe(
+      response => {
+        animalId = +response.message;
+        this.service.saveImage(animalId, this.image).subscribe();
+        this.service.updateStatus(this.appointmentId, Status.FINISHED).subscribe(
           () => {
-            this.docsService.getReceipt(this.owner.email , this.consultation).subscribe();
+            this.docsService.getReceipt(this.owner.email, this.consultation).subscribe();
+            this.notService.showNotification("Consultation created successfully!");
             this.router.navigate(["/consultations"])
           }
         )
@@ -124,7 +123,7 @@ export class CreateConsultationComponent implements OnInit{
 
 
   updateDiagnoses() {
-    switch (this.consultation.diagnostic){
+    switch (this.consultation.diagnostic) {
       case 'Parvovirus':
         this.consultation.treatment = 'Fluid Therapy';
         this.consultation.recommendations = 'Vaccination';

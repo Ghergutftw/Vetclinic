@@ -23,7 +23,7 @@ export class CreateAnimalComponent {
   }
 
   ngOnInit(){
-    this.createdAnimal = new Animal(0, "", "", "", 0, 0)
+    this.createdAnimal = new Animal();
   }
 
   updateSpecies() {

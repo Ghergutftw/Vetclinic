@@ -1,8 +1,9 @@
-// AnimalService.java
 package app.service;
 
 import app.dto.AnimalDTO;
+import app.dto.Creation;
 import app.dto.Response;
+import app.dto.ConsultationCreation;
 import app.entity.Animal;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,9 +24,13 @@ public interface AnimalService {
 
     Response saveImage(MultipartFile file, int animalId) throws IOException;
 
-    byte[] getImage(int animalId) throws IOException;
+    byte[] getImage(String animalCode) throws IOException;
 
-    Response adoptAnimal(int animalId,int ownerId);
+    Response adoptAnimal(String animalCode,int ownerId);
 
     Response abandonAnimal(int animalId);
+
+    Animal getAnimalByCode(String animalCode);
+
+    Creation addAnimalFromConsultation(ConsultationCreation consultationCreation);
 }

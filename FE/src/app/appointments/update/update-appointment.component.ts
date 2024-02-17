@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../../service/data.service";
 import {Appointment} from "../../models/Appointment";
 import {Doctor} from "../../models/Doctor";
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-update',
@@ -18,7 +19,8 @@ export class UpdateAppointmentComponent implements OnInit{
   constructor(
     private service: DataService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notService: NotificationService
   ) {
   }
 
@@ -41,6 +43,7 @@ export class UpdateAppointmentComponent implements OnInit{
   updateAppointment() {
     this.service.updateAppointment(this.id, this.appointment).subscribe(
       () => {
+        this.notService.showNotification("Appointment updated successfully!");
         this.router.navigate(['appointments'])
       }
     )

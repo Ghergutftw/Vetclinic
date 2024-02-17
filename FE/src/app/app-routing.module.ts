@@ -33,7 +33,7 @@ const routes: Routes = [
   {path: 'update-appointment/:id',component:UpdateAppointmentComponent , canActivate:[RouterGuardService]},
   {path: 'animals',component:AnimalsComponent , canActivate:[RouterGuardService]},
   {path: 'create-animal',component:CreateAnimalComponent , canActivate:[RouterGuardService]},
-  {path: 'update-animal/:id',component:UpdateAnimalComponent , canActivate:[RouterGuardService]},
+  {path: 'update-animal/:animalCode',component:UpdateAnimalComponent , canActivate:[RouterGuardService]},
   {path: 'doctors',component:DoctorsComponent , canActivate:[RouterGuardService]},
   {path: 'create-doctor',component:CreateDoctorComponent , canActivate:[RouterGuardService]},
   {path: 'update-doctor/:id',component:UpdateDoctorComponent , canActivate:[RouterGuardService]},

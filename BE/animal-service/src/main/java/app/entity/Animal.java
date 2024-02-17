@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Data
 @Builder
@@ -28,15 +29,23 @@ public class Animal {
 
     private double weight;
 
+//    TODO : Make it take the consultations IDs
+    private int consultations;
+
     @Column(unique = true)
     private String animalCode;
 
     private Boolean forAdoption;
+
     @JoinColumn(nullable = true)
     private int ownerId;
 
     @Lob
     @Column(name = "image_data", length = 1048576)
     private byte[] imageData;
+
+//    @ElementCollection
+//    @Builder.Default
+//    private List<String> consultations = new ArrayList<>();
 
 }

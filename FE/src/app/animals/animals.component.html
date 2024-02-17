@@ -16,13 +16,13 @@
     </thead>
     <tbody class="table-tabs text-center" *ngIf="animals">
     <tr *ngFor="let animal of animals" >
-      <td>{{animal.id}}</td>
+      <td>{{animal.animalCode}}</td>
       <td>{{animal.nickname}}</td>
       <td>{{animal.animalType}}</td>
       <td>{{animal.specie}}</td>
       <td>{{animal.age}}</td>
       <td>{{animal.weight}}</td>
-      <td><button class="btn btn-warning justify-content-center" (click)="updateAnimal(animal.id)">
+      <td><button class="btn btn-warning justify-content-center" (click)="updateAnimal(animal.animalCode)">
         <fa-icon icon="edit"></fa-icon> Edit</button></td>
       <td><button class="btn btn-danger" (click)="deleteAnimal(animal.id)">
         <fa-icon icon="trash-alt"></fa-icon> Delete</button></td>
