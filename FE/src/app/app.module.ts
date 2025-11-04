@@ -50,6 +50,7 @@ import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {fontAwesomeIcons} from "./config/font-awesome-icons";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { LoadingComponent } from './service/loading/loading.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { LoadingComponent } from './service/loading/loading.component';
     OwnerComponent,
     DetailsComponent,
     CreateOwnerComponent,
-    LoadingComponent
+    LoadingComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

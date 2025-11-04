@@ -15,7 +15,11 @@ export class RouterGuardService {
     if (this.authService.isUserLoggedIn()) {
       return true;
     } else {
-      this.router.navigate(['login'])
+      this.router.navigate(['login']).then(r =>
+        {
+          console.warn('User is not logged in, redirecting to login page.');
+        }
+      )
       return false;
     }
   }

@@ -2,7 +2,7 @@ spring:
   profiles:
     active: development
   datasource:
-    url: jdbc:mysql://vetclinic-db:3306/mydatabase?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/mydatabase?useSSL=false&allowPublicKeyRetrieval=true
     driverClassName: com.mysql.cj.jdbc.Driver
     username: myuser
     password: secret

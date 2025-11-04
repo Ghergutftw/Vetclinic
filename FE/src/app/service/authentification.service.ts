@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {DataService} from "./data.service";
 import {Login} from "../models/Login";
 import {LoginResponse} from "../models/LoginResponse";
@@ -9,6 +9,9 @@ import {User} from "../models/User";
   providedIn: 'root'
 })
 export class AuthentificationService {
+
+  howManyUsers = signal(0);
+
   constructor(
     public service: DataService
   ) {

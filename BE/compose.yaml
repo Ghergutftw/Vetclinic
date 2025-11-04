@@ -1,7 +1,6 @@
-version: '3.8'
 services:
   vetclinic-db:
-    image: mysql:latest
+    image: mysql:8.4
     container_name: vetclinic-db
     environment:
       - MYSQL_DATABASE=mydatabase
@@ -15,15 +14,13 @@ services:
     networks:
       - vetclinic-network
 
-  zipkin:
-    image: openzipkin/zipkin
-    container_name: zipkin
-    ports:
-      - "9411:9411"
-    networks:
-      - vetclinic-network
-
-#
+#  zipkin:
+#    image: openzipkin/zipkin
+#    container_name: zipkin
+#    ports:
+#      - "9411:9411"
+#    networks:
+#      - vetclinic-network
 #  discovery-server:
 #    image: ghergutmadalin/discovery-server:1.1
 #    container_name: discovery-server
@@ -34,7 +31,6 @@ services:
 #      - vetclinic-db
 #    networks:
 #      - vetclinic-network
-#
 #  api-gateway:
 #    image: ghergutmadalin/api-gateway:1.1
 #    pull_policy: always
@@ -49,7 +45,7 @@ services:
 #      - discovery-server
 #    networks:
 #      - vetclinic-network
-#
+
 #  animal-service:
 #    image: ghergutmadalin/animal-service:1.1
 #    pull_policy: always
@@ -133,8 +129,6 @@ services:
 #   depends_on:
 #     - api-gateway
 #     - discovery-server
-#    networks:
-#      - vetclinic-network
 
 networks:
   vetclinic-network:

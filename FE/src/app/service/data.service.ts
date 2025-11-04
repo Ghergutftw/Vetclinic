@@ -19,6 +19,8 @@ import {Owner} from "../models/Owner";
 })
 export class DataService {
 
+
+
   constructor(
     public httpClient: HttpClient,
     private sanitizer: DomSanitizer

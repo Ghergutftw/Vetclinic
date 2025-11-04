@@ -35,6 +35,9 @@ export class LoginComponent {
     this.authService.authenticate(this.loginModel)
       .subscribe((authenticated: boolean) => {
         if (authenticated) {
+          this.authService.howManyUsers.set(this.authService.howManyUsers() + 1);
+          console.log(`Number of users logged in: ${this.authService.howManyUsers()}`)
+
           this.invalidLogin = false;
           this.notificationService.showNotification('Login successful');
           this.router.navigate(['/welcome']);

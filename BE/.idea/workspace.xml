@@ -4,29 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="541cceab-bacd-48fc-9801-70bea0702dab" name="Changes" comment="-Rename Files&#10;-Create Appointment / update / delete&#10;-Creating bill">
-      <change afterPath="$PROJECT_DIR$/doctor-service/src/main/java/app/components/DataLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FE/src/app/Enums/Status.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/controller/AppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/dto/AppointmentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/dto/AppointmentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/entity/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/enums/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/app/service/AppointmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/app/service/AppointmentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/controller/ConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/controller/ConsultationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/java/app/service/ConsultationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/app/components/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/app/components/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/animals/animals.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/animals/animals.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/animals/update/update-animal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/animals/update/update-animal.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/consultations.component.ts" afterDir="false" />
+    <list default="true" id="541cceab-bacd-48fc-9801-70bea0702dab" name="Changes" comment="-Beautifucl pdf">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59aa4804-e9d3-4e17-82b2-d4b1c29074e8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59aa4804-e9d3-4e17-82b2-d4b1c29074e8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59aa4804-e9d3-4e17-82b2-d4b1c29074e8/storage_v2/_src_/schema/mydatabase.J7NGgg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59aa4804-e9d3-4e17-82b2-d4b1c29074e8/storage_v2/_src_/schema/mydatabase.J7NGgg.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/2701071a1490f4576d914b0b84bc3185e0aa2854" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/2701071a1490f4576d914b0b84bc3185e0aa2854" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/b/4b96eda140aa3d578d04e917612e09defe08c844" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/b/4b96eda140aa3d578d04e917612e09defe08c844" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/4/94a9413d4b88cf45aa164b35ec05cce2df4bb564" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/4/94a9413d4b88cf45aa164b35ec05cce2df4bb564" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adoption-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/adoption-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animal-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/animal-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consultation-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/consultation-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/adoptions/adoptions.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/adoptions/adoptions.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/create/create-consultation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/create/create-consultation.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/consultations/create/create-consultation.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/consultations/create/create-consultation.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/doctors/create/create-doctor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/doctors/create/create-doctor.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/doctors/doctors.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/doctors/doctors.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/doctors/doctors.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/doctors/doctors.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/src/app/models/Doctor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/models/Doctor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/service/authentification.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/service/authentification.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/src/app/service/data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/service/data.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/app/service/route-guard.service/router-guard.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/app/service/route-guard.service/router-guard.service.ts" afterDir="false" />
+    </list>
+    <list id="411c1d1b-7fba-4b66-bc6b-60f3ab96320c" name="noCommit" comment="">
+      <change beforePath="$PROJECT_DIR$/qodana.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +51,24 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Ghergutftw&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ghergutftw/Vetclinic-Beauty.git&quot;,
+    &quot;accountId&quot;: &quot;55580988-93b8-43af-853d-9359f70d98c0&quot;
+  }
+}</component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="file://$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" environment="dev" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -71,16 +95,26 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Docker.compose.yaml.discovery-server: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.vetclinic-db: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.All in appointment-service.executor&quot;: &quot;Debug&quot;,
     &quot;JUnit.ConsultationControllerTest.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.BE [clean,compile,jib:build].executor&quot;: &quot;Run&quot;,
     &quot;Maven.BE [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [com.google.cloud.tools:jib-maven-plugin:3.4.0:build].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [compiile,jib:build].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BE [compile,jib:build].executor&quot;: &quot;Run&quot;,
     &quot;Maven.BE [deploy].executor&quot;: &quot;Run&quot;,
     &quot;Maven.BE [org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy-file].executor&quot;: &quot;Run&quot;,
     &quot;Maven.BE [org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy].executor&quot;: &quot;Run&quot;,
     &quot;Maven.BE [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.BE [org.springframework.boot:spring-boot-maven-plugin:3.2.0:build-image].executor&quot;: &quot;Run&quot;,
     &quot;Maven.BE [test].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.adoption-service [com.google.cloud.tools:jib-maven-plugin:3.4.0:build].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-gateway [com.google.cloud.tools:jib-maven-plugin:3.4.0:build].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-gateway [org.springframework.boot:spring-boot-maven-plugin:3.2.0:build-image].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.consultation-service [clean,package].executor&quot;: &quot;Run&quot;,
     &quot;Maven.discovery-server [clean,package].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
@@ -88,11 +122,15 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;Shell Script.push_and_deploy.sh.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.AdoptionServiceApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.AnimalServiceApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.AppointmentServiceApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.ConsultationServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DiscoveryServerApplication (1).executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.DiscoveryServerApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.DoctorServiceApplication.executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Debug&quot;,
@@ -107,10 +145,11 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/madal/Desktop/Files/Vetclinic/BE/user-service/src/main/java/app/service&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/madal/Desktop/Files/Projects/Vetclinic/BE&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -139,18 +178,18 @@
       <recent name="app.DTO" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\user-service\src\main\java\app" />
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\user-service\src\main\java\app\feign" />
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\consultation-service\src\main\resources\templates" />
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\consultation-service\src\main\java\app\dto" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\consultation-service\src\main\java\app" />
-      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service\src\main\java\app" />
-      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE" />
-      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service\src\main\java\app\Entity" />
-      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\doctor-service\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\consultation-service\src\main\resources\templates" />
+      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\user-service\src\main\resources" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\doctor-service\src\main\java\app" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE" />
       <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service" />
-      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service\src\main\java\app\service" />
-      <recent name="C:\Users\madal\Desktop\Files\Vetclinic\BE\animal-service\src\main\java\app\repository" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -158,6 +197,20 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="app.controller" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="app.dto" />
+      <recent name="app.feign" />
+      <recent name="app.service" />
+      <recent name="app.controller" />
+      <recent name="app.enums" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn compiile jib:build" />
+      <command value="mvn compile jib:build" />
+      <command value="mvn clean compile jib:build" />
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -169,17 +222,25 @@
     </option>
   </component>
   <component name="RunManager" selected="Compound.App">
-    <configuration name="ConsultationControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="consultation-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="app.feign.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="app.controller" />
-      <option name="MAIN_CLASS_NAME" value="app.controller.ConsultationControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="push_and_deploy.sh" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/push_and_deploy.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="AdoptionServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="adoption-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="app.AdoptionServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -190,6 +251,33 @@
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="animal-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="app.AnimalServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="app.ApiGatewayApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppointmentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="appointment-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="app.AppointmentServiceApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.*" />
@@ -214,9 +302,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DiscoveryServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="DiscoveryServerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="discovery-server" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="discoveryserver.DiscoveryServerApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="app.DiscoveryServerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -225,6 +319,20 @@
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="doctor-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="app.DoctorServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="user-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="app.UserServiceApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.*" />
@@ -249,12 +357,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="compose.yaml.mysql2: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="compose.yaml.discovery-server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="mysql2" />
+              <option value="discovery-server" />
             </list>
           </option>
           <option name="sourceFilePath" value="compose.yaml" />
@@ -262,12 +370,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="compose.yaml.mysql: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="compose.yaml.vetclinic-db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="mysql" />
+              <option value="vetclinic-db" />
             </list>
           </option>
           <option name="sourceFilePath" value="compose.yaml" />
@@ -277,28 +385,33 @@
     </configuration>
     <list>
       <item itemvalue="Compound.App" />
-      <item itemvalue="Docker.compose.yaml.mysql2: Compose Deployment" />
-      <item itemvalue="Docker.compose.yaml.mysql: Compose Deployment" />
+      <item itemvalue="Docker.compose.yaml.discovery-server: Compose Deployment" />
+      <item itemvalue="Docker.compose.yaml.vetclinic-db: Compose Deployment" />
       <item itemvalue="Docker.compose.yaml: Compose Deployment" />
-      <item itemvalue="JUnit.ConsultationControllerTest" />
-      <item itemvalue="Spring Boot.DiscoveryServerApplication" />
+      <item itemvalue="Shell Script.push_and_deploy.sh" />
+      <item itemvalue="Spring Boot.AdoptionServiceApplication" />
+      <item itemvalue="Spring Boot.AppointmentServiceApplication" />
+      <item itemvalue="Spring Boot.ConsultationServiceApplication" />
       <item itemvalue="Spring Boot.AnimalServiceApplication" />
       <item itemvalue="Spring Boot.DoctorServiceApplication" />
-      <item itemvalue="Spring Boot.ConsultationServiceApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.DiscoveryServerApplication (1)" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.compose.yaml.vetclinic-db: Compose Deployment" />
+        <item itemvalue="Docker.compose.yaml.discovery-server: Compose Deployment" />
         <item itemvalue="Docker.compose.yaml: Compose Deployment" />
-        <item itemvalue="JUnit.ConsultationControllerTest" />
-        <item itemvalue="Docker.compose.yaml.mysql: Compose Deployment" />
-        <item itemvalue="Docker.compose.yaml.mysql2: Compose Deployment" />
+        <item itemvalue="Shell Script.push_and_deploy.sh" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.1-openjdk-21.0.1-8336523bb0d9-657b72ed" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
       </set>
     </attachedChunks>
   </component>
@@ -306,6 +419,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="541cceab-bacd-48fc-9801-70bea0702dab" name="Changes" comment="" />
+      <changelist id="411c1d1b-7fba-4b66-bc6b-60f3ab96320c" name="noCommit" comment="" />
       <created>1702117553984</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -363,6 +477,85 @@
       <workItem from="1705581480745" duration="4133000" />
       <workItem from="1705595833931" duration="1110000" />
       <workItem from="1705750945556" duration="16809000" />
+      <workItem from="1706212324212" duration="32000" />
+      <workItem from="1706290684493" duration="1436000" />
+      <workItem from="1706305192076" duration="3029000" />
+      <workItem from="1706347241115" duration="4789000" />
+      <workItem from="1706361717773" duration="14192000" />
+      <workItem from="1706382095730" duration="84000" />
+      <workItem from="1706382204264" duration="2622000" />
+      <workItem from="1706385084193" duration="5926000" />
+      <workItem from="1706425166709" duration="8307000" />
+      <workItem from="1706462643241" duration="789000" />
+      <workItem from="1706613967218" duration="4663000" />
+      <workItem from="1706637570841" duration="2361000" />
+      <workItem from="1706642918762" duration="2286000" />
+      <workItem from="1706716239380" duration="11248000" />
+      <workItem from="1706908557535" duration="4208000" />
+      <workItem from="1707044848534" duration="2094000" />
+      <workItem from="1707145613679" duration="2314000" />
+      <workItem from="1707159803340" duration="582000" />
+      <workItem from="1707393041635" duration="7000" />
+      <workItem from="1707400074414" duration="1894000" />
+      <workItem from="1707423295387" duration="6416000" />
+      <workItem from="1707480422244" duration="1000" />
+      <workItem from="1707491818791" duration="498000" />
+      <workItem from="1707515961661" duration="2314000" />
+      <workItem from="1707555434354" duration="27899000" />
+      <workItem from="1707650872500" duration="4033000" />
+      <workItem from="1707762375615" duration="6708000" />
+      <workItem from="1707771808635" duration="1776000" />
+      <workItem from="1707815528739" duration="21050000" />
+      <workItem from="1707851879520" duration="4205000" />
+      <workItem from="1707984379894" duration="4520000" />
+      <workItem from="1708001321839" duration="10419000" />
+      <workItem from="1708087144865" duration="22493000" />
+      <workItem from="1708121347167" duration="30000" />
+      <workItem from="1708121389948" duration="910000" />
+      <workItem from="1708159859110" duration="7377000" />
+      <workItem from="1708170084989" duration="544000" />
+      <workItem from="1708173314542" duration="3572000" />
+      <workItem from="1708200154498" duration="7662000" />
+      <workItem from="1708263375530" duration="497000" />
+      <workItem from="1708265446674" duration="599000" />
+      <workItem from="1708627549074" duration="18000" />
+      <workItem from="1708627575652" duration="52000" />
+      <workItem from="1708722390508" duration="2000" />
+      <workItem from="1709398077595" duration="358000" />
+      <workItem from="1709542971233" duration="31000" />
+      <workItem from="1710791204182" duration="341000" />
+      <workItem from="1712338050052" duration="7000" />
+      <workItem from="1712338399430" duration="605000" />
+      <workItem from="1712341555275" duration="171000" />
+      <workItem from="1712343417860" duration="175000" />
+      <workItem from="1712344598782" duration="188000" />
+      <workItem from="1712347010709" duration="395000" />
+      <workItem from="1713473025970" duration="1000" />
+      <workItem from="1713553063572" duration="72000" />
+      <workItem from="1713553158005" duration="29000" />
+      <workItem from="1714599627581" duration="9000" />
+      <workItem from="1714599698546" duration="66000" />
+      <workItem from="1714752135581" duration="946000" />
+      <workItem from="1714764010261" duration="37000" />
+      <workItem from="1717999563386" duration="9000" />
+      <workItem from="1719065746576" duration="198000" />
+      <workItem from="1719065963427" duration="789000" />
+      <workItem from="1719239991110" duration="888000" />
+      <workItem from="1720031827997" duration="31000" />
+      <workItem from="1720032781836" duration="771000" />
+      <workItem from="1720207487069" duration="599000" />
+      <workItem from="1720209672923" duration="49000" />
+      <workItem from="1726589809494" duration="580000" />
+      <workItem from="1726821174878" duration="2000" />
+      <workItem from="1729097566493" duration="39000" />
+      <workItem from="1750786568919" duration="834000" />
+      <workItem from="1750787832646" duration="1836000" />
+      <workItem from="1751132185438" duration="200000" />
+      <workItem from="1751985844732" duration="3634000" />
+      <workItem from="1752060385954" duration="1182000" />
+      <workItem from="1752964838518" duration="51000" />
+      <workItem from="1762251451081" duration="517000" />
+      <workItem from="1762252405808" duration="313000" />
     </task>
     <task id="LOCAL-00001" summary="Discovery Server - Eureka">
       <option name="closed" value="true" />
@@ -420,15 +613,200 @@
       <option name="project" value="LOCAL" />
       <updated>1702501674850</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="-Checkmark pentru adoption&#10;-Modulul adopti cu card&#10;-Animatii&#10;-Backend Adoptii&#10;-Functionalitate Owner - Adoptie - Animal&#10;-Git Ignore&#10;-Stocare image ca byte[] in DB">
+      <option name="closed" value="true" />
+      <created>1706389178144</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706389178144</updated>
+    </task>
+    <task id="LOCAL-00009" summary="-Adoption Module + Owner&#10;-Loading page&#10;-Jib&#10;-Starting Grafana&#10;-Logo Change">
+      <option name="closed" value="true" />
+      <created>1706728447068</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706728447068</updated>
+    </task>
+    <task id="LOCAL-00010" summary="-Remove console logs">
+      <option name="closed" value="true" />
+      <created>1706728651411</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706728651411</updated>
+    </task>
+    <task id="LOCAL-00011" summary="1.1">
+      <option name="closed" value="true" />
+      <created>1706914547124</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706914547124</updated>
+    </task>
+    <task id="LOCAL-00012" summary="1.1">
+      <option name="closed" value="true" />
+      <created>1707045086495</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1707045086495</updated>
+    </task>
+    <task id="LOCAL-00013" summary="V1.1">
+      <option name="closed" value="true" />
+      <created>1707160380688</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1707160380688</updated>
+    </task>
+    <task id="LOCAL-00014" summary="-Animalk with owner Id&#10;-Starting email">
+      <option name="closed" value="true" />
+      <created>1707562929582</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1707562929582</updated>
+    </task>
+    <task id="LOCAL-00015" summary="-Email with attachment">
+      <option name="closed" value="true" />
+      <created>1707585218383</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1707585218383</updated>
+    </task>
+    <task id="LOCAL-00016" summary="-Moved The Email service to Consultation">
+      <option name="closed" value="true" />
+      <created>1707586700861</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1707586700861</updated>
+    </task>
+    <task id="LOCAL-00017" summary="-Add a pdf as attachment to email">
+      <option name="closed" value="true" />
+      <created>1707587938121</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1707587938121</updated>
+    </task>
+    <task id="LOCAL-00018" summary="-Custom text to pdf">
+      <option name="closed" value="true" />
+      <created>1707594045124</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1707594045124</updated>
+    </task>
+    <task id="LOCAL-00019" summary="-image to pdf">
+      <option name="closed" value="true" />
+      <created>1707596033984</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1707596033984</updated>
+    </task>
+    <task id="LOCAL-00020" summary="-Email to owner">
+      <option name="closed" value="true" />
+      <created>1707762646225</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1707762646225</updated>
+    </task>
+    <task id="LOCAL-00021" summary="-Adoption Tabel with Switch">
+      <option name="closed" value="true" />
+      <created>1707769384801</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1707769384801</updated>
+    </task>
+    <task id="LOCAL-00022" summary="-Zipkin Distributed Tracing">
+      <option name="closed" value="true" />
+      <created>1707771318731</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1707771318731</updated>
+    </task>
+    <task id="LOCAL-00023" summary="-GATA">
+      <option name="closed" value="true" />
+      <created>1708178500555</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1708178500555</updated>
+    </task>
+    <task id="LOCAL-00024" summary="_Loading Logo + Receipt works">
+      <option name="closed" value="true" />
+      <created>1708204202483</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1708204202483</updated>
+    </task>
+    <task id="LOCAL-00025" summary="-Beautifucl pdf">
+      <option name="closed" value="true" />
+      <created>1708205623840</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1708205623840</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1afcfae2-440a-471e-800f-25e6a7442596" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="1afcfae2-440a-471e-800f-25e6a7442596">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/madal/Desktop/Files/Vetclinic/BE/user-service" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -445,28 +823,29 @@
     <MESSAGE value="Consultation &lt;-&gt; Animal" />
     <MESSAGE value="Man Java is Fun" />
     <MESSAGE value="Creating an animal through Consultation as it should" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating an animal through Consultation as it should" />
+    <MESSAGE value="-Checkmark pentru adoption&#10;-Modulul adopti cu card&#10;-Animatii&#10;-Backend Adoptii&#10;-Functionalitate Owner - Adoptie - Animal&#10;-Git Ignore&#10;-Stocare image ca byte[] in DB" />
+    <MESSAGE value="-Adoption Module + Owner&#10;-Loading page&#10;-Jib&#10;-Starting Grafana&#10;-Logo Change" />
+    <MESSAGE value="-Remove console logs" />
+    <MESSAGE value="1.1" />
+    <MESSAGE value="V1.1" />
+    <MESSAGE value="-Fixed the API using the standard" />
+    <MESSAGE value="-Animalk with owner Id&#10;-Starting email" />
+    <MESSAGE value="-Email with attachment" />
+    <MESSAGE value="-Moved The Email service to Consultation" />
+    <MESSAGE value="-Add a pdf as attachment to email" />
+    <MESSAGE value="-Custom text to pdf" />
+    <MESSAGE value="-image to pdf" />
+    <MESSAGE value="-Email to owner" />
+    <MESSAGE value="-Adoption Tabel with Switch" />
+    <MESSAGE value="-Zipkin Distributed Tracing" />
+    <MESSAGE value="-GATA" />
+    <MESSAGE value="_Loading Logo + Receipt works" />
+    <MESSAGE value="-Beautifucl pdf" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Beautifucl pdf" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/animal-service/src/main/java/org/example/Main.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/doctor-service/src/main/java/org/example/Main.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BE$AnimalServiceApplication__1_.ic" NAME="AnimalServiceApplication (1) Coverage Results" MODIFIED="1702118729911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
